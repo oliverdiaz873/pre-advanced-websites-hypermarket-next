@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Domine', Georgia, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==================== VARIABLES GLOBALES ==================== */
+:root {
+    /* Fuente exclusiva para la marca (Brand) */
+    --font-family-brand: 'Domine', Georgia, serif;
 }
 
 /* ==================== FUENTES PERSONALIZADAS ==================== */
@@ -44,12 +50,17 @@
 
 body {
     overflow-x: hidden;
-    background-color: #ffffff; /* Page background is now white */
-    color: #111827; /* Dark text for readability on white background */
+    background-color: #ffffff;
+    color: #111827;
     font-family: var(--font-sans);
 }
 
-/* Base link reset if needed */
+/* Restablecemos sans-serif para todos los elementos comunes */
+h1, h2, h3, h4, h5, h6, button, input, select, textarea {
+    font-family: var(--font-sans);
+}
+
+/* Base link reset */
 a {
     transition: all 0.3s ease;
 }
@@ -60,7 +71,7 @@ a {
     border-radius: 50%;
 }
 
-/* Dark Theme Utility for specific pages */
+/* Dark Theme Utility */
 .dark-theme-body {
     background-color: #0a0a0b !important;
     color: #ffffff !important;

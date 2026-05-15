@@ -49,7 +49,9 @@
     }
 }
 
+/* Estilo específico para la marca (Logo) */
 header .brand h1,
 header .brand span {
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-brand) !important;
+    letter-spacing: 0.5px;
 }

@@ -1,0 +1,61 @@
+{
+  "_documentation": {
+    "namespace": "categories",
+    "description": "Traducción de nombres de categorías de productos (alimentos, electrodomésticos, ropa, etc). Responsable de traducir breadcrumb items y títulos de ProductCarouselSection en páginas de categoría, así como meta tags de SEO y datos estructurados JSON-LD.",
+    "usage": "Usado en navegación, menús de categorías, filtros de búsqueda y componentes de páginas de categoría",
+    "contains": "8 categorías principales + 25+ subcategorías",
+    "responsible_for": [
+      "Breadcrumb items en páginas de categoría (category.id y sub.{{slug}})",
+      "Títulos dinámicos de ProductCarouselSection en Category.tsx",
+      "Meta tags SEO y JSON-LD estructurado en páginas de categoría"
+    ],
+    "usage_pattern": "t('categories:{{categoryId}}') para categorías, t('categories:sub.{{subcategorySlug}}') para subcategorías"
+  },
+  "alimentos": "Food",
+  "electrodomesticos": "Appliances",
+  "tecnologia": "Technology",
+  "ropa": "Clothing",
+  "muebles_y_decoracion": "Furniture & Decor",
+  "farmacia": "Pharmacy",
+  "ferreteria": "Hardware",
+  "juguetes": "Toys",
+  "sub": {
+    "frutas_y_verduras": "Fruits & Vegetables",
+    "despensa": "Pantry",
+    "carnes_pescados_mariscos": "Meat, Fish & Seafood",
+    "lacteos_y_huevos": "Dairy & Eggs",
+    "bebidas": "Drinks",
+    "enlatados": "Canned Goods",
+    "cocina": "Kitchen",
+    "lavado": "Laundry",
+    "climatizacion": "Climatization",
+    "televisores": "Televisions",
+    "laptops": "Laptops",
+    "tablets": "Tablets",
+    "celulares": "Phones",
+    "bocinas": "Speakers",
+    "pantalones_para_hombres": "Men's Pants",
+    "pantalones_para_mujeres": "Women's Pants",
+    "pantalones_para_ninos": "Children's Pants",
+    "trajes_para_hombres": "Men's Suits",
+    "vestidos": "Dresses",
+    "sofas": "Sofas",
+    "sillones": "Armchairs",
+    "mesas": "Tables",
+    "floreros": "Vases",
+    "analgesicos": "Pain Relief",
+    "dermocosmetica": "Dermocosmetics",
+    "vitaminas_y_minerales": "Vitamins & Minerals",
+    "antigripales_y_resfriado": "Cold & Flu",
+    "herramientas_manuales": "Hand Tools",
+    "pinturas_y_acabados": "Paints & Finishes",
+    "electricidad": "Electricity",
+    "plomeria": "Plumbing",
+    "juguetes_para_ninos": "Toys for Boys",
+    "juguetes_para_ninas": "Toys for Girls"
+  },
+  "seo": {
+    "description_template": "Explore our selection of {{category}} at Superior Hypermarket: {{subcategories}}. The best products at the best price.",
+    "keywords_template": "{{category}}, {{subcategories}}, hypermarket, online shopping"
+  }
+}

@@ -1,0 +1,167 @@
+/* Estilos del componente Tarjeta de Producto (ProductCard) */
+
+.producto {
+    /* Contenedor principal de la tarjeta blanca */
+    background-color: white;
+    color: black;
+    padding: 12px;
+    border-radius: 12px;
+    width: 160px;
+    min-height: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Efecto de elevación al pasar el mouse */
+.producto:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Línea decorativa superior que aparece al hacer hover */
+.producto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #ffcc00, #ff9900);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.producto:hover::before {
+    transform: scaleX(1);
+}
+
+/* Contenedor de la imagen del producto */
+.producto-img-container {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+/* Ajuste de la imagen para que quepa proporcionalmente */
+.producto-img-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+/* Zoom suave en la imagen al hacer hover */
+.producto:hover .producto-img-container img {
+    transform: scale(1.05);
+}
+
+/* Título del producto con límite de 3 líneas y puntos suspensivos */
+.producto-title {
+    font-size: 13px;
+    font-weight: 600 !important;
+    line-height: 1.25;
+    color: black;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Limita a 3 líneas */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 35px;
+    text-align: left;
+}
+
+/* Estilo para el precio regular (sin oferta) */
+.producto-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+
+/* Bloque contenedor de precios (usado para alinear nuevo y viejo) */
+.price-block-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 4px 0 0 0;
+    min-height: 24px;
+    width: 100%;
+}
+
+.producto-unit-format {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 2px 0;
+}
+
+/* Precio actual/nuevo (específicamente negro y sin negrita extra) */
+.precio-nuevo {
+    font-size: 16px;
+    font-weight: 600;
+    /* Peso moderado, no bold extremo */
+    color: #000000;
+    text-decoration: none;
+}
+
+/* Precio antiguo tachado y más pequeño */
+.precio-antiguo {
+    font-size: 13px;
+    text-decoration: line-through;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+@media (min-width: 768px) {
+    .producto {
+        width: 220px;
+        min-height: 350px;
+        padding: 20px;
+    }
+
+    .producto-img-container {
+        height: 150px;
+    }
+
+    /* Aseguramos que en desktop el título también respete las 3 líneas y herede el tamaño base */
+    .producto-title {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        font-size: 16px;
+    }
+
+    .precio-nuevo,
+    .producto-price {
+        font-size: 18px;
+    }
+
+    .precio-antiguo {
+        font-size: 14px;
+    }
+
+}
+/* Overlay Link para navegar al producto al hacer clic en cualquier parte de la card */
+.product-card__overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* Por encima de la imagen y texto, pero por debajo de AddToCartButton (z-index: 2) */
+    cursor: pointer;
+}

@@ -19,7 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/src/*": ["./src/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/data/*": ["./src/data/*"],
+      "@/shared/components/*": ["./src/shared/components/*"],
+      "@/shared/utils/*": ["./src/shared/utils/*"],
+      "@/shared/types/*": ["./src/shared/types/*"],
+      "@/shared/i18n/*": ["./src/shared/i18n/*"],
+      "@/pages/*": ["./src/features/pages/*"]
     }
   },
   "include": [

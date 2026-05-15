@@ -1,0 +1,180 @@
+/* Basado en veteran-websites-hypermarket-tailwind — estructura: nav > ol.breadcrumb */
+
+:root {
+    --breadcrumb-top-base: 65px;
+    --breadcrumb-top-desktop: 75px;
+    --bg-overlay: rgba(0, 0, 0, 0.85);
+    --color-primary: #ffcc00;
+}
+
+ol.breadcrumb {
+    background: var(--bg-overlay) !important;
+    padding: 8px 15px !important;
+    border-radius: 10px !important;
+    max-width: 90% !important;
+    margin: 0 auto !important;
+    font-size: 14px !important;
+    color: #ffffff !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    list-style: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    white-space: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    text-overflow: clip !important;
+    position: fixed;
+    top: var(--breadcrumb-top-base);
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+ol.breadcrumb::-webkit-scrollbar {
+    display: none;
+}
+
+ol.breadcrumb li {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 5px !important;
+}
+
+ol.breadcrumb li:not(:last-child)::after {
+    content: "›";
+    color: #ffffff;
+    margin-left: 5px;
+}
+
+ol.breadcrumb.breadcrumb-product li:nth-child(3)::after {
+    content: "›";
+    color: #ffffff;
+    margin-left: 5px;
+}
+
+ol.breadcrumb a,
+ol.breadcrumb span {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+ol.breadcrumb a:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+ol.breadcrumb li[aria-current="page"] {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 767px) {
+    ol.breadcrumb {
+        max-width: calc(100vw - 20px) !important;
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        row-gap: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+    }
+
+    ol.breadcrumb li {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    ol.breadcrumb li.breadcrumb-item--middle {
+        display: none !important;
+    }
+
+    ol.breadcrumb li.breadcrumb-item--mobile-resume::before {
+        content: "... ";
+        color: #ffffff;
+    }
+
+    ol.breadcrumb li.breadcrumb-item--current {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    ol.breadcrumb li.breadcrumb-item--current::before {
+        content: "";
+    }
+
+    ol.breadcrumb li.breadcrumb-item--current,
+    ol.breadcrumb li.breadcrumb-item--current a,
+    ol.breadcrumb li.breadcrumb-item--current span {
+        display: block;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+    }
+}
+
+/* Estilos para tabletas y escritorios */
+@media (min-width: 768px) {
+    ol.breadcrumb {
+        font-size: 15px;
+        padding: 10px 20px;
+        max-width: 95%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+    }
+
+    ol.breadcrumb li {
+        max-width: none !important;
+        white-space: nowrap !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+    }
+
+    ol.breadcrumb li:not([style*="display: none"]) {
+        display: flex;
+    }
+}
+
+/* Estilos específicos para escritorios grandes */
+@media (min-width: 1024px) {
+    ol.breadcrumb {
+        font-size: 14px;
+        padding: 8px 20px;
+        max-width: 70%;
+        top: var(--breadcrumb-top-desktop);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    ol.breadcrumb {
+        top: var(--breadcrumb-top-base);
+        flex-wrap: nowrap !important;
+        white-space: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+    }
+
+    ol.breadcrumb li,
+    ol.breadcrumb a,
+    ol.breadcrumb span {
+        white-space: nowrap !important;
+    }
+}

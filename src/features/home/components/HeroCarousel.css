@@ -1,0 +1,128 @@
+/* src/components/HeroCarousel.css */
+
+/* 
+   Contenedor principal de toda la sección del carrusel.
+   Aplica márgenes laterales (padding) para que no ocupe todo el ancho de la pantalla
+   y deja espacio (margin-bottom) antes de la siguiente sección.
+*/
+.hero-carousel-section {
+    width: 100%;
+    /* Margen lateral en móviles */
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Ajustes de la sección principal para pantallas grandes (Tablets y Desktop) */
+@media (min-width: 768px) {
+    .hero-carousel-section {
+        width: 100%;
+        /* Menor margen superior, se mantiene el margen lateral e inferior */
+        padding: 0.5rem 2rem 2rem 2rem;
+        /* Ancho máximo para que no se estire demasiado en monitores anchos */
+        max-width: 1400px;
+        /* Centra el contenedor */
+        margin-left: auto;
+        /* Centra el contenedor */
+        margin-right: auto;
+
+    }
+}
+
+/* 
+   La caja donde viven las imágenes (el carrusel en sí).
+   Aplica bordes redondeados (desde Tailwind), sombras y una proporción fija (aspect-ratio).
+*/
+.hero-carousel-container {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Sombra difuminada para darle profundidad */
+    aspect-ratio: 3 / 1.1;
+    /* Proporción ancho/alto para móviles (un poco más cuadrado) */
+    min-height: 200px;
+    /* Altura mínima garantizada */
+}
+
+/* Ajustes del contenedor del carrusel para Desktop */
+@media (min-width: 768px) {
+    .hero-carousel-container {
+        aspect-ratio: 3 / 1;
+        /* Formato más panorámico en escritorio horizontales */
+        min-height: 350px;
+    }
+}
+
+/* 
+   Envoltorio (wrapper) interno que mueve todas las imágenes juntas.
+   will-change optimiza el rendimiento avisándole al navegador que se va a mover (transform).
+*/
+.hero-slides-wrapper {
+    will-change: transform;
+}
+
+/* Estilo para las imágenes individuales (banners) dentro del carrusel */
+.banner img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cubre todo el cuadro sin deformar la imagen, recortando si es necesario */
+    object-position: center;
+    /* Centra la imagen */
+    user-select: none;
+    /* Evita que el usuario seleccione la imagen accidentalmente */
+    -webkit-user-drag: none;
+    /* Evita que el usuario arrastre la imagen (ghost image) en Chrome/Safari */
+}
+
+/* Muestra los botones de "Anterior" y "Siguiente" solo cuando el mouse está sobre el carrusel */
+.hero-carousel-container:hover .hero-control-prev,
+.hero-carousel-container:hover .hero-control-next {
+    opacity: 1;
+    /* Los hace visibles (estaban en 0 en Tailwind) */
+}
+
+/* 
+   Accesibilidad de movimiento.
+   Si el usuario tiene configurado en su sistema operativo evitar animaciones, 
+   desactivamos la transición deslizante para evitar mareos. 
+*/
+@media (prefers-reduced-motion: reduce) {
+    .hero-slides-wrapper {
+        transition: none;
+    }
+}
+
+/* 
+   Ajustes menores y tamaños para pantallas pequeñas (celulares).
+   Hace los botones y puntitos (dots) de navegación más chicos para no estorbar en la foto. 
+*/
+@media (max-width: 640px) {
+    .hero-carousel-section {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-carousel-container {
+        border-radius: 12px;
+        /* Redondeo menos pronunciado en móviles */
+        aspect-ratio: 16 / 9;
+        /* Proporción estándar de video para la imagen */
+    }
+
+    /* Hace las flechas de siguiente/anterior más pequeñas */
+    .hero-control-prev,
+    .hero-control-next {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Hace los puntos/indicadores móviles más pequeños */
+    .hero-indicators button {
+        width: 6px;
+        height: 6px;
+    }
+
+    /* Hace el punto indicador ACTIVO más pequeño */
+    .hero-indicators .bg-white.scale-125.w-4 {
+        width: 12px;
+    }
+}

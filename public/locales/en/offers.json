@@ -1,0 +1,41 @@
+{
+  "_documentation": {
+    "namespace": "offers",
+    "description": "Contenido de la página de ofertas y promociones semanales. Responsable de traducir títulos de filtros, mensajes de ofertas vacías y etiquetas en componentes EmptyOffers y OfferFilters.",
+    "usage": "Página /offers, secciones de promoción, componentes OfferFilters y EmptyOffers",
+    "contains": "Títulos de ofertas, descripciones, información de descuentos, datos SEO, textos de filtros",
+    "responsible_for": [
+      "EmptyOffers component: empty.title y empty.message (cuando no hay ofertas)",
+      "OfferFilters component: filters.title, filters.all_categories, filters.info, drawer_btn_one/other",
+      "Offers page SEO: seo.title, seo.description, seo.json_ld_name, seo.json_ld_description",
+      "Header section: header.title, header.filter_btn"
+    ],
+    "usage_pattern": "t('offers:{{key}}') o t('offers:filters.{{key}}') para acceso anidado"
+  },
+  "seo": {
+    "title": "Offers and Promotions",
+    "description": "Discover the best offers and promotions at Superior Hypermarket. Save on quality products with exclusive discounts on food, drinks, cleaning supplies, and more.",
+    "json_ld_name": "Offers and Promotions - Superior Hypermarket",
+    "json_ld_description": "Catalog of active offers and promotions with exclusive discounts on quality products.",
+    "keywords": "hypermarket offers, supermarket promotions, product discounts, weekly deals, shopping savings, mega deals"
+  },
+  "header": {
+    "title": "Offers",
+    "filter_btn": "Filter"
+  },
+  "filters": {
+    "title": "Filters",
+    "all_categories": "All Categories",
+    "info": "Showing <strong>{{filtered}}</strong> of <strong>{{total}}</strong> active offers",
+    "drawer_btn_one": "View 1 result",
+    "drawer_btn_other": "View {{count}} results"
+  },
+  "empty": {
+    "title": "No offers available",
+    "message": "Select another category or try again later"
+  },
+  "badge": {
+    "aria_label": "Product on sale {{discount}}",
+    "fallback": "SALE"
+  }
+}

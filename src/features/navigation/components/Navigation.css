@@ -1,0 +1,87 @@
+/* Shared navigation styles.
+   This file currently provides the common nav link styles, the desktop
+   dropdown behavior used by DesktopNav, and the mobile menu scrollbar styles.
+   Tablet-specific styles live in TabletNav.css. */
+
+.nav-links a {
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.right-arrow {
+    font-size: 1.5em;
+    margin-left: 3px;
+    opacity: 0.8;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* Desktop Dropdowns */
+@media (min-width: 1200px) {
+    .nav-links.desktop-nav {
+        display: flex;
+    }
+
+    .nav-links.tablet-nav {
+        display: none;
+    }
+
+    .nav-links li:hover > ul {
+        display: flex;
+    }
+
+    .group\/sub:hover > ul {
+        display: flex !important;
+    }
+}
+
+/* Mobile Menu Animations */
+#mobile-menu {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+#mobile-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mobile-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+/* Mobile Inline Language Selector */
+.mobile-lang-list {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 99px;
+    border: 1px border rgba(255, 255, 255, 0.1);
+}
+
+.mobile-lang-btn {
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+}
+
+.mobile-lang-btn.is-active {
+    background: #f97316; /* Color naranja de la marca */
+    color: white;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.mobile-lang-btn:not(.is-active):hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}

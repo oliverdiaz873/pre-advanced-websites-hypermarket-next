@@ -1,0 +1,50 @@
+{
+  "_documentation": {
+    "namespace": "search",
+    "description": "Elementos de búsqueda y filtros de la aplicación. Responsable de traducir el interface del buscador (input, botones) y la página de resultados.",
+    "usage": "Componentes DesktopSearch, MobileSearch, TabletSearch, página /search, página de resultados de búsqueda",
+    "contains": "Placeholders del input, etiquetas de botones (submit, open, close), mensajes de resultados, textos de ayuda y SEO",
+    "responsible_for": [
+      "DesktopSearch, MobileSearch, TabletSearch: search.input.placeholder, search.button.submit, search.button.open, search.button.cancel",
+      "Search results page: hero.title_query, hero.title_empty, hero.summary_query, hero.summary_empty",
+      "Empty states: empty_state.no_results.title/desc, empty_state.start_search.title/desc",
+      "SEO metadata: seo.title_query, seo.description, seo.json_ld_*"
+    ],
+    "usage_pattern": "t('search:{{key}}') para acceso anidado, ej: t('search:input.placeholder')"
+  },
+  "input": {
+    "placeholder": "Search your products..."
+  },
+  "button": {
+    "submit": "Search products",
+    "open": "Open search",
+    "cancel": "Cancel search"
+  },
+  "seo": {
+    "title_query": "Results for \"{{query}}\"",
+    "title_empty": "Search Results",
+    "desc_query_one": "{{count}} result for \"{{query}}\" at Hipermercado Superior. Find the best products at the best price.",
+    "desc_query_other": "{{count}} results for \"{{query}}\" at Hipermercado Superior. Find the best products at the best price.",
+    "desc_empty": "Search and quickly find the products you need at Hipermercado Superior. Wide catalog with the best offers.",
+    "json_ld_name": "Results for \"{{query}}\"",
+    "json_ld_items": "Products found for \"{{query}}\"",
+    "keywords": "product search, hypermarket, supermarket, offers, online shopping, superior catalog"
+  },
+  "hero": {
+    "title_query": "Results for: \"{{query}}\"",
+    "title_empty": "Type something in the search bar",
+    "summary_query_one": "{{count}} product found.",
+    "summary_query_other": "{{count}} products found.",
+    "summary_empty": "Use the search bar in the header to view related products."
+  },
+  "empty_state": {
+    "no_results": {
+      "title": "No products found",
+      "desc": "Try another name or a more specific search."
+    },
+    "start_search": {
+      "title": "Your search starts in the header",
+      "desc": "Type the name of a product and press Enter to see the results here."
+    }
+  }
+}

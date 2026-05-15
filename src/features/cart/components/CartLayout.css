@@ -1,0 +1,59 @@
+/* 
+   ==========================================================================
+   CartLayout - Estilos del Layout del Carrito
+   ==========================================================================
+   Este archivo maneja el estilo del contenedor principal del carrito,
+   incluyendo fondo, bordes, espaciado y diseño responsive.
+*/
+
+/* Contenedor principal del layout del carrito */
+.cart-layout {
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    margin: 0 auto 2.5rem;
+    max-width: 1200px;
+    color: #111827;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1rem;
+}
+
+/* Efecto de sombra sutil para el tema claro */
+.cart-layout {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+/* Responsive para tabletas y desktop */
+@media (min-width: 768px) {
+    .cart-layout {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-top: 0;
+    }
+}
+
+/* Espaciado específico para tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cart-layout {
+        margin: 2rem 1.5rem 2.5rem;
+    }
+}
+
+/* Espaciado para tablets grandes táctiles como iPad Pro */
+@media (min-width: 1024px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+    .cart-layout {
+        margin: 2rem 1.5rem 2.5rem;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 640px) {
+    .cart-layout {
+        padding: 1.5rem;
+        margin: 1rem 1rem 2rem;
+        border-radius: 1rem;
+    }
+}

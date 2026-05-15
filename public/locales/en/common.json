@@ -1,0 +1,59 @@
+{
+  "_documentation": {
+    "namespace": "common",
+    "description": "Elementos comunes reutilizables en toda la aplicación (botones, etiquetas, mensajes genéricos)",
+    "usage": "Barra de navegación, botones de acción, tooltips, breadcrumb, datos SEO comunes",
+    "contains": "Selección de idioma, breadcrumb, producto, carrito, unidades de medida, SEO"
+  },
+  "select_language": "Select Language",
+  "breadcrumb": {
+    "home": "Home",
+    "categories": "Categories"
+  },
+  "product": {
+    "view_details": "View details of {{name}}",
+    "add_to_cart": "Add to Cart",
+    "price_prefix": "Price: ",
+    "similar_products": "Similar Products",
+    "not_found": "Product not found",
+    "click_to_enlarge": "Click to enlarge",
+    "close_modal": "Close modal (ESC)",
+    "expanded_image": "Expanded image of {{name}}",
+    "remove": "Remove"
+  },
+  "cart": {
+    "add_button": "Add",
+    "header_title": "Your Cart",
+    "decrease_qty": "Decrease quantity",
+    "increase_qty": "Increase quantity",
+    "summary": {
+      "title": "Order Summary",
+      "total_items": "Total items:",
+      "total_price": "Total to pay:",
+      "pay_button": "Pay Now"
+    },
+    "empty": {
+      "title": "Your Cart is Empty",
+      "message": "Explore our products and fill your cart!",
+      "button": "Back to Store"
+    },
+    "seo": {
+      "title": "My Cart",
+      "description": "Review the products in your Hipermercado Superior shopping cart and complete your order at the best price.",
+      "empty_title": "Empty Cart",
+      "empty_description": "Your Hipermercado Superior shopping cart is empty. Explore our offers and fill your cart!",
+      "jsonld_name": "My Cart - Hipermercado Superior",
+      "jsonld_description": "Hipermercado Superior shopping cart page."
+    }
+  },
+  "units": {
+    "unidad": "unit",
+    "kg": "kg",
+    "lb": "lb",
+    "litro": "liter",
+    "paquete": "pack"
+  },
+  "seo": {
+    "keywords": "{{name}}, {{category}}, hypermarket, offer, dominican republic"
+  }
+}

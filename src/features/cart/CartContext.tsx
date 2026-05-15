@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useState, useCallback, useEffect, ReactNode } from 'react'
+
 export interface CartItem {
     id: string
     nombre: string
@@ -29,70 +30,69 @@ const STORAGE_KEY = 'carrito'
 
 /**
  * Calcula el porcentaje de descuento basado en el precio anterior y actual
- * @param oldPrice - Precio anterior formateado (ej: "RD$ 56.25")
- * @param currentPrice - Precio actual numérico
- * @returns Porcentaje de descuento redondeado
  */
 const calculateDiscountPercentage = (oldPrice?: string, currentPrice?: number): number | undefined => {
     if (!oldPrice || !currentPrice) return undefined
-    
-    // Extraer valor numérico del oldPrice
     const numericOldPrice = parseFloat(oldPrice.replace(/[^\d.-]/g, ''))
     if (isNaN(numericOldPrice) || numericOldPrice <= 0) return undefined
-    
     const discount = ((numericOldPrice - currentPrice) / numericOldPrice) * 100
     return Math.round(discount)
 }
 
 /**
  * CartProvider - Proveedor de estado global del carrito
- * Maneja persistencia en localStorage y actualización reactiva
  */
 export function CartProvider({ children }: { children: ReactNode }) {
-    const [cart, setCart] = useState<CartItem[]>(() => {
-        if (typeof window === 'undefined') return []
+    const [cart, setCart] = useState<CartItem[]>([]);
+    const [isInitialized, setIsInitialized] = useState(false);
 
+    // Cargar desde localStorage SOLO después del montaje (Client-side)
+    useEffect(() => {
         try {
-            const saved = localStorage.getItem(STORAGE_KEY)
-            return saved ? JSON.parse(saved) : []
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                setCart(JSON.parse(saved));
+            }
         } catch (error) {
-            console.error('Error loading cart from storage:', error)
-            return []
+            console.error('Error loading cart from storage:', error);
+        } finally {
+            setIsInitialized(true);
         }
-    })
+    }, []);
 
     // Guardar en localStorage cuando cambien los items
     useEffect(() => {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart))
-        } catch (error) {
-            console.error('Error saving cart to storage:', error)
-        }
-    }, [cart])
+        if (!isInitialized) return;
 
-    const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0)
-    const totalPrice = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+        } catch (error) {
+            console.error('Error saving cart to storage:', error);
+        }
+    }, [cart, isInitialized]);
+
+    const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0);
+    const totalPrice = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
     const addToCart = useCallback((product: Omit<CartItem, 'cantidad'>) => {
         setCart((prevCart) => {
-            const existing = prevCart.find((item) => item.id === product.id)
+            const existing = prevCart.find((item) => item.id === product.id);
             if (existing) {
                 return prevCart.map((item) =>
                     item.id === product.id
                         ? { ...item, cantidad: item.cantidad + 1 }
                         : item
-                )
+                );
             }
             
-            // Calcular discountPercentage si es una oferta
-            const discountPercentage = calculateDiscountPercentage(product.oldPrice, product.precio)
-            return [...prevCart, { ...product, cantidad: 1, discountPercentage }]
-        })
-    }, [])
+            const discountPercentage = calculateDiscountPercentage(product.oldPrice, product.precio);
+            return [...prevCart, { ...product, cantidad: 1, discountPercentage }];
+        });
+    }, []);
 
     const removeFromCart = useCallback((id: string) => {
-        setCart((prevCart) => prevCart.filter((item) => item.id !== id))
-    }, [])
+        setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    }, []);
 
     const updateQuantity = useCallback((id: string, delta: number) => {
         setCart((prevCart) =>
@@ -101,12 +101,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
                     item.id === id ? { ...item, cantidad: item.cantidad + delta } : item
                 )
                 .filter((item) => item.cantidad > 0)
-        )
-    }, [])
+        );
+    }, []);
 
     const clearCart = useCallback(() => {
-        setCart([])
-    }, [])
+        setCart([]);
+    }, []);
 
     const value: CartContextType = {
         cart,
@@ -116,7 +116,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeFromCart,
         updateQuantity,
         clearCart,
-    }
+    };
 
-    return <CartContext.Provider value={value}>{children}</CartContext.Provider>
+    return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

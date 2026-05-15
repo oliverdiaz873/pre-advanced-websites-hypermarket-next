@@ -83,13 +83,19 @@ const Header = () => {
 
                 {showBrand && (
                     <Link href="/" className="brand flex items-center gap-1 text-white no-underline mr-4">
-                        <Image src="/assets/images/logo/logo.png" alt="Logo" width={32} height={32} className="w-8" />
+                        <Image 
+                            src="/assets/images/logo/logo.png" 
+                            alt="Logo" 
+                            width={32} 
+                            height={32} 
+                            className="w-8 h-8 object-contain" 
+                        />
                         {isHomePage ? (
-                            <h1 className="text-sm md:text-base font-bold whitespace-nowrap">
+                            <h1 suppressHydrationWarning className="text-sm md:text-base font-bold whitespace-nowrap">
                                 {t('header:brand')}
                             </h1>
                         ) : (
-                            <span className="text-sm md:text-base font-bold whitespace-nowrap">
+                            <span suppressHydrationWarning className="text-sm md:text-base font-bold whitespace-nowrap">
                                 {t('header:brand')}
                             </span>
                         )}

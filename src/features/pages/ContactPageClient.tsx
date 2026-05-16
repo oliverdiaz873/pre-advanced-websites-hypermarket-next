@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import ContactForm from '@/src/features/contact/components/ContactForm';
 import Toast from '@/src/shared/components/Toast/Toast';
@@ -9,33 +9,39 @@ export default function ContactPageClient() {
     const { t } = useTranslation('contact');
     const [showToast, setShowToast] = useState(false);
 
-    return (
-        <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-8 md:grid-cols-[minmax(0,1fr)_320px] md:px-6">
-            <ContactForm onSuccess={() => setShowToast(true)} />
+    // Efecto para aplicar el fondo negro "profundo" solo en esta página
+    useEffect(() => {
+        document.body.classList.add('dark-theme-body');
+        return () => {
+            document.body.classList.remove('dark-theme-body');
+        };
+    }, []);
 
-            <aside className="h-fit rounded border border-neutral-200 bg-white p-6 shadow-sm">
-                <h2 className="text-xl font-semibold text-neutral-950">{t('info.title')}</h2>
-                <dl className="mt-4 space-y-3 text-neutral-700">
-                    <div>
-                        <dt className="font-semibold">{t('info.email_label')}</dt>
-                        <dd>soporte@hipermercadosuperior.com</dd>
+    return (
+        <section id="contacto" className="w-full px-4 py-1 md:py-1 lg:py-1 flex justify-center">
+            <main className="contacto-container w-full max-w-[550px] md:max-w-[700px] lg:max-w-[750px] xl:max-w-[800px] mx-auto my-3 md:my-10 lg:my-5 p-5 md:p-8 lg:p-9 xl:p-10 rounded-lg bg-[#1a1a1c] border border-white/10 text-white shadow-2xl">
+                <ContactForm onSuccess={() => setShowToast(true)} />
+
+                <section className="contacto-info mt-5 md:mt-5">
+                    <h2 className="text-xl md:text-2xl text-center mb-6 md:mb-8 pt-4 md:pt-6">{t('info.title')}</h2>
+                    <div className="info-item text-center mb-4">
+                        <p><strong>{t('info.email_label')}</strong> soporte@hipermercadosuperior.com</p>
                     </div>
-                    <div>
-                        <dt className="font-semibold">{t('info.phone_label')}</dt>
-                        <dd>+1 (809) 555-5555</dd>
+                    <div className="info-item text-center mb-4">
+                        <p><strong>{t('info.phone_label')}</strong> +1 (809) 555-5555</p>
                     </div>
-                    <div>
-                        <dt className="font-semibold">{t('info.hours_label')}</dt>
-                        <dd>{t('info.hours_text')}</dd>
+                    <div className="info-item text-center mb-4">
+                        <p><strong>{t('info.hours_label')}</strong> {t('info.hours_text')}</p>
                     </div>
-                </dl>
-            </aside>
+                </section>
+            </main>
 
             {showToast && (
                 <Toast
                     message={t('form.success_toast')}
                     show={showToast}
                     onClose={() => setShowToast(false)}
+                    type="success"
                 />
             )}
         </section>

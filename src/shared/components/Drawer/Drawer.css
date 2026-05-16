@@ -20,7 +20,7 @@
     bottom: 0;
     width: 85%;
     max-width: 360px;
-    background-color: #000000; /* Fondo negro sólido */
+    background-color: rgba(0, 0, 0, 0.95);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -56,10 +56,12 @@
 }
 
 .drawer__title {
-    margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: white;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
 }
 
 .drawer__close {
@@ -84,4 +86,12 @@
     flex: 1;
     overflow-y: auto;
     padding: 1.5rem;
+}
+
+/* Seguridad: El Drawer NUNCA debe verse en escritorio */
+@media (min-width: 1024px) {
+    .drawer, 
+    .drawer-backdrop {
+        display: none !important;
+    }
 }

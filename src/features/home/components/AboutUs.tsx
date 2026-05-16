@@ -17,22 +17,30 @@ const AboutUs = () => {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
-    // Punto de finalización adelantado para que "cubra todo" mucho antes
+    // Definimos los rangos de animación diferenciados para paridad total
+    const desktopOffset: [any, any] = ["start 102%", "center 60%"]
+    const mobileOffset: [any, any] = ["start 90%", "start 35%"]
+    
     const { scrollYProgress } = useScroll({
         target: sectionRef,
-        offset: ["start 102%", "center 60%"]
+        offset: isMobile ? mobileOffset : desktopOffset
     })
 
-    // Mapeamos el progreso de 0 a 1 directamente a la escala
-    const scale = useTransform(scrollYProgress, [0, 1], [0, 1])
+    // Valores de Escala: Desktop (0 -> 1), Móvil (0.88 -> 1)
+    const scaleRange = isMobile ? [0.88, 1] : [0, 1]
+    const scale = useTransform(scrollYProgress, [0, 1], scaleRange)
     
-    // Paridad total: En escritorio opacidad fija (1), en móvil animada (0.82 -> 1)
+    // Valores de Opacidad: Desktop (fija 1), Móvil (0.82 -> 1)
     const opacityRange = isMobile ? [0.82, 1] : [1, 1]
     const opacity = useTransform(scrollYProgress, [0, 0.4], opacityRange)
     
-    // Spring más reactivo (snappy) para evitar la sensación de lentitud
-    const finalScale = useSpring(scale, { stiffness: 150, damping: 25, restDelta: 0.001 })
-    const finalOpacity = useSpring(opacity, { stiffness: 100, damping: 30, restDelta: 0.001 })
+    // Spring physics diferenciada para cada plataforma
+    const springConfig = isMobile 
+        ? { stiffness: 100, damping: 30 } // Más firme en móvil
+        : { stiffness: 150, damping: 25 } // Más rápido en desktop
+        
+    const finalScale = useSpring(scale, { ...springConfig, restDelta: 0.001 })
+    const finalOpacity = useSpring(opacity, { ...springConfig, restDelta: 0.001 })
 
     return (
         <motion.section

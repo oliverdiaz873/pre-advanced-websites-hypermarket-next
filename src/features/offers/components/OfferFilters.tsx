@@ -41,7 +41,7 @@ const OfferFilters = ({
             {/* Sección de Categorías */}
             <div className="offer-filters__section">
                 
-                <div className="offer-filters__option">
+                <label key="category-all" className={`offer-filters__option ${selectedCategory === 'all' ? 'is-active' : ''}`}>
                     <input
                         type="radio"
                         id="category-all"
@@ -51,13 +51,14 @@ const OfferFilters = ({
                         onChange={(e) => onCategoryChange(e.target.value)}
                         className="offer-filters__radio"
                     />
-                    <label htmlFor="category-all" className="offer-filters__label">
+                    <span className="offer-filters__indicator is-active-target" />
+                    <span className="offer-filters__label">
                         {t('offers:filters.all_categories')}
-                    </label>
-                </div>
+                    </span>
+                </label>
 
                 {categories.map((category) => (
-                    <div key={category.id} className="offer-filters__option">
+                    <label key={category.id} className={`offer-filters__option ${selectedCategory === category.id ? 'is-active' : ''}`}>
                         <input
                             type="radio"
                             id={`category-${category.id}`}
@@ -67,10 +68,11 @@ const OfferFilters = ({
                             onChange={(e) => onCategoryChange(e.target.value)}
                             className="offer-filters__radio"
                         />
-                        <label htmlFor={`category-${category.id}`} className="offer-filters__label">
+                        <span className="offer-filters__indicator is-active-target" />
+                        <span className="offer-filters__label">
                             {t(`categories:${category.id}`)}
-                        </label>
-                    </div>
+                        </span>
+                    </label>
                 ))}
             </div>
 

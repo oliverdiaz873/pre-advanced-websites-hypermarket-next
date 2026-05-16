@@ -29,51 +29,47 @@ interface UseOfferFiltersReturn {
 export const useOfferFilters = (): UseOfferFiltersReturn => {
     const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
-    // Helper: Mapear categoría principal a sus subcategorías
-    // Los productos usan subcategorías (frutas_y_verduras, bebidas, etc)
-    // pero el filtro selecciona categorías principales (alimentos, electrodomesticos, etc)
-    // Este helper convierte la categoría principal a su lista de subcategorías
-    const getSubcategoriesForCategory = (categoryId: string): string[] => {
-        const category = categories.find((cat) => cat.id === categoryId)
-        if (!category) return []
-        return category.subcategories.map((sub) => {
-            // Las subcategorías están en el href como hash (#frutas_y_verduras)
-            // Extraemos el nombre después del #
-            const parts = sub.href.split('#')
-            return parts[1] || ''
+    // Mapeo estable de categorías a subcategorías para evitar re-cálculos innecesarios
+    const categoryMap = useMemo(() => {
+        const map = new Map<string, string[]>()
+        categories.forEach(cat => {
+            const subIds = cat.subcategories.map(sub => {
+                const parts = sub.href.split('#')
+                return parts[1] || ''
+            })
+            map.set(cat.id, subIds)
         })
-    }
+        return map
+    }, [])
 
-    // Obtener productos en oferta con información de descuento
+    // Obtener productos en oferta con información de descuento (Base)
     const offerProducts: OfferProduct[] = useMemo(() => {
         return offersData
             .map((off) => {
                 const product = products.find((p) => p.id === off.id)
-                return product
-                    ? {
-                        ...product,
-                        oldPrice: off.oldPrice,
-                        discountPercentage: calculateDiscountPercentage(product.precio, off.oldPrice),
-                    }
-                    : null
+                if (!product) return null
+                
+                return {
+                    ...product,
+                    oldPrice: off.oldPrice,
+                    discountPercentage: calculateDiscountPercentage(product.precio, off.oldPrice),
+                }
             })
-            .filter((product): product is OfferProduct => product !== null)
+            .filter((p): p is OfferProduct => p !== null)
     }, [])
 
-    // Filtrar por categoría
+    // Lógica de filtrado reactiva
     const filteredProducts: OfferProduct[] = useMemo(() => {
-        if (selectedCategory === 'all') {
-            return offerProducts
-        }
+        if (selectedCategory === 'all') return offerProducts
 
-        // Obtener todas las subcategorías de la categoría seleccionada
-        const subcategories = getSubcategoriesForCategory(selectedCategory)
+        const allowedSubcategories = categoryMap.get(selectedCategory) || []
+        
+        return offerProducts.filter((p) => 
+            allowedSubcategories.includes(p.categoria)
+        )
+    }, [offerProducts, selectedCategory, categoryMap])
 
-        // Filtrar productos cuya categoría esté en las subcategorías
-        return offerProducts.filter((p) => subcategories.includes(p.categoria))
-    }, [offerProducts, selectedCategory])
-
-    // Ordenar por mayor descuento (por defecto, sin opción de cambiar)
+    // Ordenamiento final por porcentaje de descuento
     const sortedProducts: OfferProduct[] = useMemo(() => {
         return [...filteredProducts].sort((a, b) => b.discountPercentage - a.discountPercentage)
     }, [filteredProducts])

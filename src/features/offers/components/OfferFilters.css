@@ -45,12 +45,19 @@
 }
 
 .offer-filters__radio {
-    display: none; /* Ocultamos el radio circular en móvil para usar el contenedor como chip */
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.offer-filters__indicator {
+    display: none; /* Oculto en móvil por defecto, se usa el chip completo */
 }
 
 .offer-filters__label {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8); /* Volvemos al blanco para contraste */
     white-space: nowrap;
     cursor: pointer;
     margin: 0;
@@ -75,15 +82,15 @@
 /* Responsividad: Desktop */
 @media (min-width: 1024px) {
     .offer-filters {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.8); /* Mismo color que el header */
+        backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         padding: 1.5rem;
         height: fit-content;
-        position: sticky;
-        top: 100px;
-        backdrop-filter: blur(10px);
+        /* Eliminamos position: sticky para que haga scroll con la página */
         margin-bottom: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .offer-filters--drawer {
@@ -105,12 +112,12 @@
     }
 
     .offer-filters__title {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 700;
-        color: white;
-        margin: 0;
+        color: #ffffff;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        margin: 0;
     }
 
     .offer-filters__badge {
@@ -148,19 +155,34 @@
     }
 
     .offer-filters__radio {
-        display: block;
-        appearance: none;
-        -webkit-appearance: none;
-        width: 18px;
-        height: 18px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        margin-right: 0.75rem;
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
     }
 
-    .offer-filters__radio:checked {
-        background: linear-gradient(135deg, #ff6b35, #f7931e);
+    .offer-filters__indicator {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        position: relative;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+
+    .offer-filters__option.is-active .offer-filters__indicator {
+        background: radial-gradient(circle at center, #ff6b35 60%, transparent 65%);
         border-color: #ff6b35;
+        box-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
+    }
+
+    .offer-filters__option.is-active .offer-filters__label {
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.3px;
     }
 
     .offer-filters__label {

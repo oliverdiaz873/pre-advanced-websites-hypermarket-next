@@ -25,7 +25,7 @@ export default function LegalPageClient({ type }: LegalPageClientProps) {
                             <>
                                 {' '}
                                 <a href={`mailto:${t(`${type}.sections.${section}.email`)}`}>
-                                    {t(`${type}.sections.${section}.email`)}
+                                    <strong>{t(`${type}.sections.${section}.email`)}</strong>
                                 </a>
                             </>
                         )}

@@ -5,6 +5,16 @@ interface ScrollScaleState {
     scaleStyle?: CSSProperties
 }
 
+/**
+ * Hook personalizado que gestiona la animación de escala de un elemento basándose en el scroll.
+ * 
+ * Este hook calcula el progreso de visibilidad de una sección en el viewport y devuelve
+ * una clase CSS o un estilo en línea para aplicar un efecto de escalado (zoom-in/out).
+ * Incluye optimizaciones para dispositivos móviles y sincronización con requestAnimationFrame.
+ * 
+ * @param {RefObject<HTMLElement | null>} sectionRef - Referencia al elemento DOM que se desea animar.
+ * @returns {ScrollScaleState} Un objeto que contiene la clase CSS de escala y, opcionalmente, estilos en línea.
+ */
 export const useScrollScale = (sectionRef: RefObject<HTMLElement | null>) => {
     const [scrollScale, setScrollScale] = useState<ScrollScaleState>({
         scaleClass: 'scale-0',
@@ -35,8 +45,6 @@ export const useScrollScale = (sectionRef: RefObject<HTMLElement | null>) => {
 
             if (sectionTop <= windowHeight && sectionBottom >= 0) {
                 if (mobile) {
-                    // En móvil comprimimos el rango de activación para que la expansión
-                    // ocurra antes y se sienta más ágil con scroll corto.
                     const startPoint = windowHeight * 0.9
                     const endPoint = windowHeight * 0.35
                     progress = (startPoint - sectionTop) / Math.max(1, startPoint - endPoint)
@@ -53,8 +61,6 @@ export const useScrollScale = (sectionRef: RefObject<HTMLElement | null>) => {
             progress = Math.max(0, Math.min(1, progress))
 
             if (mobile) {
-                // Aceleramos y suavizamos el progreso para evitar saltos bruscos
-                // cuando el usuario hace scroll rápido en pantallas pequeñas.
                 const acceleratedProgress = Math.min(1, progress * 1.35)
                 const easedProgress = 1 - Math.pow(1 - acceleratedProgress, 3)
                 const mobileScale = 0.88 + easedProgress * 0.12
@@ -79,8 +85,6 @@ export const useScrollScale = (sectionRef: RefObject<HTMLElement | null>) => {
         const requestScaleUpdate = () => {
             if (frameId) return
 
-            // requestAnimationFrame sincroniza la animación con el repintado
-            // del navegador y mejora la fluidez frente a un throttle fijo.
             frameId = window.requestAnimationFrame(() => {
                 frameId = 0
                 updateScale()

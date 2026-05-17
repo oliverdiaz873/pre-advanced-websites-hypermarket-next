@@ -21,23 +21,21 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
             const translatedName = t(`products:${product.id}.name`, { defaultValue: product.nombre });
 
             return [
-                product.id,
                 product.nombre,
                 translatedName,
-                product.categoria,
-            ].some((value) => normalizarTexto(value).includes(normalizedQuery));
+            ].some((value) => value && normalizarTexto(value).includes(normalizedQuery));
         });
     }, [normalizedQuery, t]);
 
     return (
-        <section className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6">
-            <div className="mb-7">
-                <h1 className="text-3xl font-bold text-neutral-950">
+        <section className="mx-auto w-full max-w-7xl px-4 pt-4 pb-8 md:px-6 md:pt-6 min-h-[60vh] flex flex-col">
+            <div className="mb-6">
+                <h1 className="text-xl md:text-2xl font-bold text-neutral-900 leading-tight">
                     {query
                         ? t('search:hero.title_query', { query })
                         : t('search:hero.title_empty')}
                 </h1>
-                <p className="mt-2 text-neutral-600">
+                <p className="mt-1.5 text-sm md:text-base text-neutral-600">
                     {query
                         ? t('search:hero.summary_query', { count: results.length })
                         : t('search:hero.summary_empty')}
@@ -47,17 +45,19 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
             {results.length > 0 ? (
                 <ProductGrid products={results} />
             ) : (
-                <div className="rounded border border-neutral-200 bg-white p-8 text-center shadow-sm">
-                    <h2 className="text-xl font-semibold text-neutral-950">
-                        {query
-                            ? t('search:empty_state.no_results.title')
-                            : t('search:empty_state.start_search.title')}
-                    </h2>
-                    <p className="mt-2 text-neutral-600">
-                        {query
-                            ? t('search:empty_state.no_results.desc')
-                            : t('search:empty_state.start_search.desc')}
-                    </p>
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="w-full rounded border border-neutral-200 bg-white p-12 text-center shadow-sm">
+                        <h2 className="text-xl font-semibold text-neutral-950">
+                            {query
+                                ? t('search:empty_state.no_results.title')
+                                : t('search:empty_state.start_search.title')}
+                        </h2>
+                        <p className="mt-2 text-neutral-600">
+                            {query
+                                ? t('search:empty_state.no_results.desc')
+                                : t('search:empty_state.start_search.desc')}
+                        </p>
+                    </div>
                 </div>
             )}
         </section>

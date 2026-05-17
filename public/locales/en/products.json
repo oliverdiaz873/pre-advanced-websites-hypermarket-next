@@ -1712,14 +1712,14 @@
     ]
   },
   "toma_corriente": {
-    "name": "Toma Corriente",
-    "description": "Toma corriente doble of pared with design modern and safety mejorada for tu home u office.",
+    "name": "Wall Outlet",
+    "description": "Double wall outlet with modern design and enhanced safety for your home or office.",
     "specs": [
       "Type: Duplex",
-      "Voltaje: 125V",
-      "Amperaje: 15A",
-      "Color: Blanco",
-      "Material: Termoplastico durable"
+      "Voltage: 125V",
+      "Amperage: 15A",
+      "Color: White",
+      "Material: Durable thermoplastic"
     ]
   },
   "tomates_de_ensalada": {
@@ -1800,14 +1800,14 @@
     ]
   },
   "tubo": {
-    "name": "Tubo de Drenaje",
-    "description": "Tubo of PVC of alta presion for drenaje and systems sanitarios, lightweight and facil of cortar e instalar.",
+    "name": "Drainage Pipe",
+    "description": "High-pressure PVC pipe for drainage and sanitary systems, lightweight and easy to cut and install.",
     "specs": [
-      "Diametro: 2 inches",
-      "Largo: 3 metros",
-      "Material: PVC of alta densidad",
-      "Use: Sanitario",
-      "Resistente a quimicos"
+      "Diameter: 2 inches",
+      "Length: 3 meters",
+      "Material: High-density PVC",
+      "Use: Sanitary",
+      "Chemical resistant: Yes"
     ]
   },
   "tulipanes": {
@@ -2016,7 +2016,7 @@
       "Variety: Carrot",
       "Benefits: Rich in vitamin A",
       "Use: Salads, juices, and soups",
-      "Sale: Per pound"
+      "Sale: Per kilo"
     ]
   },
   "fresas": {

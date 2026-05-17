@@ -68,7 +68,7 @@ const Header = () => {
 
     return (
         <header className="fixed top-0 left-0 w-full rounded-none xl:top-[10px] xl:left-1/2 xl:-translate-x-1/2 xl:rounded-[15px] xl:w-max xl:max-w-[calc(100vw-40px)] bg-black/80 px-2.5 py-1.5 z-[1000] flex justify-center text-white border border-white/10 shadow-lg">
-            <div className="header-container flex items-center gap-2.5 justify-between md:justify-center w-full px-0 md:px-3.5">
+            <div className="header-container flex items-center gap-1.5 md:gap-2.5 justify-between md:justify-center w-full px-0 md:px-3.5">
                 {viewportMode === 'mobile' && (
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -82,7 +82,7 @@ const Header = () => {
                 )}
 
                 {showBrand && (
-                    <Link href="/" className="brand flex items-center gap-1 text-white no-underline mr-4">
+                    <Link href="/" className="brand flex items-center gap-1 text-white no-underline md:mr-4">
                         <Image 
                             src="/assets/images/logo/logo.png" 
                             alt="Logo" 

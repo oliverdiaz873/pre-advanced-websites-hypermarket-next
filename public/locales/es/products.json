@@ -1668,157 +1668,157 @@
     ]
   },
   "sopita_dona_gallina": {
-    "name": "Dona Gallina Seasoning Cubes",
-    "description": "Dona Gallina is one of the most popular chicken seasonings in Dominican cooking. It gives your dishes the homemade, authentic flavor everyone loves.",
+    "name": "Sopita Doña Gallina",
+    "description": "Doña Gallina es uno de los sazonadores de pollo más populares en la cocina dominicana. Le da a tus platos ese sabor casero y auténtico que a todos les encanta.",
     "specs": [
-      "Type: Seasoning",
-      "Brand: Dona Gallina",
-      "Flavor: Chicken",
-      "Use: Soups, rice dishes, and stews",
-      "Presentation: Box of cubes"
+      "Tipo: Sazonador",
+      "Marca: Doña Gallina",
+      "Sabor: Pollo",
+      "Uso: Sopas, arroces y guisos",
+      "Presentación: Caja de cubitos"
     ]
   },
   "vinagre_baldom": {
-    "name": "Baldom Vinegar",
-    "description": "Baldom Vinegar is an everyday white vinegar used in Dominican cooking. Ideal for dressings, preserves, and cleaning vegetables.",
+    "name": "Vinagre Baldom",
+    "description": "El Vinagre Baldom es un vinagre blanco de uso diario en la cocina dominicana. Ideal para aderezos, conservas y limpieza de vegetales.",
     "specs": [
-      "Type: White Vinegar",
-      "Brand: Baldom",
-      "Uses: Dressings, pickling, and cooking",
-      "Flavor: Mild acidity",
-      "Presentation: 946ml bottle"
+      "Tipo: Vinagre Blanco",
+      "Marca: Baldom",
+      "Usos: Aderezos, conservas y cocina",
+      "Sabor: Acidez suave",
+      "Presentación: Botella de 946ml"
     ]
   },
   "gandules_verdes_goya": {
     "name": "Gandules Verdes Goya",
-    "description": "Goya Green Pigeon Peas are the essential ingredient for rice with pigeon peas. Tender and flavorful, ready to use straight from the can.",
+    "description": "Los Gandules Verdes Goya son el ingrediente esencial para el moro de gandules. Tiernos y sabrosos, listos para usar directamente desde la lata.",
     "specs": [
-      "Type: Legume",
-      "Brand: Goya",
-      "Status: Cooked and ready to use",
-      "Use: Rice with pigeon peas and stews",
-      "Presentation: 439g can"
+      "Tipo: Legumbre",
+      "Marca: Goya",
+      "Estado: Cocidos y listos para usar",
+      "Uso: Moro de gandules y guisos",
+      "Presentación: Lata de 439g"
     ]
   },
   "habichuelas_negras_goya": {
-    "name": "Goya Black Beans",
-    "description": "Goya Black Beans are tender and flavorful. Perfect for making black bean rice or pairing with your favorite dishes.",
+    "name": "Habichuelas Negras Goya",
+    "description": "Las Habichuelas Negras Goya son tiernas y llenas de sabor. Perfectas para preparar moro de habichuelas negras o acompañar tus platos favoritos.",
     "specs": [
-      "Type: Legume",
-      "Variety: Black Beans",
-      "Brand: Goya",
-      "Status: Pre-cooked",
-      "Presentation: 439g can"
+      "Tipo: Legumbre",
+      "Variedad: Habichuelas Negras",
+      "Marca: Goya",
+      "Estado: Pre-cocidas",
+      "Presentación: Lata de 439g"
     ]
   },
   "maiz_la_famosa": {
-    "name": "La Famosa Corn",
-    "description": "La Famosa canned corn is sweet and tender. Perfect for salads, stews, and as a side for any main dish.",
+    "name": "Maíz La Famosa",
+    "description": "El maíz en lata La Famosa es dulce y tierno. Perfecto para ensaladas, guisos y como acompañamiento de cualquier plato principal.",
     "specs": [
-      "Type: Sweet Corn Kernels",
-      "Brand: La Famosa",
-      "Status: Cooked",
-      "Use: Salads and stews",
-      "Presentation: 439g can"
+      "Tipo: Maíz Dulce en Granos",
+      "Marca: La Famosa",
+      "Estado: Cocido",
+      "Uso: Ensaladas y guisos",
+      "Presentación: Lata de 439g"
     ]
   },
   "salchichas_jaja": {
-    "name": "Jaja Sausages",
-    "description": "Jaja Sausages are among the most popular sausages in the Dominican market. Juicy and flavorful, perfect for breakfast, snacks, or everyday recipes.",
+    "name": "Salchichas Jaja",
+    "description": "Las Salchichas Jaja son de las más populares en el mercado dominicano. Jugosas y sabrosas, perfectas para desayunos, picaderas o recetas del día a día.",
     "specs": [
-      "Type: Sausages",
-      "Brand: Jaja",
-      "Use: Breakfast, snacks, and stews",
-      "Status: Ready to heat",
-      "Presentation: 400g can"
+      "Tipo: Salchichas",
+      "Marca: Jaja",
+      "Uso: Desayunos, picaderas y guisos",
+      "Estado: Listas para calentar",
+      "Presentación: Lata de 400g"
     ]
   },
   "sardinas_gord": {
-    "name": "Gord Sardines",
-    "description": "Gord Sardines in tomato sauce are rich in Omega-3 and protein. A nutritious and affordable option for quick meals.",
+    "name": "Sardinas Gord",
+    "description": "Las Sardinas Gord en salsa de tomate son ricas en Omega-3 y proteínas. Una opción nutritiva y económica para comidas rápidas.",
     "specs": [
-      "Type: Sardines in Tomato Sauce",
-      "Brand: Gord",
-      "Nutrients: Rich in Omega-3",
-      "Use: Sandwiches and quick meals",
-      "Presentation: 125g can"
+      "Tipo: Sardinas en Salsa de Tomate",
+      "Marca: Gord",
+      "Nutrientes: Rico en Omega-3",
+      "Uso: Sándwiches y comidas rápidas",
+      "Presentación: Lata de 125g"
     ]
   },
   "tomates_pelados_la_famosa": {
-    "name": "La Famosa Peeled Tomatoes",
-    "description": "La Famosa Peeled Tomatoes come whole in their natural juice. Perfect for sauces, stews, and soups with a homemade flavor.",
+    "name": "Tomates Pelados La Famosa",
+    "description": "Los Tomates Pelados La Famosa vienen enteros en su jugo natural. Perfectos para salsas, guisos y sopas con sabor casero.",
     "specs": [
-      "Type: Whole Peeled Tomatoes",
-      "Brand: La Famosa",
-      "Status: In natural juice",
-      "Use: Sauces, stews, and soups",
-      "Presentation: 794g can"
+      "Tipo: Tomates Pelados Enteros",
+      "Marca: La Famosa",
+      "Estado: En jugo natural",
+      "Uso: Salsas, guisos y sopas",
+      "Presentación: Lata de 794g"
     ]
   },
   "ajies_morrones": {
-    "name": "Bell Peppers",
-    "description": "Fresh bell peppers, colorful and full of flavor. Perfect for salads, stir-fries, and garnishing your dishes.",
+    "name": "Ajíes Morrones",
+    "description": "Ajíes morrones frescos, coloridos y llenos de sabor. Perfectos para ensaladas, salteados y para decorar tus platos.",
     "specs": [
-      "Type: Vegetable",
-      "Variety: Bell Pepper",
-      "Colors: Red, yellow, and green",
-      "Use: Salads and stir-fries",
-      "Sale: Per unit"
+      "Tipo: Vegetal",
+      "Variedad: Ají Morrón",
+      "Colores: Rojo, amarillo y verde",
+      "Uso: Ensaladas y salteados",
+      "Venta: Por unidad"
     ]
   },
   "cebollas_rojas": {
-    "name": "Red Onions",
-    "description": "Fresh red onions with their signature sweet and slightly spicy flavor. A staple in Dominican cooking.",
+    "name": "Cebollas Rojas",
+    "description": "Cebollas rojas frescas con su característico sabor dulce y ligeramente picante. Un básico indispensable en la cocina dominicana.",
     "specs": [
-      "Type: Vegetable",
-      "Variety: Red Onion",
-      "Flavor: Sweet and slightly spicy",
-      "Use: Salads, stews, and seasonings",
-      "Sale: Per pound"
+      "Tipo: Vegetal",
+      "Variedad: Cebolla Roja",
+      "Sabor: Dulce y ligeramente picante",
+      "Uso: Ensaladas, guisos y sazones",
+      "Venta: Por libra"
     ]
   },
   "mandarinas": {
-    "name": "Mandarins",
-    "description": "Mandarins are sweet and easy to peel. A fruit rich in vitamin C, perfect as a healthy snack for the whole family.",
+    "name": "Mandarinas",
+    "description": "Las mandarinas son dulces y fáciles de pelar. Una fruta rica en vitamina C, perfecta como snack saludable para toda la familia.",
     "specs": [
-      "Type: Citrus Fruit",
-      "Variety: Mandarin",
-      "Flavor: Sweet",
-      "Benefits: Rich in vitamin C",
-      "Sale: Per pound"
+      "Tipo: Cítrico",
+      "Variedad: Mandarina",
+      "Sabor: Dulce",
+      "Beneficios: Rico en vitamina C",
+      "Venta: Por libra"
     ]
   },
   "manzanas_amarillas": {
-    "name": "Yellow Apples",
-    "description": "Yellow apples are sweet and juicy. A versatile fruit, perfect on its own, in fruit salads, or in desserts.",
+    "name": "Manzanas Amarillas",
+    "description": "Las manzanas amarillas son dulces y jugosas. Una fruta versátil, perfecta para comer sola, en ensaladas de frutas o postres.",
     "specs": [
-      "Type: Fruit",
-      "Variety: Yellow Apple",
-      "Flavor: Sweet and juicy",
-      "Use: Snacks, salads, and desserts",
-      "Sale: Per unit"
+      "Tipo: Fruta",
+      "Variedad: Manzana Amarilla",
+      "Sabor: Dulce y jugoso",
+      "Uso: Snacks, ensaladas y postres",
+      "Venta: Por unidad"
     ]
   },
   "manzanas_rojas": {
-    "name": "Red Apples",
-    "description": "Red apples are crisp with a balanced sweet-and-tart flavor. A classic fruit that never disappoints.",
+    "name": "Manzanas Rojas",
+    "description": "Las manzanas rojas son crujientes y con un equilibrio perfecto entre dulce y ácido. Una fruta clásica que nunca falla.",
     "specs": [
-      "Type: Fruit",
-      "Variety: Red Apple",
-      "Flavor: Sweet-tart",
-      "Benefits: Rich in fiber and antioxidants",
-      "Sale: Per unit"
+      "Tipo: Fruta",
+      "Variedad: Manzana Roja",
+      "Sabor: Dulce-ácido",
+      "Beneficios: Rico en fibra y antioxidantes",
+      "Venta: Por unidad"
     ]
   },
   "pepinos": {
-    "name": "Cucumbers",
-    "description": "Fresh and crisp cucumbers. Low in calories and hydrating, they are the perfect ingredient for salads and cold dishes.",
+    "name": "Pepinos",
+    "description": "Pepinos frescos y crujientes. Bajos en calorías e hidratantes, son el ingrediente perfecto para ensaladas y platos fríos.",
     "specs": [
-      "Type: Vegetable",
-      "Variety: Cucumber",
-      "Flavor: Fresh and mild",
-      "Benefits: Hydrating and low in calories",
-      "Sale: Per unit"
+      "Tipo: Verdura",
+      "Variedad: Pepino",
+      "Sabor: Fresco y suave",
+      "Beneficios: Hidratante y bajo en calorías",
+      "Venta: Por unidad"
     ]
   },
   "tomates_de_ensalada": {
@@ -1833,190 +1833,190 @@
     ]
   },
   "uvas_moradas": {
-    "name": "Purple Grapes",
-    "description": "Purple grapes are sweet and refreshing. A delicious fruit to enjoy as a snack or in juices and special desserts.",
+    "name": "Uvas Moradas",
+    "description": "Las uvas moradas son dulces y refrescantes. Una fruta deliciosa para disfrutar como snack o en jugos y postres especiales.",
     "specs": [
-      "Type: Fruit",
-      "Variety: Purple Grape",
-      "Flavor: Sweet",
-      "Use: Snacks, juices, and desserts",
-      "Sale: Per pound"
+      "Tipo: Fruta",
+      "Variedad: Uva Morada",
+      "Sabor: Dulce",
+      "Uso: Snacks, jugos y postres",
+      "Venta: Por libra"
     ]
   },
   "zanahorias": {
-    "name": "Carrots",
-    "description": "Fresh carrots, crisp and rich in beta-carotene. Perfect for salads, juices, or as a healthy snack.",
+    "name": "Zanahorias por kilo",
+    "description": "Zanahorias frescas, crujientes y ricas en betacaroteno. Perfectas para ensaladas, jugos o como snack saludable.",
     "specs": [
-      "Type: Vegetable",
-      "Variety: Carrot",
-      "Benefits: Rich in vitamin A",
-      "Use: Salads, juices, and soups",
-      "Sale: Per pound"
+      "Tipo: Vegetal",
+      "Variedad: Zanahoria",
+      "Beneficios: Rico en vitamina A",
+      "Uso: Ensaladas, jugos y sopas",
+      "Venta: Por kilo"
     ]
   },
   "leche_entera_rica": {
-    "name": "Rica Whole Milk",
-    "description": "Rica Whole Milk is rich in calcium and protein. An essential everyday staple for children and adults, with the fresh, natural taste everyone needs.",
+    "name": "Leche Entera Rica",
+    "description": "La Leche Entera Rica es rica en calcio y proteínas. Un básico esencial para niños y adultos, con el sabor fresco y natural que todos necesitan.",
     "specs": [
-      "Type: Whole Milk",
-      "Brand: Rica",
-      "Nutrients: Calcium and vitamin D",
-      "Pasteurized: Yes",
-      "Presentation: 1-liter carton"
+      "Tipo: Leche Entera",
+      "Marca: Rica",
+      "Nutrientes: Calcio y vitamina D",
+      "Pasteurizada: Sí",
+      "Presentación: Cartón de 1 litro"
     ]
   },
   "queso_gorgonzola": {
-    "name": "Gorgonzola Cheese",
-    "description": "Italian Gorgonzola cheese with its characteristic bold and creamy flavor. Perfect for cheese boards, pasta, and gourmet sauces.",
+    "name": "Queso Gorgonzola",
+    "description": "Queso Gorgonzola italiano con su característico sabor fuerte y cremoso. Perfecto para tablas de quesos, pastas y salsas gourmet.",
     "specs": [
-      "Type: Blue Cheese",
-      "Origin: Italy",
-      "Flavor: Bold and intense",
-      "Use: Cheese boards, pasta, and sauces",
-      "Sale: Per unit"
+      "Tipo: Queso Azul",
+      "Origen: Italia",
+      "Sabor: Fuerte e intenso",
+      "Uso: Tablas de quesos, pastas y salsas",
+      "Venta: Por unidad"
     ]
   },
   "queso_gouda": {
-    "name": "Gouda Cheese",
-    "description": "Dutch Gouda cheese, creamy with a mild flavor. Ideal for sandwiches, cheese boards, and baked dishes.",
+    "name": "Queso Gouda",
+    "description": "Queso Gouda holandés, cremoso y con un sabor suave. Ideal para sándwiches, tablas de quesos y platos al horno.",
     "specs": [
-      "Type: Semi-hard Cheese",
-      "Origin: Holland",
-      "Flavor: Mild and creamy",
-      "Use: Sandwiches and baked dishes",
-      "Sale: Per unit"
+      "Tipo: Queso Semiduro",
+      "Origen: Holanda",
+      "Sabor: Suave y cremoso",
+      "Uso: Sándwiches y platos al horno",
+      "Venta: Por unidad"
     ]
   },
   "yogurt_fresa_yoka": {
-    "name": "Yoka Strawberry Yogurt",
-    "description": "Yoka Strawberry Yogurt is creamy and delicious. Made with real strawberry pieces, it is a perfect snack for both kids and adults.",
+    "name": "Yogurt Yoka Fresa",
+    "description": "El Yogurt Yoka de Fresa es cremoso y delicioso. Hecho con trozos reales de fresa, es un snack perfecto para niños y adultos.",
     "specs": [
-      "Type: Yogurt with Fruit",
-      "Flavor: Strawberry",
-      "Brand: Yoka",
-      "Benefits: Probiotics and calcium",
-      "Presentation: 150g cup"
+      "Tipo: Yogurt con Fruta",
+      "Sabor: Fresa",
+      "Marca: Yoka",
+      "Beneficios: Probióticos y calcio",
+      "Presentación: Vaso de 150g"
     ]
   },
   "yogurt_natural_rica": {
-    "name": "Rica Plain Yogurt",
-    "description": "Rica Plain Yogurt has no added sugar and is full of probiotics. Perfect for a healthy diet, on its own or mixed with fruit.",
+    "name": "Yogurt Natural Rica",
+    "description": "El Yogurt Natural Rica no tiene azúcar añadida y está lleno de probióticos. Perfecto para una dieta saludable, solo o mezclado con frutas.",
     "specs": [
-      "Type: Plain Yogurt",
-      "Brand: Rica",
-      "Added Sugar: None",
-      "Benefits: Probiotics and calcium",
-      "Presentation: 200g cup"
+      "Tipo: Yogurt Natural",
+      "Marca: Rica",
+      "Azúcar añadida: Ninguna",
+      "Beneficios: Probióticos y calcio",
+      "Presentación: Vaso de 200g"
     ]
   },
   "traje_2_piezas": {
-    "name": "2-Piece Suit",
-    "description": "A 2-piece suit that combines elegance and comfort. Includes jacket and pants made of high-quality materials, perfect for formal events and special occasions.",
+    "name": "Traje de 2 Piezas",
+    "description": "Un traje de 2 piezas que combina elegancia y comodidad. Incluye chaqueta y pantalón confeccionados con materiales de alta calidad, perfecto para eventos formales.",
     "specs": [
-      "Modern Slim Fit cut",
-      "Soft and high-quality fabric",
-      "Silky interior lining",
-      "Perfect for office or events",
-      "Includes jacket and matching pants"
+      "Corte Modern Slim Fit",
+      "Tela suave de alta calidad",
+      "Forro interior sedoso",
+      "Ideal para oficina o eventos",
+      "Incluye chaqueta y pantalón a juego"
     ]
   },
   "traje_azul": {
-    "name": "Blue Suit",
-    "description": "A blue suit that combines elegance and comfort. Includes jacket and pants made of high-quality materials, perfect for formal events and special occasions.",
+    "name": "Traje Azul",
+    "description": "Un traje azul que combina elegancia y comodidad. Incluye chaqueta y pantalón de alta calidad, ideal para ocasiones donde quieras destacar con un toque moderno.",
     "specs": [
-      "Modern Slim Fit cut",
-      "Soft and high-quality fabric",
-      "Silky interior lining",
-      "Perfect for office or events",
-      "Sophisticated deep blue tone"
+      "Corte Modern Slim Fit",
+      "Tela de alta calidad",
+      "Color azul profundo sofisticado",
+      "Ideal para bodas y eventos",
+      "Acabado premium"
     ]
   },
   "traje_completo": {
-    "name": "Complete Suit",
-    "description": "A complete suit that combines elegance and comfort. Includes jacket, pants, and vest made of high-quality materials, ideal for gala events.",
+    "name": "Traje Completo",
+    "description": "Un traje completo de tres piezas (chaqueta, pantalón y chaleco). La opción definitiva para máxima formalidad y estilo en eventos de gala.",
     "specs": [
-      "Includes jacket, pants, and vest",
-      "Classic and timeless design",
-      "Ideal for weddings and galas",
-      "High-durability fabric",
-      "Precise fit"
+      "Incluye chaqueta, pantalón y chaleco",
+      "Diseño clásico atemporal",
+      "Material de alta durabilidad",
+      "Ajuste preciso",
+      "Ideal para galas y bodas"
     ]
   },
   "traje_elegante": {
-    "name": "Elegant Suit",
-    "description": "An elegant suit that stands out for its premium finish. Ideal for those seeking distinction and exclusivity in every detail for their most important moments.",
+    "name": "Traje Elegante",
+    "description": "Un traje elegante que destaca por su acabado premium. Ideal para quienes buscan distinción y exclusividad en cada detalle.",
     "specs": [
-      "Premium design for special occasions",
-      "Fabric with subtle and sophisticated finish",
-      "Perfect custom fit",
-      "High-quality imported materials",
-      "Maximum elegance"
+      "Diseño premium",
+      "Tela con acabado sofisticado",
+      "Ajuste a medida",
+      "Materiales importados",
+      "Máxima elegancia"
     ]
   },
   "traje_negro": {
-    "name": "Black Suit",
-    "description": "The black suit is the definition of sobriety and style. An indispensable piece for evening events and formal dress codes.",
+    "name": "Traje Negro",
+    "description": "El traje negro es la definición de sobriedad y estilo. Una pieza indispensable para eventos nocturnos y códigos de vestimenta formal.",
     "specs": [
-      "Solid and elegant black color",
-      "Wrinkle-resistant fabric",
-      "Perfect for any formal event",
-      "Classic cut that never goes out of style",
-      "Impeccable finish"
+      "Color negro sólido elegante",
+      "Tela resistente a las arrugas",
+      "Perfecto para cualquier evento formal",
+      "Corte clásico que nunca pasa de moda",
+      "Acabado impecable"
     ]
   },
   "tablet_apple": {
-    "name": "Tablet Apple",
-    "description": "The Apple Tablet combines exceptional performance, high-resolution display, and smooth experience designed for working, studying, and enjoying multimedia content with best-in-class quality.",
+    "name": "Tablet Apple (iPad)",
+    "description": "La Tablet Apple combina un rendimiento excepcional con una pantalla de alta resolución. Diseñada para trabajar, estudiar y disfrutar contenido multimedia con la mejor calidad.",
     "specs": [
-      "High-resolution Retina display",
-      "Fast and efficient Apple processor",
-      "Seamless ecosystem with iCloud and App Store",
-      "Long-lasting battery",
-      "Premium, lightweight and durable design"
+      "Pantalla Retina de alta resolución",
+      "Procesador Apple rápido y eficiente",
+      "Ecosistema fluido con App Store",
+      "Batería de larga duración",
+      "Diseño premium y ligero"
     ]
   },
   "tablet_rted": {
     "name": "Tablet RTED",
-    "description": "The RTED Tablet offers reliable performance with excellent smoothness for multitasking. Perfect for studying, working, and enjoying multimedia content thanks to its high-definition display, efficient processor, and portable design.",
+    "description": "La Tablet RTED ofrece un rendimiento confiable para multitarea. Perfecta para estudiantes y trabajo básico gracias a su pantalla HD y diseño portátil.",
     "specs": [
-      "Excellent value for money",
-      "Wide and sharp display",
-      "Ideal for browsing and educational apps",
-      "Expandable memory via microSD",
-      "Battery optimized for daily use"
+      "Excelente relación calidad-precio",
+      "Pantalla nítida",
+      "Ideal para navegación y apps educativas",
+      "Memoria expandible",
+      "Batería optimizada para uso diario"
     ]
   },
   "tablet_samsung": {
-    "name": "Tablet Samsung",
-    "description": "The Samsung Tablet is an excellent choice for those seeking performance, smoothness, and high-quality display. Perfect for studying, working, and enjoying multimedia content thanks to its modern design, durable battery, and Samsung ecosystem.",
+    "name": "Tablet Samsung (Galaxy Tab)",
+    "description": "La Tablet Samsung destaca por su pantalla de alta calidad y fluidez. Perfecta para productividad y entretenimiento dentro del ecosistema Android.",
     "specs": [
-      "Vibrant display with AMOLED/LCD technology",
-      "Powerful processor for multitasking",
-      "S-Pen compatibility (depending on model)",
-      "DeX mode for desktop experience",
-      "Integration with Galaxy ecosystem"
+      "Pantalla vibrante tecnología AMOLED",
+      "Procesador potente para multitarea",
+      "Compatible con S-Pen (según modelo)",
+      "Modo DeX para experiencia de escritorio",
+      "Integración con ecosistema Galaxy"
     ]
   },
   "tablet_tcl": {
     "name": "Tablet TCL",
-    "description": "The TCL Tablet offers an excellent balance between performance and portability. Ideal for studying, working, or enjoying multimedia content thanks to its bright display, efficient processor, and long battery life.",
+    "description": "La Tablet TCL ofrece un gran equilibrio entre rendimiento y portabilidad. Ideal para consumir contenido multimedia gracias a su tecnología de pantalla brillante.",
     "specs": [
-      "Eye-care display technology",
-      "Immersive visual experience",
-      "Lightweight and easy to carry",
-      "User-friendly and fast interface",
-      "Stable Wi-Fi connectivity"
+      "Tecnología de pantalla Eye-care",
+      "Experiencia visual inmersiva",
+      "Ligera y fácil de transportar",
+      "Interfaz rápida y amigable",
+      "Conectividad Wi-Fi estable"
     ]
   },
   "tablet_tecnomaster": {
     "name": "Tablet Tecnomaster",
-    "description": "The Tecnomaster Tablet is ideal for users seeking an excellent balance between performance, portability, and daily-use features. Designed for studying, working, and consuming content with smoothness and great battery life.",
+    "description": "La Tablet Tecnomaster es ideal para el uso diario. Ofrece un rendimiento fluido para navegación, redes sociales y tareas escolares con gran autonomía.",
     "specs": [
-      "Reliable performance for work",
-      "High-definition display",
-      "Robust and durable design",
-      "Multiple connectivity options",
-      "Excellent battery duration"
+      "Rendimiento confiable",
+      "Pantalla de alta definición",
+      "Diseño robusto y duradero",
+      "Múltiples opciones de conectividad",
+      "Excelente duración de batería"
     ]
   },
   "fresas": {

@@ -392,7 +392,8 @@ export const products: Product[] = [
         categoria: "frutas_y_verduras",
         precio: 80, // número para carrito
         precioTexto: "Precio: $80 1KG", // texto para mostrar en resultados
-        imagen: "/assets/images/productos/alimentos/frutas_y_verduras/zanahoria.avif"
+        imagen: "/assets/images/productos/alimentos/frutas_y_verduras/zanahoria.avif",
+        unidad: "1KG"
     },
 
     //Lácteos y huevos

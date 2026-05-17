@@ -31,7 +31,7 @@ export default function OffersPageClient() {
 
     return (
         <div className="offers-page-wrapper">
-            <section className="mx-auto w-full max-w-7xl px-2 pt-1 pb-8 md:px-6">
+            <section className="mx-auto w-full max-w-7xl px-2 pt-1 pb-8 md:px-6 min-h-[60vh] flex flex-col">
                 <div className="offers-header-container flex items-center justify-between gap-4">
                     <h1 className="text-3xl md:text-4xl offers-header__title gap-1">
                         <svg className="offers-header__icon">
@@ -56,16 +56,18 @@ export default function OffersPageClient() {
                     </button>
                 </div>
 
-                <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+                <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] flex-1">
                     <aside className="hidden lg:block">{filters}</aside>
-                    <div>
+                    <div className="flex flex-col">
                         {sortedProducts.length > 0 ? (
                             <ProductGrid
                                 className="offers-grid"
                                 products={sortedProducts.map((product) => ({ ...product, isOffer: true }))}
                             />
                         ) : (
-                            <EmptyOffers />
+                            <div className="flex-1 flex items-start justify-center">
+                                <EmptyOffers />
+                            </div>
                         )}
                     </div>
                 </div>

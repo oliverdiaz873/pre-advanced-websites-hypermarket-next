@@ -45,7 +45,7 @@ export const useHeaderSearch = (
     onResultSelect: (id: string) => void,
     onSearchSubmit: (term: string) => void
 ) => {
-    const { t } = useTranslation('products')
+    const { t, i18n } = useTranslation('products')
     const [isSearchActive, setIsSearchActive] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const searchInputRef = useRef<HTMLInputElement>(null)
@@ -57,23 +57,24 @@ export const useHeaderSearch = (
         }
 
         const term = normalizarTexto(searchTerm)
+        const currentLang = i18n.language // Idioma actual ('es' o 'en')
+        
         return products
             .filter((product) => {
-                // Buscar en nombre español
-                const nombreSpanish = normalizarTexto(product.nombre)
-                if (nombreSpanish.includes(term)) return true
-
-                // Buscar en nombre inglés (traducción)
-                const nombreEnglish = normalizarTexto(t(`${product.id}.name`, { defaultValue: product.nombre }))
-                if (nombreEnglish.includes(term)) return true
-
-                // Buscar en categoría
-                if (normalizarTexto(product.categoria).includes(term)) return true
-
-                return false
+                // 1. Obtener traducciones para comparar
+                const nombreEs = normalizarTexto(product.nombre)
+                const nombreEn = normalizarTexto(t(`${product.id}.name`, { lng: 'en', defaultValue: product.nombre }))
+                
+                // 2. Filtrar
+                return nombreEs.includes(term) || nombreEn.includes(term)
             })
+            .map((product) => ({
+                id: product.id,
+                nombre: t(`${product.id}.name`, { defaultValue: product.nombre }),
+                imagen: product.imagen
+            }))
             .slice(0, 8)
-    }, [searchTerm, t])
+    }, [searchTerm, t, i18n.language])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

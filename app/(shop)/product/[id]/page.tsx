@@ -43,8 +43,34 @@ export default async function ProductPage({ params }: ProductPageProps) {
         .filter((item) => item.categoria === product.categoria && item.id !== product.id)
         .slice(0, 12);
 
+    // Generar JSON-LD para SEO estructurado del producto
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.nombre,
+        description: productPageData[product.id]?.descripcion ?? `Compra ${product.nombre} en Hipermercado Superior.`,
+        image: `https://www.hipermercadosuperior.com${product.imagen}`,
+        sku: product.id,
+        brand: {
+            '@type': 'Brand',
+            name: 'Hipermercado Superior',
+        },
+        offers: {
+            '@type': 'Offer',
+            url: `https://www.hipermercadosuperior.com/product/${product.id}`,
+            priceCurrency: 'DOP',
+            price: product.precio,
+            itemCondition: 'https://schema.org/NewCondition',
+            availability: 'https://schema.org/InStock',
+        },
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <ProductDetailSection product={product} pageData={productPageData[product.id]} />
             {relatedProducts.length > 0 && (
                 <ProductCarouselSection

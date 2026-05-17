@@ -45,8 +45,45 @@ export default function Home() {
         })
         .filter((product): product is OfferProduct => product !== null)
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Hipermercado Superior',
+        url: 'https://www.hipermercadosuperior.com',
+        potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://www.hipermercadosuperior.com/search?q={search_term_string}',
+            'query-input': 'required name=search_term_string',
+        },
+    };
+
+    const orgJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Hipermercado Superior',
+        url: 'https://www.hipermercadosuperior.com',
+        logo: 'https://www.hipermercadosuperior.com/assets/images/logo/logo.png',
+        sameAs: [
+            'https://www.facebook.com/hipermercadosuperior',
+            'https://www.instagram.com/hipermercadosuperior',
+        ],
+        contactPoint: {
+            '@type': 'ContactPoint',
+            telephone: '+1-809-555-0199',
+            contactType: 'customer service',
+        },
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+            />
             <HeroCarousel />
             
             <ProductCarouselSection 

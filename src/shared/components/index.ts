@@ -12,8 +12,5 @@ export * from './Toast/Toast';
 export { default as Drawer } from './Drawer/Drawer';
 export * from './Drawer/Drawer';
 
-export { default as SEOHead } from './SEOHead/SEOHead';
-export * from './SEOHead/SEOHead';
-
 export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
 export * from './ScrollToTop/ScrollToTop';

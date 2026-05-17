@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ProductCarouselSection from '@/src/features/products/components/ProductCarouselSection';
+import CategoryPageClient from '@/src/features/pages/CategoryPageClient';
 import { categories } from '@/src/data/categories';
 import { products } from '@/src/data/products';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/src/data/categorySectionMap';
@@ -24,10 +24,28 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
 
     const subcategories = category.subcategories.map((subcategory) => subcategory.name).join(', ');
+    const canonicalUrl = `https://www.hipermercadosuperior.com/category/${category.id}`;
 
     return {
         title: `${category.name} | Hipermercado Superior`,
         description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+        keywords: [category.id.toLowerCase(), ...subcategories.toLowerCase().split(', ')],
+        alternates: {
+            canonical: canonicalUrl,
+        },
+        openGraph: {
+            title: `${category.name} | Hipermercado Superior`,
+            description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+            url: canonicalUrl,
+            type: 'website',
+            siteName: 'Hipermercado Superior',
+            locale: 'es_DO',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${category.name} | Hipermercado Superior`,
+            description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+        },
     };
 }
 
@@ -53,25 +71,39 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         })
         .filter((section) => section.products.length > 0);
 
-    return (
-        <div className="category-page-content">
-            <section className="mx-auto w-full max-w-7xl px-4 pb-2 pt-8 md:px-8">
-                <h1 className="text-3xl font-bold text-neutral-950">{category.name}</h1>
-                <p className="mt-2 max-w-2xl text-neutral-600">
-                    Selecciona una seccion para explorar productos disponibles en {category.name}.
-                </p>
-            </section>
+    // Generar JSON-LD para SEO estructurado
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: category.name,
+        description: `Explora nuestra seleccion de ${category.name}: ${category.subcategories.map((s) => s.name).join(', ')}.`,
+        url: `https://www.hipermercadosuperior.com/category/${category.id}`,
+        mainEntity: {
+            '@type': 'ItemList',
+            name: category.name,
+            numberOfItems: sections.reduce((acc, s) => acc + s.products.length, 0),
+            itemListElement: category.subcategories.map((subcategory, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: subcategory.name,
+                url: `https://www.hipermercadosuperior.com/category/${category.id}#${subcategorySlugFromHref(subcategory.href)}`,
+            })),
+        },
+        provider: {
+            '@type': 'Organization',
+            name: 'Hipermercado Superior',
+            url: 'https://www.hipermercadosuperior.com',
+        },
+    };
 
-            {sections.map((section, index) => (
-                <ProductCarouselSection
-                    key={section.slug}
-                    title={section.title}
-                    products={section.products}
-                    id={section.slug}
-                    idPrefix={`${category.id}-${section.slug}`}
-                    className={index === 0 ? 'category-page-first-carousel' : undefined}
-                />
-            ))}
-        </div>
+    return (
+        <>
+            {/* JSON-LD para Google Search Console */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <CategoryPageClient category={category} sections={sections} />
+        </>
     );
 }

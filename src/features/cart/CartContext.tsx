@@ -1,4 +1,13 @@
 "use client";
+/**
+ * @fileoverview Contexto Global del Carrito de Compras
+ * 
+ * Este módulo proporciona la gestión del estado global para el carrito, incluyendo:
+ * - Persistencia automática en localStorage ('carrito').
+ * - Cálculos dinámicos de totales (items y precio).
+ * - Lógica de normalización de unidades y cálculo de descuentos.
+ * - Acciones para agregar, eliminar y actualizar cantidades.
+ */
 import { createContext, useState, useCallback, useEffect, ReactNode } from 'react'
 
 export interface CartItem {
@@ -40,13 +49,14 @@ const calculateDiscountPercentage = (oldPrice?: string, currentPrice?: number): 
 }
 
 /**
- * CartProvider - Proveedor de estado global del carrito
+ * CartProvider - Componente proveedor que envuelve la aplicación
+ * Maneja la hidratación del estado desde localStorage y la sincronización.
  */
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [isInitialized, setIsInitialized] = useState(false);
 
-    // Cargar desde localStorage SOLO después del montaje (Client-side)
+    // Cargar desde localStorage SOLO después del montaje para evitar errores de hidratación en Next.js
     useEffect(() => {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
@@ -85,8 +95,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 );
             }
             
+            // Si el producto no tiene unidad, intentamos obtenerla del precioTexto
+            const finalUnidad = product.unidad || (product.precioTexto ? product.precioTexto.split('/').pop()?.trim() : undefined);
+            
             const discountPercentage = calculateDiscountPercentage(product.oldPrice, product.precio);
-            return [...prevCart, { ...product, cantidad: 1, discountPercentage }];
+            return [...prevCart, { ...product, unidad: finalUnidad, cantidad: 1, discountPercentage }];
         });
     }, []);
 

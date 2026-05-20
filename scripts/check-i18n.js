@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
+const path = require('path');
 
 // Helper to extract product IDs from TypeScript file
 function extractProductIds(filePath) {
@@ -8,10 +9,13 @@ function extractProductIds(filePath) {
   return matches.map(m => m[1]);
 }
 
-// Read data
-const productIds = extractProductIds('./src/data/products.ts');
-const enProducts = JSON.parse(fs.readFileSync('./public/locales/en/products.json', 'utf8'));
-const esProducts = JSON.parse(fs.readFileSync('./public/locales/es/products.json', 'utf8'));
+// Get the directory where this script is located
+const scriptDir = __dirname;
+
+// Read data using absolute paths
+const productIds = extractProductIds(path.join(scriptDir, '../src/data/products.ts'));
+const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/en/products.json'), 'utf8'));
+const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/es/products.json'), 'utf8'));
 
 const enProductIds = Object.keys(enProducts).filter(k => k !== '_documentation').sort();
 const esProductIds = Object.keys(esProducts).filter(k => k !== '_documentation').sort();

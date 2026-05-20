@@ -13,15 +13,18 @@ function extractProductIds(filePath) {
 console.log('========== VALIDACIÓN DE PRODUCTOS I18N ==========\n');
 
 try {
+  // Get the directory where this script is located
+  const scriptDir = __dirname;
+
   // Leer el archivo de productos
-  const productIds = extractProductIds('./src/data/products.ts');
+  const productIds = extractProductIds(path.join(scriptDir, '../src/data/products.ts'));
 
   // Leer el JSON de inglés
-  const enProducts = JSON.parse(fs.readFileSync('./public/locales/en/products.json', 'utf8'));
+  const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/en/products.json'), 'utf8'));
   const enProductIds = Object.keys(enProducts).sort();
 
   // Leer el JSON de español
-  const esProducts = JSON.parse(fs.readFileSync('./public/locales/es/products.json', 'utf8'));
+  const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/es/products.json'), 'utf8'));
   const esProductIds = Object.keys(esProducts).sort();
 
   console.log('Total products in data: ' + productIds.length);

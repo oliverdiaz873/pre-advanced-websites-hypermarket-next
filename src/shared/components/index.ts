@@ -14,3 +14,6 @@ export * from './Drawer/Drawer';
 
 export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
 export * from './ScrollToTop/ScrollToTop';
+
+export { default as EmptyState } from './EmptyState/EmptyState';
+export * from './EmptyState/EmptyState';

@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import ProductGrid from '@/src/features/products/components/ProductGrid';
+import EmptySearchResults from '@/src/features/search/components/EmptySearchResults';
 import { products } from '@/src/data/products';
 import { normalizarTexto } from '@/src/shared/utils/searchUtils';
 
@@ -45,20 +46,7 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
             {results.length > 0 ? (
                 <ProductGrid products={results} />
             ) : (
-                <div className="flex-1 flex items-center justify-center">
-                    <div className="w-full rounded border border-neutral-200 bg-white p-12 text-center shadow-sm">
-                        <h2 className="text-xl font-semibold text-neutral-950">
-                            {query
-                                ? t('search:empty_state.no_results.title')
-                                : t('search:empty_state.start_search.title')}
-                        </h2>
-                        <p className="mt-2 text-neutral-600">
-                            {query
-                                ? t('search:empty_state.no_results.desc')
-                                : t('search:empty_state.start_search.desc')}
-                        </p>
-                    </div>
-                </div>
+                <EmptySearchResults query={query} />
             )}
         </section>
     );

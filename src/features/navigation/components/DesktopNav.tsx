@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { categories } from '../../../data/categories'
+import './DesktopNav.css'
+
 
 const navLinkClass =
     'text-white no-underline text-base px-2.5 py-2 block text-left transition-colors duration-300 rounded-[10px] hover:bg-white/15'

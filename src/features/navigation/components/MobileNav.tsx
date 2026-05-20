@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { categories } from '../../../data/categories'
 import LanguageSelector from '../../../shared/i18n/components/LanguageSelector'
+import './MobileNav.css'
+
 
 interface MobileNavProps {
     isOpen: boolean

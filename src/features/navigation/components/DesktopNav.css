@@ -1,0 +1,18 @@
+/* Desktop Navigation styles */
+@media (min-width: 1200px) {
+    .nav-links.desktop-nav {
+        display: flex;
+    }
+
+    .nav-links.tablet-nav {
+        display: none;
+    }
+
+    .nav-links li:hover > ul {
+        display: flex;
+    }
+
+    .group\/sub:hover > ul {
+        display: flex !important;
+    }
+}

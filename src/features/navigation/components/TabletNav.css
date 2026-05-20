@@ -12,7 +12,7 @@
         width: 100%;
         justify-content: space-evenly;
         align-items: center !important;
-        gap: 12px !important;
+        gap: 8px !important;
     }
 
     .nav-links.tablet-nav > ul > li {
@@ -22,8 +22,8 @@
     .nav-links.tablet-nav a,
     .nav-links.tablet-nav button {
         color: white !important;
-        font-size: 16px !important;
-        padding: 8px 10px !important;
+        font-size: 15px !important;
+        padding: 6px 8px !important;
         background: transparent !important;
         border: none !important;
         border-radius: 10px !important;

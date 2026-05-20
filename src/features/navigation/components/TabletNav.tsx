@@ -39,11 +39,11 @@ const TabletNav = () => {
                 <li className="relative group">
                     <button
                         data-tablet-trigger="level-1"
-                        className={`${navLinkClass} bg-transparent border-none cursor-pointer w-full`}
+                        className={`${navLinkClass} bg-transparent border-none cursor-pointer flex items-center justify-center gap-1`}
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        {t('header:nav.categories')} <span className="text-[0.7em] ml-0.5 opacity-80">▼</span>
+                        {t('header:nav.categories')} <span className="text-[0.7em] opacity-80">▼</span>
                     </button>
 
                     <ul className="absolute top-full left-0 bg-black/90 rounded-lg min-w-[220px] hidden group-hover:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">

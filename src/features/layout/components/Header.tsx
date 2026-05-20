@@ -68,7 +68,7 @@ const Header = () => {
 
     return (
         <header className="fixed top-0 left-0 w-full rounded-none xl:top-[10px] xl:left-1/2 xl:-translate-x-1/2 xl:rounded-[15px] xl:w-max xl:max-w-[calc(100vw-40px)] bg-black/80 px-2.5 py-1.5 z-[1000] flex justify-center text-white border border-white/10 shadow-lg">
-            <div className="header-container flex items-center gap-1.5 md:gap-2.5 justify-between md:justify-center w-full px-0 md:px-3.5">
+            <div className="header-container flex items-center gap-1.5 md:gap-1.5 lg:gap-2.5 justify-between md:justify-center w-full px-0 md:px-1.5 lg:px-3.5">
                 {viewportMode === 'mobile' && (
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -91,11 +91,11 @@ const Header = () => {
                             className="w-9 h-9 object-contain" 
                         />
                         {isHomePage ? (
-                            <h1 suppressHydrationWarning className="text-sm md:text-base font-bold whitespace-nowrap">
+                            <h1 suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
                                 {t('header:brand')}
                             </h1>
                         ) : (
-                            <span suppressHydrationWarning className="text-sm md:text-base font-bold whitespace-nowrap">
+                            <span suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
                                 {t('header:brand')}
                             </span>
                         )}

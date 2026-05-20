@@ -18,8 +18,8 @@ const AboutUs = () => {
     }, [])
 
     // Definimos los rangos de animación diferenciados para paridad total
-    const desktopOffset: [any, any] = ["start 102%", "center 60%"]
-    const mobileOffset: [any, any] = ["start 90%", "start 35%"]
+    const desktopOffset: [string, string] = ["start 102%", "center 60%"]
+    const mobileOffset: [string, string] = ["start 90%", "start 35%"]
     
     const { scrollYProgress } = useScroll({
         target: sectionRef,

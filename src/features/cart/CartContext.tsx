@@ -58,17 +58,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
     // Cargar desde localStorage SOLO después del montaje para evitar errores de hidratación en Next.js
     useEffect(() => {
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) {
-                setCart(JSON.parse(saved));
+        const loadCart = () => {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    setCart(JSON.parse(saved));
+                }
+            } catch (error) {
+                console.error('Error loading cart from storage:', error);
+            } finally {
+                setIsInitialized(true);
             }
-        } catch (error) {
-            console.error('Error loading cart from storage:', error);
-        } finally {
-            setIsInitialized(true);
-        }
+        };
+
+        setTimeout(loadCart, 0);
     }, []);
+
 
     // Guardar en localStorage cuando cambien los items
     useEffect(() => {

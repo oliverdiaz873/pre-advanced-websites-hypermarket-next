@@ -45,7 +45,7 @@ export const useHeaderSearch = (
     onResultSelect: (id: string) => void,
     onSearchSubmit: (term: string) => void
 ) => {
-    const { t, i18n } = useTranslation('products')
+    const { t } = useTranslation('products')
     const [isSearchActive, setIsSearchActive] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const searchInputRef = useRef<HTMLInputElement>(null)
@@ -57,7 +57,6 @@ export const useHeaderSearch = (
         }
 
         const term = normalizarTexto(searchTerm)
-        const currentLang = i18n.language // Idioma actual ('es' o 'en')
         
         return products
             .filter((product) => {
@@ -74,7 +73,7 @@ export const useHeaderSearch = (
                 imagen: product.imagen
             }))
             .slice(0, 8)
-    }, [searchTerm, t, i18n.language])
+    }, [searchTerm, t])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

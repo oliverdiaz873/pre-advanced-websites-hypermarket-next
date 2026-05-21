@@ -10,7 +10,7 @@ import { DesktopSearch, TabletSearch, MobileSearch, useHeaderSearch } from '../.
 
 import { useCart } from '../../cart/hooks/useCart'
 import { useTranslation } from 'react-i18next'
-import LanguageSelector from '../../../shared/i18n/components/LanguageSelector'
+import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
 import './Header.css'
 import '../../navigation/components/Navigation.css'
 
@@ -31,7 +31,7 @@ const getViewportMode = (): ViewportMode => {
 // mantener separada la experiencia de desktop, tablet y mobile.
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const [viewportMode, setViewportMode] = useState<ViewportMode>(getViewportMode)
+    const [viewportMode, setViewportMode] = useState<ViewportMode>('desktop')
     const { totalItems } = useCart()
     const router = useRouter()
     const pathname = usePathname()
@@ -59,6 +59,7 @@ const Header = () => {
             setViewportMode(getViewportMode())
         }
 
+        handleResize()
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [])

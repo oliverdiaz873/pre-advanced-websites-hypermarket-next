@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { EmptyState } from '@/src/shared/components'
+import { EmptyState } from '@/ui'
 
 /**
  * EmptyOffers - Componente de Ofertas Vacías

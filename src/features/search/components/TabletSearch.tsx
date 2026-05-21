@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import type { HeaderSearchProduct } from '../hooks/useHeaderSearch'
-import { getAssetUrl } from '../../../shared/utils/assetUtils'
+import { getAssetUrl } from '@/lib/assetUtils'
 import './TabletSearch.css'
 
 /**

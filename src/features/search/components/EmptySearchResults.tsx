@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState } from '@/src/shared/components';
+import { EmptyState } from '@/ui';
 
 interface EmptySearchResultsProps {
     /** La consulta de búsqueda que no arrojó resultados */

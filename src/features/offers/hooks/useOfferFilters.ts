@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
-import { Product } from '../../../shared/types/product'
-import { products } from '../../../data/products'
-import { calculateDiscountPercentage, offersData } from '../../../data/offers'
-import { categories } from '../../../data/categories'
+import { Product } from '@/types/product'
+import { products } from '@/services/catalog/products'
+import { calculateDiscountPercentage, offersData } from '@/services/catalog/offers'
+import { categories } from '@/services/catalog/categories'
 
 interface OfferProduct extends Product {
     oldPrice: string

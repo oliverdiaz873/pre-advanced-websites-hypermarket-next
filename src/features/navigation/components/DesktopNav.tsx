@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
-import { categories } from '../../../data/categories'
+import { categories } from '@/services/catalog/categories'
 import './DesktopNav.css'
 
 

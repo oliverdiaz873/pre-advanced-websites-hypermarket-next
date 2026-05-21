@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Product } from '../../../shared/types/product'
-import { ProductPageData } from '../../../data/productPageData'
-import { formatProductPrice, unitLabel } from '../../../shared/utils/priceUtils'
+import { Product } from '@/types/product'
+import { ProductPageData } from '@/services/catalog/productPageData'
+import { formatProductPrice, unitLabel } from '@/lib/priceUtils'
 
 /**
  * useProductTranslation - Hook para gestionar la internacionalizacion de productos.

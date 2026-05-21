@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { categories } from '../../../data/categories'
+import { categories } from '@/services/catalog/categories'
 import './OfferFilters.css'
 
 interface OfferFiltersProps {

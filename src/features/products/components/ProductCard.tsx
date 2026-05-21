@@ -1,12 +1,10 @@
 "use client";
 import Link from 'next/link'
 import Image from 'next/image'
-import { memo } from 'react'
-import { Product } from '../../../shared/types/product'
-import { getAssetUrl } from '../../../shared/utils/assetUtils'
-import { cleanPrice } from '../../../shared/utils/priceUtils'
-import { OfferBadge } from '../../offers/components'
-import AddToCartButton from '../../cart/components/AddToCartButton'
+import { memo, ReactNode } from 'react'
+import { Product } from '@/types/product'
+import { getAssetUrl } from '@/lib/assetUtils'
+import { cleanPrice } from '@/lib/priceUtils'
 import { useProductTranslation } from '../hooks/useProductTranslation'
 import './ProductCard.css'
 
@@ -14,16 +12,16 @@ interface ProductCardProps {
     product: Product
     isOffer?: boolean
     oldPrice?: string
-    discountPercentage?: number
+    badge?: ReactNode
+    action?: ReactNode
 }
 
-const ProductCard = ({ product, isOffer, oldPrice, discountPercentage }: ProductCardProps) => {
+const ProductCard = ({ product, isOffer, oldPrice, badge, action }: ProductCardProps) => {
     const { name, labels } = useProductTranslation(product)
 
     return (
         <article className={`producto product-card ${isOffer ? 'offer-card' : ''} block shrink-0 snap-start`}>
-            {/* Si el producto es una oferta, mostramos el badge de fuego */}
-            {isOffer && <OfferBadge discountPercentage={discountPercentage} />} 
+            {badge}
             
             <Link href={`/product/${product.id}`}
                 className="product-card__overlay-link"
@@ -61,7 +59,7 @@ const ProductCard = ({ product, isOffer, oldPrice, discountPercentage }: Product
 
             <h3 className="producto-title">{name}</h3>
 
-            <AddToCartButton product={product} />
+            {action}
         </article>
     )
 }

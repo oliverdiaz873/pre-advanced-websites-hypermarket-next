@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
-import { getAssetUrl } from '../../../shared/utils/assetUtils'
+import { getAssetUrl } from '@/lib/assetUtils'
 import './HeroCarousel.css'
 
 const banners = [

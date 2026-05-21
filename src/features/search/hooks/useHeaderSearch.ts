@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { products } from '../../../data/products'
-import { hasSearchQuery, normalizarTexto } from '../../../shared/utils/searchUtils'
+import { products } from '@/services/catalog/products'
+import { hasSearchQuery, normalizarTexto } from '@/lib/searchUtils'
 
 /**
  * Interfaz que representa un producto en los resultados de búsqueda del header.

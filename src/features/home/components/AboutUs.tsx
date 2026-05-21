@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import type { UseScrollOptions } from 'framer-motion'
 import './AboutUs.css'
 
 const AboutUs = () => {
@@ -18,8 +19,8 @@ const AboutUs = () => {
     }, [])
 
     // Definimos los rangos de animación diferenciados para paridad total
-    const desktopOffset = ["start 102%", "center 60%"] as any
-    const mobileOffset = ["start 90%", "start 35%"] as any
+    const desktopOffset: NonNullable<UseScrollOptions['offset']> = ["start 102%", "center 60%"]
+    const mobileOffset: NonNullable<UseScrollOptions['offset']> = ["start 90%", "start 35%"]
     
     const { scrollYProgress } = useScroll({
         target: sectionRef,

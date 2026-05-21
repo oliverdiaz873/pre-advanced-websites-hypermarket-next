@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../hooks/useCart';
-import { Product } from '../../../shared/types/product';
+import { Product } from '@/types/product';
 import './AddToCartButton.css';
 
 interface AddToCartButtonProps {

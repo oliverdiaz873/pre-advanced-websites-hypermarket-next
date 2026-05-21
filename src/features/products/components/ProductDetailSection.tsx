@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react'
+import { ReactNode, useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Product } from '../../../shared/types/product'
-import AddToCartButton from '../../cart/components/AddToCartButton'
-import { getAssetUrl } from '../../../shared/utils/assetUtils'
-import { ProductPageData } from '../../../data/productPageData'
+import { Product } from '@/types/product'
+import { getAssetUrl } from '@/lib/assetUtils'
+import { ProductPageData } from '@/services/catalog/productPageData'
 import { useProductTranslation } from '../hooks/useProductTranslation'
 import './ProductDetailSection.css'
 
 interface ProductDetailSectionProps {
     product: Product
     pageData?: ProductPageData
+    action?: ReactNode
 }
 
 /**
@@ -25,7 +25,7 @@ interface ProductDetailSectionProps {
  * @param {Product} props.product - Objeto con la información básica del producto (id, nombre, precio, imagen, etc).
  * @param {ProductPageData} [props.pageData] - Objeto opcional (diccionario) con los datos extendidos del producto (descripción larga y detalles/especificaciones). Si no se provee, muestra valores por defecto.
  */
-const ProductDetailSection = ({ product, pageData }: ProductDetailSectionProps) => {
+const ProductDetailSection = ({ product, pageData, action }: ProductDetailSectionProps) => {
     const { name, description, specs, priceText, labels } = useProductTranslation(product, pageData)
     const [modalOpen, setModalOpen] = useState(false)
     const modalRef = useRef<HTMLDivElement>(null)
@@ -145,10 +145,11 @@ const ProductDetailSection = ({ product, pageData }: ProductDetailSectionProps) 
                         </ul>
                     )}
 
-                    {/* componente AddtoCartButton */}
-                    <div style={{ marginTop: '20px' }}>
-                        <AddToCartButton product={product} />
-                    </div>
+                    {action && (
+                        <div style={{ marginTop: '20px' }}>
+                            {action}
+                        </div>
+                    )}
                 </div>
 
             </div>

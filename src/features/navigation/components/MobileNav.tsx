@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
-import { categories } from '../../../data/categories'
-import LanguageSelector from '../../../shared/i18n/components/LanguageSelector'
+import { categories } from '@/services/catalog/categories'
+import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
 import './MobileNav.css'
 
 

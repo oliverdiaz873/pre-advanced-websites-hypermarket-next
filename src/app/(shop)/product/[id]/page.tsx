@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ProductDetailSectionWithActions from '../../_components/ProductDetailSectionWithActions';
-import ProductCarouselSectionWithActions from '../../_components/ProductCarouselSectionWithActions';
+import ProductPageClient from '../../_components/ProductPageClient';
 import { products } from '@/services/catalog/products';
 import { productPageData } from '@/services/catalog/productPageData';
 
@@ -31,6 +30,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
 }
 
+/**
+ * ProductPage - Server Component para la vista individual de un producto.
+ * 
+ * Esta página es un "Server Component" por diseño. Su principal responsabilidad es:
+ * 1. Obtener los datos del producto solicitado basándose en el ID de la URL.
+ * 2. Generar el metadata (SEO) dinámico para buscadores (título y descripción).
+ * 3. Construir la estructura de datos para Schema.org (JSON-LD) permitiendo "Rich Snippets" en Google.
+ * 4. Delegar la UI y las traducciones a un componente de cliente (`ProductPageClient`) pasando
+ *    los datos limpios y procesados.
+ */
 export default async function ProductPage({ params }: ProductPageProps) {
     const { id } = await params;
     const product = getProduct(id);
@@ -41,7 +50,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
     const relatedProducts = products
         .filter((item) => item.categoria === product.categoria && item.id !== product.id)
-        .slice(0, 12);
+        .slice(0, 8);
 
     // Generar JSON-LD para SEO estructurado del producto
     const jsonLd = {
@@ -71,16 +80,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <ProductDetailSectionWithActions product={product} pageData={productPageData[product.id]} />
-            {relatedProducts.length > 0 && (
-                <ProductCarouselSectionWithActions
-                    title="Productos similares"
-                    products={relatedProducts}
-                    id="productos-similares"
-                    idPrefix="related"
-                    className="mt-6 md:mt-8"
-                />
-            )}
+            <ProductPageClient product={product} relatedProducts={relatedProducts} />
         </>
     );
 }

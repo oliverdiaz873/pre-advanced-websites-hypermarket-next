@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import type { HeaderSearchProduct } from '../hooks/useHeaderSearch'
 import { getAssetUrl } from '@/lib/assetUtils'
 import './DesktopSearch.css'
@@ -69,14 +69,15 @@ const DesktopSearch = ({
     onSearchSubmit,
     onSearchToggle,
 }: DesktopSearchProps) => {
-    const { t } = useTranslation(['search', 'common', 'products'])
+    const t = useTranslations('search');
+    const tHeader = useTranslations('header');
     return (
         <div className="desktop-search">
             <div className={`desktop-search__field ${isActive ? 'is-active' : ''}`}>
                 <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder={t('search:input.placeholder')}
+                    placeholder={t('input.placeholder')}
                     className={`desktop-search__input search-input-modern bg-white text-black px-3 py-1.5 rounded-lg outline-none ${isActive ? 'is-active' : ''}`}
                     value={searchTerm}
                     onChange={(e) => onSearchChange(e.target.value)}
@@ -113,7 +114,7 @@ const DesktopSearch = ({
             <button
                 onClick={isActive ? onSearchSubmit : onSearchToggle}
                 className="util-btn group relative"
-                aria-label={isActive ? t('search:button.submit') : t('search:button.open')}
+                aria-label={isActive ? t('button.submit') : t('button.open')}
             >
                 <svg
                     className={`util-icon w-6 h-6 transition-all duration-300 ${isActive ? 'text-red-500 scale-[2]' : ''}`}
@@ -128,7 +129,7 @@ const DesktopSearch = ({
                 </svg>
             </button>
 
-            <Link href="/cart" className="util-btn group relative" aria-label={t('header:cart_label')}>
+            <Link href="/cart" className="util-btn group relative" aria-label={tHeader('cart_label')}>
                 <svg className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" fill="currentColor" viewBox="0 0 16 16">
                     <use href="#icon-cart" />
                 </svg>

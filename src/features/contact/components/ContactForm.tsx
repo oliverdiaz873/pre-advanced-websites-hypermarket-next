@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { useFormValidation } from '../hooks/useFormValidation'
 import './ContactForm.css'
 
@@ -8,7 +8,7 @@ interface ContactFormProps {
 }
 
 const ContactForm = ({ onSubmit, onSuccess }: ContactFormProps) => {
-    const { t } = useTranslation('contact')
+    const t = useTranslations('contact');
     const { formData, errors, isSubmitting, handleInputChange, handleSubmit } = useFormValidation(async () => {
         // Simular envío del formulario
         await new Promise(resolve => setTimeout(resolve, 1500))

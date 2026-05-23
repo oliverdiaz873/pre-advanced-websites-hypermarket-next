@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import ContactForm from '@/features/contact/components/ContactForm';
 import Toast from '@/ui/Toast/Toast';
 
 export default function ContactPageClient() {
-    const { t } = useTranslation('contact');
+    const t = useTranslations('contact');
     const [showToast, setShowToast] = useState(false);
 
     // Efecto para aplicar el fondo negro "profundo" solo en esta página

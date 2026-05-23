@@ -6,8 +6,8 @@
  * Diferencia con ProductCarouselSection: Este es solo el "mecanismo", 
  * mientras que la Section añade el título, fondo y mapeo de datos.
  */
-import { useRef, useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useRef, useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import './ProductCarousel.css'
 
 interface ProductCarouselProps {
@@ -16,14 +16,14 @@ interface ProductCarouselProps {
 }
 
 const ProductCarousel = ({ children, idPrefix }: ProductCarouselProps) => {
-    const { t } = useTranslation('home')
+    const t = useTranslations('home');
     const containerRef = useRef<HTMLDivElement>(null)
     // Estados para controlar la visibilidad de los botones
     const [showPrev, setShowPrev] = useState(false)
     const [showNext, setShowNext] = useState(true)
 
-    // Función para verificar la posición del scroll y actualizar botones
-    const checkScroll = () => {
+    // Función memoizada para verificar la posición del scroll y actualizar botones
+    const checkScroll = useCallback(() => {
         if (containerRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
             // Mostrar "Prev" si hemos avanzado más allá del inicio (umbral de 30px por padding)
@@ -31,25 +31,32 @@ const ProductCarousel = ({ children, idPrefix }: ProductCarouselProps) => {
             // Mostrar "Next" si no hemos llegado al final (con un margen de error)
             setShowNext(scrollLeft + clientWidth < scrollWidth - 10)
         }
-    }
+    }, [])
 
     useEffect(() => {
         const container = containerRef.current
-        if (container) {
-            // Verificar estado inicial
-            checkScroll()
-            // Escuchar el evento de scroll
-            container.addEventListener('scroll', checkScroll)
-            // Escuchar cambios de tamaño de ventana por si cambia el ancho del carrusel
-            window.addEventListener('resize', checkScroll)
+        if (!container) return
+
+        // Verificar estado inicial
+        checkScroll()
+
+        // Listener de scroll sin debounce (frecuente pero necesario para UX)
+        container.addEventListener('scroll', checkScroll, { passive: true })
+
+        // Listener de resize CON debounce para evitar múltiples rerenders
+        let resizeTimeout: NodeJS.Timeout
+        const debouncedResize = () => {
+            clearTimeout(resizeTimeout)
+            resizeTimeout = setTimeout(checkScroll, 150)
         }
+        window.addEventListener('resize', debouncedResize)
+
         return () => {
-            if (container) {
-                container.removeEventListener('scroll', checkScroll)
-            }
-            window.removeEventListener('resize', checkScroll)
+            container.removeEventListener('scroll', checkScroll)
+            window.removeEventListener('resize', debouncedResize)
+            clearTimeout(resizeTimeout)
         }
-    }, [])
+    }, [checkScroll])
 
     const scroll = (direction: 'left' | 'right') => {
         if (containerRef.current) {

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { useCart } from '../hooks/useCart'
 import './CartSummary.css'
 
@@ -21,7 +21,7 @@ interface CartSummaryProps {
 }
 
 const CartSummary = ({ className = '' }: CartSummaryProps) => {
-    const { t } = useTranslation('common')
+    const t = useTranslations('common');
     const { totalItems, totalPrice } = useCart()
 
     return (

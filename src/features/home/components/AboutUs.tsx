@@ -1,30 +1,43 @@
 "use client";
-import { useRef, useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useRef, useState, useEffect, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import type { UseScrollOptions } from 'framer-motion'
 import './AboutUs.css'
 
 const AboutUs = () => {
-    const { t } = useTranslation(['home'])
+    const t = useTranslations('home');
     const sectionRef = useRef<HTMLElement>(null)
     const [isMobile, setIsMobile] = useState(false)
 
-    // Detectamos si es móvil para la paridad de opacidad
+    // Detectamos si es móvil para la paridad de opacidad (con debounce)
     useEffect(() => {
+        let resizeTimeout: NodeJS.Timeout
         const checkMobile = () => setIsMobile(window.innerWidth <= 767.98)
+        
+        const debouncedResize = () => {
+            clearTimeout(resizeTimeout)
+            resizeTimeout = setTimeout(checkMobile, 150)
+        }
+        
         checkMobile()
-        window.addEventListener('resize', checkMobile)
-        return () => window.removeEventListener('resize', checkMobile)
+        window.addEventListener('resize', debouncedResize)
+        return () => {
+            window.removeEventListener('resize', debouncedResize)
+            clearTimeout(resizeTimeout)
+        }
     }, [])
 
-    // Definimos los rangos de animación diferenciados para paridad total
-    const desktopOffset: NonNullable<UseScrollOptions['offset']> = ["start 102%", "center 60%"]
-    const mobileOffset: NonNullable<UseScrollOptions['offset']> = ["start 90%", "start 35%"]
+    // Memoizar la configuración de offset para evitar recreación innecesaria
+    const offsetConfig = useMemo(() => ({
+        desktop: ["start 102%", "center 60%"] as NonNullable<UseScrollOptions['offset']>,
+        mobile: ["start 90%", "start 35%"] as NonNullable<UseScrollOptions['offset']>
+    }), [])
     
     const { scrollYProgress } = useScroll({
         target: sectionRef,
-        offset: isMobile ? mobileOffset : desktopOffset
+        offset: isMobile ? offsetConfig.mobile : offsetConfig.desktop
     })
 
     // Valores de Escala: Desktop (0 -> 1), Móvil (0.88 -> 1)
@@ -53,16 +66,17 @@ const AboutUs = () => {
             className="about-us-section w-[calc(100vw-40px)] max-w-full mx-auto mt-10 mb-6 md:mt-9 md:mb-10 bg-black text-white py-5 rounded-[20px] overflow-hidden"
         >
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-16 px-5 py-4 md:px-8">
-                <img
+                <Image
                     src="/assets/images/logo/logo_with_background.jpeg"
-                    alt={t('home:about_us.logo_alt')}
+                    alt={t('about_us.logo_alt')}
+                    width={450}
+                    height={450}
                     className="w-[250px] md:w-[350px] lg:w-[450px] h-auto rounded-[15px] shrink-0"
-                    loading="lazy"
                 />
                 <div className="max-w-[600px] text-center md:text-left">
-                    <h2 className="text-2xl md:text-3xl font-semibold mb-4">{t('home:about_us.title')}</h2>
+                    <h2 className="text-2xl md:text-3xl font-semibold mb-4">{t('about_us.title')}</h2>
                     <p className="text-base md:text-lg leading-relaxed">
-                        {t('home:about_us.description')}
+                        {t('about_us.description')}
                     </p>
                 </div>
             </div>
@@ -71,4 +85,3 @@ const AboutUs = () => {
 }
 
 export default AboutUs
-

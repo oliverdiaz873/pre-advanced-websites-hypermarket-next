@@ -8,7 +8,7 @@
  * - Lógica de normalización de unidades y cálculo de descuentos.
  * - Acciones para agregar, eliminar y actualizar cantidades.
  */
-import { createContext, useState, useCallback, useEffect, ReactNode } from 'react'
+import { createContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 
 export interface CartItem {
     id: string
@@ -55,23 +55,24 @@ const calculateDiscountPercentage = (oldPrice?: string, currentPrice?: number): 
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [isInitialized, setIsInitialized] = useState(false);
+    const hasHydratedRef = useRef(false);
 
-    // Cargar desde localStorage SOLO después del montaje para evitar errores de hidratación en Next.js
+    // Cargar desde localStorage después de la hidratación (solo una vez)
     useEffect(() => {
-        const loadCart = () => {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    setCart(JSON.parse(saved));
-                }
-            } catch (error) {
-                console.error('Error loading cart from storage:', error);
-            } finally {
-                setIsInitialized(true);
-            }
-        };
+        if (hasHydratedRef.current) return;
+        hasHydratedRef.current = true;
 
-        setTimeout(loadCart, 0);
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
+                setCart(JSON.parse(saved));
+            }
+        } catch (error) {
+            console.error('Error loading cart from storage:', error);
+        } finally {
+            setIsInitialized(true);
+        }
     }, []);
 
 

@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from '@/i18n/routing'
 import DesktopNav from '../../navigation/components/DesktopNav'
 import TabletNav from '../../navigation/components/TabletNav'
 import MobileNav from '../../navigation/components/MobileNav'
 import { DesktopSearch, TabletSearch, MobileSearch, useHeaderSearch } from '../../search'
 
 import { useCart } from '../../cart/hooks/useCart'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
 import './Header.css'
 import '../../navigation/components/Navigation.css'
@@ -37,7 +37,7 @@ const Header = () => {
     const pathname = usePathname()
     const isHomePage = pathname === '/'
 
-    const { t } = useTranslation(['header'])
+    const t = useTranslations('header');
 
     const {
         isSearchActive,
@@ -59,9 +59,19 @@ const Header = () => {
             setViewportMode(getViewportMode())
         }
 
+        // Debounce resize events para evitar múltiples rerenders
+        let resizeTimeout: NodeJS.Timeout
+        const debouncedResize = () => {
+            clearTimeout(resizeTimeout)
+            resizeTimeout = setTimeout(handleResize, 150)
+        }
+
         handleResize()
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
+        window.addEventListener('resize', debouncedResize)
+        return () => {
+            window.removeEventListener('resize', debouncedResize)
+            clearTimeout(resizeTimeout)
+        }
     }, [])
 
     const showBrand = viewportMode !== 'mobile' || !isSearchActive
@@ -74,7 +84,7 @@ const Header = () => {
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="menu-btn text-[22px] bg-transparent border-none text-white cursor-pointer transition-colors duration-300 rounded hover:bg-white/15 p-1"
-                        aria-label={t(isMobileMenuOpen ? 'header:menu_close' : 'header:menu_open')}
+                        aria-label={t(isMobileMenuOpen ? 'menu_close' : 'menu_open')}
                     >
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 16 16">
                             <use href="#icon-menu" />
@@ -93,11 +103,11 @@ const Header = () => {
                         />
                         {isHomePage ? (
                             <h1 suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
-                                {t('header:brand')}
+                                {t('brand')}
                             </h1>
                         ) : (
                             <span suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
-                                {t('header:brand')}
+                                {t('brand')}
                             </span>
                         )}
                     </Link>

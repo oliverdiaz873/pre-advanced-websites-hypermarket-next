@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import { EmptyState } from '@/ui';
 
 interface EmptySearchResultsProps {
@@ -14,7 +14,7 @@ interface EmptySearchResultsProps {
  * se carga sin una consulta inicial.
  */
 const EmptySearchResults: React.FC<EmptySearchResultsProps> = ({ query }) => {
-    const { t } = useTranslation('search');
+    const t = useTranslations('search');
 
     return (
         <div className="flex-1 flex items-center justify-center py-12">

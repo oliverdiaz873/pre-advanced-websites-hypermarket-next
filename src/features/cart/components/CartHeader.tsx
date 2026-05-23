@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import './CartHeader.css'
 
 /**
@@ -12,7 +12,7 @@ interface CartHeaderProps {
 }
 
 const CartHeader = ({ totalItems }: CartHeaderProps) => {
-    const { t } = useTranslation('common')
+    const t = useTranslations('common');
     return (
         <header className="cart-header">
             <svg className="cart-header__icon" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">

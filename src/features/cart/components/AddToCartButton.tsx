@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import { useCart } from '../hooks/useCart';
 import { Product } from '@/types/product';
 import './AddToCartButton.css';
@@ -10,7 +10,7 @@ interface AddToCartButtonProps {
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
-    const { t } = useTranslation('common');
+    const t = useTranslations('common');
     const { cart, addToCart, updateQuantity } = useCart();
     
     // Buscar si el producto ya está en el carrito para obtener la cantidad
@@ -47,7 +47,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
             <button
                 onClick={handleInitialAdd}
                 className="btn-agregar"
-                aria-label={`${t('cart.add_button')} ${product.nombre} ${t('common:product.add_to_cart')}`}
+                aria-label={`${t('cart.add_button')} ${product.nombre} ${t('product.add_to_cart')}`}
             >
                 {t('cart.add_button')}
             </button>

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import './OfferBadge.css'
 
 interface OfferBadgeProps {
@@ -10,7 +10,7 @@ interface OfferBadgeProps {
  * Incluye un icono de fuego y muestra el porcentaje de descuento.
  */
 const OfferBadge = ({ discountPercentage }: OfferBadgeProps) => {
-    const { t } = useTranslation('offers')
+    const t = useTranslations('offers');
     return (
         <div className="offer-badge" aria-label={t('badge.aria_label', { discount: discountPercentage ? `-${discountPercentage}%` : '' })}>
             <svg className="offer-badge__icon icon-fire">

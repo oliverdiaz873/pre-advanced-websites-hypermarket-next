@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import { useTabletMenu } from '../hooks/useTabletMenu'
 import './TabletNav.css'
@@ -19,7 +19,8 @@ const subLinkClass =
  * Delega la apertura y cierre de submenús al hook de interacción por clic del usuario.
  */
 const TabletNav = () => {
-    const { t } = useTranslation(['categories', 'header'])
+    const t = useTranslations('header');
+    const tCategories = useTranslations('categories');
     const navRef = useTabletMenu()
 
     return (
@@ -27,12 +28,12 @@ const TabletNav = () => {
             ref={navRef}
             className="hidden md:flex justify-center nav-links tablet-nav"
             role="navigation"
-            aria-label={t('header:nav_aria')}
+            aria-label={t('nav_aria')}
         >
             <ul className="flex gap-5 items-center list-none p-0 m-0">
                 <li>
                     <Link href="/" className={navLinkClass}>
-                        {t('header:nav.home')}
+                        {t('nav.home')}
                     </Link>
                 </li>
 
@@ -43,7 +44,7 @@ const TabletNav = () => {
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        {t('header:nav.categories')} <span className="text-[0.7em] opacity-80">▼</span>
+                        {t('nav.categories')} <span className="text-[0.7em] opacity-80">▼</span>
                     </button>
 
                     <ul className="absolute top-full left-0 bg-black/90 rounded-lg min-w-[220px] hidden group-hover:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
@@ -53,7 +54,7 @@ const TabletNav = () => {
                                     className={dropdownLinkClass}
                                     data-tablet-trigger="level-2"
                                 >
-                                    {t(`categories:${category.id}`)} <span>▸</span>
+                                    {tCategories(category.id)} <span>▸</span>
                                 </Link>
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
@@ -62,7 +63,7 @@ const TabletNav = () => {
                                         return (
                                             <li key={sub.name}>
                                                 <Link href={sub.href} className={subLinkClass}>
-                                                    {t(`categories:sub.${subKey}`)}
+                                                    {tCategories(`sub.${subKey}`)}
                                                 </Link>
                                             </li>
                                         )
@@ -75,13 +76,13 @@ const TabletNav = () => {
 
                 <li>
                     <Link href="/offers" className={navLinkClass}>
-                        {t('header:nav.offers')}
+                        {t('nav.offers')}
                     </Link>
                 </li>
 
                 <li>
                     <Link href="/contact" className={navLinkClass}>
-                        {t('header:nav.contact')}
+                        {t('nav.contact')}
                     </Link>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import './DesktopNav.css'
 
@@ -19,18 +19,19 @@ const subLinkClass =
  * Muestra enlaces directos y un menú desplegable interactivo para las categorías al usar el cursor (hover).
  */
 const DesktopNav = () => {
-    const { t } = useTranslation(['categories', 'header'])
+    const t = useTranslations('header');
+    const tCategories = useTranslations('categories');
 
     return (
         <nav
             className="hidden md:flex justify-center nav-links desktop-nav"
             role="navigation"
-            aria-label={t('header:nav_aria')}
+            aria-label={t('nav_aria')}
         >
             <ul className="flex gap-5 items-center list-none p-0 m-0">
                 <li>
                     <Link href="/" className={navLinkClass}>
-                        {t('header:nav.home')}
+                        {t('nav.home')}
                     </Link>
                 </li>
 
@@ -40,7 +41,7 @@ const DesktopNav = () => {
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        {t('header:nav.categories')}{' '}
+                        {t('nav.categories')}{' '}
                         <span className="text-[0.7em] ml-0.5 opacity-80">▼</span>
                     </button>
 
@@ -48,7 +49,7 @@ const DesktopNav = () => {
                         {categories.map((category) => (
                             <li key={category.id} className="relative group/sub">
                                 <Link href={category.href} className={dropdownLinkClass}>
-                                    {t(`categories:${category.id}`)} <span>▸</span>
+                                    {tCategories(category.id)} <span>▸</span>
                                 </Link>
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
@@ -57,7 +58,7 @@ const DesktopNav = () => {
                                         return (
                                             <li key={sub.name}>
                                                 <Link href={sub.href} className={subLinkClass}>
-                                                    {t(`categories:sub.${subKey}`)}
+                                                    {tCategories(`sub.${subKey}`)}
                                                 </Link>
                                             </li>
                                         )
@@ -70,13 +71,13 @@ const DesktopNav = () => {
 
                 <li>
                     <Link href="/offers" className={navLinkClass}>
-                        {t('header:nav.offers')}
+                        {t('nav.offers')}
                     </Link>
                 </li>
 
                 <li>
                     <Link href="/contact" className={navLinkClass}>
-                        {t('header:nav.contact')}
+                        {t('nav.contact')}
                     </Link>
                 </li>
             </ul>

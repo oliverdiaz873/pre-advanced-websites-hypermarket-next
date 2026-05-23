@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import type { HeaderSearchProduct } from '../hooks/useHeaderSearch'
 import { getAssetUrl } from '@/lib/assetUtils'
 import './TabletSearch.css'
@@ -75,14 +75,16 @@ const TabletSearch = ({
     onSearchSubmit,
     onSearchToggle,
 }: TabletSearchProps) => {
-    const { t } = useTranslation(['search', 'common', 'products'])
+    const t = useTranslations('search');
+    const tHeader = useTranslations('header');
+    const tProducts = useTranslations('products');
     return (
         <div className={`tablet-search ${isActive ? 'is-active' : ''}`}>
             <div className={`tablet-search__field ${isActive ? 'is-active' : ''}`}>
                 <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder={t('search:input.placeholder')}
+                    placeholder={t('search.input.placeholder')}
                     className={`tablet-search__input search-input-modern bg-white text-black px-3 py-1.5 rounded-lg outline-none ${isActive ? 'is-active' : ''}`}
                     value={searchTerm}
                     onChange={(e) => onSearchChange(e.target.value)}
@@ -104,12 +106,16 @@ const TabletSearch = ({
                             >
                                 <Image
                                     src={getAssetUrl(product.imagen)}
-                                    alt={t(`products:${product.id}.name`, { defaultValue: product.nombre })}
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    alt={tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.nombre}
                                     width={40}
                                     height={40}
                                     className="tablet-search__thumb"
                                 />
-                                <span className="tablet-search__label">{t(`products:${product.id}.name`, { defaultValue: product.nombre })}</span>
+                                <div className="tablet-search__item-content">
+                                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                    <span className="tablet-search__label">{tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.nombre}</span>
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -119,7 +125,7 @@ const TabletSearch = ({
             <button
                 onClick={isActive ? onSearchSubmit : onSearchToggle}
                 className="util-btn group relative"
-                aria-label={isActive ? t('search:button.submit') : t('search:button.open')}
+                aria-label={isActive ? t('button.submit') : t('button.open')}
             >
                 <svg
                     className={`util-icon w-6 h-6 transition-all duration-300 ${isActive ? 'text-red-500 scale-[2]' : ''}`}
@@ -134,7 +140,7 @@ const TabletSearch = ({
                 </svg>
             </button>
 
-            <Link href="/cart" className="util-btn tablet-search__cart group relative" aria-label={t('header:cart_label')}>
+            <Link href="/cart" className="util-btn tablet-search__cart group relative" aria-label={tHeader('cart_label')}>
                 <svg className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" fill="currentColor" viewBox="0 0 16 16">
                     <use href="#icon-cart" />
                 </svg>

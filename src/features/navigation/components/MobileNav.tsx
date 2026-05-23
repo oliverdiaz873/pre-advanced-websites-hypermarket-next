@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
 import './MobileNav.css'
@@ -17,7 +17,8 @@ interface MobileNavProps {
  * Soporta un diseño de menú tipo acordeón con submenús emergentes y selector de idioma integrado.
  */
 const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
-    const { t } = useTranslation(['categories', 'header'])
+    const t = useTranslations('header');
+    const tCategories = useTranslations('categories');
     const [openCategory, setOpenCategory] = useState<string | null>(null)
     const [openSubcategories, setOpenSubcategories] = useState<string[]>([])
 
@@ -42,12 +43,12 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
         <nav
             id="mobile-menu"
             className="fixed top-[49px] left-0 w-full bg-black/95 text-white z-[999] max-h-[calc(100vh-49px)] overflow-y-auto py-5 shadow-xl"
-            aria-label={t('header:nav_aria')}
+            aria-label={t('nav_aria')}
         >
             <ul className="list-none p-0 m-0">
                 <li className="px-5 py-2.5 border-b border-white/10">
                     <Link href="/" className="block" onClick={handleLinkClick}>
-                        {t('header:nav.home')}
+                        {t('nav.home')}
                     </Link>
                 </li>
 
@@ -56,7 +57,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                         onClick={() => toggleCategory('categorias')}
                         className="w-full text-left flex justify-between items-center"
                     >
-                        {t('header:nav.categories')}{' '}
+                        {t('nav.categories')}{' '}
                         <span
                             className={`text-[0.7em] opacity-70 transition-transform duration-300 ${openCategory === 'categorias' ? 'rotate-180' : ''
                                 }`}
@@ -73,7 +74,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                                         onClick={() => toggleSubcategory(category.id)}
                                         className="w-full text-left py-3 flex justify-between items-center text-sm"
                                     >
-                                        {t(`categories:${category.id}`)}
+                                        {tCategories(category.id)}
                                         <span
                                             className={`opacity-50 transition-transform duration-300 ${openSubcategories.includes(category.id) ? 'rotate-90' : ''
                                                 }`}
@@ -92,7 +93,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                                                             className="block py-2"
                                                             onClick={handleLinkClick}
                                                         >
-                                                            {t(`categories:sub.${subKey}`)}
+                                                            {t(`categories.sub.${subKey}`)}
                                                         </Link>
                                                     </li>
                                                 )
@@ -107,13 +108,13 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
 
                 <li className="px-5 py-2.5 border-b border-white/10">
                     <Link href="/offers" className="block" onClick={handleLinkClick}>
-                        {t('header:nav.offers')}
+                        {t('nav.offers')}
                     </Link>
                 </li>
 
                 <li className="px-5 py-2.5 border-b border-white/10">
                     <Link href="/contact" className="block" onClick={handleLinkClick}>
-                        {t('header:nav.contact')}
+                        {t('nav.contact')}
                     </Link>
                 </li>
 
@@ -124,7 +125,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                                 <use href="#icon-world" />
                             </svg>
                             <span className="text-base text-white">
-                                {t('header:language')}
+                                {t('language')}
                             </span>
                         </div>
                         

@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import type { HeaderSearchProduct } from '../hooks/useHeaderSearch'
 import { getAssetUrl } from '@/lib/assetUtils'
 import './MobileSearch.css'
@@ -72,14 +72,15 @@ const MobileSearch = ({
     onSearchSubmit,
     onSearchToggle,
 }: MobileSearchProps) => {
-    const { t } = useTranslation(['search', 'products'])
+    const t = useTranslations('search');
+    const tHeader = useTranslations('header');
     return (
         <div className={`mobile-search ${isActive ? 'is-active' : ''}`}>
             <div className={`mobile-search__field ${isActive ? 'is-active' : ''}`}>
                 <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder={t('search:input.placeholder')}
+                    placeholder={t('input.placeholder')}
                     className={`mobile-search__input search-input-modern bg-white text-black px-3 py-1.5 rounded-lg outline-none ${isActive ? 'is-active' : ''}`}
                     value={searchTerm}
                     onChange={(e) => onSearchChange(e.target.value)}
@@ -116,7 +117,7 @@ const MobileSearch = ({
             <button
                 onClick={isActive ? onSearchSubmit : onSearchToggle}
                 className="util-btn group relative"
-                aria-label={isActive ? t('search:button.submit') : t('search:button.open')}
+                aria-label={isActive ? t('button.submit') : t('button.open')}
             >
                 <svg
                     className={`util-icon w-6 h-6 transition-all duration-300 ${isActive ? 'text-red-500 scale-[2]' : ''}`}
@@ -131,7 +132,7 @@ const MobileSearch = ({
                 </svg>
             </button>
 
-            <Link href="/cart" className="util-btn mobile-search__cart group relative" aria-label={t('header:cart_label')}>
+            <Link href="/cart" className="util-btn mobile-search__cart group relative" aria-label={tHeader('cart_label')}>
                 <svg className="util-icon w-6 h-6" fill="currentColor" viewBox="0 0 16 16">
                     <use href="#icon-cart" />
                 </svg>

@@ -1,5 +1,4 @@
 "use client";
-import { useTranslation } from 'react-i18next'
 import { ReactNode } from 'react'
 /**
  * ProductCarouselSection - Estructura de bloque de carrusel por sección.
@@ -32,7 +31,6 @@ interface ProductCarouselSectionProps {
 }
 
 const ProductCarouselSection = ({
-    titleKey,
     title,
     products,
     id,
@@ -42,8 +40,6 @@ const ProductCarouselSection = ({
     renderBadge,
     renderAction
 }: ProductCarouselSectionProps) => {
-    const { t } = useTranslation(['home'])
-    const displayTitle = titleKey ? t(titleKey) : title
     return (
         <section 
             className={`product-carousel-section ${className}`} 
@@ -51,7 +47,7 @@ const ProductCarouselSection = ({
         >
             <div className="w-full">
                 <h2 className="product-carousel-section__title">
-                    {displayTitle}
+                    {title}
                 </h2>
 
                 <ProductCarousel idPrefix={idPrefix}>

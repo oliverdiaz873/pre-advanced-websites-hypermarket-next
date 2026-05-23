@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
+      "@/i18n/*": ["./src/i18n/*"],
       "@/features/*": ["./src/features/*"],
       "@/ui": ["./src/ui/index.ts"],
       "@/ui/*": ["./src/ui/*"],

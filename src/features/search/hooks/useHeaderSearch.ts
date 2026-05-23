@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { products } from '@/services/catalog/products'
 import { hasSearchQuery, normalizarTexto } from '@/lib/searchUtils'
 
@@ -45,7 +45,7 @@ export const useHeaderSearch = (
     onResultSelect: (id: string) => void,
     onSearchSubmit: (term: string) => void
 ) => {
-    const { t } = useTranslation('products')
+    const tProducts = useTranslations('products');
     const [isSearchActive, setIsSearchActive] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const searchInputRef = useRef<HTMLInputElement>(null)
@@ -62,18 +62,25 @@ export const useHeaderSearch = (
             .filter((product) => {
                 // 1. Obtener traducciones para comparar
                 const nombreEs = normalizarTexto(product.nombre)
-                const nombreEn = normalizarTexto(t(`${product.id}.name`, { lng: 'en', defaultValue: product.nombre }))
+                
+                const translationKey = `${product.id}.name`;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const translatedName = tProducts.has(translationKey as any) ? normalizarTexto(tProducts(translationKey as any)) : nombreEs;
                 
                 // 2. Filtrar
-                return nombreEs.includes(term) || nombreEn.includes(term)
+                return nombreEs.includes(term) || translatedName.includes(term)
             })
-            .map((product) => ({
-                id: product.id,
-                nombre: t(`${product.id}.name`, { defaultValue: product.nombre }),
-                imagen: product.imagen
-            }))
+            .map((product) => {
+                const translationKey = `${product.id}.name`;
+                return {
+                    id: product.id,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    nombre: tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.nombre,
+                    imagen: product.imagen
+                };
+            })
             .slice(0, 8)
-    }, [searchTerm, t])
+    }, [searchTerm, tProducts])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { getAssetUrl } from '@/lib/assetUtils'
 import './HeroCarousel.css'
 
@@ -10,19 +10,19 @@ const banners = [
         id: 1, 
         desktopImage: 'assets/images/banners/offers/fruits_and_vegetables.png',
         mobileImage: 'assets/images/banners/offers/fruits_and_vegetables_mobile.png',
-        altKey: 'home:hero.alt_fruits' 
+        altKey: 'hero.alt_fruits' 
     },
     { 
         id: 2, 
         desktopImage: 'assets/images/banners/offers/iphone.png',
         mobileImage: 'assets/images/banners/offers/iphone_mobile.png',
-        altKey: 'home:hero.alt_tech' 
+        altKey: 'hero.alt_tech' 
     },
     { 
         id: 3, 
         desktopImage: 'assets/images/banners/offers/wine.png',
         mobileImage: 'assets/images/banners/offers/wine_mobile.png',
-        altKey: 'home:hero.alt_wine' 
+        altKey: 'hero.alt_wine' 
     },
 ]
 
@@ -32,18 +32,28 @@ const HeroCarousel = () => {
     const [touchEnd, setTouchEnd] = useState(0)
     const [isMobile, setIsMobile] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
-    const { t } = useTranslation(['home'])
+    const t = useTranslations('home');
 
-    // Detectar si es mobile
+    // Detectar si es mobile con debounce
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 640)
         }
         
-        checkMobile()
-        window.addEventListener('resize', checkMobile)
+        // Debounce resize events
+        let resizeTimeout: NodeJS.Timeout
+        const debouncedCheck = () => {
+            clearTimeout(resizeTimeout)
+            resizeTimeout = setTimeout(checkMobile, 150)
+        }
         
-        return () => window.removeEventListener('resize', checkMobile)
+        checkMobile()
+        window.addEventListener('resize', debouncedCheck)
+        
+        return () => {
+            window.removeEventListener('resize', debouncedCheck)
+            clearTimeout(resizeTimeout)
+        }
     }, [])
 
     const nextSlide = useCallback(() => {
@@ -82,9 +92,12 @@ const HeroCarousel = () => {
     }
 
     useEffect(() => {
-        const interval = setInterval(nextSlide, 5000)
+        // Solo crear interval una sola vez (banners es constante)
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev === banners.length - 1 ? 0 : prev + 1))
+        }, 5000)
         return () => clearInterval(interval)
-    }, [nextSlide])
+    }, [])
 
     return (
         <section className="hero-carousel-section">
@@ -118,7 +131,7 @@ const HeroCarousel = () => {
                 <button
                     onClick={prevSlide}
                     className="hero-control-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 lg:flex lg:opacity-100 hidden"
-                    aria-label={t('home:hero.prev')}
+                    aria-label={t('hero.prev')}
                 >
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -127,7 +140,7 @@ const HeroCarousel = () => {
                 <button
                     onClick={nextSlide}
                     className="hero-control-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 lg:flex lg:opacity-100 hidden"
-                    aria-label={t('home:hero.next')}
+                    aria-label={t('hero.next')}
                 >
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -142,7 +155,7 @@ const HeroCarousel = () => {
                             onClick={() => goToSlide(index)}
                             className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-white scale-125 w-4' : 'bg-white/50 hover:bg-white/80'
                                 }`}
-                            aria-label={t('home:hero.go_to', { index: index + 1 })}
+                            aria-label={t('hero.go_to', { index: index + 1 })}
                         />
                     ))}
                 </div>

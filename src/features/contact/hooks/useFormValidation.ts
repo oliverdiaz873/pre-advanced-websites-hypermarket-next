@@ -1,6 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
-import { useTranslation } from 'react-i18next'
-import { TFunction } from 'i18next'
+import { useTranslations } from 'next-intl'
 
 interface FormData {
     nombre: string
@@ -30,34 +29,34 @@ interface UseFormValidationOptions {
 }
 
 // Validación detallada (Usando traducciones i18n para proveer los mensajes de error)
-const validateField = (name: string, value: string, t: TFunction): string => {
+const validateField = (name: string, value: string, t: ReturnType<typeof useTranslations>): string => {
     const trimmedValue = value.trim()
     
     switch (name) {
         case 'nombre': {
-            if (!trimmedValue) return t('contact:validation.name.required')
-            if (trimmedValue.length < 2 || trimmedValue.length > 50) return t('contact:validation.name.length')
-            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(trimmedValue)) return t('contact:validation.name.format')
+            if (!trimmedValue) return t('validation.name.required')
+            if (trimmedValue.length < 2 || trimmedValue.length > 50) return t('validation.name.length')
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(trimmedValue)) return t('validation.name.format')
             return ''
         }
         case 'email': {
-            if (!trimmedValue) return t('contact:validation.email.required')
-            if (trimmedValue.length > 254) return t('contact:validation.email.format')
+            if (!trimmedValue) return t('validation.email.required')
+            if (trimmedValue.length > 254) return t('validation.email.format')
             // Regex de grado profesional: Valida caracteres especiales permitidos, estructura de puntos y asegura un TLD alfabético de 2+ caracteres
             const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            if (!emailRegex.test(trimmedValue)) return t('contact:validation.email.format')
+            if (!emailRegex.test(trimmedValue)) return t('validation.email.format')
             return ''
         }
         case 'telefono': {
             if (trimmedValue) {
                 const cleanPhone = trimmedValue.replace(/[\s-()]/g, '')
-                if (!/^[0-9]{8,15}$/.test(cleanPhone)) return t('contact:validation.phone.format')
+                if (!/^[0-9]{8,15}$/.test(cleanPhone)) return t('validation.phone.format')
             }
             return ''
         }
         case 'mensaje': {
-            if (!trimmedValue) return t('contact:validation.message.required')
-            if (trimmedValue.length < 10 || trimmedValue.length > 500) return t('contact:validation.message.length')
+            if (!trimmedValue) return t('validation.message.required')
+            if (trimmedValue.length < 10 || trimmedValue.length > 500) return t('validation.message.length')
             return ''
         }
     }
@@ -68,7 +67,7 @@ export const useFormValidation = (
     onSubmit?: (data: FormData) => Promise<void>,
     options: UseFormValidationOptions = {}
 ): UseFormValidationReturn => {
-    const { t } = useTranslation('contact')
+    const t = useTranslations('contact');
     const [formData, setFormData] = useState<FormData>({
         nombre: '',
         email: '',

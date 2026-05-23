@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import AddToCartButton from '@/features/cart/components/AddToCartButton';
 import Drawer from '@/ui/Drawer/Drawer';
 import ProductGrid from '@/features/products/components/ProductGrid';
@@ -12,7 +12,8 @@ import { useOfferFilters } from '@/features/offers/hooks/useOfferFilters';
 import './OffersPageClient.css';
 
 export default function OffersPageClient() {
-    const { t } = useTranslation(['offers', 'categories']);
+    const t = useTranslations('offers');
+    const tCategories = useTranslations('categories');
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const {
         offerProducts,
@@ -52,7 +53,7 @@ export default function OffersPageClient() {
                         <span>{t('header.filter_btn')}</span>
                         {selectedCategory !== 'all' && (
                             <span className="offers-mobile-filters-active-chip">
-                                {t(`categories:${selectedCategory}`)}
+                                {tCategories(selectedCategory)}
                             </span>
                         )}
                     </button>

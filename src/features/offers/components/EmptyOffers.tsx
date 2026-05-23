@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { EmptyState } from '@/ui'
 
 /**
@@ -8,7 +8,7 @@ import { EmptyState } from '@/ui'
  * cuando no hay ofertas disponibles.
  */
 const EmptyOffers = () => {
-    const { t } = useTranslation('offers')
+    const t = useTranslations('offers');
     
     return (
         <EmptyState

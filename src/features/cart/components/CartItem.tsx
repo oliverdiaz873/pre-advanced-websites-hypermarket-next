@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import { memo } from 'react'
 import { Product } from '@/types/product'
@@ -6,7 +6,7 @@ import { getAssetUrl } from '@/lib/assetUtils'
 import { cleanPrice } from '@/lib/priceUtils'
 import QuantityControls from './QuantityControls'
 import { OfferBadge } from '../../offers/components'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { useProductTranslation } from '../../products/hooks/useProductTranslation'
 import './CartItem.css'
 
@@ -51,7 +51,7 @@ const CartItem = ({
     updateQuantity,
     removeFromCart
 }: CartItemProps) => {
-    const { t } = useTranslation(['common'])
+    const t = useTranslations('common');
     const cartProduct: Product = { id, nombre, precio, precioTexto, imagen: img, unidad } as Product
     const { name, labels } = useProductTranslation(cartProduct)
 
@@ -59,7 +59,7 @@ const CartItem = ({
         <div className="cart-item">
             <Link href={`/product/${id}`}
                 className="cart-item__image-link"
-                aria-label={t('common:product.view_details', { name })}
+                aria-label={t('common.product.view_details', { name })}
             >
                 <div className="cart-item__image-container">
                     {isOffer && (
@@ -81,15 +81,15 @@ const CartItem = ({
                 <div className="cart-item__header">
                     <Link href={`/product/${id}`}
                         className="cart-item__name-link"
-                        aria-label={t('common:product.view_details', { name })}
+                        aria-label={t('common.product.view_details', { name })}
                     >
                         <h3 className="cart-item__name">{name}</h3>
                     </Link>
                     <button
                         onClick={() => removeFromCart(id)}
                         className="cart-item__remove-icon"
-                        aria-label={`${t('common:product.remove')} ${name}`}
-                        title={t('common:product.remove')}
+                        aria-label={`${t('product.remove')} ${name}`}
+                        title={t('product.remove')}
                     >
                         <svg viewBox="0 0 24 24">
                             <use href="#icon-trash" />
@@ -118,8 +118,8 @@ const CartItem = ({
                         onDecrease={() => updateQuantity(id, -1)}
                         onIncrease={() => updateQuantity(id, 1)}
                         ariaLabels={{
-                            decrease: t('common:cart.decrease_qty'),
-                            increase: t('common:cart.increase_qty')
+                            decrease: t('cart.decrease_qty'),
+                            increase: t('cart.increase_qty')
                         }}
                     />
                 </div>

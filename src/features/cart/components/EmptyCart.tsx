@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { EmptyState } from '@/ui'
 
 /**
@@ -8,7 +8,7 @@ import { EmptyState } from '@/ui'
  * informativo cuando el carrito no tiene productos.
  */
 const EmptyCart = () => {
-    const { t } = useTranslation('common')
+    const t = useTranslations('common');
     
     return (
         <EmptyState

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import './OfferFilters.css'
 
@@ -25,13 +25,14 @@ const OfferFilters = ({
     filteredProducts,
     isDrawer = false,
 }: OfferFiltersProps) => {
-    const { t } = useTranslation(['offers', 'categories'])
+    const t = useTranslations('offers');
+    const tCategories = useTranslations('categories');
 
     return (
         <div className={`offer-filters ${isDrawer ? 'offer-filters--drawer' : ''}`}>
             {!isDrawer && (
                 <div className="offer-filters__header">
-                    <h2 className="offer-filters__title">{t('offers:filters.title')}</h2>
+                    <h2 className="offer-filters__title">{t('filters.title')}</h2>
                     <div className="offer-filters__badge">
                         {filteredProducts} / {totalProducts}
                     </div>
@@ -53,7 +54,7 @@ const OfferFilters = ({
                     />
                     <span className="offer-filters__indicator is-active-target" />
                     <span className="offer-filters__label">
-                        {t('offers:filters.all_categories')}
+                        {t('filters.all_categories')}
                     </span>
                 </label>
 
@@ -70,17 +71,20 @@ const OfferFilters = ({
                         />
                         <span className="offer-filters__indicator is-active-target" />
                         <span className="offer-filters__label">
-                            {t(`categories:${category.id}`)}
+                            {tCategories(category.id)}
                         </span>
                     </label>
                 ))}
             </div>
 
             {/* Info de filtros */}
-            <div 
-                className="offer-filters__info"
-                dangerouslySetInnerHTML={{ __html: t('offers:filters.info', { filtered: filteredProducts, total: totalProducts }) }}
-            />
+            <div className="offer-filters__info">
+                {t.rich('filters.info', {
+                    filtered: filteredProducts,
+                    total: totalProducts,
+                    strong: (chunks) => <strong>{chunks}</strong>,
+                })}
+            </div>
         </div>
     )
 }

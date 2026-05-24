@@ -18,7 +18,7 @@ export default async function Footer() {
                         href="https://facebook.com/tuweb"
                         target="_blank"
                         rel="nofollow noopener noreferrer"
-                        aria-label={t('footer.social.facebook')}
+                        aria-label={t('social.facebook')}
                         className="social-link"
                     >
                         <svg aria-hidden="true">

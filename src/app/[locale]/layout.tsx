@@ -49,12 +49,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/assets/images/icons/favicons/icon-16x16.jpg", sizes: "16x16", type: "image/jpeg" },
-      { url: "/assets/images/icons/favicons/icon-32x32.jpg", sizes: "32x32", type: "image/jpeg" },
-      { url: "/assets/images/icons/favicons/icon-48x48.jpg", sizes: "48x48", type: "image/jpeg" },
+      { url: "/assets/icons/favicons/icon-16x16.jpg", sizes: "16x16", type: "image/jpeg" },
+      { url: "/assets/icons/favicons/icon-32x32.jpg", sizes: "32x32", type: "image/jpeg" },
+      { url: "/assets/icons/favicons/icon-48x48.jpg", sizes: "48x48", type: "image/jpeg" },
     ],
     apple: [
-      { url: "/assets/images/logo/logo.png" },
+      { url: "/assets/logo/logo.png" },
     ],
   },
 };

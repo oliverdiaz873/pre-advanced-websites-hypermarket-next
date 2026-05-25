@@ -17,3 +17,5 @@ export * from './ScrollToTop/ScrollToTop';
 
 export { default as EmptyState } from './EmptyState/EmptyState';
 export * from './EmptyState/EmptyState';
+
+export * from './Skeleton';

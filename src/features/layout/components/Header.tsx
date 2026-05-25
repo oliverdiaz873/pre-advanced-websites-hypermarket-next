@@ -102,11 +102,11 @@ const Header = () => {
                             className="w-9 h-9 object-contain" 
                         />
                         {isHomePage ? (
-                            <h1 suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
+                            <h1 suppressHydrationWarning className="font-bold whitespace-nowrap">
                                 {t('brand')}
                             </h1>
                         ) : (
-                            <span suppressHydrationWarning className="text-sm font-bold whitespace-nowrap">
+                            <span suppressHydrationWarning className="font-bold whitespace-nowrap">
                                 {t('brand')}
                             </span>
                         )}

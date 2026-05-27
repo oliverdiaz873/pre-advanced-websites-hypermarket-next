@@ -37,14 +37,17 @@ const TabletNav = () => {
                     </Link>
                 </li>
 
-                <li className="relative group">
+                 <li className="relative group">
                     <button
                         data-tablet-trigger="level-1"
-                        className={`${navLinkClass} bg-transparent border-none cursor-pointer flex items-center justify-center gap-1`}
+                        className={`${navLinkClass} bg-transparent border-none cursor-pointer flex items-center justify-between gap-1 w-full`}
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        {t('nav.categories')} <span className="text-[0.7em] opacity-80">▼</span>
+                        {t('nav.categories')}
+                        <svg className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-down text-white opacity-85 shrink-0" fill="currentColor">
+                            <use href="#icon-chevron-down" />
+                        </svg>
                     </button>
 
                     <ul className="absolute top-full left-0 bg-black/90 rounded-lg min-w-[220px] hidden group-hover:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
@@ -54,7 +57,10 @@ const TabletNav = () => {
                                     className={dropdownLinkClass}
                                     data-tablet-trigger="level-2"
                                 >
-                                    {tCategories(category.id)} <span>▸</span>
+                                    {tCategories(category.id)}
+                                    <svg className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-right text-white opacity-70 shrink-0" fill="currentColor">
+                                        <use href="#icon-chevron-right" />
+                                    </svg>
                                 </Link>
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">

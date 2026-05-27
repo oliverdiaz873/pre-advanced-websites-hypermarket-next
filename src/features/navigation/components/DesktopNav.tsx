@@ -37,19 +37,24 @@ const DesktopNav = () => {
 
                 <li className="relative group">
                     <button
-                        className={`${navLinkClass} bg-transparent border-none cursor-pointer w-full`}
+                        className={`${navLinkClass} bg-transparent border-none cursor-pointer w-full flex items-center justify-between gap-1`}
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        {t('nav.categories')}{' '}
-                        <span className="text-[0.7em] ml-0.5 opacity-80">▼</span>
+                        {t('nav.categories')}
+                        <svg className="w-3 h-3 transition-transform duration-300 ease-in-out group-hover:rotate-180 text-white opacity-85 shrink-0" fill="currentColor">
+                            <use href="#icon-chevron-down" />
+                        </svg>
                     </button>
 
                     <ul className="absolute top-full left-0 bg-black/90 rounded-lg min-w-[220px] hidden group-hover:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
                         {categories.map((category) => (
                             <li key={category.id} className="relative group/sub">
                                 <Link href={category.href} className={dropdownLinkClass}>
-                                    {tCategories(category.id)} <span>▸</span>
+                                    {tCategories(category.id)}
+                                    <svg className="w-3 h-3 transition-transform duration-300 ease-in-out group-hover/sub:translate-x-1 text-white opacity-70 shrink-0" fill="currentColor">
+                                        <use href="#icon-chevron-right" />
+                                    </svg>
                                 </Link>
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">

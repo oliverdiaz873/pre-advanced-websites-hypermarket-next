@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
+import './LanguageSelector.css';
 
 const languages = [
   { code: 'es', name: 'Español', nativeName: 'Español' },
@@ -18,9 +19,20 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const currentLanguage = languages.find(lang => lang.code === locale) || languages[0];
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -46,7 +58,7 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
             className={`mobile-lang-btn ${locale === lang.code ? 'is-active' : ''}`}
-            aria-label={t(`common.switch_to_${lang.code}`)}
+            aria-label={t(`switch_to_${lang.code}`)}
           >
             {lang.code.toUpperCase()}
           </button>
@@ -56,10 +68,10 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
   }
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className={`relative inline-block text-left ${isDesktop ? 'group' : ''}`} ref={dropdownRef}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => !isDesktop && setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
         aria-haspopup="true"
         aria-expanded={isOpen}
@@ -69,31 +81,25 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
           <use href="#icon-world" />
         </svg>
         <span className="uppercase">{currentLanguage.code}</span>
-        <svg 
-          className={`w-3 h-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+        <svg className="w-3 h-3 transition-transform duration-300 ease-in-out text-white opacity-85 shrink-0 group-hover:rotate-180" fill="currentColor">
+          <use href="#icon-chevron-down" />
         </svg>
       </button>
 
-      {isOpen && (
-        <div 
-          className="absolute right-0 mt-2 w-40 origin-top-right bg-gray-900 border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl z-[1100] overflow-hidden animate-in fade-in zoom-in duration-200"
-          role="menu"
-          aria-orientation="vertical"
-        >
+      <div
+        className={`absolute right-0 w-40 origin-top-right z-[1100] ${isDesktop ? 'lang-dropdown-desktop' : 'flex flex-col mt-2 overflow-hidden bg-black/90 rounded-lg shadow-xl'} ${!isDesktop && !isOpen ? 'hidden' : ''} lang-dropdown`}
+        role="menu"
+        aria-orientation="vertical"
+      >
           <div className="py-1">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => changeLanguage(lang.code)}
-                className={`flex items-center justify-between w-full px-4 py-2 text-sm transition-colors duration-200 ${
-                  locale === lang.code 
-                    ? 'bg-orange-500/10 text-orange-400 font-semibold' 
-                    : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                className={`flex items-center justify-between w-full px-4 py-2 text-sm text-left transition-colors duration-300 ${
+                  locale === lang.code
+                    ? 'bg-orange-500/10 text-orange-400 font-semibold'
+                    : 'text-white hover:bg-white/15'
                 }`}
                 role="menuitem"
               >
@@ -107,7 +113,6 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
             ))}
           </div>
         </div>
-      )}
     </div>
   );
 };

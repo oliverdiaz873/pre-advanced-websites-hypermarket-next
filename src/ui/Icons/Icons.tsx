@@ -28,8 +28,12 @@ const Icons = () => (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </symbol>
             {/* Flecha derecha (chevron) */}
-            <symbol id="icon-chevron-right" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            <symbol id="icon-chevron-right" viewBox="0 0 16 16">
+                <path fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M6 3.5l4.5 4.5-4.5 4.5" />
+            </symbol>
+            {/* Flecha abajo (chevron) */}
+            <symbol id="icon-chevron-down" viewBox="0 0 16 16">
+                <path fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M3.5 6l4.5 4.5 4.5-4.5" />
             </symbol>
             {/* Facebook */}
             <symbol id="icon-facebook" viewBox="0 0 24 24">

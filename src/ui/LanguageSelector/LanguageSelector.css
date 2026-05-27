@@ -1,0 +1,41 @@
+/* Language Selector Dropdown Styles - Match Categories dropdown animations */
+
+/* Base dropdown styling for mobile/tablet */
+.lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+/* Desktop dropdown with hover animation matching Categories menu */
+@media (min-width: 1024px) {
+  .lang-dropdown-desktop {
+    display: flex !important;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    pointer-events: none;
+    margin-top: 0;
+    padding-top: 12px; /* Creates hover gap tolerance */
+    overflow: visible; /* Allow pseudo-element to extend outside */
+  }
+
+  /* Inner content container with proper styling */
+  .lang-dropdown-desktop > div {
+    background: rgb(0 0 0 / 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    margin-top: 4px; /* Visual spacing from button */
+  }
+
+  .group:hover .lang-dropdown-desktop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}

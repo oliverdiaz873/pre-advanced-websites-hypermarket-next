@@ -33,13 +33,15 @@
         pointer-events: none;
         opacity: 0;
         transform: translateY(-10px);
-        transition: all 0.3s ease;
-        display: none !important;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        visibility: hidden;
+        display: flex !important; /* Always flex but hidden via opacity/visibility for transition */
     }
 
     .nav-links.tablet-nav ul.tablet-active {
         pointer-events: auto;
         opacity: 1;
+        visibility: visible;
         transform: translateY(0);
         display: flex !important;
         flex-direction: column;
@@ -52,6 +54,17 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         z-index: 1000;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Chevron Rotation & Slide animations on Tablet Trigger Click */
+    .nav-links.tablet-nav button[aria-expanded="true"] .tablet-chevron-down {
+        transform: rotate(180deg);
+        color: #f97316;
+    }
+
+    .nav-links.tablet-nav li:has(> ul.tablet-active) > a .tablet-chevron-right {
+        transform: translateX(3px);
+        color: #f97316;
     }
 
     .nav-links.tablet-nav > ul > li > ul.tablet-active {

@@ -83,12 +83,12 @@ const Header = () => {
                 {viewportMode === 'mobile' && (
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="menu-btn text-[22px] bg-transparent border-none text-white cursor-pointer transition-colors duration-300 rounded hover:bg-white/15 p-1"
+                        className="menu-btn bg-transparent border-none text-white cursor-pointer transition-colors duration-300 rounded hover:bg-white/15 p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 relative z-[1000]"
                         aria-label={t(isMobileMenuOpen ? 'menu_close' : 'menu_open')}
                     >
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 16 16">
-                            <use href="#icon-menu" />
-                        </svg>
+                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ease-in-out ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
                     </button>
                 )}
 

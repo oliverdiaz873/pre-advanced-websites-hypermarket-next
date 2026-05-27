@@ -68,6 +68,8 @@
       "contains": "Selección de idioma, breadcrumb, producto, carrito, unidades de medida, SEO"
     },
     "select_language": "Seleccionar idioma",
+    "switch_to_es": "Cambiar a Español",
+    "switch_to_en": "Cambiar a Inglés",
     "breadcrumb": {
       "home": "Inicio",
       "categories": "Categorías"

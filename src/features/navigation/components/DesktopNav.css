@@ -8,11 +8,36 @@
         display: none;
     }
 
+    /* Submenus container styling for animation */
+    .nav-links li > ul {
+        display: flex !important;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        pointer-events: none;
+    }
+
     .nav-links li:hover > ul {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Nested submenu styling */
+    .group\/sub > ul {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(10px) !important;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        pointer-events: none;
     }
 
     .group\/sub:hover > ul {
-        display: flex !important;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) !important;
+        pointer-events: auto;
     }
 }

@@ -254,6 +254,50 @@
       "title": "Smart Shopping and Quality Products",
       "description": "Superior Hypermarket: your destination for smart shopping. Find the best selection of food, electronics, home goods, and more with exclusive deals and unbeatable prices.",
       "keywords": "hypermarket, online shopping, supermarket, deals, fresh produce, quality, savings, appliances, food"
+    },
+    "category_banners": {
+      "section_title": "Explore Our Categories",
+      "section_subtitle": "Everything you need in one place, with the best quality and the best prices.",
+      "alimentos": {
+        "title": "Food",
+        "description": "Fresh produce, meats, fruits, dairy, and everything you need for your kitchen.",
+        "button": "Shop Food"
+      },
+      "electrodomesticos": {
+        "title": "Appliances",
+        "description": "Refrigerators, washers, air conditioners, and more to equip your home.",
+        "button": "Shop Appliances"
+      },
+      "tecnologia": {
+        "title": "Technology",
+        "description": "Phones, laptops, tablets, speakers, and the latest in tech innovation.",
+        "button": "Shop Tech"
+      },
+      "ropa": {
+        "title": "Clothing",
+        "description": "Fashion for the whole family: men, women, and children with style and quality.",
+        "button": "Shop Clothing"
+      },
+      "muebles": {
+        "title": "Furniture",
+        "description": "Sofas, tables, armchairs, and decor to transform your home.",
+        "button": "Shop Furniture"
+      },
+      "farmacia": {
+        "title": "Pharmacy",
+        "description": "Medicines, vitamins, personal care, and wellness for the whole family.",
+        "button": "Shop Pharmacy"
+      },
+      "ferreteria": {
+        "title": "Hardware",
+        "description": "Tools, paints, plumbing, and electrical supplies for your projects.",
+        "button": "Shop Hardware"
+      },
+      "juguetes": {
+        "title": "Toys",
+        "description": "Guaranteed fun for boys and girls of all ages.",
+        "button": "Shop Toys"
+      }
     }
   },
   "legal": {

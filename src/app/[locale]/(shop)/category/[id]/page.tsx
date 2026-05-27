@@ -5,6 +5,11 @@ import { categories } from '@/services/catalog/categories';
 import { products } from '@/services/catalog/products';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 
+/**
+ * Hypermarket category page.
+ * Displays all products organized by subcategories within a main category.
+ * Includes SEO metadata, JSON-LD for structured data, and client-side rendering.
+ */
 type CategoryPageProps = {
     params: Promise<{ id: string }>;
 };

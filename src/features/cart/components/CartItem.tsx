@@ -59,7 +59,7 @@ const CartItem = ({
         <div className="cart-item">
             <Link href={`/product/${id}`}
                 className="cart-item__image-link"
-                aria-label={t('common.product.view_details', { name })}
+                aria-label={t('product.view_details', { name })}
             >
                 <div className="cart-item__image-container">
                     {isOffer && (
@@ -81,7 +81,7 @@ const CartItem = ({
                 <div className="cart-item__header">
                     <Link href={`/product/${id}`}
                         className="cart-item__name-link"
-                        aria-label={t('common.product.view_details', { name })}
+                        aria-label={t('product.view_details', { name })}
                     >
                         <h3 className="cart-item__name">{name}</h3>
                     </Link>

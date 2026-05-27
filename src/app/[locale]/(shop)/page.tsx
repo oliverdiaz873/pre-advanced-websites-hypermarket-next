@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import HeroCarousel from '@/features/home/components/HeroCarousel';
 import ProductCarouselSectionWithActions from './_components/ProductCarouselSectionWithActions';
 import AboutUs from '@/features/home/components/AboutUs';
+import CategoryBannersSection from '@/features/home/components/CategoryBannersSection';
 import { products } from '@/services/catalog/products';
 import { calculateDiscountPercentage, offersData } from '@/services/catalog/offers';
 import { getTranslations } from 'next-intl/server';
@@ -105,6 +106,8 @@ export default async function Home() {
                 idPrefix="featured"
                 className="mt-6 md:mt-8"
             />
+
+            <CategoryBannersSection />
 
             <AboutUs />
         </>

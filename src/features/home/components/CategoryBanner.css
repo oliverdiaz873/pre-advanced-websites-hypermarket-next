@@ -1,0 +1,285 @@
+/* ============================================================
+   CategoryBanner.css — Premium Apple-style category cards
+   ============================================================ */
+
+/* ---------- Link wrapper ---------- */
+.category-banner-link {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.category-banner-link:hover .category-banner-card {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Card shell ---------- */
+.category-banner-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  min-height: 320px;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (min-width: 768px) {
+  .category-banner-card {
+    padding: 3rem 3.5rem;
+    border-radius: 28px;
+    min-height: 360px;
+  }
+}
+
+/* ---------- Background gradient ---------- */
+.category-banner-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    135deg,
+    var(--gradient-from) 0%,
+    var(--gradient-to) 100%
+  );
+}
+
+/* ---------- Decorative blur orbs ---------- */
+.category-banner-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.category-banner-orb--1 {
+  width: 260px;
+  height: 260px;
+  background: var(--accent-color);
+  top: -80px;
+  right: -60px;
+}
+
+.category-banner-orb--2 {
+  width: 200px;
+  height: 200px;
+  background: var(--gradient-from);
+  bottom: -60px;
+  left: -40px;
+  opacity: 0.25;
+}
+
+/* ---------- Content grid ---------- */
+.category-banner-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .category-banner-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .category-banner-content--reversed {
+    flex-direction: row-reverse;
+  }
+}
+
+/* ---------- Text column ---------- */
+.category-banner-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .category-banner-text {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .category-banner-content--reversed .category-banner-text {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+/* Category tag pill */
+.category-banner-tag {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Title */
+.category-banner-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .category-banner-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .category-banner-title {
+    font-size: 2.75rem;
+  }
+}
+
+/* Description */
+.category-banner-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 380px;
+}
+
+@media (min-width: 768px) {
+  .category-banner-description {
+    font-size: 1.05rem;
+  }
+}
+
+/* ---------- CTA button ---------- */
+.category-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gradient-from);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.category-banner-cta:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 0 20px var(--accent-color);
+}
+
+.category-banner-cta:active {
+  transform: translateY(0);
+}
+
+.category-banner-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.category-banner-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Hover effect on the entire card applies to the button too */
+.category-banner-link:hover .category-banner-cta {
+  transform: translateY(-2px);
+}
+
+/* ---------- Image column ---------- */
+.category-banner-image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+  height: 220px;
+}
+
+@media (min-width: 768px) {
+  .category-banner-image-wrapper {
+    width: 290px;
+    height: 290px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .category-banner-image-wrapper {
+    width: 370px;
+    height: 370px;
+  }
+}
+
+/* Glow behind image */
+.category-banner-image-glow {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--accent-color) 0%,
+    transparent 70%
+  );
+  opacity: 0.3;
+  filter: blur(30px);
+  z-index: 0;
+}
+
+/* Image container */
+.category-banner-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Removed restrictive box-shadow and background card constraints to allow clean transparent floating pngs */
+}
+
+.category-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease-out;
+}
+
+/* Make the transparent technology product standout and break bounds by being 15% larger */
+.category-banner-card[style*="--accent-color: #f97316"] .category-banner-image {
+  transform: scale(1.15);
+}
+
+.category-banner-card[style*="--accent-color: #f97316"] .category-banner-image-wrapper {
+  overflow: visible;
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .category-banner-card,
+  .category-banner-cta {
+    transition: none !important;
+  }
+}

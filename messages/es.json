@@ -254,6 +254,50 @@
       "title": "Compras inteligentes y productos de calidad",
       "description": "Hipermercado Superior: tu destino para compras inteligentes. Encuentra la mejor selección de alimentos, electrónica, hogar y más con ofertas exclusivas y precios imbatibles.",
       "keywords": "hipermercado, compras online, supermercado, ofertas, productos frescos, calidad, ahorro, electrodomésticos, alimentos"
+    },
+    "category_banners": {
+      "section_title": "Explora Nuestras Categorías",
+      "section_subtitle": "Todo lo que necesitas en un solo lugar, con la mejor calidad y los mejores precios.",
+      "alimentos": {
+        "title": "Alimentos",
+        "description": "Productos frescos, carnes, frutas, lácteos y todo lo que necesitas para tu cocina.",
+        "button": "Ver Alimentos"
+      },
+      "electrodomesticos": {
+        "title": "Electrodomésticos",
+        "description": "Neveras, lavadoras, aires acondicionados y más para equipar tu hogar.",
+        "button": "Ver Electrodomésticos"
+      },
+      "tecnologia": {
+        "title": "Tecnología",
+        "description": "Celulares, laptops, tablets, bocinas y lo último en innovación tecnológica.",
+        "button": "Ver Tecnología"
+      },
+      "ropa": {
+        "title": "Ropa",
+        "description": "Moda para toda la familia: hombres, mujeres y niños con estilo y calidad.",
+        "button": "Ver Ropa"
+      },
+      "muebles": {
+        "title": "Muebles",
+        "description": "Sofás, mesas, sillones y decoración para transformar tu hogar.",
+        "button": "Ver Muebles"
+      },
+      "farmacia": {
+        "title": "Farmacia",
+        "description": "Medicamentos, vitaminas, cuidado personal y bienestar para toda la familia.",
+        "button": "Ver Farmacia"
+      },
+      "ferreteria": {
+        "title": "Ferretería",
+        "description": "Herramientas, pinturas, plomería y electricidad para tus proyectos.",
+        "button": "Ver Ferretería"
+      },
+      "juguetes": {
+        "title": "Juguetes",
+        "description": "Diversión garantizada para niños y niñas de todas las edades.",
+        "button": "Ver Juguetes"
+      }
     }
   },
   "legal": {

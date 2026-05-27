@@ -261,42 +261,42 @@
       "alimentos": {
         "title": "Food",
         "description": "Fresh produce, meats, fruits, dairy, and everything you need for your kitchen.",
-        "button": "Shop Food"
+        "button": "View products"
       },
       "electrodomesticos": {
         "title": "Appliances",
         "description": "Refrigerators, washers, air conditioners, and more to equip your home.",
-        "button": "Shop Appliances"
+        "button": "View products"
       },
       "tecnologia": {
         "title": "Technology",
         "description": "Phones, laptops, tablets, speakers, and the latest in tech innovation.",
-        "button": "Shop Tech"
+        "button": "View products"
       },
       "ropa": {
         "title": "Clothing",
         "description": "Fashion for the whole family: men, women, and children with style and quality.",
-        "button": "Shop Clothing"
+        "button": "View products"
       },
       "muebles": {
         "title": "Furniture",
         "description": "Sofas, tables, armchairs, and decor to transform your home.",
-        "button": "Shop Furniture"
+        "button": "View products"
       },
       "farmacia": {
         "title": "Pharmacy",
         "description": "Medicines, vitamins, personal care, and wellness for the whole family.",
-        "button": "Shop Pharmacy"
+        "button": "View products"
       },
       "ferreteria": {
         "title": "Hardware",
         "description": "Tools, paints, plumbing, and electrical supplies for your projects.",
-        "button": "Shop Hardware"
+        "button": "View products"
       },
       "juguetes": {
         "title": "Toys",
         "description": "Guaranteed fun for boys and girls of all ages.",
-        "button": "Shop Toys"
+        "button": "View products"
       }
     }
   },

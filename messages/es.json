@@ -261,42 +261,42 @@
       "alimentos": {
         "title": "Alimentos",
         "description": "Productos frescos, carnes, frutas, lácteos y todo lo que necesitas para tu cocina.",
-        "button": "Ver Alimentos"
+        "button": "Ver productos"
       },
       "electrodomesticos": {
         "title": "Electrodomésticos",
         "description": "Neveras, lavadoras, aires acondicionados y más para equipar tu hogar.",
-        "button": "Ver Electrodomésticos"
+        "button": "Ver productos"
       },
       "tecnologia": {
         "title": "Tecnología",
         "description": "Celulares, laptops, tablets, bocinas y lo último en innovación tecnológica.",
-        "button": "Ver Tecnología"
+        "button": "Ver productos"
       },
       "ropa": {
         "title": "Ropa",
         "description": "Moda para toda la familia: hombres, mujeres y niños con estilo y calidad.",
-        "button": "Ver Ropa"
+        "button": "Ver productos"
       },
       "muebles": {
         "title": "Muebles",
         "description": "Sofás, mesas, sillones y decoración para transformar tu hogar.",
-        "button": "Ver Muebles"
+        "button": "Ver productos"
       },
       "farmacia": {
         "title": "Farmacia",
         "description": "Medicamentos, vitaminas, cuidado personal y bienestar para toda la familia.",
-        "button": "Ver Farmacia"
+        "button": "Ver productos"
       },
       "ferreteria": {
         "title": "Ferretería",
         "description": "Herramientas, pinturas, plomería y electricidad para tus proyectos.",
-        "button": "Ver Ferretería"
+        "button": "Ver productos"
       },
       "juguetes": {
         "title": "Juguetes",
         "description": "Diversión garantizada para niños y niñas de todas las edades.",
-        "button": "Ver Juguetes"
+        "button": "Ver productos"
       }
     }
   },

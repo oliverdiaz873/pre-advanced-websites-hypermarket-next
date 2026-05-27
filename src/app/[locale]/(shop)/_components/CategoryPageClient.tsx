@@ -40,7 +40,7 @@ export default function CategoryPageClient({ category, sections }: CategoryPageC
         <>
             <Breadcrumb variant="category" items={breadcrumbItems} />
 
-            <div className="category-page-content">
+            <div className="category-page-content md:pt-0" style={{ paddingTop: '23px' }} >
                 {sections.map((section, index) => (
                     <ProductCarouselSectionWithActions
                         key={section.slug}

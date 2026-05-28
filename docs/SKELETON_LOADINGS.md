@@ -1,28 +1,30 @@
-# Skeleton Loadings - Guía de Uso
+# Skeleton Loading Components
 
 ## Overview
 
-Sistema completo de skeleton loadings modernos y responsive para el proyecto Hipermercado Superior. Utiliza Tailwind CSS `animate-pulse` para animaciones suaves y naturales.
+The project includes reusable skeleton loading components for App Router loading states and Suspense fallbacks. These components live in `src/ui/Skeleton/` and use Tailwind CSS utility classes, including `animate-pulse`, for lightweight loading placeholders.
 
-## Estructura de Componentes
+## Components
 
-### 1. **BaseSkeleton** - Componente Base
-El componente más simple para crear skeletons personalizados.
+### `BaseSkeleton`
+
+Base primitive for custom skeleton placeholders.
 
 ```tsx
 import { BaseSkeleton } from '@/ui/Skeleton'
 
-// Uso básico
 <BaseSkeleton className="w-full h-10" />
 <BaseSkeleton className="w-32 h-32" shape="circle" />
 ```
 
-**Props:**
-- `className`: Estilos de tamaño (Tailwind)
-- `shape`: `'rectangle'` (default) o `'circle'`
+Props:
 
-### 2. **HeroBannerSkeleton** - Carrusel de Banners
-Placeholder para el hero carousel/banner principal.
+- `className`: Tailwind sizing and layout classes.
+- `shape`: `rectangle` by default, or `circle`.
+
+### `HeroBannerSkeleton`
+
+Placeholder for the home hero carousel.
 
 ```tsx
 import { HeroBannerSkeleton } from '@/ui/Skeleton'
@@ -30,10 +32,9 @@ import { HeroBannerSkeleton } from '@/ui/Skeleton'
 <HeroBannerSkeleton />
 ```
 
-Mantiene el aspect ratio 3:1 como el banner real.
+### `CategoriesSkeleton`
 
-### 3. **CategoriesSkeleton** - Grid de Categorías
-Muestra placeholders para las categorías principales.
+Placeholder for category banner content.
 
 ```tsx
 import { CategoriesSkeleton } from '@/ui/Skeleton'
@@ -41,10 +42,9 @@ import { CategoriesSkeleton } from '@/ui/Skeleton'
 <CategoriesSkeleton />
 ```
 
-Grid responsive (2-6 columnas según viewport).
+### `ProductCardSkeleton`
 
-### 5. **ProductCardSkeleton** - Tarjeta Individual
-Skeleton de una sola tarjeta de producto.
+Placeholder for a single product card.
 
 ```tsx
 import { ProductCardSkeleton } from '@/ui/Skeleton'
@@ -52,8 +52,9 @@ import { ProductCardSkeleton } from '@/ui/Skeleton'
 <ProductCardSkeleton />
 ```
 
-### 6. **ProductsGridSkeleton** - Grid de Productos
-Grilla completa de productos con título.
+### `ProductsGridSkeleton`
+
+Placeholder for a product listing section.
 
 ```tsx
 import { ProductsGridSkeleton } from '@/ui/Skeleton'
@@ -61,11 +62,13 @@ import { ProductsGridSkeleton } from '@/ui/Skeleton'
 <ProductsGridSkeleton count={8} />
 ```
 
-**Props:**
-- `count`: Número de placeholders a mostrar (default: 8)
+Props:
 
-### 7. **OfferCardSkeleton** - Tarjeta de Oferta
-Skeleton individual para ofertas con badge.
+- `count`: Number of placeholders to render. Defaults to `8`.
+
+### `OfferCardSkeleton`
+
+Placeholder for an offer card with discount badge space.
 
 ```tsx
 import { OfferCardSkeleton } from '@/ui/Skeleton'
@@ -73,8 +76,9 @@ import { OfferCardSkeleton } from '@/ui/Skeleton'
 <OfferCardSkeleton />
 ```
 
-### 8. **OffersGridSkeleton** - Grid de Ofertas
-Grilla completa de ofertas.
+### `OffersGridSkeleton`
+
+Placeholder for an offers listing section.
 
 ```tsx
 import { OffersGridSkeleton } from '@/ui/Skeleton'
@@ -82,128 +86,54 @@ import { OffersGridSkeleton } from '@/ui/Skeleton'
 <OffersGridSkeleton count={8} />
 ```
 
-## Archivos `loading.tsx` Creados
+Props:
 
-Next.js App Router automáticamente muestra estos skeleton loadings durante Suspense:
+- `count`: Number of placeholders to render. Defaults to `8`.
 
-### Rutas Implementadas:
+## App Router Loading Files
 
-1. **`/[locale]/(shop)/loading.tsx`** - Página de inicio
-   - Hero Banner + Categorías + Productos + Ofertas
-   - **Nota**: Header no incluido (ya está en el layout global)
+The project uses Next.js App Router `loading.tsx` files for route-level loading states.
 
-2. **`/[locale]/(shop)/category/[slug]/loading.tsx`** - Página de categoría
-   - Breadcrumb + Filtros + Grid de productos
-   - **Nota**: Header no incluido (ya está en el layout global)
+Implemented loading files:
 
-3. **`/[locale]/(shop)/product/[id]/loading.tsx`** - Detalle de producto
-   - Breadcrumb + Galería + Info + Productos relacionados
-   - **Nota**: Header no incluido (ya está en el layout global)
+- `src/app/[locale]/(shop)/loading.tsx`
+- `src/app/[locale]/(shop)/category/[slug]/loading.tsx`
+- `src/app/[locale]/(shop)/product/[id]/loading.tsx`
+- `src/app/[locale]/(shop)/offers/loading.tsx`
+- `src/app/[locale]/(shop)/search/loading.tsx`
+- `src/app/[locale]/(shop)/cart/loading.tsx`
 
-4. **`/[locale]/(shop)/offers/loading.tsx`** - Página de ofertas
-   - Filtros + Grid de ofertas
-   - **Nota**: Header no incluido (ya está en el layout global)
+The shared header is provided by the shop layout, so loading files focus on route content rather than duplicating global layout chrome.
 
-5. **`/[locale]/(shop)/search/loading.tsx`** - Resultados de búsqueda
-   - Info de búsqueda + Filtros + Resultados
-   - **Nota**: Header no incluido (ya está en el layout global)
+Note: the category page route uses `category/[id]/page.tsx`, while the current loading file is located at `category/[slug]/loading.tsx`. This documentation reflects the existing file layout.
 
-6. **`/[locale]/(shop)/cart/loading.tsx`** - Página del carrito
-   - Items del carrito + Resumen de orden
-   - **Nota**: Header no incluido (ya está en el layout global)
+## Suspense Usage
 
-## Uso en Componentes
+Skeleton components can also be used as Suspense fallbacks.
 
-### Con Suspense API
 ```tsx
 import { Suspense } from 'react'
 import { ProductsGridSkeleton } from '@/ui/Skeleton'
-import MyAsyncComponent from '@/components/MyAsyncComponent'
 
 export default function Page() {
-    return (
-        <Suspense fallback={<ProductsGridSkeleton count={8} />}>
-            <MyAsyncComponent />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<ProductsGridSkeleton count={8} />}>
+      <AsyncContent />
+    </Suspense>
+  )
 }
 ```
 
-### Ejemplo Completo
-```tsx
-import { Suspense } from 'react'
-import { ProductsGridSkeleton } from '@/ui/Skeleton'
-import ProductsList from '@/features/products/components/ProductsList'
+## Implementation Notes
 
-export default function CatalogPage() {
-    return (
-        <Suspense fallback={<ProductsGridSkeleton count={12} />}>
-            <ProductsList />
-        </Suspense>
-    )
-}
-```
+- Skeletons are responsive and intended to match the dimensions of the real components they represent.
+- `BaseSkeleton` includes `role="status"` and `aria-label="Loading"`.
+- Animations are CSS-only through Tailwind utilities.
+- Components are exported from `src/ui/Skeleton/index.ts`.
 
-## Características
+## Maintenance Guidelines
 
-✅ **Responsive**: Adapta tamaños a mobile, tablet y desktop
-✅ **Accesible**: Incluye `role="status"` y `aria-label`
-✅ **Rendimiento**: Usa solo CSS animations (sin JS)
-✅ **Consistencia**: Colores y estilos match con el diseño actual
-✅ **Reutilizable**: Componentes modular y composables
-✅ **TypeScript**: Tipado completo
-✅ **Tailwind**: Sin CSS adicional, todo es Tailwind
-
-## Colores Usados
-
-- `bg-gray-200`: Elementos principales
-- `bg-gray-300`: Precios/información destacada
-- `bg-gray-400`: Detalles secundarios
-- `bg-red-300`: Badge de ofertas
-- `bg-gradient-to-r from-gray-800 to-gray-700`: Header
-
-## Animación
-
-Todos usan Tailwind's `animate-pulse` que:
-- Anima entre `opacity-100` y `opacity-50`
-- Duración de 2s (por defecto)
-- Loop infinito suave
-
-## Best Practices
-
-1. **Usa `loading.tsx`** para rutas principales (App Router)
-2. **Combina con `Suspense`** para componentes async
-3. **Mantén el mismo layout** del contenido real
-4. **Altura consistente** con el contenido real
-5. **Incluye espacios** para gutters y gaps
-
-## Ejemplo: Crear tu propio Skeleton
-
-```tsx
-import { BaseSkeleton } from '@/ui/Skeleton'
-
-export const CustomSkeleton = () => {
-    return (
-        <div className="space-y-4">
-            <BaseSkeleton className="h-10 w-3/4" />
-            <div className="grid grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
-                    <BaseSkeleton key={i} className="h-32" />
-                ))}
-            </div>
-        </div>
-    )
-}
-```
-
-## Mejoras Futuras
-
-- [ ] Skeleton para cart items con cantidad
-- [ ] Skeleton para comments/reviews
-- [ ] Skeleton para formularios
-- [ ] Temas claros/oscuros
-- [ ] Animaciones personalizadas
-
----
-
-**Creado para:** Hipermercado Superior - Next.js + TypeScript + Tailwind CSS
+- Keep skeleton dimensions aligned with the corresponding production component.
+- Update route-level loading files when route layout structure changes.
+- Prefer reusing `BaseSkeleton` for new placeholders before adding a new specialized skeleton component.
+- Keep loading UI presentational; do not introduce data fetching or application state into skeleton components.

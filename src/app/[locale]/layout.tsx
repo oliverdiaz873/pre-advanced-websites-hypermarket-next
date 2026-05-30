@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       { url: "/assets/icons/favicons/icon-48x48.jpg", sizes: "48x48", type: "image/jpeg" },
     ],
     apple: [
-      { url: "/assets/logo/logo.png" },
+      { url: "/assets/icons/favicons/icon-48x48.jpg" },
     ],
   },
 };

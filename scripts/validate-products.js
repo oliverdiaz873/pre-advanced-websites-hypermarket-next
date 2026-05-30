@@ -17,15 +17,15 @@ try {
   const scriptDir = __dirname;
 
   // Leer el archivo de productos
-  const productIds = extractProductIds(path.join(scriptDir, '../src/data/products.ts'));
+  const productIds = extractProductIds(path.join(scriptDir, '../src/services/catalog/products.ts'));
 
   // Leer el JSON de inglés
-  const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/en/products.json'), 'utf8'));
-  const enProductIds = Object.keys(enProducts).sort();
+  const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../messages/en.json'), 'utf8')).products;
+  const enProductIds = Object.keys(enProducts).filter(k => k !== '_documentation').sort();
 
   // Leer el JSON de español
-  const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/es/products.json'), 'utf8'));
-  const esProductIds = Object.keys(esProducts).sort();
+  const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../messages/es.json'), 'utf8')).products;
+  const esProductIds = Object.keys(esProducts).filter(k => k !== '_documentation').sort();
 
   console.log('Total products in data: ' + productIds.length);
   console.log('Total EN translations: ' + enProductIds.length);

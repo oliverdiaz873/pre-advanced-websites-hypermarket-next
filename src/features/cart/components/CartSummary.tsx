@@ -40,7 +40,11 @@ const CartSummary = ({ className = '' }: CartSummaryProps) => {
                 </div>
             </div>
 
-            <button className="cart-summary__pay-button">
+            <button
+                className="cart-summary__pay-button"
+                disabled
+                title="Checkout will be available in the next phase"
+            >
                 {t('cart.summary.pay_button')}
             </button>
         </aside>

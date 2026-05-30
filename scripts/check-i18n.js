@@ -13,9 +13,9 @@ function extractProductIds(filePath) {
 const scriptDir = __dirname;
 
 // Read data using absolute paths
-const productIds = extractProductIds(path.join(scriptDir, '../src/data/products.ts'));
-const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/en/products.json'), 'utf8'));
-const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../public/locales/es/products.json'), 'utf8'));
+const productIds = extractProductIds(path.join(scriptDir, '../src/services/catalog/products.ts'));
+const enProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../messages/en.json'), 'utf8')).products;
+const esProducts = JSON.parse(fs.readFileSync(path.join(scriptDir, '../messages/es.json'), 'utf8')).products;
 
 const enProductIds = Object.keys(enProducts).filter(k => k !== '_documentation').sort();
 const esProductIds = Object.keys(esProducts).filter(k => k !== '_documentation').sort();

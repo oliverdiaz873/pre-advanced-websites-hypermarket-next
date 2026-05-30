@@ -15,33 +15,36 @@ export default async function Footer() {
 
                 <div className="social-icons">
                     <a
-                        href="https://facebook.com/tuweb"
+                        href="#"
                         target="_blank"
                         rel="nofollow noopener noreferrer"
                         aria-label={t('social.facebook')}
                         className="social-link"
+                        title="Facebook"
                     >
                         <svg aria-hidden="true">
                             <use href="#icon-facebook" />
                         </svg>
                     </a>
                     <a
-                        href="https://twitter.com/tuweb"
+                        href="#"
                         target="_blank"
                         rel="nofollow noopener noreferrer"
                         aria-label={t('social.x')}
                         className="social-link"
+                        title="X (Twitter)"
                     >
                         <svg aria-hidden="true">
                             <use href="#icon-x" />
                         </svg>
                     </a>
                     <a
-                        href="https://instagram.com/tuweb"
+                        href="#"
                         target="_blank"
                         rel="nofollow noopener noreferrer"
                         aria-label={t('social.instagram')}
                         className="social-link"
+                        title="Instagram"
                     >
                         <svg aria-hidden="true">
                             <use href="#icon-instagram" />

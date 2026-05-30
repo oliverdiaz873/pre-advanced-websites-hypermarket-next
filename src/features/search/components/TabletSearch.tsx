@@ -84,7 +84,7 @@ const TabletSearch = ({
                 <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder={t('search.input.placeholder')}
+                    placeholder={t('input.placeholder')}
                     className={`tablet-search__input search-input-modern bg-white text-black px-3 py-1.5 rounded-lg outline-none ${isActive ? 'is-active' : ''}`}
                     value={searchTerm}
                     onChange={(e) => onSearchChange(e.target.value)}

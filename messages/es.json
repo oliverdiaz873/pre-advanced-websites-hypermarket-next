@@ -119,6 +119,11 @@
     },
     "seo": {
       "keywords": "{name}, {category}, hipermercado, oferta, republica dominicana"
+    },
+    "error": {
+      "title": "Algo salió mal",
+      "description": "Ha ocurrido un error inesperado. Por favor, intenta nuevamente.",
+      "retry": "Intentar de nuevo"
     }
   },
   "contact": {

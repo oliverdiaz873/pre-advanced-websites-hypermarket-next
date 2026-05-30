@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import { domine } from "../../fonts";
 
 export const metadata: Metadata = {
   title: {
@@ -84,7 +85,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="h-full">
-      <body className="min-h-screen flex flex-col">
+      <body className={`${domine.variable} min-h-screen flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

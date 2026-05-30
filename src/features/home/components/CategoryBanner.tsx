@@ -8,12 +8,10 @@ import {
   useInView,
 } from "framer-motion";
 import {
-  EASING_CURVE,
   VIEWPORT_CONFIG,
   textAnimationVariants,
   TEXT_TRANSITION_CONFIGS,
   containerVariants,
-  childVariants,
   floatTransition,
 } from "./animations";
 import "./CategoryBanner.css";

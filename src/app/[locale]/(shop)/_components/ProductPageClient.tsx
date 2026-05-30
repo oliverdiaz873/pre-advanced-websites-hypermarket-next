@@ -71,8 +71,8 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
         <>
             <Breadcrumb variant="category" items={breadcrumbItems} />
 
-            <main style={{ minHeight: '100vh', boxSizing: 'border-box' }}>
-                <div style={{ padding: '0 20px', maxWidth: '1280px', margin: '0 auto' }}>
+            <main className="min-h-screen box-border">
+                <div className="px-5 max-w-[1280px] mx-auto">
                     <ProductDetailSectionWithActions product={product} pageData={pageData} />
                 </div>
 

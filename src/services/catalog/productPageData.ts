@@ -552,7 +552,7 @@ export const productPageData: Record<string, ProductPageData> = {
 
     // ─── ELECTRODOMÉSTICOS / CLIMATIZACIÓN ────────────────────────────────────
 
-    aire_acondicionado_tecnomaster: {
+    'aire-acondicionado_tecnomaster': {
         descripcion: 'El Aire Acondicionado Tecnomaster ofrece un rendimiento confiable y eficiente para mantener cualquier espacio fresco. Diseñado con tecnología moderna que optimiza el consumo energético y brinda un enfriamiento uniforme.',
         detalles: [
             'Alta eficiencia energética',
@@ -563,7 +563,7 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    aire_acondicionado_whirlpool: {
+    'aire-acondicionado_whirlpool': {
         descripcion: 'El Aire Acondicionado Whirlpool combina potencia y eficiencia energética en un diseño elegante. Ideal para enfriar grandes espacios con un mínimo consumo eléctrico.',
         detalles: [
             'Potencia de enfriamiento superior',
@@ -642,7 +642,7 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    extractor_de_grasa_drija: {
+    'extractor-de-grasa_drija': {
         descripcion: 'El Extractor de Grasa Drija mantiene tu cocina libre de humo, olores y vapores de grasa. Instalación fácil y funcionamiento silencioso para una cocina siempre fresca.',
         detalles: [
             'Tipo: Campana extractora',
@@ -721,7 +721,7 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    lavadora_y_secadora_lg: {
+    'lavadora-y-secadora_lg': {
         descripcion: 'La combinación perfecta: Lavadora y Secadora LG en un solo equipo. Ahorra espacio y tiempo con tecnología de lavado y secado de última generación.',
         detalles: [
             'Función: Lavar y secar',
@@ -732,7 +732,7 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    lavadora_y_secadora_tecnomaster: {
+    'lavadora-y-secadora_tecnomaster': {
         descripcion: 'La Lavadora y Secadora Tecnomaster es la solución 2 en 1 que necesitas. Lava y seca en un solo ciclo con eficiencia energética y múltiples programas.',
         detalles: [
             'Función: Lavar y secar',

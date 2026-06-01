@@ -16,15 +16,15 @@
     "electrodomesticos": "Electrodomésticos",
     "tecnologia": "Tecnología",
     "ropa": "Ropa",
-    "muebles_y_decoracion": "Muebles y Decoración",
+    "muebles-y-decoracion": "Muebles y Decoración",
     "farmacia": "Farmacia",
     "ferreteria": "Ferretería",
     "juguetes": "Juguetes",
     "sub": {
-      "frutas_y_verduras": "Frutas y Verduras",
+      "frutas-y-verduras": "Frutas y Verduras",
       "despensa": "Despensa",
-      "carnes_pescados_mariscos": "Carnes, Pescados y Mariscos",
-      "lacteos_y_huevos": "Lácteos y Huevos",
+      "carnes-pescados-mariscos": "Carnes, Pescados y Mariscos",
+      "lacteos-y-huevos": "Lácteos y Huevos",
       "bebidas": "Bebidas",
       "enlatados": "Enlatados",
       "cocina": "Cocina",
@@ -35,10 +35,10 @@
       "tablets": "Tablets",
       "celulares": "Celulares",
       "bocinas": "Bocinas",
-      "pantalones_para_hombres": "Pantalones para Hombres",
-      "pantalones_para_mujeres": "Pantalones para Mujeres",
-      "pantalones_para_ninos": "Pantalones para Niños",
-      "trajes_para_hombres": "Trajes para Hombres",
+      "pantalones-para-hombres": "Pantalones para Hombres",
+      "pantalones-para-mujeres": "Pantalones para Mujeres",
+      "pantalones-para-ninos": "Pantalones para Niños",
+      "trajes-para-hombres": "Trajes para Hombres",
       "vestidos": "Vestidos",
       "sofas": "Sofás",
       "sillones": "Sillones",
@@ -46,14 +46,14 @@
       "floreros": "Floreros",
       "analgesicos": "Analgésicos",
       "dermocosmetica": "Dermocosmética",
-      "vitaminas_y_minerales": "Vitaminas y Minerales",
-      "antigripales_y_resfriado": "Antigripales y Resfriado",
-      "herramientas_manuales": "Herramientas Manuales",
-      "pinturas_y_acabados": "Pinturas y Acabados",
+      "vitaminas-y-minerales": "Vitaminas y Minerales",
+      "antigripales-y-resfriado": "Antigripales y Resfriado",
+      "herramientas-manuales": "Herramientas Manuales",
+      "pinturas-y-acabados": "Pinturas y Acabados",
       "electricidad": "Electricidad",
       "plomeria": "Plomería",
-      "juguetes_para_ninos": "Juguetes para Niños",
-      "juguetes_para_ninas": "Juguetes para Niñas"
+      "juguetes-para-ninos": "Juguetes para Niños",
+      "juguetes-para-ninas": "Juguetes para Niñas"
     },
     "seo": {
       "description_template": "Explora nuestra selección de {category} en Hipermercado Superior: {subcategories}. Los mejores productos al mejor precio.",
@@ -1307,7 +1307,7 @@
         "Marca: FamilyComfort"
       ]
     },
-    "aire_acondicionado_tecnomaster": {
+    "aire-acondicionado_tecnomaster": {
       "name": "Aire Acondicionado Tecnomaster",
       "description": "El Aire Acondicionado Tecnomaster ofrece rendimiento confiable y eficiente para mantener cualquier habitación fresca. Diseñado con tecnología moderna que optimiza el uso de energía y proporciona enfriamiento uniforme.",
       "specs": [
@@ -1318,7 +1318,7 @@
         "Diseño moderno y compacto"
       ]
     },
-    "aire_acondicionado_whirlpool": {
+    "aire-acondicionado_whirlpool": {
       "name": "Aire Acondicionado Whirlpool",
       "description": "El Aire Acondicionado Whirlpool combina enfriamiento potente y eficiencia energética en un diseño elegante. Ideal para enfriar espacios grandes con consumo mínimo de electricidad.",
       "specs": [
@@ -1384,7 +1384,7 @@
         "Rejillas de fundición de hierro"
       ]
     },
-    "extractor_de_grasa_drija": {
+    "extractor-de-grasa_drija": {
       "name": "Campana Extractora Drija",
       "description": "La Campana Extractora Drija mantiene tu cocina libre de humo, olores y vapor de grasa. Fácil instalación y rendimiento silencioso para una cocina más fresca.",
       "specs": [
@@ -1428,7 +1428,7 @@
         "Rendimiento: Limpieza profunda"
       ]
     },
-    "lavadora_y_secadora_lg": {
+    "lavadora-y-secadora_lg": {
       "name": "Lavadora y Secadora LG",
       "description": "La combinación perfecta: lavadora y secadora LG en una unidad. Ahorra espacio y tiempo con tecnología de lavado y secado de nueva generación.",
       "specs": [
@@ -1439,7 +1439,7 @@
         "Eficiencia: Alta eficiencia"
       ]
     },
-    "lavadora_y_secadora_tecnomaster": {
+    "lavadora-y-secadora_tecnomaster": {
       "name": "Lavadora y Secadora Tecnomaster",
       "description": "La Lavadora y Secadora Tecnomaster es la solución 2 en 1 que necesitas. Lava y seca en un solo ciclo con eficiencia energética y múltiples programas.",
       "specs": [

@@ -3,8 +3,8 @@
  * Algunos valores de `producto.categoria` en productos.ts usan caracteres distintos (ej. ñ).
  */
 const SECTION_SLUG_TO_PRODUCT_CATEGORIA: Record<string, string> = {
-    juguetes_para_ninos: 'juguetes_para_niños',
-    pantalones_para_ninos: 'pantalones_para_niños',
+    'juguetes-para-ninos': 'juguetes_para_niños',
+    'pantalones-para-ninos': 'pantalones_para_niños',
 }
 
 export function sectionSlugToProductCategoria(slug: string): string {

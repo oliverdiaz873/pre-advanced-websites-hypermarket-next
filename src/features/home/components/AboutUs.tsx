@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
@@ -67,7 +67,7 @@ const AboutUs = () => {
         >
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-16 px-5 py-4 md:px-8">
                 <Image
-                    src="/assets/images/logo/logo_with_background.jpeg"
+                    src="/assets/images/logo/logo-with-background.jpeg"
                     alt={t('about_us.logo_alt')}
                     width={450}
                     height={450}
@@ -85,3 +85,4 @@ const AboutUs = () => {
 }
 
 export default AboutUs
+

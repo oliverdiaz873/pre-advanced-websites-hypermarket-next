@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
@@ -8,20 +8,20 @@ import './HeroCarousel.css'
 const banners = [
     { 
         id: 1, 
-        desktopImage: 'assets/images/banners/offers/fruits_and_vegetables.png',
-        mobileImage: 'assets/images/banners/offers/fruits_and_vegetables_mobile.png',
+        desktopImage: 'assets/images/banners/offers/fruits-and-vegetables.png',
+        mobileImage: 'assets/images/banners/offers/fruits-and-vegetables-mobile.png',
         altKey: 'hero.alt_fruits' 
     },
     { 
         id: 2, 
         desktopImage: 'assets/images/banners/offers/iphone.png',
-        mobileImage: 'assets/images/banners/offers/iphone_mobile.png',
+        mobileImage: 'assets/images/banners/offers/iphone-mobile.png',
         altKey: 'hero.alt_tech' 
     },
     { 
         id: 3, 
         desktopImage: 'assets/images/banners/offers/wine.png',
-        mobileImage: 'assets/images/banners/offers/wine_mobile.png',
+        mobileImage: 'assets/images/banners/offers/wine-mobile.png',
         altKey: 'hero.alt_wine' 
     },
 ]
@@ -165,4 +165,8 @@ const HeroCarousel = () => {
 }
 
 export default HeroCarousel
+
+
+
+
 

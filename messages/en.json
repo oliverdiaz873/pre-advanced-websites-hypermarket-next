@@ -16,15 +16,15 @@
     "electrodomesticos": "Appliances",
     "tecnologia": "Technology",
     "ropa": "Clothing",
-    "muebles_y_decoracion": "Furniture & Decor",
+    "muebles-y-decoracion": "Furniture & Decor",
     "farmacia": "Pharmacy",
     "ferreteria": "Hardware",
     "juguetes": "Toys",
     "sub": {
-      "frutas_y_verduras": "Fruits & Vegetables",
+      "frutas-y-verduras": "Fruits & Vegetables",
       "despensa": "Pantry",
-      "carnes_pescados_mariscos": "Meat, Fish & Seafood",
-      "lacteos_y_huevos": "Dairy & Eggs",
+      "carnes-pescados-mariscos": "Meat, Fish & Seafood",
+      "lacteos-y-huevos": "Dairy & Eggs",
       "bebidas": "Drinks",
       "enlatados": "Canned Goods",
       "cocina": "Kitchen",
@@ -35,10 +35,10 @@
       "tablets": "Tablets",
       "celulares": "Phones",
       "bocinas": "Speakers",
-      "pantalones_para_hombres": "Men's Pants",
-      "pantalones_para_mujeres": "Women's Pants",
-      "pantalones_para_ninos": "Children's Pants",
-      "trajes_para_hombres": "Men's Suits",
+      "pantalones-para-hombres": "Men's Pants",
+      "pantalones-para-mujeres": "Women's Pants",
+      "pantalones-para-ninos": "Children's Pants",
+      "trajes-para-hombres": "Men's Suits",
       "vestidos": "Dresses",
       "sofas": "Sofas",
       "sillones": "Armchairs",
@@ -46,14 +46,14 @@
       "floreros": "Vases",
       "analgesicos": "Pain Relief",
       "dermocosmetica": "Dermocosmetics",
-      "vitaminas_y_minerales": "Vitamins & Minerals",
-      "antigripales_y_resfriado": "Cold & Flu",
-      "herramientas_manuales": "Hand Tools",
-      "pinturas_y_acabados": "Paints & Finishes",
+      "vitaminas-y-minerales": "Vitamins & Minerals",
+      "antigripales-y-resfriado": "Cold & Flu",
+      "herramientas-manuales": "Hand Tools",
+      "pinturas-y-acabados": "Paints & Finishes",
       "electricidad": "Electricity",
       "plomeria": "Plumbing",
-      "juguetes_para_ninos": "Toys for Boys",
-      "juguetes_para_ninas": "Toys for Girls"
+      "juguetes-para-ninos": "Toys for Boys",
+      "juguetes-para-ninas": "Toys for Girls"
     },
     "seo": {
       "description_template": "Explore our selection of {category} at Superior Hypermarket: {subcategories}. The best products at the best price.",
@@ -482,7 +482,7 @@
         "Firming effect"
       ]
     },
-    "aire_acondicionado_tecnomaster": {
+    "aire-acondicionado_tecnomaster": {
       "name": "Tecnomaster Air Conditioner",
       "description": "The Tecnomaster Air Conditioner delivers reliable, efficient performance to keep any room cool. Designed with modern technology that optimizes energy use and provides even cooling.",
       "specs": [
@@ -493,7 +493,7 @@
         "Modern, compact design"
       ]
     },
-    "aire_acondicionado_whirlpool": {
+    "aire-acondicionado_whirlpool": {
       "name": "Whirlpool Air Conditioner",
       "description": "The Whirlpool Air Conditioner combines powerful cooling and energy efficiency in an elegant design. Ideal for cooling large spaces with minimal electricity use.",
       "specs": [
@@ -867,7 +867,7 @@
         "Color: Naranja"
       ]
     },
-    "extractor_de_grasa_drija": {
+    "extractor-de-grasa_drija": {
       "name": "Drija Range Hood",
       "description": "The Drija Range Hood keeps your kitchen free of smoke, odors, and grease vapor. Easy installation and quiet performance for a fresher kitchen.",
       "specs": [
@@ -1230,7 +1230,7 @@
         "High energy efficiency"
       ]
     },
-    "lavadora_y_secadora_lg": {
+    "lavadora-y-secadora_lg": {
       "name": "LG Washer and Dryer",
       "description": "The perfect combination: LG washer and dryer in one unit. Save space and time with next-generation washing and drying technology.",
       "specs": [
@@ -1241,7 +1241,7 @@
         "AI DD system (load detection)"
       ]
     },
-    "lavadora_y_secadora_tecnomaster": {
+    "lavadora-y-secadora_tecnomaster": {
       "name": "Tecnomaster Washer and Dryer",
       "description": "The Tecnomaster Washer and Dryer is the 2-in-1 solution you need. Wash and dry in a single cycle with energy efficiency and multiple programs.",
       "specs": [

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
@@ -82,8 +82,8 @@ const categoryData: CategoryData[] = [
     titleKey: "muebles.title",
     descriptionKey: "muebles.description",
     buttonTextKey: "muebles.button",
-    href: "/category/muebles_y_decoracion",
-    imageSrc: "/assets/images/categories/furniture_and_decor.png",
+    href: "/category/muebles-y-decoracion",
+    imageSrc: "/assets/images/categories/furniture-and-decor.png",
     gradientFrom: "#78350f",
     gradientTo: "#d97706",
     accentColor: "#fbbf24",
@@ -105,7 +105,7 @@ const categoryData: CategoryData[] = [
     descriptionKey: "ferreteria.description",
     buttonTextKey: "ferreteria.button",
     href: "/category/ferreteria",
-    imageSrc: "/assets/images/categories/hardware_store.png",
+    imageSrc: "/assets/images/categories/hardware-store.png",
     gradientFrom: "#44403c",
     gradientTo: "#78716c",
     accentColor: "#a8a29e",
@@ -194,3 +194,5 @@ const CategoryBannersSection = () => {
 };
 
 export default CategoryBannersSection;
+
+

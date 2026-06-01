@@ -60,3 +60,5 @@ console.log(`Invented EN: ${extraEN.length}, Invented ES: ${extraES.length}`);
 
 const status = missingEN.length === 0 && missingES.length === 0 && extraEN.length === 0 && extraES.length === 0;
 console.log(`\nStatus: ${status ? '✓ CLEAN' : '❌ NEEDS FIX'}\n`);
+
+process.exit(status ? 0 : 1);

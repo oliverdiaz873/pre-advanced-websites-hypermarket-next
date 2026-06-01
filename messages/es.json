@@ -118,7 +118,7 @@
       "paquete": "paquete"
     },
     "seo": {
-      "keywords": "{name}, {category}, hipermercado, oferta, republica dominicana"
+      "keywords": "{name}, {category}, hipermercado, oferta, república dominicana"
     },
     "error": {
       "title": "Algo salió mal",
@@ -823,7 +823,7 @@
         "Protección diaria"
       ]
     },
-    "muñeca_baby_doll": {
+    "muneca_baby_doll": {
       "name": "Muñeca Baby Doll",
       "description": "Una adorable muñeca bebé con accesorios de cuidado. Fomenta la empatía y el juego imaginativo mientras los niños aprenden a cuidar de otros.",
       "specs": [
@@ -878,7 +878,7 @@
         "Marca: LEGO / Minecraft"
       ]
     },
-    "muñeca_barbie": {
+    "muneca_barbie": {
       "name": "Muñeca Barbie",
       "description": "La muñeca Barbie es un clásico que inspira la imaginación y el juego de roles. Con su estilo icónico y accesorios, permite crear infinitas historias de moda y aventuras.",
       "specs": [
@@ -911,7 +911,7 @@
         "Seguridad: No tóxico"
       ]
     },
-    "pinta_uñas": {
+    "pinta_unas": {
       "name": "Set de Esmalte de Uñas",
       "description": "Set de esmaltes de uñas vibrantes con calcomanías decorativas. No tóxico, a base de agua y fácil de remover. Perfecto para una tarde de spa y creatividad.",
       "specs": [
@@ -1989,7 +1989,7 @@
         "Ideal para oficina y casual"
       ]
     },
-    "jean_para_niños": {
+    "jean_para_ninos": {
       "name": "Jean para Niños",
       "description": "Jean para niños diseñado para resistencia y comodidad. Perfecto para las actividades diarias de los más pequeños.",
       "specs": [
@@ -2000,7 +2000,7 @@
         "Ideal para uso diario"
       ]
     },
-    "licra_para_niños": {
+    "licra_para_ninos": {
       "name": "Licra para Niños",
       "description": "Licra para niños ultra flexible y cómoda. Perfecta para juegos, deportes y actividades escolares.",
       "specs": [
@@ -2033,7 +2033,7 @@
         "Ideal para colegio"
       ]
     },
-    "pantalones_lisos_para_niños": {
+    "pantalones_lisos_para_ninos": {
       "name": "Pantalones Lisos para Niños",
       "description": "Pantalones lisos para niños con estilo moderno y comodidad. Perfectos para el uso diario y ocasiones especiales.",
       "specs": [

@@ -372,7 +372,7 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    paquete_de_fresas: {
+    fresas: {
         descripcion: 'Fresas frescas, dulces y aromáticas. Perfectas para postres, smoothies o disfrutarlas solas como snack saludable.',
         detalles: [
             'Tipo: Fruta',
@@ -1473,7 +1473,7 @@ export const productPageData: Record<string, ProductPageData> = {
 
     // ─── JUGUETES ─────────────────────────────────────────────────────────────
 
-    muñeca_barbie: {
+    muneca_barbie: {
         descripcion: "Muñeca Barbie clásica con un vestido elegante y accesorios modernos. Diseñada para inspirar la imaginación y recordar que tú puedes ser lo que quieras.",
         detalles: [
             "Modelo: Barbie Fashionistas",
@@ -1483,7 +1483,7 @@ export const productPageData: Record<string, ProductPageData> = {
             "Marca: Mattel"
         ]
     },
-    muñeca_baby_doll: {
+    muneca_baby_doll: {
         descripcion: "Adorable muñeca Baby Doll con accesorios de cuidado. Fomenta la empatía y el juego imaginativo mientras los más pequeños aprenden a cuidar.",
         detalles: [
             "Tipo: Muñeca de Cuidado",
@@ -1513,7 +1513,7 @@ export const productPageData: Record<string, ProductPageData> = {
             "Marca: Glamour Kids"
         ]
     },
-    pinta_uñas: {
+    pinta_unas: {
         descripcion: "Set de esmaltes de uñas de colores vibrantes y stickers decorativos. No tóxico, base agua y fácil de remover, perfecto para una tarde de spa y creatividad.",
         detalles: [
             "Contenido: 3 esmaltes, 1 hoja de stickers",
@@ -1889,7 +1889,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     // ─── ROPA / PANTALONES PARA NIÑOS ───────────────────────────────────────────
-    jean_para_niños: {
+    jean_para_ninos: {
         descripcion: "El Jean para Niños combina el estilo clásico de la mezclilla con la resistencia necesaria para el juego. Un pantalón que dura y se ve bien.",
         detalles: [
             "Mezclilla reforzada en puntos clave",
@@ -1899,7 +1899,7 @@ export const productPageData: Record<string, ProductPageData> = {
             "Alta durabilidad"
         ]
     },
-    licra_para_niños: {
+    licra_para_ninos: {
         descripcion: "La Licra para Niños ofrece total libertad de movimiento para los más pequeños. Ideal para actividades deportivas o juegos activos con máxima comodidad.",
         detalles: [
             "Material ultra elástico",
@@ -1929,7 +1929,7 @@ export const productPageData: Record<string, ProductPageData> = {
             "Básico indispensable"
         ]
     },
-    pantalones_lisos_para_niños: {
+    pantalones_lisos_para_ninos: {
         descripcion: "Los Pantalones Lisos para Niños ofrecen comodidad y durabilidad para el día a día. Diseñados pensando en el movimiento constante de los niños.",
         detalles: [
             "Color sólido y elegante",

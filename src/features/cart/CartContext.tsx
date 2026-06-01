@@ -68,8 +68,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 // eslint-disable-next-line react-hooks/set-state-in-effect
                 setCart(JSON.parse(saved));
             }
-        } catch (error) {
-            console.error('Error loading cart from storage:', error);
+        } catch {
+            // Silently fail — localStorage errors are non-critical
         } finally {
             setIsInitialized(true);
         }
@@ -82,8 +82,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-        } catch (error) {
-            console.error('Error saving cart to storage:', error);
+        } catch {
+            // Silently fail — localStorage errors are non-critical
         }
     }, [cart, isInitialized]);
 

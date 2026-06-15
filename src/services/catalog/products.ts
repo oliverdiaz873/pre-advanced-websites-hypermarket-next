@@ -1081,7 +1081,7 @@ export const products: Product[] = [
         id: "auto_azul",
         nombre: "Auto Azul",
         url: "/product/auto_azul",
-        categoria: "juguetes_para_ninos",
+        categoria: "juguetes-para-ninos",
         precio: 1800, // número para carrito
         precioTexto: "Precio: $1,800", // texto para mostrar en resultados
         imagen: "/assets/images/productos/juguetes/juguetes-para-ninos/auto-azul.avif",
@@ -1091,7 +1091,7 @@ export const products: Product[] = [
         id: "avion_de_juguete",
         nombre: "Avión de Juguete",
         url: "/product/avion_de_juguete",
-        categoria: "juguetes_para_ninos",
+        categoria: "juguetes-para-ninos",
         precio: 2500, // número para carrito
         precioTexto: "Precio: $2,500", // texto para mostrar en resultados
         imagen: "/assets/images/productos/juguetes/juguetes-para-ninos/avion.avif",
@@ -1101,7 +1101,7 @@ export const products: Product[] = [
         id: "autos_hot_wheels",
         nombre: "Autos Hot Wheels",
         url: "/product/autos_hot_wheels",
-        categoria: "juguetes_para_ninos",
+        categoria: "juguetes-para-ninos",
         precio: 3500, // número para carrito
         precioTexto: "Precio: $3,500", // texto para mostrar en resultados
         imagen: "/assets/images/productos/juguetes/juguetes-para-ninos/autos-hot-wheels.avif",
@@ -1111,7 +1111,7 @@ export const products: Product[] = [
         id: "legos_de_creeper",
         nombre: "Legos de Creeper",
         url: "/product/legos_de_creeper",
-        categoria: "juguetes_para_ninos",
+        categoria: "juguetes-para-ninos",
         precio: 4000, // número para carrito
         precioTexto: "Precio: $4,000", // texto para mostrar en resultados
         imagen: "/assets/images/productos/juguetes/juguetes-para-ninos/lego-creeper.avif",
@@ -1121,7 +1121,7 @@ export const products: Product[] = [
         id: "legos_de_minecraft",
         nombre: "Legos de Minecraft",
         url: "/product/legos_de_minecraft",
-        categoria: "juguetes_para_ninos",
+        categoria: "juguetes-para-ninos",
         precio: 6000, // número para carrito
         precioTexto: "Precio: $6,000", // texto para mostrar en resultados
         imagen: "/assets/images/productos/juguetes/juguetes-para-ninos/lego-minecraft.avif",
@@ -1434,7 +1434,7 @@ export const products: Product[] = [
         id: "jean_para_ninos",
         nombre: "Jean para niños",
         url: "/product/jean_para_ninos",
-        categoria: "pantalones_para_ninos",
+        categoria: "pantalones-para-ninos",
         precio: 1000, // número para carrito
         precioTexto: "Precio: $1,000", // texto para mostrar en resultados
         imagen: "/assets/images/productos/ropa/pantalones-para-ninos/jean-ninos.avif"
@@ -1443,7 +1443,7 @@ export const products: Product[] = [
         id: "licra_para_ninos",
         nombre: "Licra para niños",
         url: "/product/licra_para_ninos",
-        categoria: "pantalones_para_ninos",
+        categoria: "pantalones-para-ninos",
         precio: 1500, // número para carrito
         precioTexto: "Precio: $1,500", // texto para mostrar en resultados
         imagen: "/assets/images/productos/ropa/pantalones-para-ninos/licra.avif"
@@ -1452,7 +1452,7 @@ export const products: Product[] = [
         id: "pantalon_deportivo",
         nombre: "Pantalón Deportivo",
         url: "/product/pantalon_deportivo",
-        categoria: "pantalones_para_ninos",
+        categoria: "pantalones-para-ninos",
         precio: 2300, // número para carrito
         precioTexto: "Precio: $2,300", // texto para mostrar en resultados
         imagen: "/assets/images/productos/ropa/pantalones-para-ninos/pantalon-deportivo.avif"
@@ -1461,7 +1461,7 @@ export const products: Product[] = [
         id: "pantalon_liso",
         nombre: "Pantalón Liso",
         url: "/product/pantalon_liso",
-        categoria: "pantalones_para_ninos",
+        categoria: "pantalones-para-ninos",
         precio: 2000, // número para carrito
         precioTexto: "Precio: $2,000", // texto para mostrar en resultados
         imagen: "/assets/images/productos/ropa/pantalones-para-ninos/pantalon-liso.avif"
@@ -1470,7 +1470,7 @@ export const products: Product[] = [
         id: "pantalones_lisos_para_ninos",
         nombre: "Pantalones Lisos para niños",
         url: "/product/pantalones_lisos_para_ninos",
-        categoria: "pantalones_para_ninos",
+        categoria: "pantalones-para-ninos",
         precio: 2500, // número para carrito
         precioTexto: "Precio: $2,500", // texto para mostrar en resultados
         imagen: "/assets/images/productos/ropa/pantalones-para-ninos/pantalon-para-ninos.avif"

@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { EmptyState } from '@/ui'
+import { CartIcon } from '@/ui/Icons'
 
 /**
  * EmptyCart - Componente de Carrito Vacío
@@ -16,11 +17,7 @@ const EmptyCart = () => {
             description={t('cart.empty.message')}
             actionLabel={t('cart.empty.button')}
             actionHref="/"
-            icon={
-                <svg className="w-full h-full" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                    <use href="#icon-cart"/>
-                </svg>
-            }
+            icon={<CartIcon className="w-full h-full" />}
         />
     )
 }

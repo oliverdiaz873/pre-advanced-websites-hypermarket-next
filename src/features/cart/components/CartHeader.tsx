@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { CartIcon } from '@/ui/Icons'
 import './CartHeader.css'
 
 /**
@@ -15,9 +16,7 @@ const CartHeader = ({ totalItems }: CartHeaderProps) => {
     const t = useTranslations('common');
     return (
         <header className="cart-header">
-            <svg className="cart-header__icon" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                <use href="#icon-cart"/>
-            </svg>
+            <CartIcon className="cart-header__icon" />
             <h2 className="cart-header__title">{t('cart.header_title')} ({totalItems})</h2>
         </header>
     )

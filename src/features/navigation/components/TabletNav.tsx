@@ -2,6 +2,7 @@ import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import { useTabletMenu } from '../hooks/useTabletMenu'
+import { ChevronDownIcon, ChevronRightIcon } from '@/ui/Icons'
 import './TabletNav.css'
 
 const navLinkClass =
@@ -45,9 +46,7 @@ const TabletNav = () => {
                         aria-expanded="false"
                     >
                         {t('nav.categories')}
-                        <svg className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-down text-white opacity-85 shrink-0" fill="currentColor">
-                            <use href="#icon-chevron-down" />
-                        </svg>
+                        <ChevronDownIcon className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-down text-white opacity-85 shrink-0" />
                     </button>
 
                     <ul className="absolute top-full left-0 bg-black/90 rounded-lg min-w-[220px] hidden group-hover:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">
@@ -58,9 +57,7 @@ const TabletNav = () => {
                                     data-tablet-trigger="level-2"
                                 >
                                     {tCategories(category.id)}
-                                    <svg className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-right text-white opacity-70 shrink-0" fill="currentColor">
-                                        <use href="#icon-chevron-right" />
-                                    </svg>
+                                    <ChevronRightIcon className="w-3 h-3 transition-transform duration-300 ease-in-out tablet-chevron-right text-white opacity-70 shrink-0" />
                                 </Link>
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-[1000] list-none p-0 m-0 shadow-xl">

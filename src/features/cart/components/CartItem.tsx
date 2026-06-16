@@ -8,6 +8,7 @@ import QuantityControls from './QuantityControls'
 import { OfferBadge } from '../../offers/components'
 import { useTranslations } from 'next-intl'
 import { useProductTranslation } from '../../products/hooks/useProductTranslation'
+import { TrashIcon } from '@/ui/Icons'
 import './CartItem.css'
 
 /**
@@ -91,9 +92,7 @@ const CartItem = ({
                         aria-label={`${t('product.remove')} ${name}`}
                         title={t('product.remove')}
                     >
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-trash" />
-                        </svg>
+                        <TrashIcon />
                     </button>
                 </div>
 

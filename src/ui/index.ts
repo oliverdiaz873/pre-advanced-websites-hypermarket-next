@@ -3,7 +3,6 @@
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export * from './Breadcrumb/Breadcrumb';
 
-export { default as Icons } from './Icons/Icons';
 export * from './Icons/Icons';
 
 export { default as Toast } from './Toast/Toast';

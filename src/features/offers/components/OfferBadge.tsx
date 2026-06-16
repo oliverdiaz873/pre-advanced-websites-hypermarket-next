@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { FireIcon } from '@/ui/Icons'
 import './OfferBadge.css'
 
 interface OfferBadgeProps {
@@ -13,9 +14,7 @@ const OfferBadge = ({ discountPercentage }: OfferBadgeProps) => {
     const t = useTranslations('offers');
     return (
         <div className="offer-badge" aria-label={t('badge.aria_label', { discount: discountPercentage ? `-${discountPercentage}%` : '' })}>
-            <svg className="offer-badge__icon icon-fire">
-                <use href="#icon-fire" />
-            </svg>
+            <FireIcon className="offer-badge__icon icon-fire" />
             {discountPercentage && (
                 <span className="offer-badge__text">
                     -{discountPercentage}%

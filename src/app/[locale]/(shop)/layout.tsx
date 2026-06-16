@@ -1,7 +1,6 @@
 import { CartProvider } from "@/features/cart/CartContext";
 import Header from "@/features/layout/components/Header";
 import Footer from "@/features/layout/components/Footer";
-import Icons from "@/ui/Icons/Icons";
 import ScrollToTop from "@/ui/ScrollToTop/ScrollToTop";
 
 
@@ -9,7 +8,6 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
   return (
       <CartProvider>
         <ScrollToTop />
-        <Icons />
         <Header />
         {/* Spacer for fixed header */}
         <div className="h-[60px] xl:h-[85px]"></div>

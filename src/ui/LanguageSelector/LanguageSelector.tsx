@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
+import { WorldIcon, ChevronDownIcon } from '@/ui/Icons';
 import './LanguageSelector.css';
 
 const languages = [
@@ -77,13 +78,9 @@ const LanguageSelector = ({ variant = 'dropdown' }: LanguageSelectorProps) => {
         aria-expanded={isOpen}
         aria-label={t('select_language')}
       >
-        <svg className="w-4 h-4 text-white shrink-0" fill="currentColor">
-          <use href="#icon-world" />
-        </svg>
+        <WorldIcon className="w-4 h-4 text-white shrink-0" />
         <span className="uppercase">{currentLanguage.code}</span>
-        <svg className="w-3 h-3 transition-transform duration-300 ease-in-out text-white opacity-85 shrink-0 group-hover:rotate-180" fill="currentColor">
-          <use href="#icon-chevron-down" />
-        </svg>
+        <ChevronDownIcon className="w-3 h-3 transition-transform duration-300 ease-in-out text-white opacity-85 shrink-0 group-hover:rotate-180" />
       </button>
 
       <div

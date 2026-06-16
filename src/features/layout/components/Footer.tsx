@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/routing'
 import { getTranslations } from 'next-intl/server'
+import { FacebookIcon, XIcon, InstagramIcon } from '@/ui/Icons'
 import './Footer.css'
 
 export default async function Footer() {
@@ -22,9 +23,7 @@ export default async function Footer() {
                         className="social-link"
                         title="Facebook"
                     >
-                        <svg aria-hidden="true">
-                            <use href="#icon-facebook" />
-                        </svg>
+                        <FacebookIcon />
                     </a>
                     <a
                         href="#"
@@ -34,9 +33,7 @@ export default async function Footer() {
                         className="social-link"
                         title="X (Twitter)"
                     >
-                        <svg aria-hidden="true">
-                            <use href="#icon-x" />
-                        </svg>
+                        <XIcon />
                     </a>
                     <a
                         href="#"
@@ -46,9 +43,7 @@ export default async function Footer() {
                         className="social-link"
                         title="Instagram"
                     >
-                        <svg aria-hidden="true">
-                            <use href="#icon-instagram" />
-                        </svg>
+                        <InstagramIcon />
                     </a>
                 </div>
 

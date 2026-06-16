@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { categories } from '@/services/catalog/categories'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
+import { ChevronDownIcon, ChevronRightIcon, WorldIcon } from '@/ui/Icons'
 import './MobileNav.css'
 
 interface MobileNavProps {
@@ -79,13 +80,11 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                             className="w-full text-left flex justify-between items-center py-1 hover:text-orange-500 transition-colors duration-200"
                         >
                             {t('nav.categories')}{' '}
-                            <svg 
+                            <ChevronDownIcon 
                                 className={`w-3 h-3 transition-transform duration-300 ease-in-out text-white shrink-0 ${
                                     openCategory === 'categorias' ? 'rotate-180 !text-orange-500' : 'opacity-70'
                                 }`} 
-                            >
-                                <use href="#icon-chevron-down" />
-                            </svg>
+                            />
                         </button>
 
                         <div
@@ -101,13 +100,11 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                                             className="w-full text-left py-2.5 flex justify-between items-center text-sm hover:text-orange-400 transition-colors duration-200"
                                         >
                                             {tCategories(category.id)}
-                                            <svg 
+                                            <ChevronRightIcon 
                                                 className={`w-3 h-3 transition-transform duration-300 ease-in-out text-white shrink-0 ${
                                                     openSubcategories.includes(category.id) ? 'rotate-90 !text-orange-400' : 'opacity-50'
                                                 }`} 
-                                            >
-                                                <use href="#icon-chevron-right" />
-                                            </svg>
+                                            />
                                         </button>
 
                                         <div
@@ -153,9 +150,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                     <li className="px-5 py-2.5 border-b border-white/10">
                         <div className="flex items-center justify-between min-h-[44px]">
                             <div className="flex items-center gap-3">
-                                <svg className="w-5 h-5 text-white shrink-0" fill="currentColor">
-                                    <use href="#icon-world" />
-                                </svg>
+                                <WorldIcon className="w-5 h-5 text-white shrink-0" />
                                 <span className="text-base text-white">
                                     {t('language')}
                                 </span>

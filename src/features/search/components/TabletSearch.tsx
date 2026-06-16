@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import type { HeaderSearchProduct } from '../hooks/useHeaderSearch'
 import { getAssetUrl } from '@/lib/assetUtils'
+import { SearchIcon, CloseIcon, CartIcon } from '@/ui/Icons'
 import './TabletSearch.css'
 
 /**
@@ -127,23 +128,15 @@ const TabletSearch = ({
                 className="util-btn group relative"
                 aria-label={isActive ? t('button.submit') : t('button.open')}
             >
-                <svg
-                    className={`util-icon w-6 h-6 transition-all duration-300 ${isActive ? 'text-red-500 scale-[2]' : ''}`}
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                >
-                    {isActive ? (
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                    ) : (
-                        <use href="#icon-search" />
-                    )}
-                </svg>
+                {isActive ? (
+                    <CloseIcon className="util-icon w-6 h-6 transition-all duration-300 text-red-500 scale-[2]" />
+                ) : (
+                    <SearchIcon className="util-icon w-6 h-6 transition-all duration-300" />
+                )}
             </button>
 
             <Link href="/cart" className="util-btn tablet-search__cart group relative" aria-label={tHeader('cart_label')}>
-                <svg className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" fill="currentColor" viewBox="0 0 16 16">
-                    <use href="#icon-cart" />
-                </svg>
+                <CartIcon className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" />
                 {totalItems > 0 && (
                     <span className="cart-badge absolute -top-1 -right-1 bg-red-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full">
                         {totalItems}

@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import AddToCartButton from '@/features/cart/components/AddToCartButton';
 import Drawer from '@/ui/Drawer/Drawer';
 import ProductGrid from '@/features/products/components/ProductGrid';
+import { FireIcon, SlidersIcon } from '@/ui/Icons';
 import { OfferBadge } from '@/features/offers/components';
 import OfferFilters from '@/features/offers/components/OfferFilters';
 import EmptyOffers from '@/features/offers/components/EmptyOffers';
@@ -37,9 +38,7 @@ export default function OffersPageClient() {
             <section className="mx-auto w-full max-w-7xl px-2 pt-1 pb-8 md:px-6 min-h-[60vh] flex flex-col">
                 <div className="offers-header-container flex items-center justify-between gap-4">
                     <h1 className="text-3xl md:text-4xl offers-header__title gap-1">
-                        <svg className="offers-header__icon">
-                            <use href="#icon-fire" />
-                        </svg>
+                        <FireIcon className="offers-header__icon" />
                         {t('header.title')}
                     </h1>
                     <button
@@ -47,9 +46,7 @@ export default function OffersPageClient() {
                         type="button"
                         onClick={() => setIsDrawerOpen(true)}
                     >
-                        <svg className="offers-mobile-filters-btn__icon">
-                            <use href="#icon-sliders" />
-                        </svg>
+                        <SlidersIcon className="offers-mobile-filters-btn__icon" />
                         <span>{t('header.filter_btn')}</span>
                         {selectedCategory !== 'all' && (
                             <span className="offers-mobile-filters-active-chip">

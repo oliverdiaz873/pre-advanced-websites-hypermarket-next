@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import {Link} from '@/i18n/routing';
+import { useIsMobile } from "../hooks/useIsMobile";
 import {
   motion,
   useInView,
@@ -72,7 +73,9 @@ const CategoryBanner = ({
     margin: "-60px",
   });
 
-  const bannerContainerVariants = containerVariants(index);
+  const isMobile = useIsMobile();
+
+  const bannerContainerVariants = containerVariants(index, isMobile);
 
   return (
     <Link href={buttonHref} className="category-banner-link">
@@ -106,7 +109,7 @@ const CategoryBanner = ({
         {/* Text Column */}
         <div className="category-banner-text">
           <motion.h3
-            variants={textAnimationVariants}
+            variants={textAnimationVariants(isMobile)}
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
@@ -117,7 +120,7 @@ const CategoryBanner = ({
           </motion.h3>
 
           <motion.p
-            variants={textAnimationVariants}
+            variants={textAnimationVariants(isMobile)}
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
@@ -128,7 +131,7 @@ const CategoryBanner = ({
           </motion.p>
 
           <motion.div
-            variants={textAnimationVariants}
+            variants={textAnimationVariants(isMobile)}
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}

@@ -22,17 +22,17 @@ export const VIEWPORT_CONFIG = {
  * Text animation variant: slides up from bottom with fade-in
  * Used for individual text elements (title, description, button)
  */
-export const textAnimationVariants = {
-  hidden: { opacity: 0, y: 40 },
+export const textAnimationVariants = (isMobile: boolean) => ({
+  hidden: { opacity: 0, y: isMobile ? 20 : 40 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: isMobile ? 0.45 : 0.6,
       ease: EASING_CURVE,
     },
   },
-};
+});
 
 /**
  * Transition configurations for staggered text animations
@@ -40,17 +40,14 @@ export const textAnimationVariants = {
  */
 export const TEXT_TRANSITION_CONFIGS = {
   title: {
-    duration: 0.6,
     delay: 0.1,
     ease: EASING_CURVE,
   },
   description: {
-    duration: 0.6,
     delay: 0.2,
     ease: EASING_CURVE,
   },
   button: {
-    duration: 0.6,
     delay: 0.3,
     ease: EASING_CURVE,
   },
@@ -60,16 +57,19 @@ export const TEXT_TRANSITION_CONFIGS = {
  * Container animation variant: fade-in with slight upward movement
  * Triggers container entrance before child elements
  */
-export const containerVariants = (index: number) => ({
-  hidden: { opacity: 0, y: 60 },
+export const containerVariants = (
+  index: number,
+  isMobile: boolean
+) => ({
+  hidden: { opacity: 0, y: isMobile ? 30 : 60 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      delay: index * 0.08,
+      duration: isMobile ? 0.4 : 0.7,
+      delay: index * (isMobile ? 0.05 : 0.08),
       ease: EASING_CURVE,
-      staggerChildren: 0.12,
+      staggerChildren: isMobile ? 0.08 : 0.12,
     },
   },
 });

@@ -1,6 +1,7 @@
 import './CartItemsList.css'
 import CartItem from './CartItem'
 import { offersData } from '@/services/catalog/offers'
+import type { CartItem as CartItemType } from '../CartContext'
 
 /**
  * CartItemsList - Componente de Lista de Items del Carrito
@@ -9,16 +10,8 @@ import { offersData } from '@/services/catalog/offers'
  * Actúa como un contenedor que mapea los datos del carrito
  * a componentes individuales reutilizables.
  */
-interface CartItem {
-    id: string
-    nombre: string
-    precio: number
-    cantidad: number
-    img: string
-}
-
 interface CartItemsListProps {
-    cart: CartItem[]
+    cart: CartItemType[]
     updateQuantity: (id: string, change: number) => void
     removeFromCart: (id: string) => void
 }
@@ -47,6 +40,7 @@ const CartItemsList = ({ cart, updateQuantity, removeFromCart }: CartItemsListPr
                         precio={item.precio}
                         cantidad={item.cantidad}
                         img={item.img}
+                        unitLabel={item.unitLabel}
                         isOffer={!!offer}
                         oldPrice={offer?.oldPrice}
                         discountPercentage={discountPercentage}

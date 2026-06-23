@@ -27,10 +27,9 @@ interface CartItemProps {
     id: string
     nombre: string
     precio: number
-    precioTexto?: string
     cantidad: number
     img: string
-    unidad?: string
+    unitLabel: string
     isOffer?: boolean
     oldPrice?: string
     discountPercentage?: number
@@ -42,10 +41,9 @@ const CartItem = ({
     id,
     nombre,
     precio,
-    precioTexto,
     cantidad,
     img,
-    unidad,
+    unitLabel,
     isOffer = false,
     oldPrice,
     discountPercentage,
@@ -53,8 +51,12 @@ const CartItem = ({
     removeFromCart
 }: CartItemProps) => {
     const t = useTranslations('common');
-    const cartProduct: Product = { id, nombre, precio, precioTexto, imagen: img, unidad } as Product
-    const { name, labels } = useProductTranslation(cartProduct)
+    const tCommon = useTranslations('common');
+    const cartProduct: Product = { id, nombre, precio, imagen: img } as Product
+    const { name } = useProductTranslation(cartProduct)
+
+    const unitKey = `units.${unitLabel}`;
+    const displayUnit = tCommon.has(unitKey) ? tCommon(unitKey) : unitLabel;
 
     return (
         <div className="cart-item">
@@ -97,7 +99,7 @@ const CartItem = ({
                 </div>
 
                 <div className="cart-item__variant">
-                    <span className="cart-item__unit">${precio.toLocaleString()} / {labels.unit}</span>
+                    <span className="cart-item__unit">${precio.toLocaleString()} / {displayUnit}</span>
                 </div>
 
                 <div className="cart-item__footer">

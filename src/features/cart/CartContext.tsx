@@ -9,6 +9,8 @@
  * - Acciones para agregar, eliminar y actualizar cantidades.
  */
 import { createContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
+import { unitLabel } from '@/lib/priceUtils'
+import type { Product } from '@/types/product'
 
 export interface CartItem {
     id: string
@@ -17,6 +19,7 @@ export interface CartItem {
     precioTexto?: string
     img: string
     unidad?: string
+    unitLabel: string
     cantidad: number
     isOffer?: boolean
     oldPrice?: string
@@ -27,7 +30,7 @@ interface CartContextType {
     cart: CartItem[]
     totalItems: number
     totalPrice: number
-    addToCart: (product: Omit<CartItem, 'cantidad'>) => void
+    addToCart: (product: Omit<CartItem, 'cantidad' | 'unitLabel'>) => void
     removeFromCart: (id: string) => void
     updateQuantity: (id: string, delta: number) => void
     clearCart: () => void
@@ -65,8 +68,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
+                const parsed = JSON.parse(saved) as CartItem[];
                 // eslint-disable-next-line react-hooks/set-state-in-effect
-                setCart(JSON.parse(saved));
+                setCart(parsed.map(item => ({
+                    ...item,
+                    unitLabel: item.unitLabel || unitLabel({ unidad: item.unidad, precioTexto: item.precioTexto } as Product)
+                })));
             }
         } catch {
             // Silently fail — localStorage errors are non-critical
@@ -90,7 +97,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0);
     const totalPrice = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
-    const addToCart = useCallback((product: Omit<CartItem, 'cantidad'>) => {
+    const addToCart = useCallback((product: Omit<CartItem, 'cantidad' | 'unitLabel'>) => {
         setCart((prevCart) => {
             const existing = prevCart.find((item) => item.id === product.id);
             if (existing) {
@@ -101,11 +108,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 );
             }
             
-            // Si el producto no tiene unidad, intentamos obtenerla del precioTexto
             const finalUnidad = product.unidad || (product.precioTexto ? product.precioTexto.split('/').pop()?.trim() : undefined);
+            const finalUnitLabel = unitLabel({ unidad: product.unidad, precioTexto: product.precioTexto } as Product);
             
             const discountPercentage = calculateDiscountPercentage(product.oldPrice, product.precio);
-            return [...prevCart, { ...product, unidad: finalUnidad, cantidad: 1, discountPercentage }];
+            return [...prevCart, { ...product, unidad: finalUnidad, unitLabel: finalUnitLabel, cantidad: 1, discountPercentage }];
         });
     }, []);
 

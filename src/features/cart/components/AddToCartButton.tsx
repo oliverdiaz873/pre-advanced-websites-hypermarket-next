@@ -9,6 +9,14 @@ interface AddToCartButtonProps {
     product: Product;
 }
 
+/**
+ * AddToCartButton - Add to Cart Button Component
+ *
+ * Displays an add-to-cart button or quantity controls
+ * depending on whether the product is already in the cart.
+ * Shows "Add" button when quantity is 0,
+ * and increment/decrement controls when quantity > 0.
+ */
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
     const t = useTranslations('common');
     const { cart, addToCart, updateQuantity } = useCart();

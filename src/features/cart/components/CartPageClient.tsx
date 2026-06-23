@@ -7,6 +7,13 @@ import CartLayout from '@/features/cart/components/CartLayout';
 import CartSummary from '@/features/cart/components/CartSummary';
 import EmptyCart from '@/features/cart/components/EmptyCart';
 
+/**
+ * CartPageClient - Cart Page Client Component
+ *
+ * Renders the main cart page view.
+ * Displays the cart items list and summary,
+ * or an empty cart message when there are no items.
+ */
 export default function CartPageClient() {
     const { cart, totalItems, updateQuantity, removeFromCart } = useCart();
 

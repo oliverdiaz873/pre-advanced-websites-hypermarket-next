@@ -1,2 +1,5 @@
-// Offers feature exports
-export { OfferFilters, EmptyOffers } from './components'
+export { OfferFilters, EmptyOffers, OfferBadge } from './components'
+export { useOfferFilters } from './hooks'
+export { offersData } from './data/offers'
+export type { OfferData } from './data/offers'
+export { calculateDiscountPercentage } from './utils/offer'

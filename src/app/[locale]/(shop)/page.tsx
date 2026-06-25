@@ -4,7 +4,8 @@ import ProductCarouselSectionWithActions from './_components/ProductCarouselSect
 import AboutUs from '@/features/home/components/AboutUs';
 import CategoryBannersSection from '@/features/home/components/CategoryBannersSection';
 import { products } from '@/services/catalog/products';
-import { calculateDiscountPercentage, offersData } from '@/services/catalog/offers';
+import { offersData } from '@/features/offers/data/offers'
+import { calculateDiscountPercentage } from '@/features/offers/utils/offer'
 import { getTranslations } from 'next-intl/server';
 import { Product } from '@/types/product';
 

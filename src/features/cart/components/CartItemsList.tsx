@@ -1,6 +1,6 @@
 import './CartItemsList.css'
 import CartItem from './CartItem'
-import { offersData } from '@/services/catalog/offers'
+import { offersData } from '@/features/offers'
 import type { CartItem as CartItemType } from '../CartContext'
 
 /**

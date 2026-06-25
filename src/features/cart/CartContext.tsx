@@ -11,6 +11,7 @@
 import { createContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 import { unitLabel } from '@/lib/priceUtils'
 import type { Product } from '@/types/product'
+import { calculateDiscountPercentage } from '@/features/offers'
 
 export interface CartItem {
     id: string
@@ -39,17 +40,6 @@ interface CartContextType {
 export const CartContext = createContext<CartContextType | undefined>(undefined)
 
 const STORAGE_KEY = 'carrito'
-
-/**
- * Calcula el porcentaje de descuento basado en el precio anterior y actual
- */
-const calculateDiscountPercentage = (oldPrice?: string, currentPrice?: number): number | undefined => {
-    if (!oldPrice || !currentPrice) return undefined
-    const numericOldPrice = parseFloat(oldPrice.replace(/[^\d.-]/g, ''))
-    if (isNaN(numericOldPrice) || numericOldPrice <= 0) return undefined
-    const discount = ((numericOldPrice - currentPrice) / numericOldPrice) * 100
-    return Math.round(discount)
-}
 
 /**
  * CartProvider - Componente proveedor que envuelve la aplicación
@@ -111,7 +101,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
             const finalUnidad = product.unidad || (product.precioTexto ? product.precioTexto.split('/').pop()?.trim() : undefined);
             const finalUnitLabel = unitLabel({ unidad: product.unidad, precioTexto: product.precioTexto } as Product);
             
-            const discountPercentage = calculateDiscountPercentage(product.oldPrice, product.precio);
+            const discountPercentage = product.oldPrice !== undefined
+                ? calculateDiscountPercentage(product.precio, product.oldPrice)
+                : undefined;
             return [...prevCart, { ...product, unidad: finalUnidad, unitLabel: finalUnitLabel, cantidad: 1, discountPercentage }];
         });
     }, []);

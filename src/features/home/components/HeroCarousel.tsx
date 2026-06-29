@@ -130,7 +130,7 @@ const HeroCarousel = () => {
                 {/* Navigation Controls - Hidden on mobile and tablet */}
                 <button
                     onClick={prevSlide}
-                    className="hero-control-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 lg:flex lg:opacity-100 hidden"
+                    className="hero-control-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 lg:flex lg:opacity-100 hidden"
                     aria-label={t('hero.prev')}
                 >
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -139,7 +139,7 @@ const HeroCarousel = () => {
                 </button>
                 <button
                     onClick={nextSlide}
-                    className="hero-control-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 lg:flex lg:opacity-100 hidden"
+                    className="hero-control-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/40 text-white rounded-full items-center justify-center hover:bg-black/70 transition-all opacity-0 lg:flex lg:opacity-100 hidden"
                     aria-label={t('hero.next')}
                 >
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

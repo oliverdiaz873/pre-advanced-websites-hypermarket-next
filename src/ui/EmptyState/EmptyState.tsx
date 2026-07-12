@@ -38,8 +38,12 @@ const EmptyState: React.FC<EmptyStateProps> = ({
     onAction,
     className = "",
 }) => {
+    const borderClass = className.includes('border-') ? '' : 'border border-neutral-200';
+    const shadowClass = className.includes('shadow-') ? '' : 'shadow-sm';
+    const bgClass = className.includes('bg-') ? '' : 'bg-white';
+
     return (
-        <div className={`flex flex-col items-center justify-center p-8 md:p-12 text-center rounded-2xl border border-neutral-200 bg-white shadow-sm max-w-2xl mx-auto w-full transition-all duration-300 ${className}`}>
+        <div className={`flex flex-col items-center justify-center p-8 md:p-12 text-center rounded-2xl ${borderClass} ${bgClass} ${shadowClass} max-w-2xl mx-auto w-full transition-all duration-300 ${className}`}>
             {icon && (
                 <div className="mb-6 flex items-center justify-center text-neutral-300 w-16 h-16 md:w-20 md:h-20">
                     {icon}

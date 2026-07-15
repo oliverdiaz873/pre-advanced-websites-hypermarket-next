@@ -1,5 +1,8 @@
 import { Category } from '@/types/category'
 
+/**
+ * Static catalog categories and subcategories.
+ */
 export const categories: Category[] = [
     {
         name: 'Alimentos',

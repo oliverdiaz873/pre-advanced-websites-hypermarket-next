@@ -64,6 +64,8 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
+import Footer from "@/features/layout/components/Footer";
+import CartLayout from "./_components/CartLayout";
 
 export default async function RootLayout({
   children,
@@ -87,7 +89,10 @@ export default async function RootLayout({
     <html lang={locale} className="h-full">
       <body className={`${domine.variable} min-h-screen flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <CartLayout>
+            {children}
+          </CartLayout>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

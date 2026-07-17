@@ -1,0 +1,65 @@
+/* ==========================================================================
+   ICON SYSTEM STYLES
+   ========================================================================== */
+
+/* Base fire icon style */
+.icon-fire {
+    fill: #ff0000f8;
+    background: radial-gradient(circle at 50% 65%, #ffff00 34%, transparent 36%);
+    border-radius: 50%;
+}
+
+/* Offer badge icon */
+.offer-badge__icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -8px;
+    top: -6px;
+    z-index: 15;
+    /* Usar clase genérica .icon-fire para el estilo del fuego incluyendo el efecto amarillo y rojo */
+}
+
+@media (min-width: 768px) {
+    .offer-badge__icon {
+        width: 24px;
+        height: 24px;
+        left: -10px;
+        top: -6px;
+    }
+}
+
+/* Offers header icon */
+.offers-header__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    fill: #ff0000; /* Red color */
+    background: radial-gradient(circle at 50% 65%, #ffff00 32%, transparent 34%);
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .offers-header__icon {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .offers-header__icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+/* Mobile filters button icon */
+@media (max-width: 1023px) {
+    .offers-mobile-filters-btn__icon {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+    }
+}

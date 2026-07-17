@@ -23,32 +23,15 @@
     padding-bottom: 5px;
 }
 
-.offers-header__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    flex-shrink: 0;
-    fill: #ff0000; /* Red color */
-    background: radial-gradient(circle at 50% 65%, #ffff00 32%, transparent 34%);
-    border-radius: 50%;
-}
-
 @media (max-width: 768px) {
     .offers-header__title {
         font-size: 1.75rem;
-    }
-    .offers-header__icon {
-        width: 1.75rem;
-        height: 1.75rem;
     }
 }
 
 @media (max-width: 480px) {
     .offers-header__title {
         font-size: 1.5rem;
-    }
-    .offers-header__icon {
-        width: 1.5rem;
-        height: 1.5rem;
     }
 }
 
@@ -99,14 +82,6 @@
     .offers-mobile-filters-btn:active {
         transform: scale(0.96);
         opacity: 0.9;
-    }
-
-    .offers-mobile-filters-btn__icon {
-        width: 20px;
-        height: 20px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
     }
 }
 

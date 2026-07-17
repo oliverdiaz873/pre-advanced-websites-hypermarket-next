@@ -1,3 +1,5 @@
+import './Icons.css'
+
 interface IconProps {
   className?: string;
 }

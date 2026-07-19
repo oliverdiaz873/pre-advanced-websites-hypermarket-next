@@ -190,5 +190,4 @@ Static assets served by Next.js.
 
 ## `scripts`
 
-- `validate-products.js`: Product data validation.
 - `check-i18n.js`: Internationalization validation.

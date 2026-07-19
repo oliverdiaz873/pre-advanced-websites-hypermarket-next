@@ -48,12 +48,6 @@ npm run lint
 Runs ESLint using the Next.js Core Web Vitals and TypeScript configurations.
 
 ```bash
-npm run validate
-```
-
-Runs `scripts/validate-products.js` to validate product catalog data.
-
-```bash
 npm run check:i18n
 ```
 

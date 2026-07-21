@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('legal');
     return {
-        title: `${t('terms.seo.title')} | Hipermercado Superior`,
+        title: t('terms.seo.title'),
         description: t('terms.seo.description'),
         keywords: t('terms.seo.keywords'),
     };

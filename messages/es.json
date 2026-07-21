@@ -56,9 +56,12 @@
       "juguetes-para-ninas": "Juguetes para Niñas"
     },
     "seo": {
+      "description": "Explora nuestra seleccion de {name}: {subcategories}.",
       "description_template": "Explora nuestra selección de {category} en Hipermercado Superior: {subcategories}. Los mejores productos al mejor precio.",
       "keywords_template": "{category}, {subcategories}, hipermercado, compras online"
-    }
+    },
+    "not_found": "Categoria no encontrada",
+    "not_found_description": "La categoria solicitada no existe en Hipermercado Superior."
   },
   "common": {
     "_documentation": {
@@ -80,6 +83,8 @@
       "price_prefix": "Precio: ",
       "similar_products": "Productos Similares",
       "not_found": "Producto no encontrado",
+      "not_found_description": "No encontramos el producto solicitado en Hipermercado Superior.",
+      "fallback_description": "Compra {name} en Hipermercado Superior.",
       "click_to_enlarge": "Haz clic para ampliar",
       "close_modal": "Cerrar modal (ESC)",
       "expanded_image": "Imagen ampliada de {name}",
@@ -2524,6 +2529,12 @@
         "title": "Tu búsqueda comienza en el encabezado",
         "desc": "Escribe el nombre de un producto y presiona Enter para ver los resultados aquí."
       }
+    }
+  },
+  "notFound": {
+    "seo": {
+      "title": "Página no encontrada",
+      "description": "La página que buscas no existe en Hipermercado Superior."
     }
   }
 }

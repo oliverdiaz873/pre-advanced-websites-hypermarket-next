@@ -56,9 +56,12 @@
       "juguetes-para-ninas": "Toys for Girls"
     },
     "seo": {
-      "description_template": "Explore our selection of {category} at Superior Hypermarket: {subcategories}. The best products at the best price.",
-      "keywords_template": "{category}, {subcategories}, hypermarket, online shopping"
-    }
+      "description": "Explore our selection of {name}: {subcategories}.",
+      "description_template": "Explora nuestra selección de {category} en Hipermercado Superior: {subcategories}. Los mejores productos al mejor precio.",
+      "keywords_template": "{category}, {subcategories}, hipermercado, compras online"
+    },
+    "not_found": "Category Not Found",
+    "not_found_description": "The requested category was not found at Hipermercado Superior."
   },
   "common": {
     "_documentation": {
@@ -80,6 +83,8 @@
       "price_prefix": "Price: ",
       "similar_products": "Similar Products",
       "not_found": "Product not found",
+      "not_found_description": "The requested product was not found at Hipermercado Superior.",
+      "fallback_description": "Buy {name} at Hipermercado Superior.",
       "click_to_enlarge": "Click to enlarge",
       "close_modal": "Close modal (ESC)",
       "expanded_image": "Expanded image of {name}",
@@ -259,7 +264,7 @@
     },
     "seo": {
       "title": "Smart Shopping and Quality Products",
-      "description": "Superior Hypermarket: your destination for smart shopping. Find the best selection of food, electronics, home goods, and more with exclusive deals and unbeatable prices.",
+      "description": "Hipermercado Superior: your destination for smart shopping. Find the best selection of food, electronics, home goods, and more with exclusive deals and unbeatable prices.",
       "keywords": "hypermarket, online shopping, supermarket, deals, fresh produce, quality, savings, appliances, food"
     },
     "category_banners": {
@@ -321,7 +326,7 @@
       "intro": "These Terms of Use govern the access and use of the Superior Hypermarket digital platform. By browsing or using our services, you accept these conditions in their entirety. If you do not agree, we recommend that you do not use our website.",
       "seo": {
         "title": "Terms of Use",
-        "description": "Consult the Terms of Use of Superior Hypermarket. Learn about the conditions of access, purchases, intellectual property, and responsibilities when using our platform.",
+        "description": "Consult the Terms of Use of Hipermercado Superior. Learn about the conditions of access, purchases, intellectual property, and responsibilities when using our platform.",
         "keywords": "terms of use, terms and conditions, site rules, online shopping",
         "json_ld_desc": "Terms and conditions of use of the Superior Hypermarket platform."
       },
@@ -367,7 +372,7 @@
       "intro": "At Superior Hypermarket, we value the privacy of each of our users. This policy explains what information we collect, how we use it, and the measures we take to protect it.",
       "seo": {
         "title": "Privacy Policy",
-        "description": "Learn how Superior Hypermarket collects, uses, and protects your personal information. Your privacy is our priority.",
+        "description": "Learn how Hipermercado Superior collects, uses, and protects your personal information. Your privacy is our priority.",
         "keywords": "privacy policy, data protection, privacy, cookies, user rights",
         "json_ld_desc": "Privacy policy and protection of personal data of Superior Hypermarket."
       },
@@ -416,7 +421,7 @@
     },
     "seo": {
       "title": "Offers and Promotions",
-      "description": "Discover the best offers and promotions at Superior Hypermarket. Save on quality products with exclusive discounts on food, drinks, cleaning supplies, and more.",
+      "description": "Discover the best offers and promotions at Hipermercado Superior. Save on quality products with exclusive discounts on food, drinks, cleaning supplies, and more.",
       "json_ld_name": "Offers and Promotions - Superior Hypermarket",
       "json_ld_description": "Catalog of active offers and promotions with exclusive discounts on quality products.",
       "keywords": "hypermarket offers, supermarket promotions, product discounts, weekly deals, shopping savings, mega deals"
@@ -2524,6 +2529,12 @@
         "title": "Your search starts in the header",
         "desc": "Type the name of a product and press Enter to see the results here."
       }
+    }
+  },
+  "notFound": {
+    "seo": {
+      "title": "Page Not Found",
+      "description": "The page you are looking for does not exist at Hipermercado Superior."
     }
   }
 }

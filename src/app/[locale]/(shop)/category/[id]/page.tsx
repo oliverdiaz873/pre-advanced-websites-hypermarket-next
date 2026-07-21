@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
 import { categories } from '@/services/catalog/categories';
 import { products } from '@/services/catalog/products';
@@ -23,24 +24,29 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     const category = getCategory(id);
 
     if (!category) {
+        const t = await getTranslations('categories');
         return {
-            title: 'Categoria no encontrada | Hipermercado Superior',
+            title: t('not_found'),
+            description: t('not_found_description'),
+            robots: { index: false, follow: false },
         };
     }
 
     const subcategories = category.subcategories.map((subcategory) => subcategory.name).join(', ');
     const canonicalUrl = `https://www.hipermercadosuperior.com/category/${category.id}`;
+    const t = await getTranslations('categories');
+    const description = t('seo.description', { name: category.name, subcategories });
 
     return {
-        title: `${category.name} | Hipermercado Superior`,
-        description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+        title: category.name,
+        description,
         keywords: [category.id.toLowerCase(), ...subcategories.toLowerCase().split(', ')],
         alternates: {
             canonical: canonicalUrl,
         },
         openGraph: {
             title: `${category.name} | Hipermercado Superior`,
-            description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+            description,
             url: canonicalUrl,
             type: 'website',
             siteName: 'Hipermercado Superior',
@@ -49,7 +55,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         twitter: {
             card: 'summary_large_image',
             title: `${category.name} | Hipermercado Superior`,
-            description: `Explora nuestra seleccion de ${category.name}: ${subcategories}.`,
+            description,
         },
     };
 }
@@ -61,6 +67,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     if (!category) {
         notFound();
     }
+
+    const t = await getTranslations('categories');
+    const description = t('seo.description', { name: category.name, subcategories: category.subcategories.map((s) => s.name).join(', ') });
 
     const sections = category.subcategories
         .map((subcategory) => {
@@ -81,7 +90,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: category.name,
-        description: `Explora nuestra seleccion de ${category.name}: ${category.subcategories.map((s) => s.name).join(', ')}.`,
+        description,
         url: `https://www.hipermercadosuperior.com/category/${category.id}`,
         mainEntity: {
             '@type': 'ItemList',

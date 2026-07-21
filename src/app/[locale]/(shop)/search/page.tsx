@@ -13,10 +13,11 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
 
     return {
         title: query
-            ? `${t('seo.title_query', { query })} | Hipermercado Superior`
-            : `${t('seo.title_empty')} | Hipermercado Superior`,
+            ? t('seo.title_query', { query })
+            : t('seo.title_empty'),
         description: query ? t('seo.desc_query', { query }) : t('seo.desc_empty'),
         keywords: t('seo.keywords'),
+        robots: { index: false, follow: false },
     };
 }
 

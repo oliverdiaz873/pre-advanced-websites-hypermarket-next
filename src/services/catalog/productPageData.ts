@@ -1,131 +1,131 @@
-/**
+﻿/**
  * productPageData.ts
  *
- * Propósito: Contiene el contenido editorial exclusivo de las páginas de detalle
- * de cada producto: párrafo de descripción y lista de características (detalles).
+ * PropÃ³sito: Contiene el contenido editorial exclusivo de las pÃ¡ginas de detalle
+ * de cada producto: pÃ¡rrafo de descripciÃ³n y lista de caracterÃ­sticas (detalles).
  *
- * ¿Por qué existe separado de productos.ts?
+ * Â¿Por quÃ© existe separado de productos.ts?
  * productos.ts guarda los datos estructurales que usa toda la app (precio, imagen,
- * categoría, URL). Este archivo guarda únicamente el contenido largo que solo
- * necesita la página /product/:id — mantenerlos separados evita cargar texto
- * innecesario en el resto de la aplicación.
+ * categorÃ­a, URL). Este archivo guarda Ãºnicamente el contenido largo que solo
+ * necesita la pÃ¡gina /product/:id â€” mantenerlos separados evita cargar texto
+ * innecesario en el resto de la aplicaciÃ³n.
  *
- * Convención de claves: el productId debe coincidir exactamente con el campo `id`
- * en productos.ts. Los productos sin entrada aquí usan un fallback genérico
+ * ConvenciÃ³n de claves: el productId debe coincidir exactamente con el campo `id`
+ * en productos.ts. Los productos sin entrada aquÃ­ usan un fallback genÃ©rico
  * definido en ProductDetailSection.tsx.
  *
- * Migración por fases:
- *   Fase 1 – Alimentos
- *   Fase 2 – Electrodomésticos
- *   Fase 3 – Tecnología
- *   Fase 4 – Farmacia
- *   Fase 5 – Ferretería
- *   Fase 6 – Juguetes
- *   Fase 7 – Muebles y Decoración
- *   Fase 8 – Ropa
+ * MigraciÃ³n por fases:
+ *   Fase 1 â€“ Alimentos
+ *   Fase 2 â€“ ElectrodomÃ©sticos
+ *   Fase 3 â€“ TecnologÃ­a
+ *   Fase 4 â€“ Farmacia
+ *   Fase 5 â€“ FerreterÃ­a
+ *   Fase 6 â€“ Juguetes
+ *   Fase 7 â€“ Muebles y DecoraciÃ³n
+ *   Fase 8 â€“ Ropa
  */
 
 export interface ProductPageData {
-    descripcion: string
+    description: string
     detalles: string[]
 }
 
 export const productPageData: Record<string, ProductPageData> = {
 
-    // ─── ALIMENTOS / BEBIDAS ───────────────────────────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / BEBIDAS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     coca_cola: {
-        descripcion: 'Coca Cola es la bebida refrescante más icónica del mundo. Disfruta de su sabor único, burbujeante y refrescante que acompaña los mejores momentos de tu vida.',
+        description: 'Coca Cola es la bebida refrescante mÃ¡s icÃ³nica del mundo. Disfruta de su sabor Ãºnico, burbujeante y refrescante que acompaÃ±a los mejores momentos de tu vida.',
         detalles: [
             'Sabor: Original',
-            'Calorías: 140 kcal',
-            'Presentación: Botella de 2 Litros',
-            'Ideal para: Acompañar cualquier momento',
-            'Temperatura recomendada: Fría',
+            'CalorÃ­as: 140 kcal',
+            'PresentaciÃ³n: Botella de 2 Litros',
+            'Ideal para: AcompaÃ±ar cualquier momento',
+            'Temperatura recomendada: FrÃ­a',
         ],
     },
 
     coca_cola_zero: {
-        descripcion: 'Coca Cola Zero es la opción perfecta para quienes buscan el sabor original de Coca-Cola pero sin azúcar y sin calorías. Refréscate con la chispa de siempre, ahora más ligera.',
+        description: 'Coca Cola Zero es la opciÃ³n perfecta para quienes buscan el sabor original de Coca-Cola pero sin azÃºcar y sin calorÃ­as. RefrÃ©scate con la chispa de siempre, ahora mÃ¡s ligera.',
         detalles: [
             'Sabor: Original (Zero Sugar)',
-            'Calorías: 0 kcal',
-            'Azúcares: 0g',
-            'Presentación: Botella de 2 Litros',
-            'Ideal para: Acompañar cualquier momento',
+            'CalorÃ­as: 0 kcal',
+            'AzÃºcares: 0g',
+            'PresentaciÃ³n: Botella de 2 Litros',
+            'Ideal para: AcompaÃ±ar cualquier momento',
         ],
     },
 
     country_club_frambuesa: {
-        descripcion: 'Country Club Frambuesa es el refresco dominicano por excelencia, con su característico sabor a frambuesa que encanta a todos. Ideal para compartir en familia y amigos.',
+        description: 'Country Club Frambuesa es el refresco dominicano por excelencia, con su caracterÃ­stico sabor a frambuesa que encanta a todos. Ideal para compartir en familia y amigos.',
         detalles: [
             'Sabor: Frambuesa',
-            'Presentación: Botella de 2 Litros',
-            'Beneficios: Sabor único y refrescante',
+            'PresentaciÃ³n: Botella de 2 Litros',
+            'Beneficios: Sabor Ãºnico y refrescante',
             'Ideal para: Fiestas, comidas y meriendas',
-            'Tamaño: 2 Litros',
+            'TamaÃ±o: 2 Litros',
         ],
     },
 
     country_club_uva: {
-        descripcion: 'Country Club Uva ofrece un sabor intenso y dulce que encanta a todos. Disfruta de la frescura de la uva en cada sorbo. Perfecto para cualquier ocasión.',
+        description: 'Country Club Uva ofrece un sabor intenso y dulce que encanta a todos. Disfruta de la frescura de la uva en cada sorbo. Perfecto para cualquier ocasiÃ³n.',
         detalles: [
             'Sabor: Uva',
-            'Presentación: Botella de 2 Litros',
+            'PresentaciÃ³n: Botella de 2 Litros',
             'Beneficios: Sabor intenso y dulce',
-            'Ideal para: Acompañar comidas y meriendas',
-            'Tamaño: 2 Litros',
+            'Ideal para: AcompaÃ±ar comidas y meriendas',
+            'TamaÃ±o: 2 Litros',
         ],
     },
 
     gatorade_uva: {
-        descripcion: 'Gatorade Uva es la bebida deportiva científicamente formulada para reponer los electrolitos perdidos durante el entrenamiento físico. Mantente hidratado y al máximo rendimiento.',
+        description: 'Gatorade Uva es la bebida deportiva cientÃ­ficamente formulada para reponer los electrolitos perdidos durante el entrenamiento fÃ­sico. Mantente hidratado y al mÃ¡ximo rendimiento.',
         detalles: [
             'Sabor: Uva',
-            'Tipo: Bebida Isotónica',
-            'Beneficios: Repone electrolitos y energía',
-            'Ideal para: Deportes y actividad física intensa',
-            'Presentación: Botella de 600ml',
+            'Tipo: Bebida IsotÃ³nica',
+            'Beneficios: Repone electrolitos y energÃ­a',
+            'Ideal para: Deportes y actividad fÃ­sica intensa',
+            'PresentaciÃ³n: Botella de 600ml',
         ],
     },
 
     jugo_de_naranja_rica: {
-        descripcion: 'El Jugo de Naranja Rica es 100% natural, sin conservantes y lleno de vitaminas. La mejor opción para empezar tu día con energía y sabor real a frutas.',
+        description: 'El Jugo de Naranja Rica es 100% natural, sin conservantes y lleno de vitaminas. La mejor opciÃ³n para empezar tu dÃ­a con energÃ­a y sabor real a frutas.',
         detalles: [
             'Sabor: Naranja',
             'Tipo: Jugo Natural',
             'Beneficios: Rico en vitamina C',
             'Ideal para: Desayunos y meriendas',
-            'Presentación: Botella de 1 Litro',
+            'PresentaciÃ³n: Botella de 1 Litro',
         ],
     },
 
     jugo_de_pera_santal: {
-        descripcion: 'Jugo de Pera Santal ofrece una experiencia de suavidad y dulzura. Hecho con las mejores peras, es una opción ligera y refrescante para toda la familia.',
+        description: 'Jugo de Pera Santal ofrece una experiencia de suavidad y dulzura. Hecho con las mejores peras, es una opciÃ³n ligera y refrescante para toda la familia.',
         detalles: [
             'Sabor: Pera',
-            'Tipo: Néctar',
+            'Tipo: NÃ©ctar',
             'Beneficios: Dulce y ligero',
             'Ideal para: Loncheras y meriendas',
-            'Presentación: Botella de 1 Litro',
+            'PresentaciÃ³n: Botella de 1 Litro',
         ],
     },
 
     red_bull: {
-        descripcion: 'Red Bull es la bebida energética líder en el mundo. Con su fórmula única, te da las alas que necesitas para mantenerte activo, concentrado y con energía en todo momento.',
+        description: 'Red Bull es la bebida energÃ©tica lÃ­der en el mundo. Con su fÃ³rmula Ãºnica, te da las alas que necesitas para mantenerte activo, concentrado y con energÃ­a en todo momento.',
         detalles: [
-            'Tipo: Bebida Energética',
-            'Cafeína: 80mg',
+            'Tipo: Bebida EnergÃ©tica',
+            'CafeÃ­na: 80mg',
             'Vitaminas: B3, B5, B6, B12',
             'Ideal para: Deportes, estudio y jornadas largas',
-            'Presentación: Lata de 250ml',
+            'PresentaciÃ³n: Lata de 250ml',
         ],
     },
 
-    // ─── ALIMENTOS / CARNES, PESCADOS Y MARISCOS ─────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / CARNES, PESCADOS Y MARISCOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     camarones_crudos: {
-        descripcion: 'Camarones Crudos de alta calidad, perfectos para preparar a tu gusto. Ideales para cócteles, ceviches, paellas o al ajillo. Frescura garantizada.',
+        description: 'Camarones Crudos de alta calidad, perfectos para preparar a tu gusto. Ideales para cÃ³cteles, ceviches, paellas o al ajillo. Frescura garantizada.',
         detalles: [
             'Tipo: Marisco',
             'Estado: Crudo',
@@ -136,29 +136,29 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     camarones_precocidos: {
-        descripcion: 'Camarones Precocidos listos para servir. Perfectos para ensaladas, cócteles o platos rápidos sin necesidad de cocción prolongada.',
+        description: 'Camarones Precocidos listos para servir. Perfectos para ensaladas, cÃ³cteles o platos rÃ¡pidos sin necesidad de cocciÃ³n prolongada.',
         detalles: [
             'Tipo: Marisco',
             'Estado: Precocido',
-            'Ideal para: Ensaladas y platos fríos',
+            'Ideal para: Ensaladas y platos frÃ­os',
             'Venta: Por libra',
             'Calidad: Premium',
         ],
     },
 
     carne_de_res_para_hamburguesas: {
-        descripcion: 'Carne de Res fresca y de primera calidad, ideal para preparar las mejores hamburguesas caseras. Molida al momento para garantizar frescura y sabor.',
+        description: 'Carne de Res fresca y de primera calidad, ideal para preparar las mejores hamburguesas caseras. Molida al momento para garantizar frescura y sabor.',
         detalles: [
             'Tipo: Carne de Res',
             'Corte: Especial para hamburguesas',
             'Estado: Fresco',
             'Venta: Por libra',
-            'Ideal para: Hamburguesas y albóndigas',
+            'Ideal para: Hamburguesas y albÃ³ndigas',
         ],
     },
 
     chuleta_de_cerdo: {
-        descripcion: 'Chuleta de Cerdo fresca, jugosa y llena de sabor. Perfecta para asar a la plancha, al horno o frita. Una delicia para toda la familia.',
+        description: 'Chuleta de Cerdo fresca, jugosa y llena de sabor. Perfecta para asar a la plancha, al horno o frita. Una delicia para toda la familia.',
         detalles: [
             'Tipo: Carne de Cerdo',
             'Corte: Chuleta',
@@ -169,7 +169,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     pollo_entero_don_pollo: {
-        descripcion: 'Pollo Entero Don Pollo, criado con los más altos estándares de calidad. Versátil y sabroso, perfecto para preparar tu plato favorito.',
+        description: 'Pollo Entero Don Pollo, criado con los mÃ¡s altos estÃ¡ndares de calidad. VersÃ¡til y sabroso, perfecto para preparar tu plato favorito.',
         detalles: [
             'Tipo: Pollo Entero',
             'Marca: Don Pollo',
@@ -180,7 +180,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     tilapia_roja: {
-        descripcion: 'Tilapia Roja fresca, rica en proteínas y baja en grasa. Perfecta para preparaciones al vapor, fritas o en caldo. Una opción saludable y deliciosa.',
+        description: 'Tilapia Roja fresca, rica en proteÃ­nas y baja en grasa. Perfecta para preparaciones al vapor, fritas o en caldo. Una opciÃ³n saludable y deliciosa.',
         detalles: [
             'Tipo: Pescado',
             'Variedad: Tilapia Roja',
@@ -190,171 +190,171 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    // ─── ALIMENTOS / DESPENSA ─────────────────────────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / DESPENSA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     aceite_crisol: {
-        descripcion: 'Aceite Crisol, el aceite vegetal de confianza para tus preparaciones diarias. Ideal para freír, saltear y aderezar tus platos favoritos.',
+        description: 'Aceite Crisol, el aceite vegetal de confianza para tus preparaciones diarias. Ideal para freÃ­r, saltear y aderezar tus platos favoritos.',
         detalles: [
             'Tipo: Aceite Vegetal',
             'Marca: Crisol',
-            'Uso: Freír, saltear y cocinar',
-            'Presentación: Botella de 1 Litro',
+            'Uso: FreÃ­r, saltear y cocinar',
+            'PresentaciÃ³n: Botella de 1 Litro',
             'Sin colesterol',
         ],
     },
 
     aceite_oliva_extra_virgen: {
-        descripcion: 'Aceite de Oliva Extra Virgen de primera extracción en frío. Ideal para aderezos, ensaladas y cocina mediterránea. Un producto premium para tu cocina.',
+        description: 'Aceite de Oliva Extra Virgen de primera extracciÃ³n en frÃ­o. Ideal para aderezos, ensaladas y cocina mediterrÃ¡nea. Un producto premium para tu cocina.',
         detalles: [
             'Tipo: Aceite de Oliva',
-            'Categoría: Extra Virgen',
-            'Extracción: Prensado en frío',
+            'CategorÃ­a: Extra Virgen',
+            'ExtracciÃ³n: Prensado en frÃ­o',
             'Uso: Aderezos y cocina fina',
-            'Presentación: Botella de 750ml',
+            'PresentaciÃ³n: Botella de 750ml',
         ],
     },
 
     mayonesa_baldom: {
-        descripcion: 'Mayonesa Baldom, el sabor clásico de la mayonesa dominicana. Cremosa y deliciosa, perfecta para acompañar todos tus platos y sándwiches.',
+        description: 'Mayonesa Baldom, el sabor clÃ¡sico de la mayonesa dominicana. Cremosa y deliciosa, perfecta para acompaÃ±ar todos tus platos y sÃ¡ndwiches.',
         detalles: [
             'Tipo: Mayonesa',
             'Marca: Baldom',
-            'Sabor: Clásico',
-            'Uso: Sándwiches, ensaladas y aderezos',
-            'Presentación: Frasco de 946ml',
+            'Sabor: ClÃ¡sico',
+            'Uso: SÃ¡ndwiches, ensaladas y aderezos',
+            'PresentaciÃ³n: Frasco de 946ml',
         ],
     },
 
     sal_refisal: {
-        descripcion: 'Sal Refisal, la sal de mesa más usada en los hogares dominicanos. Finamente molida para una distribución uniforme en tus recetas.',
+        description: 'Sal Refisal, la sal de mesa mÃ¡s usada en los hogares dominicanos. Finamente molida para una distribuciÃ³n uniforme en tus recetas.',
         detalles: [
             'Tipo: Sal de Mesa',
             'Marca: Refisal',
             'Textura: Fina',
             'Uso: Cocina y mesa',
-            'Presentación: Bolsa de 1 kg',
+            'PresentaciÃ³n: Bolsa de 1 kg',
         ],
     },
 
     sazon_completo_maggi: {
-        descripcion: 'Sazón Completo Maggi, el condimento que no puede faltar en tu cocina. Su mezcla especial de especias da el sabor perfecto a todas tus preparaciones.',
+        description: 'SazÃ³n Completo Maggi, el condimento que no puede faltar en tu cocina. Su mezcla especial de especias da el sabor perfecto a todas tus preparaciones.',
         detalles: [
             'Tipo: Condimento',
             'Marca: Maggi',
             'Mezcla: Especias y hierba',
             'Uso: Carnes, vegetales y sopas',
-            'Presentación: Frasco de 400g',
+            'PresentaciÃ³n: Frasco de 400g',
         ],
     },
 
     sopita_dona_gallina: {
-        descripcion: 'Sopita Doña Gallina, el sazonador de pollo más popular de la cocina dominicana. Da a tus platos el sabor casero y auténtico que todos aman.',
+        description: 'Sopita DoÃ±a Gallina, el sazonador de pollo mÃ¡s popular de la cocina dominicana. Da a tus platos el sabor casero y autÃ©ntico que todos aman.',
         detalles: [
             'Tipo: Sazonador',
-            'Marca: Doña Gallina',
+            'Marca: DoÃ±a Gallina',
             'Sabor: Pollo',
             'Uso: Sopas, arroces y guisos',
-            'Presentación: Caja de cubitos',
+            'PresentaciÃ³n: Caja de cubitos',
         ],
     },
 
     vinagre_baldom: {
-        descripcion: 'Vinagre Baldom, el vinagre blanco de uso diario en la cocina dominicana. Ideal para aderezos, conservas y limpieza de vegetales.',
+        description: 'Vinagre Baldom, el vinagre blanco de uso diario en la cocina dominicana. Ideal para aderezos, conservas y limpieza de vegetales.',
         detalles: [
             'Tipo: Vinagre Blanco',
             'Marca: Baldom',
             'Usos: Aderezos, encurtidos y cocina',
-            'Sabor: Ácido suave',
-            'Presentación: Botella de 946ml',
+            'Sabor: Ãcido suave',
+            'PresentaciÃ³n: Botella de 946ml',
         ],
     },
 
-    // ─── ALIMENTOS / ENLATADOS ────────────────────────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / ENLATADOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     atun_dimar: {
-        descripcion: 'Atún Dimar en aceite, fuente de proteínas de alta calidad. Ideal para ensaladas, sándwiches y platos rápidos. Práctico y nutritivo.',
+        description: 'AtÃºn Dimar en aceite, fuente de proteÃ­nas de alta calidad. Ideal para ensaladas, sÃ¡ndwiches y platos rÃ¡pidos. PrÃ¡ctico y nutritivo.',
         detalles: [
-            'Tipo: Atún en aceite',
+            'Tipo: AtÃºn en aceite',
             'Marca: Dimar',
-            'Proteínas: Alto contenido',
-            'Uso: Ensaladas, sándwiches y pasta',
-            'Presentación: Lata de 170g',
+            'ProteÃ­nas: Alto contenido',
+            'Uso: Ensaladas, sÃ¡ndwiches y pasta',
+            'PresentaciÃ³n: Lata de 170g',
         ],
     },
 
     gandules_verdes_goya: {
-        descripcion: 'Gandules Verdes Goya, el ingrediente esencial del arroz con gandules. Tiernos y sabrosos, listos para usar directamente de la lata.',
+        description: 'Gandules Verdes Goya, el ingrediente esencial del arroz con gandules. Tiernos y sabrosos, listos para usar directamente de la lata.',
         detalles: [
             'Tipo: Legumbre',
             'Marca: Goya',
             'Estado: Cocido y listo para usar',
             'Uso: Arroz con gandules y guisos',
-            'Presentación: Lata de 439g',
+            'PresentaciÃ³n: Lata de 439g',
         ],
     },
 
     habichuelas_negras_goya: {
-        descripcion: 'Habichuelas Negras Goya, tiernas y sabrosas. Perfectas para hacer moro de habichuelas negras o acompañar tus platos favoritos.',
+        description: 'Habichuelas Negras Goya, tiernas y sabrosas. Perfectas para hacer moro de habichuelas negras o acompaÃ±ar tus platos favoritos.',
         detalles: [
             'Tipo: Legumbre',
             'Variedad: Habichuelas Negras',
             'Marca: Goya',
             'Estado: Pre-cocidas',
-            'Presentación: Lata de 439g',
+            'PresentaciÃ³n: Lata de 439g',
         ],
     },
 
     maiz_la_famosa: {
-        descripcion: 'Maíz La Famosa en lata, dulce y tierno. Perfecto para ensaladas, guisos y como acompañante de cualquier plato principal.',
+        description: 'MaÃ­z La Famosa en lata, dulce y tierno. Perfecto para ensaladas, guisos y como acompaÃ±ante de cualquier plato principal.',
         detalles: [
-            'Tipo: Maíz dulce en grano',
+            'Tipo: MaÃ­z dulce en grano',
             'Marca: La Famosa',
             'Estado: Cocido',
             'Uso: Ensaladas y guisos',
-            'Presentación: Lata de 439g',
+            'PresentaciÃ³n: Lata de 439g',
         ],
     },
 
     salchichas_jaja: {
-        descripcion: 'Salchichas Jaja, las salchichas más populares del mercado dominicano. Jugosas y sabrosas, perfectas para el desayuno, la merienda o cualquier receta.',
+        description: 'Salchichas Jaja, las salchichas mÃ¡s populares del mercado dominicano. Jugosas y sabrosas, perfectas para el desayuno, la merienda o cualquier receta.',
         detalles: [
             'Tipo: Salchichas',
             'Marca: Jaja',
             'Uso: Desayuno, merienda y guisos',
             'Estado: Listas para calentar',
-            'Presentación: Lata de 400g',
+            'PresentaciÃ³n: Lata de 400g',
         ],
     },
 
     sardinas_gord: {
-        descripcion: 'Sardinas Gord en salsa de tomate, ricas en Omega-3 y proteínas. Una opción nutritiva y económica para cualquier comida rápida.',
+        description: 'Sardinas Gord en salsa de tomate, ricas en Omega-3 y proteÃ­nas. Una opciÃ³n nutritiva y econÃ³mica para cualquier comida rÃ¡pida.',
         detalles: [
             'Tipo: Sardinas en salsa de tomate',
             'Marca: Gord',
             'Nutrientes: Rico en Omega-3',
-            'Uso: Sandwiches y platos rápidos',
-            'Presentación: Lata de 125g',
+            'Uso: Sandwiches y platos rÃ¡pidos',
+            'PresentaciÃ³n: Lata de 125g',
         ],
     },
 
     tomates_pelados_la_famosa: {
-        descripcion: 'Tomates Pelados La Famosa, enteros y en su jugo natural. Perfectos para preparar salsas, guisos y sopas con sabor casero.',
+        description: 'Tomates Pelados La Famosa, enteros y en su jugo natural. Perfectos para preparar salsas, guisos y sopas con sabor casero.',
         detalles: [
             'Tipo: Tomates pelados enteros',
             'Marca: La Famosa',
             'Estado: En jugo natural',
             'Uso: Salsas, guisos y sopas',
-            'Presentación: Lata de 794g',
+            'PresentaciÃ³n: Lata de 794g',
         ],
     },
 
-    // ─── ALIMENTOS / FRUTAS Y VERDURAS ────────────────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / FRUTAS Y VERDURAS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     ajies_morrones: {
-        descripcion: 'Ajíes Morrones frescos, coloridos y llenos de sabor. Perfectos para ensaladas, salteados y como decoración de tus platos.',
+        description: 'AjÃ­es Morrones frescos, coloridos y llenos de sabor. Perfectos para ensaladas, salteados y como decoraciÃ³n de tus platos.',
         detalles: [
             'Tipo: Vegetal',
-            'Variedad: Morrón',
+            'Variedad: MorrÃ³n',
             'Colores: Rojo, amarillo y verde',
             'Uso: Ensaladas y salteados',
             'Venta: Por unidad',
@@ -362,7 +362,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     cebollas_rojas: {
-        descripcion: 'Cebollas Rojas frescas, con su característico sabor dulce y ligeramente picante. Imprescindibles en la cocina dominicana.',
+        description: 'Cebollas Rojas frescas, con su caracterÃ­stico sabor dulce y ligeramente picante. Imprescindibles en la cocina dominicana.',
         detalles: [
             'Tipo: Vegetal',
             'Variedad: Cebolla Roja',
@@ -373,31 +373,31 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     fresas: {
-        descripcion: 'Fresas frescas, dulces y aromáticas. Perfectas para postres, smoothies o disfrutarlas solas como snack saludable.',
+        description: 'Fresas frescas, dulces y aromÃ¡ticas. Perfectas para postres, smoothies o disfrutarlas solas como snack saludable.',
         detalles: [
             'Tipo: Fruta',
             'Variedad: Fresa',
-            'Sabor: Dulce y ácido',
+            'Sabor: Dulce y Ã¡cido',
             'Uso: Postres, batidos y snacks',
-            'Presentación: Paquete de 250g',
+            'PresentaciÃ³n: Paquete de 250g',
         ],
     },
 
     limones_persa: {
-        descripcion: 'Limones Persa frescos, con su jugo ácido y aromático. Esenciales para aderezar ensaladas, marinar carnes y preparar limonada.',
+        description: 'Limones Persa frescos, con su jugo Ã¡cido y aromÃ¡tico. Esenciales para aderezar ensaladas, marinar carnes y preparar limonada.',
         detalles: [
-            'Tipo: Fruta cítrica',
+            'Tipo: Fruta cÃ­trica',
             'Variedad: Persa',
-            'Sabor: Ácido',
+            'Sabor: Ãcido',
             'Uso: Jugos, aderezos y marinadas',
             'Venta: Por libra',
         ],
     },
 
     mandarinas: {
-        descripcion: 'Mandarinas dulces y fáciles de pelar. Una fruta rica en vitamina C, perfecta como snack saludable para toda la familia.',
+        description: 'Mandarinas dulces y fÃ¡ciles de pelar. Una fruta rica en vitamina C, perfecta como snack saludable para toda la familia.',
         detalles: [
-            'Tipo: Fruta cítrica',
+            'Tipo: Fruta cÃ­trica',
             'Variedad: Mandarina',
             'Sabor: Dulce',
             'Beneficios: Rica en vitamina C',
@@ -406,7 +406,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     manzanas_amarillas: {
-        descripcion: 'Manzanas Amarillas dulces y jugosas. Una fruta versátil perfecta para comer sola, en ensaladas de frutas o en postres.',
+        description: 'Manzanas Amarillas dulces y jugosas. Una fruta versÃ¡til perfecta para comer sola, en ensaladas de frutas o en postres.',
         detalles: [
             'Tipo: Fruta',
             'Variedad: Manzana Amarilla',
@@ -417,51 +417,51 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     manzanas_rojas: {
-        descripcion: 'Manzanas Rojas, crujientes y con un sabor equilibrado entre dulce y ácido. Una fruta clásica que nunca falla.',
+        description: 'Manzanas Rojas, crujientes y con un sabor equilibrado entre dulce y Ã¡cido. Una fruta clÃ¡sica que nunca falla.',
         detalles: [
             'Tipo: Fruta',
             'Variedad: Manzana Roja',
-            'Sabor: Dulce-ácido',
+            'Sabor: Dulce-Ã¡cido',
             'Beneficios: Rica en fibra y antioxidantes',
             'Venta: Por unidad',
         ],
     },
 
     manzanas_verdes: {
-        descripcion: 'Manzanas Verdes con su particular sabor ácido y refrescante. Perfectas para snacks, jugos y recetas de repostería.',
+        description: 'Manzanas Verdes con su particular sabor Ã¡cido y refrescante. Perfectas para snacks, jugos y recetas de reposterÃ­a.',
         detalles: [
             'Tipo: Fruta',
             'Variedad: Manzana Verde',
-            'Sabor: Ácido y refrescante',
-            'Uso: Jugos, snacks y repostería',
+            'Sabor: Ãcido y refrescante',
+            'Uso: Jugos, snacks y reposterÃ­a',
             'Venta: Por unidad',
         ],
     },
 
     pepinos: {
-        descripcion: 'Pepinos frescos y crujientes. Bajos en calorías e hidratantes, son el ingrediente perfecto para ensaladas y platos fríos.',
+        description: 'Pepinos frescos y crujientes. Bajos en calorÃ­as e hidratantes, son el ingrediente perfecto para ensaladas y platos frÃ­os.',
         detalles: [
             'Tipo: Vegetal',
             'Variedad: Pepino',
             'Sabor: Fresco y suave',
-            'Beneficios: Hidratante y bajo en calorías',
+            'Beneficios: Hidratante y bajo en calorÃ­as',
             'Venta: Por unidad',
         ],
     },
 
     tomates_de_ensalada: {
-        descripcion: 'Tomates de Ensalada frescos, rojos y jugosos. El ingrediente base de cualquier ensalada y plato mediterráneo.',
+        description: 'Tomates de Ensalada frescos, rojos y jugosos. El ingrediente base de cualquier ensalada y plato mediterrÃ¡neo.',
         detalles: [
             'Tipo: Vegetal',
             'Variedad: Tomate de Ensalada',
-            'Sabor: Dulce y ácido',
-            'Uso: Ensaladas, sándwiches y guisos',
+            'Sabor: Dulce y Ã¡cido',
+            'Uso: Ensaladas, sÃ¡ndwiches y guisos',
             'Venta: Por libra',
         ],
     },
 
     uvas_moradas: {
-        descripcion: 'Uvas Moradas dulces y refrescantes. Una fruta deliciosa como snack o para preparar jugos y postres especiales.',
+        description: 'Uvas Moradas dulces y refrescantes. Una fruta deliciosa como snack o para preparar jugos y postres especiales.',
         detalles: [
             'Tipo: Fruta',
             'Variedad: Uva Morada',
@@ -472,7 +472,7 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     zanahorias: {
-        descripcion: 'Zanahorias frescas, crujientes y ricas en betacaroteno. Perfectas para ensaladas, jugos o como snack saludable.',
+        description: 'Zanahorias frescas, crujientes y ricas en betacaroteno. Perfectas para ensaladas, jugos o como snack saludable.',
         detalles: [
             'Tipo: Vegetal',
             'Variedad: Zanahoria',
@@ -482,32 +482,32 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    // ─── ALIMENTOS / LÁCTEOS Y HUEVOS ─────────────────────────────────────────
+    // â”€â”€â”€ ALIMENTOS / LÃCTEOS Y HUEVOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     huevos_don_pancho: {
-        descripcion: 'Huevos Don Pancho, frescos y de la más alta calidad. Fuente natural de proteínas y nutrientes esenciales para toda la familia.',
+        description: 'Huevos Don Pancho, frescos y de la mÃ¡s alta calidad. Fuente natural de proteÃ­nas y nutrientes esenciales para toda la familia.',
         detalles: [
             'Tipo: Huevos de gallina',
             'Marca: Don Pancho',
-            'Tamaño: Grande',
-            'Nutrientes: Proteínas y vitaminas',
-            'Presentación: Cartón de 30 unidades',
+            'TamaÃ±o: Grande',
+            'Nutrientes: ProteÃ­nas y vitaminas',
+            'PresentaciÃ³n: CartÃ³n de 30 unidades',
         ],
     },
 
     leche_entera_rica: {
-        descripcion: 'Leche Entera Rica, rica en calcio y proteínas. El alimento esencial para el desarrollo de niños y adultos, con el sabor fresco y natural que todos necesitan.',
+        description: 'Leche Entera Rica, rica en calcio y proteÃ­nas. El alimento esencial para el desarrollo de niÃ±os y adultos, con el sabor fresco y natural que todos necesitan.',
         detalles: [
             'Tipo: Leche Entera',
             'Marca: Rica',
             'Nutrientes: Calcio y vitamina D',
-            'Pasteurizada: Sí',
-            'Presentación: Cartón de 1 Litro',
+            'Pasteurizada: SÃ­',
+            'PresentaciÃ³n: CartÃ³n de 1 Litro',
         ],
     },
 
     queso_gorgonzola: {
-        descripcion: 'Queso Gorgonzola italiano, con su característico sabor fuerte y cremoso. Perfecto para tablas de quesos, pastas y salsas gourmet.',
+        description: 'Queso Gorgonzola italiano, con su caracterÃ­stico sabor fuerte y cremoso. Perfecto para tablas de quesos, pastas y salsas gourmet.',
         detalles: [
             'Tipo: Queso azul',
             'Origen: Italia',
@@ -518,99 +518,99 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     queso_gouda: {
-        descripcion: 'Queso Gouda holandés, cremoso y de sabor suave. Ideal para sándwiches, tablas de quesos y gratinados.',
+        description: 'Queso Gouda holandÃ©s, cremoso y de sabor suave. Ideal para sÃ¡ndwiches, tablas de quesos y gratinados.',
         detalles: [
             'Tipo: Queso semiduro',
             'Origen: Holanda',
             'Sabor: Suave y cremoso',
-            'Uso: Sándwiches y gratinados',
+            'Uso: SÃ¡ndwiches y gratinados',
             'Venta: Por unidad',
         ],
     },
 
     yogurt_fresa_yoka: {
-        descripcion: 'Yogurt de Fresa Yoka, cremoso y delicioso. Con trozos de fresa real, es la merienda perfecta para niños y adultos.',
+        description: 'Yogurt de Fresa Yoka, cremoso y delicioso. Con trozos de fresa real, es la merienda perfecta para niÃ±os y adultos.',
         detalles: [
             'Tipo: Yogurt con frutas',
             'Sabor: Fresa',
             'Marca: Yoka',
-            'Beneficios: Probióticos y calcio',
-            'Presentación: Vaso de 150g',
+            'Beneficios: ProbiÃ³ticos y calcio',
+            'PresentaciÃ³n: Vaso de 150g',
         ],
     },
 
     yogurt_natural_rica: {
-        descripcion: 'Yogurt Natural Rica, sin azúcar añadida y lleno de probióticos. Perfecto para una dieta saludable, solo o mezclado con frutas.',
+        description: 'Yogurt Natural Rica, sin azÃºcar aÃ±adida y lleno de probiÃ³ticos. Perfecto para una dieta saludable, solo o mezclado con frutas.',
         detalles: [
             'Tipo: Yogurt Natural',
             'Marca: Rica',
-            'Azúcar añadida: Sin',
-            'Beneficios: Probióticos y calcio',
-            'Presentación: Vaso de 200g',
+            'AzÃºcar aÃ±adida: Sin',
+            'Beneficios: ProbiÃ³ticos y calcio',
+            'PresentaciÃ³n: Vaso de 200g',
         ],
     },
 
-    // ─── ELECTRODOMÉSTICOS / CLIMATIZACIÓN ────────────────────────────────────
+    // â”€â”€â”€ ELECTRODOMÃ‰STICOS / CLIMATIZACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     'aire-acondicionado_tecnomaster': {
-        descripcion: 'El Aire Acondicionado Tecnomaster ofrece un rendimiento confiable y eficiente para mantener cualquier espacio fresco. Diseñado con tecnología moderna que optimiza el consumo energético y brinda un enfriamiento uniforme.',
+        description: 'El Aire Acondicionado Tecnomaster ofrece un rendimiento confiable y eficiente para mantener cualquier espacio fresco. DiseÃ±ado con tecnologÃ­a moderna que optimiza el consumo energÃ©tico y brinda un enfriamiento uniforme.',
         detalles: [
-            'Alta eficiencia energética',
+            'Alta eficiencia energÃ©tica',
             'Modo silencioso',
             'Control remoto incluido',
-            'Función de temporizador',
-            'Diseño moderno y compacto',
+            'FunciÃ³n de temporizador',
+            'DiseÃ±o moderno y compacto',
         ],
     },
 
     'aire-acondicionado_whirlpool': {
-        descripcion: 'El Aire Acondicionado Whirlpool combina potencia y eficiencia energética en un diseño elegante. Ideal para enfriar grandes espacios con un mínimo consumo eléctrico.',
+        description: 'El Aire Acondicionado Whirlpool combina potencia y eficiencia energÃ©tica en un diseÃ±o elegante. Ideal para enfriar grandes espacios con un mÃ­nimo consumo elÃ©ctrico.',
         detalles: [
             'Potencia de enfriamiento superior',
-            'Tecnología inverter de bajo consumo',
-            'Función calor/frío reversible',
+            'TecnologÃ­a inverter de bajo consumo',
+            'FunciÃ³n calor/frÃ­o reversible',
             'Panel digital con pantalla LED',
-            'Filtro de purificación de aire',
+            'Filtro de purificaciÃ³n de aire',
         ],
     },
 
     ventilador_daiwa: {
-        descripcion: 'El Ventilador Daiwa ofrece una circulación de aire fresca y silenciosa para cualquier habitación. Perfecto para mantener el confort en el hogar durante los días calurosos.',
+        description: 'El Ventilador Daiwa ofrece una circulaciÃ³n de aire fresca y silenciosa para cualquier habitaciÃ³n. Perfecto para mantener el confort en el hogar durante los dÃ­as calurosos.',
         detalles: [
             'Velocidades: 3 niveles',
-            'Oscilación automática',
-            'Diseño de pedestal regulable',
+            'OscilaciÃ³n automÃ¡tica',
+            'DiseÃ±o de pedestal regulable',
             'Motor silencioso y eficiente',
-            'Fácil de ensamblar',
+            'FÃ¡cil de ensamblar',
         ],
     },
 
     ventilador_kdk: {
-        descripcion: 'El Ventilador KDK es reconocido por su durabilidad y su flujo de aire potente. Una opción confiable y económica para refrescar cualquier espacio.',
+        description: 'El Ventilador KDK es reconocido por su durabilidad y su flujo de aire potente. Una opciÃ³n confiable y econÃ³mica para refrescar cualquier espacio.',
         detalles: [
             'Velocidades: 3 niveles',
-            'Aspas de gran diámetro',
-            'Motor de larga vida útil',
-            'Diseño clásico y resistente',
-            'Bajo consumo eléctrico',
+            'Aspas de gran diÃ¡metro',
+            'Motor de larga vida Ãºtil',
+            'DiseÃ±o clÃ¡sico y resistente',
+            'Bajo consumo elÃ©ctrico',
         ],
     },
 
     ventilador_pequeno: {
-        descripcion: 'Ventilador Pequeño compacto e ideal para escritorios, mesas de noche o espacios reducidos. Portátil y de fácil traslado a cualquier lugar del hogar.',
+        description: 'Ventilador PequeÃ±o compacto e ideal para escritorios, mesas de noche o espacios reducidos. PortÃ¡til y de fÃ¡cil traslado a cualquier lugar del hogar.',
         detalles: [
-            'Tamaño compacto y portátil',
+            'TamaÃ±o compacto y portÃ¡til',
             'Velocidades: 2 niveles',
             'Base antideslizante',
             'Bajo nivel de ruido',
-            'Fácil limpieza de aspas',
+            'FÃ¡cil limpieza de aspas',
         ],
     },
 
     ventilador_de_techo_kdk: {
-        descripcion: 'Ventilador de Techo KDK para una circulación de aire amplia y eficiente en toda la habitación. Con diseño moderno y motor silencioso, ideal para salas y dormitorios.',
+        description: 'Ventilador de Techo KDK para una circulaciÃ³n de aire amplia y eficiente en toda la habitaciÃ³n. Con diseÃ±o moderno y motor silencioso, ideal para salas y dormitorios.',
         detalles: [
-            'Diámetro de aspas: 56 pulgadas',
+            'DiÃ¡metro de aspas: 56 pulgadas',
             'Motor silencioso de alta eficiencia',
             'Velocidades: 3 niveles',
             'Control remoto incluido',
@@ -618,124 +618,124 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    // ─── ELECTRODOMÉSTICOS / COCINA ───────────────────────────────────────────
+    // â”€â”€â”€ ELECTRODOMÃ‰STICOS / COCINA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     nevera_lg: {
-        descripcion: 'La Nevera LG combina tecnología de enfriamiento avanzada con un diseño moderno. Su alta eficiencia energética, amplio espacio interior y funcionamiento silencioso la convierten en la elección perfecta para mantener tus alimentos frescos y organizados.',
+        description: 'La Nevera LG combina tecnologÃ­a de enfriamiento avanzada con un diseÃ±o moderno. Su alta eficiencia energÃ©tica, amplio espacio interior y funcionamiento silencioso la convierten en la elecciÃ³n perfecta para mantener tus alimentos frescos y organizados.',
         detalles: [
-            'Capacidad: 18 pies cúbicos',
-            'Tecnología: Door Cooling+ y Smart Inverter',
-            'Consumo energético: Bajo (A+)',
+            'Capacidad: 18 pies cÃºbicos',
+            'TecnologÃ­a: Door Cooling+ y Smart Inverter',
+            'Consumo energÃ©tico: Bajo (A+)',
             'Tipo: Doble puerta',
             'Color: Plateado',
         ],
     },
 
     estufa_lg: {
-        descripcion: 'La Estufa LG de gas ofrece cocción precisa, eficiente y segura. Sus amplias hornillas y encendido eléctrico automático la hacen ideal para cualquier cocina.',
+        description: 'La Estufa LG de gas ofrece cocciÃ³n precisa, eficiente y segura. Sus amplias hornillas y encendido elÃ©ctrico automÃ¡tico la hacen ideal para cualquier cocina.',
         detalles: [
             'Tipo: Gas natural',
             'Hornillas: 4 quemadores',
-            'Encendido: Eléctrico automático',
+            'Encendido: ElÃ©ctrico automÃ¡tico',
             'Horno integrado con grill',
             'Parrillas de hierro fundido',
         ],
     },
 
     'extractor-de-grasa_drija': {
-        descripcion: 'El Extractor de Grasa Drija mantiene tu cocina libre de humo, olores y vapores de grasa. Instalación fácil y funcionamiento silencioso para una cocina siempre fresca.',
+        description: 'El Extractor de Grasa Drija mantiene tu cocina libre de humo, olores y vapores de grasa. InstalaciÃ³n fÃ¡cil y funcionamiento silencioso para una cocina siempre fresca.',
         detalles: [
             'Tipo: Campana extractora',
             'Marca: Drija',
-            'Motor de alta aspiración',
+            'Motor de alta aspiraciÃ³n',
             'Filtros de grasa lavables',
-            'Iluminación LED integrada',
+            'IluminaciÃ³n LED integrada',
         ],
     },
 
     cilindro_de_gas_duragas: {
-        descripcion: 'Cilindro de Gas Duragas, el más confiable del mercado dominicano. Certificado para uso doméstico y comercial, garantizando seguridad y durabilidad en cada uso.',
+        description: 'Cilindro de Gas Duragas, el mÃ¡s confiable del mercado dominicano. Certificado para uso domÃ©stico y comercial, garantizando seguridad y durabilidad en cada uso.',
         detalles: [
             'Marca: Duragas',
             'Capacidad: 25 libras',
-            'Certificado para uso doméstico',
+            'Certificado para uso domÃ©stico',
             'Material: Acero reforzado',
-            'Válvula de seguridad incluida',
+            'VÃ¡lvula de seguridad incluida',
         ],
     },
 
     freezer_7_pies: {
-        descripcion: 'Freezer de 7 pies de capacidad, ideal para conservar grandes cantidades de alimentos congelados. Perfecto para hogares y negocios que necesitan mayor espacio de congelación.',
+        description: 'Freezer de 7 pies de capacidad, ideal para conservar grandes cantidades de alimentos congelados. Perfecto para hogares y negocios que necesitan mayor espacio de congelaciÃ³n.',
         detalles: [
-            'Capacidad: 7 pies cúbicos',
+            'Capacidad: 7 pies cÃºbicos',
             'Tipo: Congelador horizontal (chest)',
             'Temperatura regulable',
             'Canasta organizadora incluida',
-            'Sellado hermético eficiente',
+            'Sellado hermÃ©tico eficiente',
         ],
     },
 
     bebedero_tecnomaster: {
-        descripcion: 'El Bebedero Tecnomaster ofrece agua fría y caliente al instante. Ideal para oficinas, hogares y negocios que buscan comodidad e higiene en la hidratación diaria.',
+        description: 'El Bebedero Tecnomaster ofrece agua frÃ­a y caliente al instante. Ideal para oficinas, hogares y negocios que buscan comodidad e higiene en la hidrataciÃ³n diaria.',
         detalles: [
-            'Agua fría y caliente',
+            'Agua frÃ­a y caliente',
             'Marca: Tecnomaster',
             'Compatible con botellones de 5 galones',
             'Dispensador tipo push',
-            'Bandeja removible fácil de limpiar',
+            'Bandeja removible fÃ¡cil de limpiar',
         ],
     },
 
-    // ─── ELECTRODOMÉSTICOS / LAVADO ───────────────────────────────────────────
+    // â”€â”€â”€ ELECTRODOMÃ‰STICOS / LAVADO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     lavadora_lg: {
-        descripcion: 'La Lavadora LG ofrece un lavado profundo, eficiente y silencioso gracias a su motor de tecnología avanzada, ideal para hogares modernos que buscan calidad y durabilidad.',
+        description: 'La Lavadora LG ofrece un lavado profundo, eficiente y silencioso gracias a su motor de tecnologÃ­a avanzada, ideal para hogares modernos que buscan calidad y durabilidad.',
         detalles: [
             'Capacidad de 18 kg',
             'Motor inverter silencioso',
             'Panel digital inteligente',
-            'Múltiples programas de lavado',
-            'Alta eficiencia energética',
+            'MÃºltiples programas de lavado',
+            'Alta eficiencia energÃ©tica',
         ],
     },
 
     lavadora_frigidaire: {
-        descripcion: 'La Lavadora Frigidaire combina eficiencia y capacidad en un tamaño ideal para el hogar. Con múltiples ciclos de lavado y bajo consumo de agua.',
+        description: 'La Lavadora Frigidaire combina eficiencia y capacidad en un tamaÃ±o ideal para el hogar. Con mÃºltiples ciclos de lavado y bajo consumo de agua.',
         detalles: [
             'Capacidad: 12 kg',
             'Tipo: Carga frontal',
-            'Múltiples ciclos de lavado',
-            'Bajo consumo de agua y energía',
+            'MÃºltiples ciclos de lavado',
+            'Bajo consumo de agua y energÃ­a',
             'Panel de control digital',
         ],
     },
 
     lavadora_dimensions: {
-        descripcion: 'La Lavadora Dimensions es la opción económica y confiable para el hogar. Fácil de usar y con excelente desempeño en cada ciclo de lavado.',
+        description: 'La Lavadora Dimensions es la opciÃ³n econÃ³mica y confiable para el hogar. FÃ¡cil de usar y con excelente desempeÃ±o en cada ciclo de lavado.',
         detalles: [
             'Capacidad: 8 kg',
             'Tipo: Carga superior',
             'Agitador central eficiente',
-            'Programas: normal, delicado, rápido',
+            'Programas: normal, delicado, rÃ¡pido',
             'Precio accesible',
         ],
     },
 
     'lavadora-y-secadora_lg': {
-        descripcion: 'La combinación perfecta: Lavadora y Secadora LG en un solo equipo. Ahorra espacio y tiempo con tecnología de lavado y secado de última generación.',
+        description: 'La combinaciÃ³n perfecta: Lavadora y Secadora LG en un solo equipo. Ahorra espacio y tiempo con tecnologÃ­a de lavado y secado de Ãºltima generaciÃ³n.',
         detalles: [
-            'Función: Lavar y secar',
+            'FunciÃ³n: Lavar y secar',
             'Capacidad de lavado: 15 kg',
             'Motor inverter de bajo ruido',
             'Secado por vapor',
-            'Sistema AI DD (detección de carga)',
+            'Sistema AI DD (detecciÃ³n de carga)',
         ],
     },
 
     'lavadora-y-secadora_tecnomaster': {
-        descripcion: 'La Lavadora y Secadora Tecnomaster es la solución 2 en 1 que necesitas. Lava y seca en un solo ciclo con eficiencia energética y múltiples programas.',
+        description: 'La Lavadora y Secadora Tecnomaster es la soluciÃ³n 2 en 1 que necesitas. Lava y seca en un solo ciclo con eficiencia energÃ©tica y mÃºltiples programas.',
         detalles: [
-            'Función: Lavar y secar',
+            'FunciÃ³n: Lavar y secar',
             'Capacidad: 10 kg',
             'Programas: 14 ciclos',
             'Pantalla LED',
@@ -743,229 +743,229 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    // ─── TECNOLOGÍA / BOCINAS ────────────────────────────────────────────────
+    // â”€â”€â”€ TECNOLOGÃA / BOCINAS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     bocina_aiwa: {
-        descripcion: "La Bocina Aiwa ofrece un sonido potente y nítido, ideal para cualquier ocasión. Con conectividad Bluetooth de largo alcance, batería de larga duración y un diseño robusto y elegante.",
+        description: "La Bocina Aiwa ofrece un sonido potente y nÃ­tido, ideal para cualquier ocasiÃ³n. Con conectividad Bluetooth de largo alcance, baterÃ­a de larga duraciÃ³n y un diseÃ±o robusto y elegante.",
         detalles: [
             "Conectividad Bluetooth estable",
-            "Batería de larga duración",
+            "BaterÃ­a de larga duraciÃ³n",
             "Sonido envolvente de alta calidad",
             "Entrada USB y tarjeta SD",
-            "Diseño resistente y portátil",
+            "DiseÃ±o resistente y portÃ¡til",
         ],
     },
     bocina_lg: {
-        descripcion: "La Bocina LG ofrece una experiencia auditiva excepcional con tecnología de audio avanzada. Perfecta para disfrutar de tu música favorita con bajos profundos y agudos nítidos, en un diseño moderno y compacto.",
+        description: "La Bocina LG ofrece una experiencia auditiva excepcional con tecnologÃ­a de audio avanzada. Perfecta para disfrutar de tu mÃºsica favorita con bajos profundos y agudos nÃ­tidos, en un diseÃ±o moderno y compacto.",
         detalles: [
-            "Sonido de alta resolución",
-            "Bajos reforzados con tecnología LG",
+            "Sonido de alta resoluciÃ³n",
+            "Bajos reforzados con tecnologÃ­a LG",
             "Conectividad Bluetooth multidispositivo",
-            "Batería recargable integrada",
-            "Protección contra salpicaduras de agua",
+            "BaterÃ­a recargable integrada",
+            "ProtecciÃ³n contra salpicaduras de agua",
         ],
     },
     bocina_samsung: {
-        descripcion: "La Bocina Samsung combina un diseño elegante con un rendimiento sonoro potente y equilibrado. Ideal para cualquier ambiente, ofreciendo conectividad sin cables y una calidad de audio superior que llena todo el espacio.",
+        description: "La Bocina Samsung combina un diseÃ±o elegante con un rendimiento sonoro potente y equilibrado. Ideal para cualquier ambiente, ofreciendo conectividad sin cables y una calidad de audio superior que llena todo el espacio.",
         detalles: [
             "Sonido Premium de 360 grados",
-            "Integración con el ecosistema Samsung",
-            "Conexión inalámbrica instantánea",
-            "Control mediante aplicación móvil",
+            "IntegraciÃ³n con el ecosistema Samsung",
+            "ConexiÃ³n inalÃ¡mbrica instantÃ¡nea",
+            "Control mediante aplicaciÃ³n mÃ³vil",
             "Acabado sofisticado y minimalista",
         ],
     },
     bocina_stage: {
-        descripcion: "La Bocina Stage es la opción perfecta para quienes buscan potencia y claridad en un solo dispositivo. Con un diseño pensado para durar y una autonomía sorprendente, es tu compañera ideal para fiestas y viajes.",
+        description: "La Bocina Stage es la opciÃ³n perfecta para quienes buscan potencia y claridad en un solo dispositivo. Con un diseÃ±o pensado para durar y una autonomÃ­a sorprendente, es tu compaÃ±era ideal para fiestas y viajes.",
         detalles: [
             "Gran potencia de salida",
             "Modo TWS (True Wireless Stereo)",
             "Resistencia a impactos y polvo",
-            "Carga rápida mediante USB-C",
+            "Carga rÃ¡pida mediante USB-C",
             "Llamadas manos libres integradas",
         ],
     },
     bocina_tecnomaster: {
-        descripcion: "La Bocina Tecnomaster ofrece un gran rendimiento a un precio accesible. Con un sonido equilibrado, múltiples opciones de entrada y una batería que te acompaña en tus largas jornadas, es la solución práctica para tu entretenimiento.",
+        description: "La Bocina Tecnomaster ofrece un gran rendimiento a un precio accesible. Con un sonido equilibrado, mÃºltiples opciones de entrada y una baterÃ­a que te acompaÃ±a en tus largas jornadas, es la soluciÃ³n prÃ¡ctica para tu entretenimiento.",
         detalles: [
-            "Excelente relación calidad-precio",
+            "Excelente relaciÃ³n calidad-precio",
             "Radio FM integrada",
-            "Múltiples puertos: AUX, USB, SD",
-            "Liviana y fácil de transportar",
-            "Batería recargable de alta eficiencia",
+            "MÃºltiples puertos: AUX, USB, SD",
+            "Liviana y fÃ¡cil de transportar",
+            "BaterÃ­a recargable de alta eficiencia",
         ],
     },
 
-    // ─── TECNOLOGÍA / CELULARES ──────────────────────────────────────────────
+    // â”€â”€â”€ TECNOLOGÃA / CELULARES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     celular_samsung_a26: {
-        descripcion: "El Samsung A26 es el equilibrio perfecto entre rendimiento y precio. Disfruta de una pantalla fluida, gran batería y un sistema de cámaras versátil diseñado para capturar tus mejores momentos.",
+        description: "El Samsung A26 es el equilibrio perfecto entre rendimiento y precio. Disfruta de una pantalla fluida, gran baterÃ­a y un sistema de cÃ¡maras versÃ¡til diseÃ±ado para capturar tus mejores momentos.",
         detalles: [
             "Pantalla Super AMOLED fluida",
-            "Batería de larga duración con carga rápida",
-            "Sistema de cámara triple de alta resolución",
-            "Rendimiento confiable para el día a día",
+            "BaterÃ­a de larga duraciÃ³n con carga rÃ¡pida",
+            "Sistema de cÃ¡mara triple de alta resoluciÃ³n",
+            "Rendimiento confiable para el dÃ­a a dÃ­a",
             "Seguridad avanzada con sensor de huellas",
         ],
     },
     celular_samsung_a35: {
-        descripcion: "El Samsung A35 ofrece una experiencia visual envolvente con su pantalla de alta resolución y colores vibrantes. Con un procesador potente y diseño elegante, es la compañía ideal para multitarea y gaming.",
+        description: "El Samsung A35 ofrece una experiencia visual envolvente con su pantalla de alta resoluciÃ³n y colores vibrantes. Con un procesador potente y diseÃ±o elegante, es la compaÃ±Ã­a ideal para multitarea y gaming.",
         detalles: [
             "Pantalla Infinity-O con alta tasa de refresco",
             "Procesador potente para juegos y apps",
             "Resistencia al agua y al polvo (certificada)",
-            "Cámara principal con estabilización óptica (OIS)",
-            "Integración total con servicios de Samsung",
+            "CÃ¡mara principal con estabilizaciÃ³n Ã³ptica (OIS)",
+            "IntegraciÃ³n total con servicios de Samsung",
         ],
     },
     celular_s24_ultra: {
-        descripcion: "El Samsung S24 Ultra redefine la gama alta con su sistema de cámaras profesional, pantalla de máxima calidad y el potente S-Pen integrado. Diseñado para quienes buscan lo mejor en rendimiento y productividad.",
+        description: "El Samsung S24 Ultra redefine la gama alta con su sistema de cÃ¡maras profesional, pantalla de mÃ¡xima calidad y el potente S-Pen integrado. DiseÃ±ado para quienes buscan lo mejor en rendimiento y productividad.",
         detalles: [
-            "Pantalla Dynamic AMOLED 2X de última generación",
-            "Sistema de cámaras con Zoom espacial avanzado",
-            "S-Pen integrado para máxima productividad",
+            "Pantalla Dynamic AMOLED 2X de Ãºltima generaciÃ³n",
+            "Sistema de cÃ¡maras con Zoom espacial avanzado",
+            "S-Pen integrado para mÃ¡xima productividad",
             "Estructura de titanio ultra resistente",
-            "Inteligencia Artificial integrada para fotos y traducción",
+            "Inteligencia Artificial integrada para fotos y traducciÃ³n",
         ],
     },
     iphone_14: {
-        descripcion: "El iPhone 14 ofrece un rendimiento excepcional gracias a su chip avanzado y un sistema de cámaras que captura fotos increíbles en cualquier condición de luz. Seguridad, elegancia y potencia en la palma de tu mano.",
+        description: "El iPhone 14 ofrece un rendimiento excepcional gracias a su chip avanzado y un sistema de cÃ¡maras que captura fotos increÃ­bles en cualquier condiciÃ³n de luz. Seguridad, elegancia y potencia en la palma de tu mano.",
         detalles: [
-            "Sistema de dos cámaras avanzado",
-            "Modo Cine en resolución 4K Dolby Vision",
-            "Ceramic Shield, más resistente que cualquier vidrio",
-            "Batería diseñada para durar todo el día",
-            "Detección de choques y servicios de emergencia",
+            "Sistema de dos cÃ¡maras avanzado",
+            "Modo Cine en resoluciÃ³n 4K Dolby Vision",
+            "Ceramic Shield, mÃ¡s resistente que cualquier vidrio",
+            "BaterÃ­a diseÃ±ada para durar todo el dÃ­a",
+            "DetecciÃ³n de choques y servicios de emergencia",
         ],
     },
     iphone_14_pro: {
-        descripcion: "El iPhone 14 Pro eleva la experiencia móvil con la Dynamic Island, una cámara de 48 MP que captura detalles asombrosos y una pantalla siempre activa de gran brillo. Tecnología e innovación en estado puro.",
+        description: "El iPhone 14 Pro eleva la experiencia mÃ³vil con la Dynamic Island, una cÃ¡mara de 48 MP que captura detalles asombrosos y una pantalla siempre activa de gran brillo. TecnologÃ­a e innovaciÃ³n en estado puro.",
         detalles: [
-            "Dynamic Island, una forma mágica de interactuar",
-            "Cámara Gran Angular de 48 MP con ProRAW",
-            "Chip A16 Bionic para un desempeño imbatible",
+            "Dynamic Island, una forma mÃ¡gica de interactuar",
+            "CÃ¡mara Gran Angular de 48 MP con ProRAW",
+            "Chip A16 Bionic para un desempeÃ±o imbatible",
             "Pantalla ProMotion con Refresh Rate adaptable",
-            "Diseño de acero inoxidable de grado quirúrgico",
+            "DiseÃ±o de acero inoxidable de grado quirÃºrgico",
         ],
     },
 
-    // ─── TECNOLOGÍA / LAPTOPS ────────────────────────────────────────────────
+    // â”€â”€â”€ TECNOLOGÃA / LAPTOPS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     laptop_asus: {
-        descripcion: "La Laptop Asus ofrece potencia y portabilidad para profesionales y estudiantes. Con una pantalla de alta resolución y un rendimiento fluido, es la herramienta ideal para trabajar, estudiar y disfrutar contenido multimedia.",
+        description: "La Laptop Asus ofrece potencia y portabilidad para profesionales y estudiantes. Con una pantalla de alta resoluciÃ³n y un rendimiento fluido, es la herramienta ideal para trabajar, estudiar y disfrutar contenido multimedia.",
         detalles: [
-            "Procesador de última generación",
+            "Procesador de Ãºltima generaciÃ³n",
             "Pantalla con bordes ultra delgados (NanoEdge)",
-            "Teclado ergonómico retroiluminado",
-            "Gran autonomía de batería",
+            "Teclado ergonÃ³mico retroiluminado",
+            "Gran autonomÃ­a de baterÃ­a",
             "Chasis ligero y resistente",
         ],
     },
     laptop_dell: {
-        descripcion: "La Laptop Dell es sinónimo de confiabilidad y alto rendimiento. Diseñada para soportar largas jornadas de trabajo, ofrece una experiencia de uso fluida gracias a sus componentes de alta gama y diseño robusto.",
+        description: "La Laptop Dell es sinÃ³nimo de confiabilidad y alto rendimiento. DiseÃ±ada para soportar largas jornadas de trabajo, ofrece una experiencia de uso fluida gracias a sus componentes de alta gama y diseÃ±o robusto.",
         detalles: [
             "Conocida durabilidad y materiales de calidad",
-            "Pantalla anti-reflejo de alta definición",
+            "Pantalla anti-reflejo de alta definiciÃ³n",
             "Amplia capacidad de almacenamiento y RAM",
             "Excelente soporte y actualizaciones",
             "Teclado resistente a salpicaduras",
         ],
     },
     laptop_dragonx: {
-        descripcion: "La Laptop DragonX es la elección de los gamers que buscan el mejor rendimiento. Equipada con gráficos potentes y un sistema de enfriamiento avanzado, te permite disfrutar de tus juegos favoritos sin límites.",
+        description: "La Laptop DragonX es la elecciÃ³n de los gamers que buscan el mejor rendimiento. Equipada con grÃ¡ficos potentes y un sistema de enfriamiento avanzado, te permite disfrutar de tus juegos favoritos sin lÃ­mites.",
         detalles: [
-            "Tarjeta gráfica de alta gama (NVIDIA/AMD)",
-            "Sistema de ventilación de alto flujo",
+            "Tarjeta grÃ¡fica de alta gama (NVIDIA/AMD)",
+            "Sistema de ventilaciÃ³n de alto flujo",
             "Pantalla con alta tasa de refresco para gaming",
-            "Teclado mecánico/membrana optimizado",
-            "Diseño agresivo con iluminación RGB",
+            "Teclado mecÃ¡nico/membrana optimizado",
+            "DiseÃ±o agresivo con iluminaciÃ³n RGB",
         ],
     },
     laptop_hp: {
-        descripcion: "La Laptop HP combina un diseño elegante con funciones inteligentes que facilitan tu día a día. Potente, versátil y segura, es ideal para quienes buscan un equipo equilibrado para la oficina o el hogar.",
+        description: "La Laptop HP combina un diseÃ±o elegante con funciones inteligentes que facilitan tu dÃ­a a dÃ­a. Potente, versÃ¡til y segura, es ideal para quienes buscan un equipo equilibrado para la oficina o el hogar.",
         detalles: [
-            "Diseño elegante con acabados premium",
-            "Cámara HD con obturador de privacidad",
-            "Carga rápida optimizada",
+            "DiseÃ±o elegante con acabados premium",
+            "CÃ¡mara HD con obturador de privacidad",
+            "Carga rÃ¡pida optimizada",
             "Audio de alta fidelidad (B&O u otros)",
             "Seguridad integrada por hardware",
         ],
     },
     laptop_lenovo: {
-        descripcion: "La Laptop Lenovo destaca por su versatilidad y eficiencia. Ya sea para productividad empresarial o uso creativo, sus funciones avanzadas y diseño inteligente te permiten lograr más en menos tiempo.",
+        description: "La Laptop Lenovo destaca por su versatilidad y eficiencia. Ya sea para productividad empresarial o uso creativo, sus funciones avanzadas y diseÃ±o inteligente te permiten lograr mÃ¡s en menos tiempo.",
         detalles: [
             "Famoso teclado AccuType para mayor comodidad",
             "Bisagra de apertura de 180 grados",
-            "Batería de larga duración con carga rápida",
-            "Software de optimización de sistema Lenovo",
-            "Excelente relación portabilidad-desempeño",
+            "BaterÃ­a de larga duraciÃ³n con carga rÃ¡pida",
+            "Software de optimizaciÃ³n de sistema Lenovo",
+            "Excelente relaciÃ³n portabilidad-desempeÃ±o",
         ],
     },
 
-    // ─── TECNOLOGÍA / TABLETS ────────────────────────────────────────────────
+    // â”€â”€â”€ TECNOLOGÃA / TABLETS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     tablet_apple: {
-        descripcion: "La Tablet Apple combina rendimiento excepcional, pantalla de alta resolución y una experiencia fluida diseñada para trabajar, estudiar y disfrutar contenido multimedia con la mejor calidad.",
+        description: "La Tablet Apple combina rendimiento excepcional, pantalla de alta resoluciÃ³n y una experiencia fluida diseÃ±ada para trabajar, estudiar y disfrutar contenido multimedia con la mejor calidad.",
         detalles: [
-            "Pantalla Retina de alta resolución",
-            "Procesador Apple rápido y eficiente",
+            "Pantalla Retina de alta resoluciÃ³n",
+            "Procesador Apple rÃ¡pido y eficiente",
             "Ecosistema fluido con iCloud y App Store",
-            "Batería de larga duración",
-            "Diseño premium, ligero y resistente",
+            "BaterÃ­a de larga duraciÃ³n",
+            "DiseÃ±o premium, ligero y resistente",
         ],
     },
     tablet_rted: {
-        descripcion: "La Tablet RTED ofrece un rendimiento confiable con excelente fluidez para multitarea. Perfecta para estudiar, trabajar y disfrutar contenidos multimedia gracias a su pantalla de alta definición, procesador eficiente y diseño portátil.",
+        description: "La Tablet RTED ofrece un rendimiento confiable con excelente fluidez para multitarea. Perfecta para estudiar, trabajar y disfrutar contenidos multimedia gracias a su pantalla de alta definiciÃ³n, procesador eficiente y diseÃ±o portÃ¡til.",
         detalles: [
-            "Excelente relación calidad-precio",
-            "Pantalla amplia y nítida",
-            "Ideal para navegación y apps educativas",
+            "Excelente relaciÃ³n calidad-precio",
+            "Pantalla amplia y nÃ­tida",
+            "Ideal para navegaciÃ³n y apps educativas",
             "Memoria expandible mediante microSD",
-            "Batería optimizada para el día a día",
+            "BaterÃ­a optimizada para el dÃ­a a dÃ­a",
         ],
     },
     tablet_samsung: {
-        descripcion: "La Tablet Samsung es una excelente opción para quienes buscan rendimiento, fluidez y una pantalla de alta calidad. Perfecta para estudiar, trabajar y disfrutar contenido multimedia gracias a su diseño moderno, batería duradera y ecosistema Samsung.",
+        description: "La Tablet Samsung es una excelente opciÃ³n para quienes buscan rendimiento, fluidez y una pantalla de alta calidad. Perfecta para estudiar, trabajar y disfrutar contenido multimedia gracias a su diseÃ±o moderno, baterÃ­a duradera y ecosistema Samsung.",
         detalles: [
-            "Pantalla vibrante con tecnología AMOLED/LCD",
+            "Pantalla vibrante con tecnologÃ­a AMOLED/LCD",
             "Procesador potente para multitarea",
-            "Compatibilidad con S-Pen (según modelo)",
+            "Compatibilidad con S-Pen (segÃºn modelo)",
             "Modo DeX para experiencia de escritorio",
-            "Integración con el ecosistema Galaxy",
+            "IntegraciÃ³n con el ecosistema Galaxy",
         ],
     },
     tablet_tcl: {
-        descripcion: "La Tablet TCL ofrece un excelente equilibrio entre rendimiento y portabilidad. Ideal para estudiar, trabajar o disfrutar contenido multimedia gracias a su pantalla brillante, procesador eficiente y batería de larga duración.",
+        description: "La Tablet TCL ofrece un excelente equilibrio entre rendimiento y portabilidad. Ideal para estudiar, trabajar o disfrutar contenido multimedia gracias a su pantalla brillante, procesador eficiente y baterÃ­a de larga duraciÃ³n.",
         detalles: [
-            "Tecnología de pantalla protectora de vista",
+            "TecnologÃ­a de pantalla protectora de vista",
             "Experiencia visual envolvente",
-            "Ligera y fácil de transportar",
-            "Interfaz amigable y rápida",
+            "Ligera y fÃ¡cil de transportar",
+            "Interfaz amigable y rÃ¡pida",
             "Conectividad Wi-Fi estable",
         ],
     },
     tablet_tecnomaster: {
-        descripcion: "La Tablet Tecnomaster es ideal para usuarios que buscan una excelente relación entre rendimiento, portabilidad y funciones para el día a día. Diseñada para estudiar, trabajar y consumir contenido con fluidez y gran autonomía.",
+        description: "La Tablet Tecnomaster es ideal para usuarios que buscan una excelente relaciÃ³n entre rendimiento, portabilidad y funciones para el dÃ­a a dÃ­a. DiseÃ±ada para estudiar, trabajar y consumir contenido con fluidez y gran autonomÃ­a.",
         detalles: [
             "Rendimiento confiable para el trabajo",
-            "Pantalla de alta definición",
-            "Diseño robusto y duradero",
+            "Pantalla de alta definiciÃ³n",
+            "DiseÃ±o robusto y duradero",
             "Varias opciones de conectividad",
-            "Excelente duración de batería",
+            "Excelente duraciÃ³n de baterÃ­a",
         ],
     },
 
-    // ─── TECNOLOGÍA / TELEVISORES ────────────────────────────────────────────
+    // â”€â”€â”€ TECNOLOGÃA / TELEVISORES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     televisor_led_50: {
-        descripcion: "El Televisor LED de 50 pulgadas ofrece una excelente experiencia visual gracias a su amplia pantalla, colores intensos y resolución nítida. Ideal para salas, habitaciones o espacios donde busques una pantalla grande con gran rendimiento.",
+        description: "El Televisor LED de 50 pulgadas ofrece una excelente experiencia visual gracias a su amplia pantalla, colores intensos y resoluciÃ³n nÃ­tida. Ideal para salas, habitaciones o espacios donde busques una pantalla grande con gran rendimiento.",
         detalles: [
             "Pantalla LED de 50 pulgadas",
             "Excelente nitidez y colores brillantes",
-            "Interfaz moderna y fácil de usar",
-            "Compatible con múltiples dispositivos",
-            "Diseño elegante y delgado",
+            "Interfaz moderna y fÃ¡cil de usar",
+            "Compatible con mÃºltiples dispositivos",
+            "DiseÃ±o elegante y delgado",
         ],
     },
     televisor_led_lg: {
-        descripcion: "El Televisor LED LG ofrece una imagen nítida con colores realistas gracias a su avanzado panel LED. Cuenta con sistema Smart TV para acceder a tus aplicaciones favoritas y un diseño moderno que se adapta a cualquier espacio.",
+        description: "El Televisor LED LG ofrece una imagen nÃ­tida con colores realistas gracias a su avanzado panel LED. Cuenta con sistema Smart TV para acceder a tus aplicaciones favoritas y un diseÃ±o moderno que se adapta a cualquier espacio.",
         detalles: [
-            "Tecnología de panel IPS para mejores ángulos",
+            "TecnologÃ­a de panel IPS para mejores Ã¡ngulos",
             "Procesador de imagen con IA integrada",
             "Sonido envolvente de alta fidelidad",
             "Sistema operativo WebOS fluido",
@@ -973,77 +973,77 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
     televisor_led_samsung: {
-        descripcion: "El Televisor LED Samsung ofrece una experiencia visual clara y vibrante, ideal para salas, dormitorios o espacios de entretenimiento. Con calidad Full HD/4K (según modelo) y acceso a aplicaciones inteligentes, es perfecto para disfrutar tus series, juegos y películas.",
+        description: "El Televisor LED Samsung ofrece una experiencia visual clara y vibrante, ideal para salas, dormitorios o espacios de entretenimiento. Con calidad Full HD/4K (segÃºn modelo) y acceso a aplicaciones inteligentes, es perfecto para disfrutar tus series, juegos y pelÃ­culas.",
         detalles: [
-            "Colores vibrantes con tecnología Crystal LED",
-            "Diseño sin bordes en tres lados",
-            "Mando a distancia único para todos tus dispositivos",
+            "Colores vibrantes con tecnologÃ­a Crystal LED",
+            "DiseÃ±o sin bordes en tres lados",
+            "Mando a distancia Ãºnico para todos tus dispositivos",
             "Compatible con asistentes de voz",
-            "Modo de juego automático para mayor fluidez",
+            "Modo de juego automÃ¡tico para mayor fluidez",
         ],
     },
     televisor_led_tecnomaster: {
-        descripcion: "El Televisor LED Tecnomaster combina buena calidad de imagen con un diseño elegante. Su panel LED ofrece colores intensos, excelente brillo y nitidez. Ideal para disfrutar tus programas, películas y contenido favorito con un rendimiento estable.",
+        description: "El Televisor LED Tecnomaster combina buena calidad de imagen con un diseÃ±o elegante. Su panel LED ofrece colores intensos, excelente brillo y nitidez. Ideal para disfrutar tus programas, pelÃ­culas y contenido favorito con un rendimiento estable.",
         detalles: [
-            "Resolución de alta definición",
+            "ResoluciÃ³n de alta definiciÃ³n",
             "Sintonizador digital integrado",
-            "Múltiples entradas HDMI y USB",
-            "Diseño robusto y duradero",
-            "Bajo consumo de energía",
+            "MÃºltiples entradas HDMI y USB",
+            "DiseÃ±o robusto y duradero",
+            "Bajo consumo de energÃ­a",
         ],
     },
     televisor_samsung_75_pulgadas: {
-        descripcion: "El Televisor Samsung de 75 pulgadas ofrece una experiencia visual impresionante con resolución Ultra HD 4K, colores vibrantes y tecnologías avanzadas de imagen. Ideal para salas grandes, gaming y cine en casa.",
+        description: "El Televisor Samsung de 75 pulgadas ofrece una experiencia visual impresionante con resoluciÃ³n Ultra HD 4K, colores vibrantes y tecnologÃ­as avanzadas de imagen. Ideal para salas grandes, gaming y cine en casa.",
         detalles: [
             "Pantalla gigante de 75 pulgadas LED",
-            "Resolución 4K UHD para detalles asombrosos",
-            "Tecnología HDR para colores más realistas",
+            "ResoluciÃ³n 4K UHD para detalles asombrosos",
+            "TecnologÃ­a HDR para colores mÃ¡s realistas",
             "Smart TV con acceso a tus apps favoritas",
-            "Diseño refinado que complementa cualquier espacio",
+            "DiseÃ±o refinado que complementa cualquier espacio",
         ],
     },
 
 
-    // ─── FARMACIA / ANALGÉSICOS ──────────────────────────────────────────────
+    // â”€â”€â”€ FARMACIA / ANALGÃ‰SICOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     tylenol: {
-        descripcion: 'Tylenol Analgésico es eficaz para aliviar dolores leves y moderados. Seguro y confiable para el uso diario según indicaciones del envase.',
+        description: 'Tylenol AnalgÃ©sico es eficaz para aliviar dolores leves y moderados. Seguro y confiable para el uso diario segÃºn indicaciones del envase.',
         detalles: [
-            'Tipo: Analgésico',
-            'Presentación: Tabletas / Cápsulas',
-            'Dosis recomendada: Según indicaciones del envase',
+            'Tipo: AnalgÃ©sico',
+            'PresentaciÃ³n: Tabletas / CÃ¡psulas',
+            'Dosis recomendada: SegÃºn indicaciones del envase',
             'Contenido: 20 unidades',
-            'Beneficios: Alivio el dolor, seguro, confiable y fácil de usar',
+            'Beneficios: Alivio el dolor, seguro, confiable y fÃ¡cil de usar',
         ],
     },
 
     equate_analgesico: {
-        descripcion: 'El Analgésico Equate proporciona un alivio efectivo contra el dolor y la fiebre. Una opción económica y de alta calidad para el botiquín del hogar.',
+        description: 'El AnalgÃ©sico Equate proporciona un alivio efectivo contra el dolor y la fiebre. Una opciÃ³n econÃ³mica y de alta calidad para el botiquÃ­n del hogar.',
         detalles: [
             'Marca: Equate',
             'Uso: Alivio de dolor y fiebre',
-            'Presentación: Tabletas',
+            'PresentaciÃ³n: Tabletas',
             'Eficacia comprobada',
-            'Relación calidad-precio excelente',
+            'RelaciÃ³n calidad-precio excelente',
         ],
     },
 
     flanax: {
-        descripcion: 'Flanax Analgésico es potente para el alivio de dolores musculares, de espalda y articulares. Su efecto prolongado permite retomar las actividades diarias sin molestias.',
+        description: 'Flanax AnalgÃ©sico es potente para el alivio de dolores musculares, de espalda y articulares. Su efecto prolongado permite retomar las actividades diarias sin molestias.',
         detalles: [
             'Efecto prolongado (hasta 12 horas)',
             'Ideal para dolores musculares y articulares',
-            'Reduce la inflamación',
-            'Fácil de ingerir',
-            'Resultados rápidos',
+            'Reduce la inflamaciÃ³n',
+            'FÃ¡cil de ingerir',
+            'Resultados rÃ¡pidos',
         ],
     },
 
     thera_gesic: {
-        descripcion: 'Thera-Gesic es una crema analgésica de acción tópica que penetra profundamente para aliviar el dolor muscular y de articulaciones al instante.',
+        description: 'Thera-Gesic es una crema analgÃ©sica de acciÃ³n tÃ³pica que penetra profundamente para aliviar el dolor muscular y de articulaciones al instante.',
         detalles: [
-            'Tipo: Crema tópica',
-            'Acción rápida y profunda',
+            'Tipo: Crema tÃ³pica',
+            'AcciÃ³n rÃ¡pida y profunda',
             'No grasosa',
             'Ideal para deportistas',
             'Alivio local del dolor',
@@ -1051,64 +1051,64 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     vaporizing: {
-        descripcion: 'Vaporizing es un ungüento tópico que ayuda a aliviar la congestión nasal y la tos, además de proporcionar alivio a dolores musculares leves.',
+        description: 'Vaporizing es un ungÃ¼ento tÃ³pico que ayuda a aliviar la congestiÃ³n nasal y la tos, ademÃ¡s de proporcionar alivio a dolores musculares leves.',
         detalles: [
-            'Uso: Tópico e inhalatorio',
-            'Alivia la congestión y la tos',
+            'Uso: TÃ³pico e inhalatorio',
+            'Alivia la congestiÃ³n y la tos',
             'Efecto refrescante',
             'Ideal para resfriados',
             'Multiuso',
         ],
     },
 
-    // ─── FARMACIA / ANTIGRIPALES Y RESFRIADO ──────────────────────────────────
+    // â”€â”€â”€ FARMACIA / ANTIGRIPALES Y RESFRIADO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     theraflu: {
-        descripcion: 'Theraflu es un medicamento diseñado para aliviar los síntomas del resfriado y la gripe, proporcionando alivio rápido y comodidad durante el día y la noche.',
+        description: 'Theraflu es un medicamento diseÃ±ado para aliviar los sÃ­ntomas del resfriado y la gripe, proporcionando alivio rÃ¡pido y comodidad durante el dÃ­a y la noche.',
         detalles: [
             'Tipo: Antigripal en polvo',
-            'Preparación: Disolver en agua caliente',
+            'PreparaciÃ³n: Disolver en agua caliente',
             'Beneficios: Alivio reconfortante, descongestionante',
-            'Sabor: Limón miel',
+            'Sabor: LimÃ³n miel',
             'Contenido: 6 sobres',
         ],
     },
 
     antiflu_des: {
-        descripcion: 'Antiflu-Des es un antigripal de múltiple acción que combate los síntomas del resfriado, incluyendo la fiebre y el malestar general.',
+        description: 'Antiflu-Des es un antigripal de mÃºltiple acciÃ³n que combate los sÃ­ntomas del resfriado, incluyendo la fiebre y el malestar general.',
         detalles: [
-            'Acción múltiple',
+            'AcciÃ³n mÃºltiple',
             'Combate fiebre y malestar',
-            'Dosis: 1 cápsula cada 8 horas',
+            'Dosis: 1 cÃ¡psula cada 8 horas',
             'Marca reconocida',
             'Alivio integral',
         ],
     },
 
     coldyflu: {
-        descripcion: 'Coldyflu ofrece una fórmula avanzada para el alivio de la gripe y el resfriado común, ayudando a despejar las vías respiratorias.',
+        description: 'Coldyflu ofrece una fÃ³rmula avanzada para el alivio de la gripe y el resfriado comÃºn, ayudando a despejar las vÃ­as respiratorias.',
         detalles: [
-            'Fórmula avanzada',
-            'Despeja vías respiratorias',
-            'Ideal para resfriado común',
-            'Efecto rápido',
-            'Presentación en comprimidos',
+            'FÃ³rmula avanzada',
+            'Despeja vÃ­as respiratorias',
+            'Ideal para resfriado comÃºn',
+            'Efecto rÃ¡pido',
+            'PresentaciÃ³n en comprimidos',
         ],
     },
 
     mucinex: {
-        descripcion: 'Mucinex ayuda a aflojar la mucosidad y adelgazar las secreciones bronquiales para que la tos sea más productiva y las vías respiratorias se limpien.',
+        description: 'Mucinex ayuda a aflojar la mucosidad y adelgazar las secreciones bronquiales para que la tos sea mÃ¡s productiva y las vÃ­as respiratorias se limpien.',
         detalles: [
             'Expectorante potente',
-            'Alivia la congestión de pecho',
-            'Duración: Hasta 12 horas',
-            'Facilita la respiración',
-            'Tabletas de liberación prolongada',
+            'Alivia la congestiÃ³n de pecho',
+            'DuraciÃ³n: Hasta 12 horas',
+            'Facilita la respiraciÃ³n',
+            'Tabletas de liberaciÃ³n prolongada',
         ],
     },
 
     nyquil: {
-        descripcion: 'NyQuil proporciona un alivio nocturno para los peores síntomas del resfriado y la gripe, ayudándote a descansar mejor para despertar renovado.',
+        description: 'NyQuil proporciona un alivio nocturno para los peores sÃ­ntomas del resfriado y la gripe, ayudÃ¡ndote a descansar mejor para despertar renovado.',
         detalles: [
             'Alivio nocturno',
             'Ayuda a descansar mejor',
@@ -1118,46 +1118,46 @@ export const productPageData: Record<string, ProductPageData> = {
         ],
     },
 
-    // ─── FARMACIA / DERMOCOSMÉTICA ────────────────────────────────────────────
+    // â”€â”€â”€ FARMACIA / DERMOCOSMÃ‰TICA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     hidratante_cerave: {
-        descripcion: 'La Crema Hidratante Cerave es ideal para pieles secas a muy secas, proporcionando hidratación profunda y restaurando la barrera protectora de la piel.',
+        description: 'La Crema Hidratante Cerave es ideal para pieles secas a muy secas, proporcionando hidrataciÃ³n profunda y restaurando la barrera protectora de la piel.',
         detalles: [
             'Tipo: Crema hidratante corporal y facial',
-            'Ingredientes: 3 ceramidas esenciales, Ácido hialurónico',
-            'Tecnología: MVE para liberación prolongada de hidratación',
-            'Beneficios: No comedogénica, sin perfume, apta para todo tipo de piel',
+            'Ingredientes: 3 ceramidas esenciales, Ãcido hialurÃ³nico',
+            'TecnologÃ­a: MVE para liberaciÃ³n prolongada de hidrataciÃ³n',
+            'Beneficios: No comedogÃ©nica, sin perfume, apta para todo tipo de piel',
             'Contenido: 340g',
         ],
     },
 
     acido_hialuronico: {
-        descripcion: 'El Ácido Hialurónico en serum ayuda a mantener la piel hidratada, firme y con un aspecto más joven, reduciendo las líneas de expresión.',
+        description: 'El Ãcido HialurÃ³nico en serum ayuda a mantener la piel hidratada, firme y con un aspecto mÃ¡s joven, reduciendo las lÃ­neas de expresiÃ³n.',
         detalles: [
-            'Hidratación intensa',
-            'Reduce líneas de expresión',
+            'HidrataciÃ³n intensa',
+            'Reduce lÃ­neas de expresiÃ³n',
             'Para todo tipo de piel',
-            'Textura ligera y absorción rápida',
+            'Textura ligera y absorciÃ³n rÃ¡pida',
             'Efecto reafirmante',
         ],
     },
 
     hidratante_eucerin: {
-        descripcion: 'Eucerin Hidratante es una fórmula dermatológica diseñada para proteger y fortalecer la barrera de la piel, ideal para pieles sensibles.',
+        description: 'Eucerin Hidratante es una fÃ³rmula dermatolÃ³gica diseÃ±ada para proteger y fortalecer la barrera de la piel, ideal para pieles sensibles.',
         detalles: [
-            'Dermatológicamente probado',
+            'DermatolÃ³gicamente probado',
             'Ideal para piel sensible',
             'Sin fragancias ni colorantes',
             'Fortalece la piel',
-            'Hidratación de larga duración',
+            'HidrataciÃ³n de larga duraciÃ³n',
         ],
     },
 
     hidratante_grande: {
-        descripcion: 'CeraVe Crema Hidratante en presentación grande, perfecta para el cuidado diario de toda la familia, asegurando hidratación continua.',
+        description: 'CeraVe Crema Hidratante en presentaciÃ³n grande, perfecta para el cuidado diario de toda la familia, asegurando hidrataciÃ³n continua.',
         detalles: [
-            'Presentación: XL (454g)',
-            'Larga duración',
+            'PresentaciÃ³n: XL (454g)',
+            'Larga duraciÃ³n',
             'Mismos beneficios Cerave',
             'Ideal para uso familiar',
             'Cuidado corporal completo',
@@ -1165,45 +1165,45 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     retinol: {
-        descripcion: 'El Retinol ayuda a renovar la superficie de la piel y a mejorar su textura, reduciendo manchas y signos de la edad de manera efectiva.',
+        description: 'El Retinol ayuda a renovar la superficie de la piel y a mejorar su textura, reduciendo manchas y signos de la edad de manera efectiva.',
         detalles: [
             'Antienvejecimiento',
             'Mejora la textura de la piel',
             'Reduce manchas oscuras',
-            'Estimula la renovación celular',
+            'Estimula la renovaciÃ³n celular',
             'Uso nocturno recomendado',
         ],
     },
 
     serum_vitaminac: {
-        descripcion: 'El Serum de Vitamina C aporta luminosidad y protección antioxidante a la piel, ayudando a unificar el tono y prevenir el daño ambiental.',
+        description: 'El Serum de Vitamina C aporta luminosidad y protecciÃ³n antioxidante a la piel, ayudando a unificar el tono y prevenir el daÃ±o ambiental.',
         detalles: [
             'Antioxidante potente',
-            'Aporta luminosidad instantánea',
+            'Aporta luminosidad instantÃ¡nea',
             'Unifica el tono de piel',
-            'Protección contra radicales libres',
-            'Ligero y de fácil aplicación',
+            'ProtecciÃ³n contra radicales libres',
+            'Ligero y de fÃ¡cil aplicaciÃ³n',
         ],
     },
 
-    // ─── FARMACIA / VITAMINAS Y MINERALES ─────────────────────────────────────
+    // â”€â”€â”€ FARMACIA / VITAMINAS Y MINERALES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     multivitaminico: {
-        descripcion: 'Suplemento completo que proporciona una amplia gama de vitaminas y minerales esenciales para mantener la energía y el bienestar general diario.',
+        description: 'Suplemento completo que proporciona una amplia gama de vitaminas y minerales esenciales para mantener la energÃ­a y el bienestar general diario.',
         detalles: [
-            'Tipo: Suplemento vitamínico diario',
+            'Tipo: Suplemento vitamÃ­nico diario',
             'Referencia: Apoyo a la salud integral',
-            'Beneficios: Más energía, mejor rendimiento mental y físico',
-            'Modo de uso: Una cápsula al día',
-            'Contenido: 60 cápsulas',
+            'Beneficios: MÃ¡s energÃ­a, mejor rendimiento mental y fÃ­sico',
+            'Modo de uso: Una cÃ¡psula al dÃ­a',
+            'Contenido: 60 cÃ¡psulas',
         ],
     },
 
     flintstones: {
-        descripcion: 'Multivitamínico Flintstones en gomitas, diseñado específicamente para niños para asegurar que reciban las vitaminas necesarias para su crecimiento.',
+        description: 'MultivitamÃ­nico Flintstones en gomitas, diseÃ±ado especÃ­ficamente para niÃ±os para asegurar que reciban las vitaminas necesarias para su crecimiento.',
         detalles: [
-            'Ideal para niños',
-            'Presentación: Gomitas masticables',
+            'Ideal para niÃ±os',
+            'PresentaciÃ³n: Gomitas masticables',
             'Sabor delicioso a frutas',
             'Apoyo al crecimiento saludable',
             'Contiene vitaminas A, C, D, E',
@@ -1211,64 +1211,64 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     omega3: {
-        descripcion: 'El Suplemento de Omega 3 es esencial para la salud cardiovascular y cerebral, proporcionando ácidos grasos de alta pureza.',
+        description: 'El Suplemento de Omega 3 es esencial para la salud cardiovascular y cerebral, proporcionando Ã¡cidos grasos de alta pureza.',
         detalles: [
             'Salud cardiovascular',
-            'Apoyo a la función cerebral',
-            'Cápsulas de gel fáciles de tragar',
-            'Alta pureza y concentración',
+            'Apoyo a la funciÃ³n cerebral',
+            'CÃ¡psulas de gel fÃ¡ciles de tragar',
+            'Alta pureza y concentraciÃ³n',
             'Sin sabor a pescado',
         ],
     },
 
     vitafusion: {
-        descripcion: 'Vitafusion ofrece vitaminas en gomitas para adultos, una forma deliciosa y fácil de complementar la dieta diaria sin pastillas.',
+        description: 'Vitafusion ofrece vitaminas en gomitas para adultos, una forma deliciosa y fÃ¡cil de complementar la dieta diaria sin pastillas.',
         detalles: [
             'Para adultos',
             'Formato: Gomitas',
-            'Complemento dietético',
+            'Complemento dietÃ©tico',
             'Sabor natural',
-            'Fácil de incorporar a la rutina',
+            'FÃ¡cil de incorporar a la rutina',
         ],
     },
 
     vitaminac: {
-        descripcion: 'La Vitamina C refuerza el sistema inmunológico y actúa como un potente antioxidante para proteger las células del cuerpo.',
+        description: 'La Vitamina C refuerza el sistema inmunolÃ³gico y actÃºa como un potente antioxidante para proteger las cÃ©lulas del cuerpo.',
         detalles: [
-            'Refuerza el sistema inmunológico',
+            'Refuerza el sistema inmunolÃ³gico',
             'Antioxidante esencial',
             'Tabletas masticables',
-            'Ayuda a la absorción de hierro',
-            'Protección diaria',
+            'Ayuda a la absorciÃ³n de hierro',
+            'ProtecciÃ³n diaria',
         ],
     },
 
-    // ─── FERRETERÍA / ELECTRICIDAD ───────────────────────────────────────────
+    // â”€â”€â”€ FERRETERÃA / ELECTRICIDAD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     bombillas_led: {
-        descripcion: 'Ahorra energía con nuestras bombillas LED de larga duración, diseñadas para ofrecer una luz brillante y eficiente.',
+        description: 'Ahorra energÃ­a con nuestras bombillas LED de larga duraciÃ³n, diseÃ±adas para ofrecer una luz brillante y eficiente.',
         detalles: [
-            'Tipo: Tecnología LED',
+            'Tipo: TecnologÃ­a LED',
             'Soporte: E27',
             'Potencia: 9W (equivalente a 75W)',
-            'Vida útil: 25,000 horas',
+            'Vida Ãºtil: 25,000 horas',
             'Pack: 3 unidades',
         ],
     },
 
     bombillas: {
-        descripcion: 'Ilumina tus espacios con nuestras bombillas incandescentes de alta calidad y rendimiento confiable.',
+        description: 'Ilumina tus espacios con nuestras bombillas incandescentes de alta calidad y rendimiento confiable.',
         detalles: [
             'Tipo: Incandescente',
             'Potencia: 60W',
             'Rosca: E27',
-            'Luz cálida',
-            'Económicas',
+            'Luz cÃ¡lida',
+            'EconÃ³micas',
         ],
     },
 
     extension: {
-        descripcion: 'Extensión eléctrica reforzada para interiores y exteriores, ideal para conectar múltiples dispositivos con seguridad.',
+        description: 'ExtensiÃ³n elÃ©ctrica reforzada para interiores y exteriores, ideal para conectar mÃºltiples dispositivos con seguridad.',
         detalles: [
             'Longitud: 5 metros',
             'Tomas: 3 salidas',
@@ -1279,67 +1279,67 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     linterna: {
-        descripcion: 'Linterna LED recargable de alta potencia, compacta y resistente al agua, perfecta para emergencias y actividades al aire libre.',
+        description: 'Linterna LED recargable de alta potencia, compacta y resistente al agua, perfecta para emergencias y actividades al aire libre.',
         detalles: [
-            'Lúmenes: 1000',
-            'Batería: Ion de litio recargable',
-            'Modos: Alto, Bajo, Estroboscópico',
+            'LÃºmenes: 1000',
+            'BaterÃ­a: Ion de litio recargable',
+            'Modos: Alto, Bajo, EstroboscÃ³pico',
             'Resistencia: IPX4',
             'Material: Aluminio aeroespacial',
         ],
     },
 
     toma_corriente: {
-        descripcion: 'Toma corriente doble de pared con diseño moderno y seguridad mejorada para tu hogar u oficina.',
+        description: 'Toma corriente doble de pared con diseÃ±o moderno y seguridad mejorada para tu hogar u oficina.',
         detalles: [
             'Tipo: Duplex',
             'Voltaje: 125V',
             'Amperaje: 15A',
             'Color: Blanco',
-            'Material: Termoplástico resistente',
+            'Material: TermoplÃ¡stico resistente',
         ],
     },
 
-    // ─── FERRETERÍA / HERRAMIENTAS MANUALES ───────────────────────────────────
+    // â”€â”€â”€ FERRETERÃA / HERRAMIENTAS MANUALES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     martillo: {
-        descripcion: 'Martillo de uña con mango de fibra de vidrio para una mayor absorción de impactos y durabilidad.',
+        description: 'Martillo de uÃ±a con mango de fibra de vidrio para una mayor absorciÃ³n de impactos y durabilidad.',
         detalles: [
-            'Tipo: De uña (Carpintero)',
+            'Tipo: De uÃ±a (Carpintero)',
             'Peso: 16 oz',
             'Material: Cabeza de acero forjado',
-            'Mango: Fibra de vidrio ergonómica',
+            'Mango: Fibra de vidrio ergonÃ³mica',
             'Marca: Superior Tools',
         ],
     },
 
     destornillador: {
-        descripcion: 'Juego de destornilladores de precisión con puntas magnéticas, ideales para trabajos electrónicos y reparaciones del hogar.',
+        description: 'Juego de destornilladores de precisiÃ³n con puntas magnÃ©ticas, ideales para trabajos electrÃ³nicos y reparaciones del hogar.',
         detalles: [
             'Kit: 6 piezas',
             'Tipo: Phillips y Planos',
-            'Puntas magnéticas',
+            'Puntas magnÃ©ticas',
             'Mango antideslizante',
             'Material: Acero cromo vanadio',
         ],
     },
 
     llave_de_tuerca: {
-        descripcion: 'Llave ajustable de gran apertura, diseñada para máxima versatilidad en trabajos de mecánica y plomería.',
+        description: 'Llave ajustable de gran apertura, diseÃ±ada para mÃ¡xima versatilidad en trabajos de mecÃ¡nica y plomerÃ­a.',
         detalles: [
-            'Tamaño: 10 pulgadas',
-            'Apertura máxima: 1.5 pulgadas',
-            'Escala métrica e imperial',
+            'TamaÃ±o: 10 pulgadas',
+            'Apertura mÃ¡xima: 1.5 pulgadas',
+            'Escala mÃ©trica e imperial',
             'Acero forjado',
             'Acabado cromado',
         ],
     },
 
     pinza: {
-        descripcion: 'Pinza universal con corte lateral, indispensable para electricistas y mantenimiento general.',
+        description: 'Pinza universal con corte lateral, indispensable para electricistas y mantenimiento general.',
         detalles: [
             'Tipo: Universal (Electricista)',
-            'Tamaño: 7 pulgadas',
+            'TamaÃ±o: 7 pulgadas',
             'Mangos aislados',
             'Capacidad de corte: Alambre duro',
             'Forjado en caliente',
@@ -1347,22 +1347,22 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     sierra_de_mano: {
-        descripcion: 'Sierra de mano para madera con dientes templados para un corte rápido y preciso en carpintería.',
+        description: 'Sierra de mano para madera con dientes templados para un corte rÃ¡pido y preciso en carpinterÃ­a.',
         detalles: [
             'Largo: 20 pulgadas',
             'Dientes por pulgada: 8 TPI',
-            'Mango ergonómico de madera',
+            'Mango ergonÃ³mico de madera',
             'Hoja de acero alto carbono',
             'Corte agresivo',
         ],
     },
 
-    // ─── FERRETERÍA / PINTURAS Y ACABADOS ─────────────────────────────────────
+    // â”€â”€â”€ FERRETERÃA / PINTURAS Y ACABADOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     pinturas_tropical: {
-        descripcion: 'Pintura acrílica de secado rápido con excelente cobertura y resistencia a la intemperie, perfecta para exteriores.',
+        description: 'Pintura acrÃ­lica de secado rÃ¡pido con excelente cobertura y resistencia a la intemperie, perfecta para exteriores.',
         detalles: [
-            'Tipo: Acrílica',
+            'Tipo: AcrÃ­lica',
             'Uso: Exterior e Interior',
             'Acabado: Mate',
             'Resistencia: Rayos UV y Humedad',
@@ -1371,18 +1371,18 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     pinturas_tucan: {
-        descripcion: 'Pintura premium con acabado satinado, lavable y de bajo olor, ideal para interiores y decoración.',
+        description: 'Pintura premium con acabado satinado, lavable y de bajo olor, ideal para interiores y decoraciÃ³n.',
         detalles: [
-            'Tipo: Vinil-Acrílica',
+            'Tipo: Vinil-AcrÃ­lica',
             'Acabado: Satinado',
             'Propiedad: Lavable',
             'Bajo VOC (Olor)',
-            'Marca: Tucán',
+            'Marca: TucÃ¡n',
         ],
     },
 
     brocha: {
-        descripcion: 'Brocha profesional de cerdas naturales para un acabado suave y uniforme en cualquier superficie.',
+        description: 'Brocha profesional de cerdas naturales para un acabado suave y uniforme en cualquier superficie.',
         detalles: [
             'Ancho: 3 pulgadas',
             'Cerdas: 100% naturales',
@@ -1393,53 +1393,53 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     rodillo_de_pintura: {
-        descripcion: 'Rodillo de alta densidad para superficies lisas, minimiza el goteo y maximiza la transferencia de pintura.',
+        description: 'Rodillo de alta densidad para superficies lisas, minimiza el goteo y maximiza la transferencia de pintura.',
         detalles: [
-            'Tamaño: 9 pulgadas',
-            'Felpa: Poliéster 3/8"',
-            'Para pinturas de látex y aceite',
-            'Mango ergonómico',
+            'TamaÃ±o: 9 pulgadas',
+            'Felpa: PoliÃ©ster 3/8"',
+            'Para pinturas de lÃ¡tex y aceite',
+            'Mango ergonÃ³mico',
             'Cubierta reemplazable',
         ],
     },
 
     kit_de_pintura: {
-        descripcion: 'Kit completo para pintar que incluye bandeja, rodillo, brocha y cinta adhesiva, todo lo necesario para tu proyecto.',
+        description: 'Kit completo para pintar que incluye bandeja, rodillo, brocha y cinta adhesiva, todo lo necesario para tu proyecto.',
         detalles: [
             'Incluye: Bandeja, Rodillo (9"), Brocha (2"), Cinta',
-            'Material: Plástico resistente',
+            'Material: PlÃ¡stico resistente',
             'Ideal para principiantes',
             'Ahorro de tiempo',
-            'Fácil de limpiar',
+            'FÃ¡cil de limpiar',
         ],
     },
 
-    // ─── FERRETERÍA / PLOMERÍA ────────────────────────────────────────────────
+    // â”€â”€â”€ FERRETERÃA / PLOMERÃA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     grifo_moderno: {
-        descripcion: 'Grifo monomando con acabado cromado mate, diseño elegante y sistema de ahorro de agua integrado para una eficiencia superior.',
+        description: 'Grifo monomando con acabado cromado mate, diseÃ±o elegante y sistema de ahorro de agua integrado para una eficiencia superior.',
         detalles: [
             'Tipo: Monomando',
             'Acabado: Cromo Mate',
             'Soporte: Ahorro de Agua',
-            'Material: Latón de alta pureza',
-            'Instalación: Sencilla',
+            'Material: LatÃ³n de alta pureza',
+            'InstalaciÃ³n: Sencilla',
         ],
     },
 
     grifo: {
-        descripcion: 'Grifo tradicional de lavabo con diseño clásico y duradero, fácil de instalar y mantener.',
+        description: 'Grifo tradicional de lavabo con diseÃ±o clÃ¡sico y duradero, fÃ¡cil de instalar y mantener.',
         detalles: [
             'Tipo: Grifo de bola',
-            'Material: Latón cromado',
-            'Instalación: Rosca estándar',
-            'Larga vida útil',
-            'Diseño funcional',
+            'Material: LatÃ³n cromado',
+            'InstalaciÃ³n: Rosca estÃ¡ndar',
+            'Larga vida Ãºtil',
+            'DiseÃ±o funcional',
         ],
     },
 
     manguera_de_jardin: {
-        descripcion: 'Manguera de jardín reforzada de triple capa, ultra flexible y resistente a torceduras y climas extremos.',
+        description: 'Manguera de jardÃ­n reforzada de triple capa, ultra flexible y resistente a torceduras y climas extremos.',
         detalles: [
             'Longitud: 15 metros',
             'Material: PVC reforzado',
@@ -1450,241 +1450,241 @@ export const productPageData: Record<string, ProductPageData> = {
     },
 
     manguera: {
-        descripcion: 'Manguera flexible para conexión de inodoros o lavabos, trenzada en acero inoxidable para evitar fugas.',
+        description: 'Manguera flexible para conexiÃ³n de inodoros o lavabos, trenzada en acero inoxidable para evitar fugas.',
         detalles: [
             'Longitud: 16 pulgadas',
             'Trenzado: Acero inoxidable',
-            'Tuercas: Latón niquelado',
-            'Resistente a la corrosión',
-            'Fácil instalación',
+            'Tuercas: LatÃ³n niquelado',
+            'Resistente a la corrosiÃ³n',
+            'FÃ¡cil instalaciÃ³n',
         ],
     },
 
     tubo: {
-        descripcion: 'Tubo de PVC de alta presión para drenaje y sistemas sanitarios, ligero y fácil de cortar e instalar.',
+        description: 'Tubo de PVC de alta presiÃ³n para drenaje y sistemas sanitarios, ligero y fÃ¡cil de cortar e instalar.',
         detalles: [
-            'Diámetro: 2 pulgadas',
+            'DiÃ¡metro: 2 pulgadas',
             'Largo: 3 metros',
             'Material: PVC de alta densidad',
             'Uso: Sanitario',
-            'Resistente a químicos',
+            'Resistente a quÃ­micos',
         ],
     },
 
-    // ─── JUGUETES ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€ JUGUETES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     muneca_barbie: {
-        descripcion: "Muñeca Barbie clásica con un vestido elegante y accesorios modernos. Diseñada para inspirar la imaginación y recordar que tú puedes ser lo que quieras.",
+        description: "MuÃ±eca Barbie clÃ¡sica con un vestido elegante y accesorios modernos. DiseÃ±ada para inspirar la imaginaciÃ³n y recordar que tÃº puedes ser lo que quieras.",
         detalles: [
             "Modelo: Barbie Fashionistas",
             "Incluye: Vestido, zapatos y bolso",
-            "Material: Plástico de alta calidad",
-            "Edad: 3+ años",
+            "Material: PlÃ¡stico de alta calidad",
+            "Edad: 3+ aÃ±os",
             "Marca: Mattel"
         ]
     },
     muneca_baby_doll: {
-        descripcion: "Adorable muñeca Baby Doll con accesorios de cuidado. Fomenta la empatía y el juego imaginativo mientras los más pequeños aprenden a cuidar.",
+        description: "Adorable muÃ±eca Baby Doll con accesorios de cuidado. Fomenta la empatÃ­a y el juego imaginativo mientras los mÃ¡s pequeÃ±os aprenden a cuidar.",
         detalles: [
-            "Tipo: Muñeca de Cuidado",
-            "Incluye: Biberón y sonajero",
+            "Tipo: MuÃ±eca de Cuidado",
+            "Incluye: BiberÃ³n y sonajero",
             "Material: Vinilo suave",
-            "Edad: 2+ años",
+            "Edad: 2+ aÃ±os",
             "Marca: Little Hearts"
         ]
     },
     juguetes_de_peluqueria: {
-        descripcion: "Set completo de peluquería de juguete. Incluye un secador que emite aire suave, peines, clips coloridos y un espejo para crear estilos fantásticos y divertidos.",
+        description: "Set completo de peluquerÃ­a de juguete. Incluye un secador que emite aire suave, peines, clips coloridos y un espejo para crear estilos fantÃ¡sticos y divertidos.",
         detalles: [
             "Contenido: Secador, 2 peines, 4 clips",
             "Funcionalidad: Secador a pilas (no incl.)",
-            "Material: Plástico libre de BPA",
-            "Edad: 5+ años",
+            "Material: PlÃ¡stico libre de BPA",
+            "Edad: 5+ aÃ±os",
             "Marca: Style Stars"
         ]
     },
     kit_de_maquillaje: {
-        descripcion: "Kit de maquillaje artístico para niñas, totalmente lavable y seguro. Incluye sombras, rubores y aplicadores, ideal para fiestas, cumpleaños y juegos de disfraces.",
+        description: "Kit de maquillaje artÃ­stico para niÃ±as, totalmente lavable y seguro. Incluye sombras, rubores y aplicadores, ideal para fiestas, cumpleaÃ±os y juegos de disfraces.",
         detalles: [
             "Tipo: Maquillaje Lavable",
-            "Seguridad: No tóxico, dermatológicamente probado",
+            "Seguridad: No tÃ³xico, dermatolÃ³gicamente probado",
             "Incluye: Sombras, rubor, 2 aplicadores",
-            "Edad: 6+ años",
+            "Edad: 6+ aÃ±os",
             "Marca: Glamour Kids"
         ]
     },
     pinta_unas: {
-        descripcion: "Set de esmaltes de uñas de colores vibrantes y stickers decorativos. No tóxico, base agua y fácil de remover, perfecto para una tarde de spa y creatividad.",
+        description: "Set de esmaltes de uÃ±as de colores vibrantes y stickers decorativos. No tÃ³xico, base agua y fÃ¡cil de remover, perfecto para una tarde de spa y creatividad.",
         detalles: [
             "Contenido: 3 esmaltes, 1 hoja de stickers",
-            "Seguridad: No tóxico, lavable",
+            "Seguridad: No tÃ³xico, lavable",
             "Colores: Rosa, Morado, Azul",
-            "Edad: 4+ años",
+            "Edad: 4+ aÃ±os",
             "Marca: Little Diva"
         ]
     },
     legos_de_minecraft: {
-        descripcion: "Set LEGO Minecraft: La Cabaña-Abeja. Una aventura de construcción llena de posibilidades, con miel, abejas zumbadoras y figuras de personajes para recrear el juego en la vida real.",
+        description: "Set LEGO Minecraft: La CabaÃ±a-Abeja. Una aventura de construcciÃ³n llena de posibilidades, con miel, abejas zumbadoras y figuras de personajes para recrear el juego en la vida real.",
         detalles: [
-            "Set: La Cabaña-Abeja",
+            "Set: La CabaÃ±a-Abeja",
             "Piezas: 251 bloques",
             "Incluye: Apicultor, Osito Zombi, 3 Abejas",
-            "Edad: 8+ años",
+            "Edad: 8+ aÃ±os",
             "Marca: LEGO / Minecraft"
         ]
     },
     auto_azul: {
-        descripcion: "Auto deportivo de color azul brillante, con ruedas de fricción y detalles realistas para horas de diversión a toda velocidad.",
+        description: "Auto deportivo de color azul brillante, con ruedas de fricciÃ³n y detalles realistas para horas de diversiÃ³n a toda velocidad.",
         detalles: [
             "Color: Azul Brillante",
-            "Material: Plástico resistente",
-            "Sistema: Ruedas de Fricción",
-            "Edad: 3+ años",
+            "Material: PlÃ¡stico resistente",
+            "Sistema: Ruedas de FricciÃ³n",
+            "Edad: 3+ aÃ±os",
             "Marca: Speed Master"
         ]
     },
     avion_de_juguete: {
-        descripcion: "Avión de juguete con luces y sonidos reales de despegue. Perfecto para pequeños pilotos que aman la aventura en las alturas.",
+        description: "AviÃ³n de juguete con luces y sonidos reales de despegue. Perfecto para pequeÃ±os pilotos que aman la aventura en las alturas.",
         detalles: [
-            "Tipo: Avión con Efectos",
+            "Tipo: AviÃ³n con Efectos",
             "Funciones: Luces LED y Sonido",
             "Material: ABS de alta resistencia",
-            "Edad: 4+ años",
+            "Edad: 4+ aÃ±os",
             "Marca: Fly High"
         ]
     },
     autos_hot_wheels: {
-        descripcion: "Colección de 5 autos Hot Wheels clásicos. Diseños veloces, colores vibrantes y acabados metálicos de alta calidad para coleccionistas y niños por igual.",
+        description: "ColecciÃ³n de 5 autos Hot Wheels clÃ¡sicos. DiseÃ±os veloces, colores vibrantes y acabados metÃ¡licos de alta calidad para coleccionistas y niÃ±os por igual.",
         detalles: [
             "Contenido: Pack de 5 autos",
             "Escala: 1:64",
-            "Material: Metal y Plástico",
-            "Edad: 3+ años",
+            "Material: Metal y PlÃ¡stico",
+            "Edad: 3+ aÃ±os",
             "Marca: Hot Wheels / Mattel"
         ]
     },
     legos_de_creeper: {
-        descripcion: "Los Legos de Creeper son ideales para los niños amantes de la construcción y de Minecraft. Permiten desarrollar la creatividad, motricidad fina y habilidades de resolución de problemas mientras construyen uno de los personajes más icónicos del juego.",
+        description: "Los Legos de Creeper son ideales para los niÃ±os amantes de la construcciÃ³n y de Minecraft. Permiten desarrollar la creatividad, motricidad fina y habilidades de resoluciÃ³n de problemas mientras construyen uno de los personajes mÃ¡s icÃ³nicos del juego.",
         detalles: [
             "Serie: Minecraft",
             "Tema: Creeper BigFigure",
-            "Edad recomendada: 7+ años",
-            "Material: Plástico ABS de alta calidad",
+            "Edad recomendada: 7+ aÃ±os",
+            "Material: PlÃ¡stico ABS de alta calidad",
             "Marca: LEGO"
         ]
     },
 
-    // ─── MUEBLES Y DECORACIÓN ────────────────────────────────────────────────
+    // â”€â”€â”€ MUEBLES Y DECORACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    // Sofás
+    // SofÃ¡s
     sofa_verde: {
-        descripcion: "Sofá espacioso en color verde esmeralda. Un mueble imponente que destaca por su color vibrante y su capacidad para acoger a toda la familia con estilo.",
+        description: "SofÃ¡ espacioso en color verde esmeralda. Un mueble imponente que destaca por su color vibrante y su capacidad para acoger a toda la familia con estilo.",
         detalles: [
             "Material: Terciopelo verde esmeralda and madera noble",
             "Capacidad: 4-5 personas",
             "Estilo: Glamour Moderno",
-            "Garantía: 3 años",
+            "GarantÃ­a: 3 aÃ±os",
             "Marca: LuxuryComfort"
         ]
     },
     sofa_gris: {
-        descripcion: "Sofá contemporáneo en color gris. Con una estructura robusta y cojines extra suaves, es la elección perfecta para maratones de series y relax familiar.",
+        description: "SofÃ¡ contemporÃ¡neo en color gris. Con una estructura robusta y cojines extra suaves, es la elecciÃ³n perfecta para maratones de series y relax familiar.",
         detalles: [
             "Material: Estructura reforzada y tela resistente",
             "Plazas: 3",
             "Confort: Premium",
-            "Garantía: 2 años",
+            "GarantÃ­a: 2 aÃ±os",
             "Marca: UrbanLiving"
         ]
     },
     sofa_media_luna: {
-        descripcion: "Sofá con un diseño innovador en media luna. Ideal para crear espacios de conversación acogedores y dinámicos en salas de estar amplias.",
+        description: "SofÃ¡ con un diseÃ±o innovador en media luna. Ideal para crear espacios de conversaciÃ³n acogedores y dinÃ¡micos en salas de estar amplias.",
         detalles: [
             "Material: Espuma de alta densidad y tela premium",
             "Forma: Circular / Media Luna",
             "Uso: Salas de estar / Espera",
-            "Garantía: 1 año",
+            "GarantÃ­a: 1 aÃ±o",
             "Marca: UniqueDesign"
         ]
     },
     sofa_negro: {
-        descripcion: "Sofá elegante en color negro profundo. Su acabado premium y líneas sofisticadas aportan un toque de lujo industrial a cualquier oficina o sala de estar moderna.",
+        description: "SofÃ¡ elegante en color negro profundo. Su acabado premium y lÃ­neas sofisticadas aportan un toque de lujo industrial a cualquier oficina o sala de estar moderna.",
         detalles: [
-            "Material: Cuero sintético premium y metal",
+            "Material: Cuero sintÃ©tico premium y metal",
             "Estilo: Industrial Moderno",
             "Acabado: Negro Mate",
-            "Garantía: 5 años (estructura)",
+            "GarantÃ­a: 5 aÃ±os (estructura)",
             "Marca: EliteFurniture"
         ]
     },
     sofa_cama_blanco: {
-        descripcion: "Sofá cama en color blanco puro. Funcionalidad y diseño se unen en esta pieza versátil que se transforma fácilmente para recibir a tus invitados con el máximo confort.",
+        description: "SofÃ¡ cama en color blanco puro. Funcionalidad y diseÃ±o se unen en esta pieza versÃ¡til que se transforma fÃ¡cilmente para recibir a tus invitados con el mÃ¡ximo confort.",
         detalles: [
             "Material: Estructura de madera y tela suave",
-            "Tipo: Sofá Cama",
-            "Capacidad: 3 plazas (sofá) / 2 plazas (cama)",
-            "Garantía: 2 años",
+            "Tipo: SofÃ¡ Cama",
+            "Capacidad: 3 plazas (sofÃ¡) / 2 plazas (cama)",
+            "GarantÃ­a: 2 aÃ±os",
             "Marca: RelaxHome"
         ]
     },
 
     // Sillones
     sillon_amarillo: {
-        descripcion: "Sillón individual en color amarillo vibrante. Su diseño ergonómico y acolchado de alta densidad garantizan un confort excepcional mientras añades una pieza de acento audaz a tu sala.",
+        description: "SillÃ³n individual en color amarillo vibrante. Su diseÃ±o ergonÃ³mico y acolchado de alta densidad garantizan un confort excepcional mientras aÃ±ades una pieza de acento audaz a tu sala.",
         detalles: [
             "Material: Tela premium y madera",
-            "Estilo: Contemporáneo",
-            "Ergonomía: Alta",
-            "Garantía: 1 año",
+            "Estilo: ContemporÃ¡neo",
+            "ErgonomÃ­a: Alta",
+            "GarantÃ­a: 1 aÃ±o",
             "Marca: ComfortPlus"
         ]
     },
     sillon_azul: {
-        descripcion: "Sillón de terciopelo azul profundo. Elegancia clásica combinada con una estructura moderna de patas metálicas, ideal para un rincón de lectura sofisticado.",
+        description: "SillÃ³n de terciopelo azul profundo. Elegancia clÃ¡sica combinada con una estructura moderna de patas metÃ¡licas, ideal para un rincÃ³n de lectura sofisticado.",
         detalles: [
             "Material: Terciopelo y metal",
-            "Estilo: Clásico moderno",
+            "Estilo: ClÃ¡sico moderno",
             "Uso: Interior",
-            "Garantía: 2 años",
+            "GarantÃ­a: 2 aÃ±os",
             "Marca: EliteFurniture"
         ]
     },
     sillon_blanco: {
-        descripcion: "Sillón minimalista en color blanco puro. Su diseño de líneas limpias y tejido resistente a manchas lo hace perfecto para ambientes luminosos y modernos.",
+        description: "SillÃ³n minimalista en color blanco puro. Su diseÃ±o de lÃ­neas limpias y tejido resistente a manchas lo hace perfecto para ambientes luminosos y modernos.",
         detalles: [
             "Material: Microfibra y madera",
             "Estilo: Loft Minimalista",
             "Tratamiento: Anti-manchas",
-            "Garantía: 1 año",
+            "GarantÃ­a: 1 aÃ±o",
             "Marca: UrbanDesign"
         ]
     },
     sillon_gris: {
-        descripcion: "Sillón contemporáneo en gris jaspeado. Versátil y atemporal, este sillón se adapta a cualquier estilo de decoración ofreciendo una durabilidad superior para el uso diario.",
+        description: "SillÃ³n contemporÃ¡neo en gris jaspeado. VersÃ¡til y atemporal, este sillÃ³n se adapta a cualquier estilo de decoraciÃ³n ofreciendo una durabilidad superior para el uso diario.",
         detalles: [
-            "Material: Lino sintético y madera",
+            "Material: Lino sintÃ©tico y madera",
             "Color: Gris jaspeado",
             "Uso: Familiar",
-            "Garantía: 2 años",
+            "GarantÃ­a: 2 aÃ±os",
             "Marca: HomeStyle"
         ]
     },
     sillon_verde: {
-        descripcion: "Sillón estilo nórdico en verde olivo. Fabricado con materiales sostenibles, aporta un toque de naturaleza y frescura a tu hogar sin comprometer el estilo.",
+        description: "SillÃ³n estilo nÃ³rdico en verde olivo. Fabricado con materiales sostenibles, aporta un toque de naturaleza y frescura a tu hogar sin comprometer el estilo.",
         detalles: [
-            "Material: Algodón orgánico y roble",
+            "Material: AlgodÃ³n orgÃ¡nico y roble",
             "Sostenibilidad: Alta",
             "Estilo: Escandinavo",
-            "Garantía: 3 años",
+            "GarantÃ­a: 3 aÃ±os",
             "Marca: EcoLiving"
         ]
     },
 
     // Mesas
     mesa_de_madera: {
-        descripcion: "Mesa de comedor fabricada en madera sólida de roble de alta calidad. Su acabado natural resalta la belleza de la veta, aportando calidez y robustez a tu hogar.",
+        description: "Mesa de comedor fabricada en madera sÃ³lida de roble de alta calidad. Su acabado natural resalta la belleza de la veta, aportando calidez y robustez a tu hogar.",
         detalles: [
-            "Material: Roble sólido seleccionado",
+            "Material: Roble sÃ³lido seleccionado",
             "Acabado: Barniz natural mate",
             "Capacidad: 6-8 comensales",
             "Dimensiones: 180cm x 90cm x 75cm",
@@ -1692,40 +1692,40 @@ export const productPageData: Record<string, ProductPageData> = {
         ]
     },
     mesa_de_noche: {
-        descripcion: "Elegante mesa de noche con un diseño moderno y funcional. Incluye un cajón de suave apertura para mantener tus objetos personales organizados.",
+        description: "Elegante mesa de noche con un diseÃ±o moderno y funcional. Incluye un cajÃ³n de suave apertura para mantener tus objetos personales organizados.",
         detalles: [
             "Material: Madera MDF con acabado premium",
-            "Cajones: 1 con guías metálicas",
+            "Cajones: 1 con guÃ­as metÃ¡licas",
             "Estilo: Minimalista Urbano",
             "Dimensiones: 45cm x 40cm x 55cm",
             "Marca: SleepWell"
         ]
     },
     mesa_moderna: {
-        descripcion: "Mesa de centro con diseño vanguardista. Combina superficies de cristal templado con una estructura metálica minimalista para un estilo contemporáneo.",
+        description: "Mesa de centro con diseÃ±o vanguardista. Combina superficies de cristal templado con una estructura metÃ¡lica minimalista para un estilo contemporÃ¡neo.",
         detalles: [
             "Material: Cristal templado y acero inoxidable",
             "Estilo: Loft Moderno",
             "Uso: Mesa de centro decorativa",
-            "Garantía: 2 años",
+            "GarantÃ­a: 2 aÃ±os",
             "Marca: UrbanDesign"
         ]
     },
     mesa_oscura: {
-        descripcion: "Mesa de comedor imponente en tono ébano profundo. Su diseño sólido y majestuoso está pensado para ser la pieza central de comedores amplios.",
+        description: "Mesa de comedor imponente en tono Ã©bano profundo. Su diseÃ±o sÃ³lido y majestuoso estÃ¡ pensado para ser la pieza central de comedores amplios.",
         detalles: [
-            "Color: Ébano profundo",
+            "Color: Ã‰bano profundo",
             "Capacidad: 8-10 personas",
             "Resistencia: Alta durabilidad",
-            "Estilo: Clásico contemporáneo",
+            "Estilo: ClÃ¡sico contemporÃ¡neo",
             "Marca: EliteFurniture"
         ]
     },
     mesa_pequena: {
-        descripcion: "Mesa auxiliar de diseño exclusivo en mármol. Esta pieza destaca por el uso de materiales de lujo y una artesanía excepcional.",
+        description: "Mesa auxiliar de diseÃ±o exclusivo en mÃ¡rmol. Esta pieza destaca por el uso de materiales de lujo y una artesanÃ­a excepcional.",
         detalles: [
-            "Material: Mármol de Caoba y latón",
-            "Tipo: Edición limitada",
+            "Material: MÃ¡rmol de Caoba y latÃ³n",
+            "Tipo: EdiciÃ³n limitada",
             "Uso: Auxiliar de lujo",
             "Acabado: Pulido a mano",
             "Marca: LuxHome"
@@ -1734,225 +1734,225 @@ export const productPageData: Record<string, ProductPageData> = {
 
     // Floreros
     florero_de_plantas: {
-        descripcion: "Florero de cerámica ideal para plantas de interior. Su diseño minimalista y acabado mate aporta frescura, orden y elegancia a cualquier espacio.",
+        description: "Florero de cerÃ¡mica ideal para plantas de interior. Su diseÃ±o minimalista y acabado mate aporta frescura, orden y elegancia a cualquier espacio.",
         detalles: [
-            "Material: Cerámica de alta calidad",
-            "Estilo: Minimalista Contemporáneo",
+            "Material: CerÃ¡mica de alta calidad",
+            "Estilo: Minimalista ContemporÃ¡neo",
             "Dimensiones: 25cm x 12cm",
             "Uso: Interior exclusivamente",
             "Marca: DecorHome"
         ]
     },
     florero_de_vidrio: {
-        descripcion: "Florero de vidrio soplado artesanalmente. Su transparencia cristalina resalta la belleza de tus flores naturales, creando un ambiente de arte y sofisticación.",
+        description: "Florero de vidrio soplado artesanalmente. Su transparencia cristalina resalta la belleza de tus flores naturales, creando un ambiente de arte y sofisticaciÃ³n.",
         detalles: [
             "Material: Vidrio soplado artesanal",
-            "Estilo: Clásico Atemporal",
+            "Estilo: ClÃ¡sico Atemporal",
             "Dimensiones: 30cm x 15cm",
-            "Características: Alta transparencia, base pesada",
+            "CaracterÃ­sticas: Alta transparencia, base pesada",
             "Marca: CrystalDesign"
         ]
     },
     jarron: {
-        descripcion: "Jarrón decorativo de terracota. Con su acabado natural y textura única, este jarrón aporta un toque rústico y sofisticado a cualquier rincón.",
+        description: "JarrÃ³n decorativo de terracota. Con su acabado natural y textura Ãºnica, este jarrÃ³n aporta un toque rÃºstico y sofisticado a cualquier rincÃ³n.",
         detalles: [
             "Material: Terracota artesanal",
-            "Estilo: Rústico Moderno",
+            "Estilo: RÃºstico Moderno",
             "Color: Tonos tierra naturales",
             "Uso: Decorativo interior",
             "Marca: RusticHome"
         ]
     },
     jarrones: {
-        descripcion: "Set de jarrones decorativos en diferentes tamaños coordinados. Perfectos para crear atractivas composiciones visuales en estanterías o centros de mesa.",
+        description: "Set de jarrones decorativos en diferentes tamaÃ±os coordinados. Perfectos para crear atractivas composiciones visuales en estanterÃ­as o centros de mesa.",
         detalles: [
             "Contenido: Set de 3 piezas",
-            "Material: Cerámica esmaltada",
-            "Estilo: Contemporáneo versátil",
-            "Características: Tamaños escalonados, acabado liso",
+            "Material: CerÃ¡mica esmaltada",
+            "Estilo: ContemporÃ¡neo versÃ¡til",
+            "CaracterÃ­sticas: TamaÃ±os escalonados, acabado liso",
             "Marca: DecorHome"
         ]
     },
     tulipanes: {
-        descripcion: "Arreglo decorativo de tulipanes artificiales de tacto real. Disfruta de la belleza y delicadeza de los tulipanes durante todo el año sin necesidad de cuidados.",
+        description: "Arreglo decorativo de tulipanes artificiales de tacto real. Disfruta de la belleza y delicadeza de los tulipanes durante todo el aÃ±o sin necesidad de cuidados.",
         detalles: [
             "Tipo: Flores artificiales de tacto real",
             "Cantidad: Ramo de 10 unidades",
-            "Material: Polímero suave de alta calidad",
-            "Ventajas: Belleza duradera, fácil limpieza",
+            "Material: PolÃ­mero suave de alta calidad",
+            "Ventajas: Belleza duradera, fÃ¡cil limpieza",
             "Marca: NatureFake"
         ]
     },
 
-    // ─── ROPA / PANTALONES PARA HOMBRES ─────────────────────────────────────────
+    // â”€â”€â”€ ROPA / PANTALONES PARA HOMBRES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     pantalon_negro: {
-        descripcion: "El Pantalón Negro combina elegancia y comodidad. Su diseño moderno y su tela de alta calidad lo hacen ideal para ocasiones formales y el uso diario.",
+        description: "El PantalÃ³n Negro combina elegancia y comodidad. Su diseÃ±o moderno y su tela de alta calidad lo hacen ideal para ocasiones formales y el uso diario.",
         detalles: [
-            "Diseño elegante y moderno",
+            "DiseÃ±o elegante y moderno",
             "Tela suave y duradera",
-            "Corte ajustado y cómodo",
+            "Corte ajustado y cÃ³modo",
             "Ideal para eventos y oficina",
             "Disponible en varias tallas"
         ]
     },
     pantalones_de_golf: {
-        descripcion: "Los Pantalones de Golf están diseñados para ofrecerte el máximo rendimiento y comodidad en el campo. Su tela transpirable y flexible permite una total libertad de movimiento.",
+        description: "Los Pantalones de Golf estÃ¡n diseÃ±ados para ofrecerte el mÃ¡ximo rendimiento y comodidad en el campo. Su tela transpirable y flexible permite una total libertad de movimiento.",
         detalles: [
             "Tela transpirable y ligera",
             "Flexibilidad para mayor movimiento",
-            "Diseño moderno y deportivo",
+            "DiseÃ±o moderno y deportivo",
             "Resistente a las arrugas",
             "Ideal para el campo de golf"
         ]
     },
     pantalones_deportivos_joggers: {
-        descripcion: "Los Pantalones Deportivos Joggers combinan estilo urbano y comodidad deportiva. Perfectos para tus entrenamientos o para un look relajado en tu día a día.",
+        description: "Los Pantalones Deportivos Joggers combinan estilo urbano y comodidad deportiva. Perfectos para tus entrenamientos o para un look relajado en tu dÃ­a a dÃ­a.",
         detalles: [
-            "Diseño jogger moderno",
-            "Material suave y elástico",
-            "Cintura ajustable con cordón",
-            "Bolsillos prácticos",
+            "DiseÃ±o jogger moderno",
+            "Material suave y elÃ¡stico",
+            "Cintura ajustable con cordÃ³n",
+            "Bolsillos prÃ¡cticos",
             "Ideal para deporte o casual"
         ]
     },
     pantalones_jeans: {
-        descripcion: "Los Pantalones Jeans son un clásico que nunca pasa de moda. Con su diseño resistente y versátil, son la prenda ideal para cualquier ocasión informal.",
+        description: "Los Pantalones Jeans son un clÃ¡sico que nunca pasa de moda. Con su diseÃ±o resistente y versÃ¡til, son la prenda ideal para cualquier ocasiÃ³n informal.",
         detalles: [
-            "Diseño clásico de mezclilla",
+            "DiseÃ±o clÃ¡sico de mezclilla",
             "Tela resistente y duradera",
-            "Ajuste cómodo y versátil",
-            "Fácil de combinar",
+            "Ajuste cÃ³modo y versÃ¡til",
+            "FÃ¡cil de combinar",
             "Disponible en varios lavados"
         ]
     },
     pantalones_joggers: {
-        descripcion: "Los Pantalones Joggers ofrecen la mezcla perfecta entre comodidad y estilo. Con su ajuste relajado y su tela suave, son ideales para descansar o para un look casual.",
+        description: "Los Pantalones Joggers ofrecen la mezcla perfecta entre comodidad y estilo. Con su ajuste relajado y su tela suave, son ideales para descansar o para un look casual.",
         detalles: [
-            "Ajuste relajado y cómodo",
+            "Ajuste relajado y cÃ³modo",
             "Tela suave al tacto",
-            "Puños elásticos en los tobillos",
+            "PuÃ±os elÃ¡sticos en los tobillos",
             "Ideal para el uso diario",
             "Disponible en varios colores"
         ]
     },
 
-    // ─── ROPA / PANTALONES PARA MUJERES ─────────────────────────────────────────
+    // â”€â”€â”€ ROPA / PANTALONES PARA MUJERES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     leggings_de_licra: {
-        descripcion: "Los Leggings de Licra son flexibles, cómodos y perfectos para ejercicio, yoga o uso diario. Su tela suave permite libertad total de movimiento.",
+        description: "Los Leggings de Licra son flexibles, cÃ³modos y perfectos para ejercicio, yoga o uso diario. Su tela suave permite libertad total de movimiento.",
         detalles: [
             "Tela de licra ultra flexible",
-            "Diseño cómodo y ajustado",
+            "DiseÃ±o cÃ³modo y ajustado",
             "Suaves y ligeros",
             "Perfectos para deporte o uso diario",
             "Disponibles en varias tallas"
         ]
     },
     pantalon_acampanado: {
-        descripcion: "El Pantalón Acampanado combina estilo y comodidad. Su diseño moderno y su caída elegante lo hacen ideal para ocasiones casuales o formales.",
+        description: "El PantalÃ³n Acampanado combina estilo y comodidad. Su diseÃ±o moderno y su caÃ­da elegante lo hacen ideal para ocasiones casuales o formales.",
         detalles: [
-            "Diseño acampanado moderno",
-            "Tela suave y cómoda",
+            "DiseÃ±o acampanado moderno",
+            "Tela suave y cÃ³moda",
             "Ajuste perfecto a la cintura",
             "Ideal para uso diario o eventos",
             "Disponible en varias tallas"
         ]
     },
     pantalon_casual: {
-        descripcion: "El Pantalón Casual está diseñado para acompañarte en tu día a día. Su estilo moderno y su comodidad lo convierten en una prenda esencial para cualquier guardarropa.",
+        description: "El PantalÃ³n Casual estÃ¡ diseÃ±ado para acompaÃ±arte en tu dÃ­a a dÃ­a. Su estilo moderno y su comodidad lo convierten en una prenda esencial para cualquier guardarropa.",
         detalles: [
-            "Diseño casual y moderno",
+            "DiseÃ±o casual y moderno",
             "Tela suave y ligera",
-            "Ajuste cómodo en la cintura",
+            "Ajuste cÃ³modo en la cintura",
             "Ideal para uso diario",
             "Disponible en varias tallas"
         ]
     },
     pantalon_jean: {
-        descripcion: "El Pantalón Jean ofrece durabilidad, estilo y comodidad. Perfecto para combinar con cualquier outfit y usar en cualquier ocasión.",
+        description: "El PantalÃ³n Jean ofrece durabilidad, estilo y comodidad. Perfecto para combinar con cualquier outfit y usar en cualquier ocasiÃ³n.",
         detalles: [
-            "Diseño clásico y moderno",
+            "DiseÃ±o clÃ¡sico y moderno",
             "Tela resistente y de alta calidad",
-            "Ajuste cómodo y flexible",
+            "Ajuste cÃ³modo y flexible",
             "Ideal para uso diario",
             "Disponible en varias tallas"
         ]
     },
     pantalon_liso_mujer: {
-        descripcion: "El Pantalón Liso para Mujer combina elegancia y comodidad, ideal para el uso diario o para ocasiones semi-formales. Su diseño minimalista permite combinarlo fácilmente con diferentes estilos.",
+        description: "El PantalÃ³n Liso para Mujer combina elegancia y comodidad, ideal para el uso diario o para ocasiones semi-formales. Su diseÃ±o minimalista permite combinarlo fÃ¡cilmente con diferentes estilos.",
         detalles: [
-            "Diseño liso y elegante",
-            "Material suave y cómodo",
+            "DiseÃ±o liso y elegante",
+            "Material suave y cÃ³modo",
             "Ideal para combinar con blusas o camisetas",
             "Perfecto para uso casual o de oficina",
             "Disponible en varias tallas y colores"
         ]
     },
 
-    // ─── ROPA / PANTALONES PARA NIÑOS ───────────────────────────────────────────
+    // â”€â”€â”€ ROPA / PANTALONES PARA NIÃ‘OS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     jean_para_ninos: {
-        descripcion: "El Jean para Niños combina el estilo clásico de la mezclilla con la resistencia necesaria para el juego. Un pantalón que dura y se ve bien.",
+        description: "El Jean para NiÃ±os combina el estilo clÃ¡sico de la mezclilla con la resistencia necesaria para el juego. Un pantalÃ³n que dura y se ve bien.",
         detalles: [
             "Mezclilla reforzada en puntos clave",
             "Cintura ajustable interna",
-            "Estilo clásico de 5 bolsillos",
+            "Estilo clÃ¡sico de 5 bolsillos",
             "Efecto de lavado moderno",
             "Alta durabilidad"
         ]
     },
     licra_para_ninos: {
-        descripcion: "La Licra para Niños ofrece total libertad de movimiento para los más pequeños. Ideal para actividades deportivas o juegos activos con máxima comodidad.",
+        description: "La Licra para NiÃ±os ofrece total libertad de movimiento para los mÃ¡s pequeÃ±os. Ideal para actividades deportivas o juegos activos con mÃ¡xima comodidad.",
         detalles: [
-            "Material ultra elástico",
+            "Material ultra elÃ¡stico",
             "Costuras planas anti-rozaduras",
-            "Secado rápido",
-            "Protección contra el desgaste",
+            "Secado rÃ¡pido",
+            "ProtecciÃ³n contra el desgaste",
             "Ideal para deportes infantiles"
         ]
     },
     pantalon_deportivo: {
-        descripcion: "El Pantalón Deportivo para niños es perfecto para la educación física y el juego diario. Su material resistente aguanta el ritmo de los niños más activos.",
+        description: "El PantalÃ³n Deportivo para niÃ±os es perfecto para la educaciÃ³n fÃ­sica y el juego diario. Su material resistente aguanta el ritmo de los niÃ±os mÃ¡s activos.",
         detalles: [
             "Tela resistente y duradera",
-            "Cintura elástica con cordón",
+            "Cintura elÃ¡stica con cordÃ³n",
             "Bolsillos de seguridad",
-            "Fácil de lavar y secar",
-            "Diseño dinámico y cómodo"
+            "FÃ¡cil de lavar y secar",
+            "DiseÃ±o dinÃ¡mico y cÃ³modo"
         ]
     },
     pantalon_liso: {
-        descripcion: "El Pantalón Liso para niños es una prenda básica y versátil. Su diseño sencillo permite combinarlo fácilmente para cualquier ocasión cotidiana.",
+        description: "El PantalÃ³n Liso para niÃ±os es una prenda bÃ¡sica y versÃ¡til. Su diseÃ±o sencillo permite combinarlo fÃ¡cilmente para cualquier ocasiÃ³n cotidiana.",
         detalles: [
-            "Color sólido y elegante",
+            "Color sÃ³lido y elegante",
             "Tela suave para piel sensible",
-            "Ajuste cómodo para el juego",
+            "Ajuste cÃ³modo para el juego",
             "Resistencia a las manchas",
-            "Básico indispensable"
+            "BÃ¡sico indispensable"
         ]
     },
     pantalones_lisos_para_ninos: {
-        descripcion: "Los Pantalones Lisos para Niños ofrecen comodidad y durabilidad para el día a día. Diseñados pensando en el movimiento constante de los niños.",
+        description: "Los Pantalones Lisos para NiÃ±os ofrecen comodidad y durabilidad para el dÃ­a a dÃ­a. DiseÃ±ados pensando en el movimiento constante de los niÃ±os.",
         detalles: [
-            "Color sólido y elegante",
+            "Color sÃ³lido y elegante",
             "Tela suave para piel sensible",
-            "Ajuste cómodo para el juego",
+            "Ajuste cÃ³modo para el juego",
             "Resistencia a las manchas",
-            "Básico indispensable"
+            "BÃ¡sico indispensable"
         ]
     },
 
-    // ─── ROPA / TRAJES PARA HOMBRES ─────────────────────────────────────────────
+    // â”€â”€â”€ ROPA / TRAJES PARA HOMBRES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     traje_2_piezas: {
-        descripcion: "El Traje 2 Piezas combina elegancia y comodidad. Incluye chaqueta y pantalón confeccionados con materiales de alta calidad, perfectos para eventos formales y ocasiones especiales.",
+        description: "El Traje 2 Piezas combina elegancia y comodidad. Incluye chaqueta y pantalÃ³n confeccionados con materiales de alta calidad, perfectos para eventos formales y ocasiones especiales.",
         detalles: [
             "Corte Slim Fit moderno",
             "Tela suave y de alta calidad",
             "Forro interior sedoso",
             "Perfecto para oficina o eventos",
-            "Incluye saco y pantalón combinados"
+            "Incluye saco y pantalÃ³n combinados"
         ]
     },
     traje_azul: {
-        descripcion: "El Traje Azul combina elegancia y comodidad. Incluye chaqueta y pantalón confeccionados con materiales de alta calidad, perfectos para eventos formales y ocasiones especiales.",
+        description: "El Traje Azul combina elegancia y comodidad. Incluye chaqueta y pantalÃ³n confeccionados con materiales de alta calidad, perfectos para eventos formales y ocasiones especiales.",
         detalles: [
             "Corte Slim Fit moderno",
             "Tela suave y de alta calidad",
@@ -1962,85 +1962,86 @@ export const productPageData: Record<string, ProductPageData> = {
         ]
     },
     traje_completo: {
-        descripcion: "El Traje Completo combina elegancia y comodidad. Incluye saco, pantalón y chaleco confeccionados con materiales de alta calidad, ideales para eventos de gala.",
+        description: "El Traje Completo combina elegancia y comodidad. Incluye saco, pantalÃ³n y chaleco confeccionados con materiales de alta calidad, ideales para eventos de gala.",
         detalles: [
-            "Incluye saco, pantalón y chaleco",
-            "Diseño clásico y atemporal",
+            "Incluye saco, pantalÃ³n y chaleco",
+            "DiseÃ±o clÃ¡sico y atemporal",
             "Ideal para bodas y galas",
             "Tela de alta durabilidad",
             "Ajuste preciso"
         ]
     },
     traje_elegante: {
-        descripcion: "El Traje Elegante destaca por su acabado premium. Ideal para quienes buscan distinción y exclusividad en cada detalle para sus momentos más importantes.",
+        description: "El Traje Elegante destaca por su acabado premium. Ideal para quienes buscan distinciÃ³n y exclusividad en cada detalle para sus momentos mÃ¡s importantes.",
         detalles: [
-            "Diseño premium para ocasiones especiales",
+            "DiseÃ±o premium para ocasiones especiales",
             "Tela con acabado sutil y sofisticado",
             "Ajuste perfecto a la medida",
             "Materiales importados de alta calidad",
-            "Máxima elegancia"
+            "MÃ¡xima elegancia"
         ]
     },
     traje_negro: {
-        descripcion: "El Traje Negro es la definición de la sobriedad y el estilo. Una pieza indispensable para eventos nocturnos y rigurosa etiqueta formal.",
+        description: "El Traje Negro es la definiciÃ³n de la sobriedad y el estilo. Una pieza indispensable para eventos nocturnos y rigurosa etiqueta formal.",
         detalles: [
-            "De color negro sólido y elegante",
+            "De color negro sÃ³lido y elegante",
             "Tela resistente a las arrugas",
             "Ideal para cualquier evento formal",
-            "Corte clásico que nunca pasa de moda",
+            "Corte clÃ¡sico que nunca pasa de moda",
             "Acabado impecable"
         ]
     },
 
-    // ─── ROPA / VESTIDOS ───────────────────────────────────────────────────────
+    // â”€â”€â”€ ROPA / VESTIDOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     vestido_ajustado: {
-        descripcion: "El Vestido Ajustado realza la figura con sofisticación. Su diseño moderno y material elástico aseguran un ajuste impecable para noches inolvidables.",
+        description: "El Vestido Ajustado realza la figura con sofisticaciÃ³n. Su diseÃ±o moderno y material elÃ¡stico aseguran un ajuste impecable para noches inolvidables.",
         detalles: [
             "Corte ajustado que realza la silueta",
-            "Material elástico y cómodo",
+            "Material elÃ¡stico y cÃ³modo",
             "Ideal para cenas y eventos nocturnos",
-            "Diseño vanguardista",
+            "DiseÃ±o vanguardista",
             "Tela de alta calidad"
         ]
     },
     vestido_cuello_cuadrado: {
-        descripcion: "El Vestido de Cuello Cuadrado combina una estética clásica con un toque moderno. Su diseño favorecedor es ideal para eventos sociales y salidas especiales.",
+        description: "El Vestido de Cuello Cuadrado combina una estÃ©tica clÃ¡sica con un toque moderno. Su diseÃ±o favorecedor es ideal para eventos sociales y salidas especiales.",
         detalles: [
-            "Elegante diseño de cuello cuadrado",
-            "Material suave y con caída",
+            "Elegante diseÃ±o de cuello cuadrado",
+            "Material suave y con caÃ­da",
             "Corte femenino y fluido",
-            "Ideal para fiestas de día o noche",
+            "Ideal para fiestas de dÃ­a o noche",
             "Acabado delicado"
         ]
     },
     vestido_de_invierno: {
-        descripcion: "El Vestido de Invierno está diseñado para ofrecer calidez sin sacrificar la elegancia. Perfecto para mantener el estilo durante las temporadas más frías.",
+        description: "El Vestido de Invierno estÃ¡ diseÃ±ado para ofrecer calidez sin sacrificar la elegancia. Perfecto para mantener el estilo durante las temporadas mÃ¡s frÃ­as.",
         detalles: [
-            "Tejido térmico ligero",
-            "Diseño sofisticado para frío",
-            "Corte cómodo y protector",
+            "Tejido tÃ©rmico ligero",
+            "DiseÃ±o sofisticado para frÃ­o",
+            "Corte cÃ³modo y protector",
             "Ideal para eventos invernales",
             "Material de alta densidad"
         ]
     },
     vestido_elegante: {
-        descripcion: "El Vestido Elegante es la máxima expresión de estilo. Confeccionado con atención al detalle, es la prenda perfecta para brillar en galas y recepciones.",
+        description: "El Vestido Elegante es la mÃ¡xima expresiÃ³n de estilo. Confeccionado con atenciÃ³n al detalle, es la prenda perfecta para brillar en galas y recepciones.",
         detalles: [
-            "Diseño de alta costura",
+            "DiseÃ±o de alta costura",
             "Telas exclusivas y delicadas",
-            "Corte que garantiza distinción",
+            "Corte que garantiza distinciÃ³n",
             "Detalles artesanales",
             "Alta gama"
         ]
     },
     vestido_negro: {
-        descripcion: "El Clásico Vestido Negro es versátil y atemporal. Un 'must-have' que ofrece elegancia instantánea tanto para eventos de cóctel como para cenas formales.",
+        description: "El ClÃ¡sico Vestido Negro es versÃ¡til y atemporal. Un 'must-have' que ofrece elegancia instantÃ¡nea tanto para eventos de cÃ³ctel como para cenas formales.",
         detalles: [
-            "Estilo negro clásico y versátil",
+            "Estilo negro clÃ¡sico y versÃ¡til",
             "Tela fresca con cuerpo",
-            "Diseño minimalista y moderno",
+            "DiseÃ±o minimalista y moderno",
             "Indispensable en todo guardarropa",
-            "Fácil de accesorizar"
+            "FÃ¡cil de accesorizar"
         ],
     },
 };
+

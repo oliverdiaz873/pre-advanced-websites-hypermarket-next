@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
     const pageData = productPageData[product.id];
     const t = await getTranslations('common.product');
-    const description = pageData?.descripcion ?? t('fallback_description', { name: product.nombre });
+    const description = pageData?.description ?? t('fallback_description', { name: product.name });
 
     return {
-        title: product.nombre,
+        title: product.name,
         description,
         openGraph: {
-            title: product.nombre,
+            title: product.name,
             description,
             url: `https://www.hipermercadosuperior.com/product/${product.id}`,
             type: 'website',
@@ -45,13 +45,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
                     url: `https://www.hipermercadosuperior.com${product.imagen}`,
                     width: 1200,
                     height: 630,
-                    alt: product.nombre,
+                    alt: product.name,
                 },
             ],
         },
         twitter: {
             card: 'summary_large_image',
-            title: product.nombre,
+            title: product.name,
             description,
             images: [`https://www.hipermercadosuperior.com${product.imagen}`],
         },
@@ -84,8 +84,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Product',
-        name: product.nombre,
-        description: productPageData[product.id]?.descripcion ?? `Compra ${product.nombre} en Hipermercado Superior.`,
+        name: product.name,
+        description: productPageData[product.id]?.description ?? `Compra ${product.name} en Hipermercado Superior.`,
         image: `https://www.hipermercadosuperior.com${product.imagen}`,
         sku: product.id,
         brand: {

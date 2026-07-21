@@ -5,6 +5,7 @@ import CategoryPageClient from '../../_components/CategoryPageClient';
 import { categories } from '@/services/catalog/categories';
 import { products } from '@/services/catalog/products';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
+import { getCategoryName, getSubcategoryName } from '@/lib';
 
 /**
  * Hypermarket category page.
@@ -32,20 +33,21 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         };
     }
 
-    const subcategories = category.subcategories.map((subcategory) => subcategory.name).join(', ');
     const canonicalUrl = `https://www.hipermercadosuperior.com/category/${category.id}`;
     const t = await getTranslations('categories');
-    const description = t('seo.description', { name: category.name, subcategories });
+    const catName = getCategoryName(category, t);
+    const subcategoryNames = category.subcategories.map(s => getSubcategoryName(s, t)).join(', ');
+    const description = t('seo.description', { name: catName, subcategories: subcategoryNames });
 
     return {
-        title: category.name,
+        title: catName,
         description,
-        keywords: [category.id.toLowerCase(), ...subcategories.toLowerCase().split(', ')],
+        keywords: [category.id.toLowerCase(), ...subcategoryNames.toLowerCase().split(', ')],
         alternates: {
             canonical: canonicalUrl,
         },
         openGraph: {
-            title: `${category.name} | Hipermercado Superior`,
+            title: `${catName} | Hipermercado Superior`,
             description,
             url: canonicalUrl,
             type: 'website',
@@ -54,7 +56,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${category.name} | Hipermercado Superior`,
+            title: `${catName} | Hipermercado Superior`,
             description,
         },
     };
@@ -69,7 +71,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     }
 
     const t = await getTranslations('categories');
-    const description = t('seo.description', { name: category.name, subcategories: category.subcategories.map((s) => s.name).join(', ') });
+    const catName = getCategoryName(category, t);
+    const description = t('seo.description', { name: catName, subcategories: category.subcategories.map((s) => getSubcategoryName(s, t)).join(', ') });
 
     const sections = category.subcategories
         .map((subcategory) => {
@@ -89,17 +92,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: category.name,
+        name: catName,
         description,
         url: `https://www.hipermercadosuperior.com/category/${category.id}`,
         mainEntity: {
             '@type': 'ItemList',
-            name: category.name,
+            name: catName,
             numberOfItems: sections.reduce((acc, s) => acc + s.products.length, 0),
             itemListElement: category.subcategories.map((subcategory, index) => ({
                 '@type': 'ListItem',
                 position: index + 1,
-                name: subcategory.name,
+                name: getSubcategoryName(subcategory, t),
                 url: `https://www.hipermercadosuperior.com/category/${category.id}#${subcategorySlugFromHref(subcategory.href)}`,
             })),
         },

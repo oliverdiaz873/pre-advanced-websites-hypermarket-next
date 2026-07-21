@@ -23,10 +23,10 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
         return products.filter((product) => {
             const translationKey = `${product.id}.name`;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const translatedName = tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.nombre;
+            const translatedName = tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.name;
 
             return [
-                product.nombre,
+                product.name,
                 translatedName,
             ].some((value) => value && normalizarTexto(value).includes(normalizedQuery));
         });

@@ -36,7 +36,7 @@ const CartItemsList = ({ cart, updateQuantity, removeFromCart }: CartItemsListPr
                     <CartItem
                         key={item.id}
                         id={item.id}
-                        nombre={item.nombre}
+                        name={item.name}
                         precio={item.precio}
                         cantidad={item.cantidad}
                         img={item.img}

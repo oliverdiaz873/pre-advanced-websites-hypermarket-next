@@ -23,3 +23,6 @@ export { normalizarTexto } from './searchUtils'
 
 // Precios: Formateo y extracción de precios y unidades
 export { cleanPrice, unitLabel } from './priceUtils'
+
+// Categorías: Nombres traducidos de categorías y subcategorías
+export { getCategoryName, getSubcategoryName } from './categoryUtils'

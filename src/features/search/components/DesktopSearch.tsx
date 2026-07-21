@@ -100,12 +100,12 @@ const DesktopSearch = ({
                             >
                                 <Image
                                     src={getAssetUrl(product.imagen)}
-                                    alt={product.nombre}
+                                    alt={product.name}
                                     width={40}
                                     height={40}
                                     className="desktop-search__thumb"
                                 />
-                                <span className="desktop-search__label">{product.nombre}</span>
+                                <span className="desktop-search__label">{product.name}</span>
                             </li>
                         ))}
                     </ul>

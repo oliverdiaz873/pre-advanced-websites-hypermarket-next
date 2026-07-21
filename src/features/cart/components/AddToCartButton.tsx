@@ -30,7 +30,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
         e.stopPropagation();
         addToCart({
             id: product.id,
-            nombre: product.nombre,
+            name: product.name,
             precio: product.precio,
             precioTexto: product.precioTexto,
             img: product.imagen,
@@ -55,7 +55,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
             <button
                 onClick={handleInitialAdd}
                 className="btn-agregar"
-                aria-label={`${t('cart.add_button')} ${product.nombre} ${t('product.add_to_cart')}`}
+                aria-label={`${t('cart.add_button')} ${product.name} ${t('product.add_to_cart')}`}
             >
                 {t('cart.add_button')}
             </button>

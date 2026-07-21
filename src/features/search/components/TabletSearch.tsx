@@ -108,14 +108,14 @@ const TabletSearch = ({
                                 <Image
                                     src={getAssetUrl(product.imagen)}
                                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                    alt={tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.nombre}
+                                    alt={tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.name}
                                     width={40}
                                     height={40}
                                     className="tablet-search__thumb"
                                 />
                                 <div className="tablet-search__item-content">
                                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                    <span className="tablet-search__label">{tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.nombre}</span>
+                                    <span className="tablet-search__label">{tProducts.has(`${product.id}.name` as any) ? tProducts(`${product.id}.name` as any) : product.name}</span>
                                 </div>
                             </li>
                         ))}

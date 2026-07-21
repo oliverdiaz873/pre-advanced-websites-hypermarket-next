@@ -14,7 +14,7 @@ export const useProductTranslation = (product?: Product, pageData?: ProductPageD
     const tProducts = useTranslations('products');
     const tCommon = useTranslations('common');
     const productId = product?.id
-    const fallbackName = product?.nombre ?? tCommon('product.not_found')
+    const fallbackName = product?.name ?? tCommon('product.not_found')
 
     const nameKey = `${productId}.name`;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,7 +28,7 @@ export const useProductTranslation = (product?: Product, pageData?: ProductPageD
     const finalDescription = productId && tProducts.has(descKey as any)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ? tProducts(descKey as any)
-        : (pageData?.descripcion ?? `Disfruta de la mejor calidad con nuestro ${fallbackName}.`)
+        : (pageData?.description ?? `Disfruta de la mejor calidad con nuestro ${fallbackName}.`)
 
     const specsKey = `${productId}.specs`;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

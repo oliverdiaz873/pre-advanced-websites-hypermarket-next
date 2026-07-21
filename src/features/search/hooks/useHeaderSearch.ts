@@ -13,7 +13,7 @@ import { hasSearchQuery, normalizarTexto } from '@/lib/searchUtils'
  */
 export interface HeaderSearchProduct {
     id: string
-    nombre: string
+    name: string
     imagen: string
 }
 
@@ -61,7 +61,7 @@ export const useHeaderSearch = (
         return products
             .filter((product) => {
                 // 1. Obtener traducciones para comparar
-                const nombreEs = normalizarTexto(product.nombre)
+                const nombreEs = normalizarTexto(product.name)
                 
                 const translationKey = `${product.id}.name`;
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,7 +75,7 @@ export const useHeaderSearch = (
                 return {
                     id: product.id,
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    nombre: tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.nombre,
+                    name: tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.name,
                     imagen: product.imagen
                 };
             })

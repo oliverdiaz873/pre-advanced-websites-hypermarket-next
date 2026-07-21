@@ -25,7 +25,7 @@ import './CartItem.css'
  */
 interface CartItemProps {
     id: string
-    nombre: string
+    name: string
     precio: number
     cantidad: number
     img: string
@@ -39,7 +39,7 @@ interface CartItemProps {
 
 const CartItem = ({
     id,
-    nombre,
+    name: productName,
     precio,
     cantidad,
     img,
@@ -52,7 +52,7 @@ const CartItem = ({
 }: CartItemProps) => {
     const t = useTranslations('common');
     const tCommon = useTranslations('common');
-    const cartProduct: Product = { id, nombre, precio, imagen: img } as Product
+    const cartProduct: Product = { id, name: productName, precio, imagen: img } as Product
     const { name } = useProductTranslation(cartProduct)
 
     const unitKey = `units.${unitLabel}`;

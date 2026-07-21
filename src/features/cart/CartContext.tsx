@@ -15,7 +15,7 @@ import { calculateDiscountPercentage } from '@/features/offers'
 
 export interface CartItem {
     id: string
-    nombre: string
+    name: string
     precio: number
     precioTexto?: string
     img: string

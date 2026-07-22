@@ -25,13 +25,13 @@ export default function ContactPageClient() {
                 <section className="contacto-info mt-5 md:mt-5">
                     <h2 className="text-xl md:text-2xl text-center mb-6 md:mb-8 pt-4 md:pt-6">{t('info.title')}</h2>
                     <div className="info-item text-center mb-4">
-                        <p><strong>{t('info.email_label')}</strong> soporte@hipermercadosuperior.com</p>
+                        <p className="text-white/90 text-[0.95rem] leading-normal"><strong className="mr-2">{t('info.email_label')}</strong> soporte@hipermercadosuperior.com</p>
                     </div>
                     <div className="info-item text-center mb-4">
-                        <p><strong>{t('info.phone_label')}</strong> +1 (809) 555-5555</p>
+                        <p className="text-white/90 text-[0.95rem] leading-normal"><strong className="mr-2">{t('info.phone_label')}</strong> +1 (809) 555-5555</p>
                     </div>
                     <div className="info-item text-center mb-4">
-                        <p><strong>{t('info.hours_label')}</strong> {t('info.hours_text')}</p>
+                        <p className="text-white/90 text-[0.95rem] leading-normal"><strong className="mr-2">{t('info.hours_label')}</strong> {t('info.hours_text')}</p>
                     </div>
                 </section>
             </main>

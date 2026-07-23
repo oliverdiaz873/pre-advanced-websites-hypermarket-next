@@ -16,8 +16,8 @@
 
 /* Botones de cantidad (+/-) */
 .quantity-controls__btn {
-    width: 2rem;
-    height: 2rem;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background-color: #f3f4f6;
     border: 1px solid #e5e7eb;
@@ -44,12 +44,12 @@
 
 /* Mostrador de cantidad */
 .quantity-controls__display {
-    width: 2rem;
+    width: 26px;
     text-align: center;
     font-weight: 600;
     color: #111827;
     font-size: 1rem;
-    min-width: 2rem;
+    min-width: 26px;
 }
 
 /* Responsive para tabletas */
@@ -59,8 +59,8 @@
     }
     
     .quantity-controls__btn {
-        width: 1.75rem;
-        height: 1.75rem;
+        width: 24px;
+        height: 24px;
         font-size: 0.9rem;
     }
 }

@@ -53,9 +53,6 @@
     position: absolute;
     top: -1.9rem;
     left: -1.6rem;
-    /* escala el badge para que se ajuste mejor */
-    transform: scale(0.8);
-    transform-origin: top left;
     z-index: 10;
     pointer-events: none;
 }

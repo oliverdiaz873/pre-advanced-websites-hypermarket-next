@@ -4,7 +4,7 @@ import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import { usePathname, useRouter } from '@/i18n/routing'
 import DesktopNav from '../../navigation/components/DesktopNav'
-import TabletNav from '../../navigation/components/TabletNav'
+// import TabletNav from '../../navigation/components/TabletNav'
 import MobileNav from '../../navigation/components/MobileNav'
 import { DesktopSearch, TabletSearch, MobileSearch, useHeaderSearch } from '../../search'
 
@@ -75,14 +75,14 @@ const Header = () => {
     }, [])
 
     const showBrand = viewportMode !== 'mobile' || !isSearchActive
-    const showNavigation = !isSearchActive && viewportMode !== 'mobile'
+    const showNavigation = !isSearchActive && viewportMode === 'desktop'
 
     return (
-        <header className="fixed top-0 left-0 w-full rounded-none xl:top-[10px] xl:left-1/2 xl:-translate-x-1/2 xl:rounded-[15px] xl:w-max xl:max-w-[calc(100vw-40px)] bg-black/80 px-2.5 py-1.5 z-[1000] flex justify-center text-white border border-white/10 shadow-lg">
+        <header className="fixed top-0 left-0 w-full rounded-none xl:top-[10px] xl:left-1/2 xl:-translate-x-1/2 xl:rounded-[15px] xl:w-max xl:max-w-[calc(100vw-40px)] bg-black/80 px-2.5 py-1.5 z-[1000] flex justify-center text-white border border-white/10 shadow-lg" onClick={() => isMobileMenuOpen && setIsMobileMenuOpen(false)}>
             <div className="header-container flex items-center gap-1 md:gap-1 lg:gap-2 justify-between md:justify-center w-full px-0 md:px-1.5 lg:px-3.5">
-                {viewportMode === 'mobile' && (
+                {viewportMode !== 'desktop' && (
                     <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        onClick={(e) => { e.stopPropagation(); setIsMobileMenuOpen(!isMobileMenuOpen); }}
                         className="menu-btn bg-transparent border-none text-white cursor-pointer transition-colors duration-300 rounded hover:bg-white/15 p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 relative z-[1000]"
                         aria-label={t(isMobileMenuOpen ? 'menu_close' : 'menu_open')}
                     >
@@ -114,8 +114,6 @@ const Header = () => {
                 )}
 
                 {showNavigation && viewportMode === 'desktop' && <DesktopNav />}
-                {showNavigation && viewportMode === 'tablet' && <TabletNav />}
-
                 {viewportMode === 'desktop' && (
                     <DesktopSearch
                         isActive={isSearchActive}
@@ -161,17 +159,16 @@ const Header = () => {
                     />
                 )}
 
-                <div className="flex items-center">
-                    <div className="hidden md:block">
-                        <LanguageSelector />
-                    </div>
-                </div>
+                {viewportMode === 'desktop' && (
+                    <LanguageSelector />
+                )}
             </div>
 
-            {viewportMode === 'mobile' && (
+            {viewportMode !== 'desktop' && (
                 <MobileNav
                     isOpen={isMobileMenuOpen}
                     onClose={() => setIsMobileMenuOpen(false)}
+                    showLanguage={true}
                 />
             )}
         </header>

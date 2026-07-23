@@ -9,6 +9,7 @@ import './MobileNav.css'
 interface MobileNavProps {
     isOpen: boolean
     onClose?: () => void
+    showLanguage?: boolean
 }
 
 /**
@@ -16,7 +17,7 @@ interface MobileNavProps {
  * Función: Construye y renderiza el menú hamburguesa optimizado para dispositivos móviles.
  * Soporta un diseño de menú tipo acordeón con submenús emergentes y selector de idioma integrado.
  */
-const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
+const MobileNav = ({ isOpen, onClose, showLanguage }: MobileNavProps) => {
     const t = useTranslations('header');
     const tCategories = useTranslations('categories');
     const [openCategory, setOpenCategory] = useState<string | null>(null)
@@ -147,6 +148,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                         </Link>
                     </li>
 
+                    {showLanguage !== false && (
                     <li className="px-5 py-2.5 border-b border-white/10">
                         <div className="flex items-center justify-between min-h-[44px]">
                             <div className="flex items-center gap-3">
@@ -159,6 +161,7 @@ const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                             <LanguageSelector variant="inline" />
                         </div>
                     </li>
+                    )}
                 </ul>
             </nav>
         </>

@@ -119,8 +119,11 @@
       "unidad": "unit",
       "kg": "kg",
       "lb": "lb",
-      "litro": "liter",
-      "paquete": "pack"
+      "litro": "liters",
+      "paquete": "pack",
+      "caja": "box",
+      "botella": "bottle",
+      "lata": "can"
     },
     "seo": {
       "keywords": "{name}, {category}, hypermarket, offer, dominican republic"

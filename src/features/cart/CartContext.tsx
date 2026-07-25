@@ -25,6 +25,7 @@ export interface CartItem {
     isOffer?: boolean
     oldPrice?: string
     discountPercentage?: number
+    unitQuantity?: number
 }
 
 interface CartContextType {
@@ -104,7 +105,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             const discountPercentage = product.oldPrice !== undefined
                 ? calculateDiscountPercentage(product.precio, product.oldPrice)
                 : undefined;
-            return [...prevCart, { ...product, unidad: finalUnidad, unitLabel: finalUnitLabel, cantidad: 1, discountPercentage }];
+            return [...prevCart, { ...product, unidad: finalUnidad, unitLabel: finalUnitLabel, cantidad: 1, discountPercentage, unitQuantity: product.unitQuantity }];
         });
     }, []);
 

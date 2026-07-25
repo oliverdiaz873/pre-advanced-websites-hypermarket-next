@@ -41,6 +41,7 @@ export const useProductTranslation = (product?: Product, pageData?: ProductPageD
     const unitKey = `units.${rawUnit}`;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const translatedUnit = tCommon.has(unitKey as any) ? tCommon(unitKey as any) : rawUnit
+    const displayUnit = product?.quantity && product.quantity > 1 ? `${product.quantity} ${translatedUnit}` : translatedUnit
 
     return {
         name: finalName,
@@ -56,7 +57,7 @@ export const useProductTranslation = (product?: Product, pageData?: ProductPageD
             viewDetails: tCommon('product.view_details', { name: finalName }),
             addToCart: tCommon('product.add_to_cart'),
             pricePrefix: tCommon('product.price_prefix'),
-            unit: translatedUnit,
+            unit: displayUnit,
             similarProducts: tCommon('product.similar_products'),
             notFound: tCommon('product.not_found'),
             clickToEnlarge: tCommon('product.click_to_enlarge'),

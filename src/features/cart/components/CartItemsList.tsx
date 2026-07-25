@@ -41,6 +41,7 @@ const CartItemsList = ({ cart, updateQuantity, removeFromCart }: CartItemsListPr
                         cantidad={item.cantidad}
                         img={item.img}
                         unitLabel={item.unitLabel}
+                        unitQuantity={item.unitQuantity}
                         isOffer={!!offer}
                         oldPrice={offer?.oldPrice}
                         discountPercentage={discountPercentage}

@@ -30,6 +30,7 @@ interface CartItemProps {
     cantidad: number
     img: string
     unitLabel: string
+    unitQuantity?: number
     isOffer?: boolean
     oldPrice?: string
     discountPercentage?: number
@@ -44,6 +45,7 @@ const CartItem = ({
     cantidad,
     img,
     unitLabel,
+    unitQuantity,
     isOffer = false,
     oldPrice,
     discountPercentage,
@@ -56,7 +58,8 @@ const CartItem = ({
     const { name } = useProductTranslation(cartProduct)
 
     const unitKey = `units.${unitLabel}`;
-    const displayUnit = tCommon.has(unitKey) ? tCommon(unitKey) : unitLabel;
+    const translatedUnit = tCommon.has(unitKey) ? tCommon(unitKey) : unitLabel;
+    const displayUnit = unitQuantity && unitQuantity > 1 ? `${unitQuantity} ${translatedUnit}` : translatedUnit;
 
     return (
         <div className="cart-item">

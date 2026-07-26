@@ -26,3 +26,6 @@ export { cleanPrice, unitLabel } from './priceUtils'
 
 // Categorías: Nombres traducidos de categorías y subcategorías
 export { getCategoryName, getSubcategoryName } from './categoryUtils'
+
+// Constantes: Datos de configuración y contacto
+export { CONTACT_EMAIL } from './constants'

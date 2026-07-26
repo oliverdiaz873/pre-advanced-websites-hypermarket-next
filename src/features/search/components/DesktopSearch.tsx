@@ -124,13 +124,15 @@ const DesktopSearch = ({
                 )}
             </button>
 
-            <Link href="/cart" className="util-btn group relative" aria-label={tHeader('cart_label')}>
-                <CartIcon className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" />
-                {totalItems > 0 && (
-                    <span className="cart-badge absolute -top-1 -right-1 bg-red-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full">
-                        {totalItems}
-                    </span>
-                )}
+            <Link href="/cart" className="util-btn group" aria-label={tHeader('cart_label')}>
+                <span className="relative inline-flex">
+                    <CartIcon className="util-icon w-6 h-6 md:w-[27px] md:h-[27px]" />
+                    {totalItems > 0 && (
+                        <span className="cart-badge absolute -top-1.5 -right-1.5 bg-red-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full">
+                            {totalItems}
+                        </span>
+                    )}
+                </span>
             </Link>
         </div>
     )

@@ -29,3 +29,22 @@ export { getCategoryName, getSubcategoryName } from './categoryUtils'
 
 // Constantes: Datos de configuración y contacto
 export { CONTACT_EMAIL } from './constants'
+
+// API backend: cliente HTTP tipado y resolución de imágenes remotas (F5.1)
+export {
+  getProducts,
+  getProduct,
+  getOffers,
+  search,
+  getCategories,
+  resolveApiImageUrl,
+} from './api-client'
+export type {
+  ApiProduct,
+  ApiCategory,
+  ApiOffer,
+  ApiCollection,
+  ApiEnvelope,
+  ApiPagination,
+  ApiPaginationParams,
+} from './api-client'

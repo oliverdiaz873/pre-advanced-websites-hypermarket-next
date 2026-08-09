@@ -23,8 +23,8 @@ The home feature renders the storefront landing experience for the shop route gr
 ## Page Flow
 
 1. The home page generates metadata from the `home` translation namespace.
-2. Featured products are selected by hardcoded product ids from the local catalog.
-3. Offer products are built by joining `offersData` with `products` and calculating discount percentages.
+2. Offer products are fetched from the real backend (`GET /offers`, F5.4) for the offer carousel.
+3. Featured products are selected by hardcoded product ids from the local catalog (debt F5-post).
 4. The page renders website and organization JSON-LD.
 5. The UI renders `HeroCarousel`, offer products, featured products, `CategoryBannersSection`, and `AboutUs`.
 
@@ -69,13 +69,13 @@ It uses:
 
 ## Data Sources
 
-- Product catalog: `src/services/catalog/products.ts`.
-- Offer data: `src/services/catalog/offers.ts`.
+- Offer data (F5.4): backend `GET /offers` via `fetchOffers` in `@/lib/api-client`.
+- Product catalog (featured carousel only, debt F5-post): `src/services/catalog/products.ts`.
 - Translations: `messages/es.json` and `messages/en.json`.
 - Assets: `public/assets/images/`.
 
 ## Current Limitations
 
-- Featured product ids are hardcoded in the home page.
+- Featured product ids are hardcoded in the home page (debt F5-post: the featured carousel is the only remaining mock; migrated once a real endpoint exists).
 - Hero banners are hardcoded inside `HeroCarousel`.
 - Home content is not fetched from a CMS or backend.

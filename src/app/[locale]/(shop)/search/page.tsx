@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import SearchPageClient from '@/features/search/components/SearchPageClient';
-import { search, mapApiProductsToProducts, getOffers, mapApiOfferToOfferProduct, type ApiLang, type OfferProduct } from '@/lib/api-client';
+import { search, mapApiProductsToProducts, fetchOffers, type ApiLang, type OfferProduct } from '@/lib/api-client';
 
 type SearchPageProps = {
     searchParams: Promise<{ q?: string | string[] }>;
@@ -43,11 +43,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     if (cleanQuery) {
         const locale = (await getLocale()) as ApiLang;
         try {
+            // H2: fetchOffers nunca lanza — un fallo de /offers no debe ocultar los resultados
+            // válidos de búsqueda; solo `search` es fatal y propaga error al cliente.
             const [{ data }, offers] = await Promise.all([
                 search({ q: cleanQuery }, locale),
-                getOffers(locale),
+                fetchOffers(locale),
             ]);
-            const offerMap = new Map(offers.data.map(mapApiOfferToOfferProduct).map((offer) => [offer.id, offer]));
+            const offerMap = new Map(offers.map((offer) => [offer.id, offer]));
             results = mapApiProductsToProducts(data).map((product) => {
                 const offer = offerMap.get(product.id);
                 return offer

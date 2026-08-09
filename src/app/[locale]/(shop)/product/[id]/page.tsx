@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import ProductPageClient from '../../_components/ProductPageClient';
-import { getProduct, getProducts, mapApiProductToProduct, mapApiProductsToProducts, getOffers, mapApiOfferToOfferProduct, fetchCategories, type ApiLang, type OfferProduct } from '@/lib/api-client';
+import { getProduct, getProducts, mapApiProductToProduct, mapApiProductsToProducts, fetchOffers, fetchCategories, type ApiLang, type OfferProduct } from '@/lib/api-client';
 import type { Product } from '@/types/product';
 import type { Category } from '@/types/category';
 
@@ -95,9 +95,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         mappedProduct = mapApiProductToProduct(product);
 
         // F5.4: ofertas reales (GET /offers) para enriquecer el badge de precio del producto y sus relacionados.
+        // H1: fetchOffers nunca lanza — un fallo de /offers no convierte la página en 404/500.
         const locale = (await getLocale()) as ApiLang;
-        const { data: offersRaw } = await getOffers(locale);
-        const offerMap = new Map(offersRaw.map(mapApiOfferToOfferProduct).map((offer) => [offer.id, offer]));
+        const offers = await fetchOffers(locale);
+        const offerMap = new Map(offers.map((offer) => [offer.id, offer]));
 
         const productOffer = offerMap.get(mappedProduct.id);
         if (productOffer) {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
-import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts, getOffers, mapApiOfferToOfferProduct, type ApiLang } from '@/lib/api-client';
+import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts, fetchOffers, type ApiLang } from '@/lib/api-client';
 import type { Category } from '@/types/category';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 import { getCategoryName, getSubcategoryName } from '@/lib';
@@ -76,9 +76,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const description = t('seo.description', { name: catName, subcategories: category.subcategories.map((s) => getSubcategoryName(s, t)).join(', ') });
 
     // F5.4: ofertas reales (GET /offers) para enriquecer los badges de los grids.
+    // H1: fetchOffers nunca lanza — un fallo de /offers degrada a "sin badges" sin romper la página.
     const locale = (await getLocale()) as ApiLang;
-    const offers = await getOffers(locale);
-    const offerMap = new Map(offers.data.map(mapApiOfferToOfferProduct).map((offer) => [offer.id, offer]));
+    const offers = await fetchOffers(locale);
+    const offerMap = new Map(offers.map((offer) => [offer.id, offer]));
     const withOffer = <T extends { id: string }>(product: T) => {
         const offer = offerMap.get(product.id);
         return offer

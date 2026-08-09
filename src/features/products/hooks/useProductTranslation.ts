@@ -6,9 +6,11 @@ import { formatProductPrice, unitLabel } from '@/lib/priceUtils'
 /**
  * useProductTranslation - Hook para gestionar la internacionalizacion de productos.
  *
- * Este hook implementa un sistema de "Overlay & Fallback":
- * 1. Intenta buscar la traduccion en el namespace 'products'.
- * 2. Si no existe, usa el contenido original del objeto product o pageData.
+ * F5.2: el backend ya localiza `name` y `description` con `?lang=`. Este hook
+ * mantiene la compatibilidad con el patrón "Overlay & Fallback" para datos mock:
+ * 1. Si existe clave en i18n 'products.{id}.name' → úsala (override mock).
+ * 2. Sino → usa `product.name` (localizado por API).
+ * Igual para description: i18n → `product.description` (API) → pageData → fallback.
  */
 export const useProductTranslation = (product?: Product, pageData?: ProductPageData) => {
     const tProducts = useTranslations('products');
@@ -28,7 +30,7 @@ export const useProductTranslation = (product?: Product, pageData?: ProductPageD
     const finalDescription = productId && tProducts.has(descKey as any)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ? tProducts(descKey as any)
-        : (pageData?.description ?? `Disfruta de la mejor calidad con nuestro ${fallbackName}.`)
+        : (product?.description ?? pageData?.description ?? `Disfruta de la mejor calidad con nuestro ${fallbackName}.`)
 
     const specsKey = `${productId}.specs`;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

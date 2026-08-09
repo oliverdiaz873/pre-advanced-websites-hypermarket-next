@@ -3,14 +3,14 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
 import { categories } from '@/services/catalog/categories';
-import { products } from '@/services/catalog/products';
+import { getProducts, mapApiProductsToProducts } from '@/lib/api-client';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 import { getCategoryName, getSubcategoryName } from '@/lib';
 
 /**
  * Hypermarket category page.
- * Displays all products organized by subcategories within a main category.
- * Includes SEO metadata, JSON-LD for structured data, and client-side rendering.
+ * F5.2: products dentro de subcategorías se obtienen de la API real (GET /products?category=slug).
+ * Categorías siguen en data layer mock hasta F5.3.
  */
 type CategoryPageProps = {
     params: Promise<{ id: string }>;
@@ -74,11 +74,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const catName = getCategoryName(category, t);
     const description = t('seo.description', { name: catName, subcategories: category.subcategories.map((s) => getSubcategoryName(s, t)).join(', ') });
 
-    const sections = category.subcategories
-        .map((subcategory) => {
+    // F5.2: obtener productos por subcategoría desde la API
+    const sections = await Promise.all(
+        category.subcategories.map(async (subcategory) => {
             const slug = subcategorySlugFromHref(subcategory.href);
             const productCategory = sectionSlugToProductCategoria(slug);
-            const sectionProducts = products.filter((product) => product.categoria === productCategory);
+            const { data: rawProducts } = await getProducts({ category: productCategory, limit: 50 });
+            const sectionProducts = mapApiProductsToProducts(rawProducts);
 
             return {
                 slug,
@@ -86,7 +88,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 products: sectionProducts,
             };
         })
-        .filter((section) => section.products.length > 0);
+    );
+
+    const filteredSections = sections.filter((section) => section.products.length > 0);
 
     // Generar JSON-LD para SEO estructurado
     const jsonLd = {
@@ -98,7 +102,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         mainEntity: {
             '@type': 'ItemList',
             name: catName,
-            numberOfItems: sections.reduce((acc, s) => acc + s.products.length, 0),
+            numberOfItems: filteredSections.reduce((acc, s) => acc + s.products.length, 0),
             itemListElement: category.subcategories.map((subcategory, index) => ({
                 '@type': 'ListItem',
                 position: index + 1,
@@ -120,7 +124,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <CategoryPageClient category={category} sections={sections} />
+            <CategoryPageClient category={category} sections={filteredSections} />
         </>
     );
 }

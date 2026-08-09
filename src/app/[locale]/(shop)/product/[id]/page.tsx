@@ -2,22 +2,63 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import ProductPageClient from '../../_components/ProductPageClient';
-import { products } from '@/services/catalog/products';
-import { productPageData } from '@/services/catalog/productPageData';
+import { getProduct, getProducts, mapApiProductToProduct, mapApiProductsToProducts } from '@/lib/api-client';
+import type { Product } from '@/types/product';
 
 type ProductPageProps = {
     params: Promise<{ id: string }>;
 };
 
-function getProduct(id: string) {
-    return products.find((product) => product.id === id);
-}
-
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
     const { id } = await params;
-    const product = getProduct(id);
+    
+    try {
+        const { data: product } = await getProduct(id);
 
-    if (!product) {
+        if (!product) {
+            const t = await getTranslations('common.product');
+            return {
+                title: t('not_found'),
+                description: t('not_found_description'),
+                robots: { index: false, follow: false },
+            };
+        }
+
+        const mappedProduct = mapApiProductToProduct(product);
+        const t = await getTranslations('common.product');
+        const description = product.description ?? t('fallback_description', { name: mappedProduct.name });
+
+        return {
+            title: mappedProduct.name,
+            description,
+            openGraph: {
+                title: mappedProduct.name,
+                description,
+                url: `https://www.hipermercadosuperior.com/product/${mappedProduct.id}`,
+                type: 'website',
+                siteName: 'Hipermercado Superior',
+                locale: 'es_DO',
+                images: [
+                    {
+                        url: mappedProduct.imagen.startsWith('http') 
+                            ? mappedProduct.imagen 
+                            : `https://www.hipermercadosuperior.com${mappedProduct.imagen}`,
+                        width: 1200,
+                        height: 630,
+                        alt: mappedProduct.name,
+                    },
+                ],
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: mappedProduct.name,
+                description,
+                images: [mappedProduct.imagen.startsWith('http') 
+                    ? mappedProduct.imagen 
+                    : `https://www.hipermercadosuperior.com${mappedProduct.imagen}`],
+            },
+        };
+    } catch {
         const t = await getTranslations('common.product');
         return {
             title: t('not_found'),
@@ -25,90 +66,66 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
             robots: { index: false, follow: false },
         };
     }
-
-    const pageData = productPageData[product.id];
-    const t = await getTranslations('common.product');
-    const description = pageData?.description ?? t('fallback_description', { name: product.name });
-
-    return {
-        title: product.name,
-        description,
-        openGraph: {
-            title: product.name,
-            description,
-            url: `https://www.hipermercadosuperior.com/product/${product.id}`,
-            type: 'website',
-            siteName: 'Hipermercado Superior',
-            locale: 'es_DO',
-            images: [
-                {
-                    url: `https://www.hipermercadosuperior.com${product.imagen}`,
-                    width: 1200,
-                    height: 630,
-                    alt: product.name,
-                },
-            ],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: product.name,
-            description,
-            images: [`https://www.hipermercadosuperior.com${product.imagen}`],
-        },
-    };
 }
 
 /**
  * ProductPage - Server Component para la vista individual de un producto.
  * 
- * Esta página es un "Server Component" por diseño. Su principal responsabilidad es:
- * 1. Obtener los datos del producto solicitado basándose en el ID de la URL.
- * 2. Generar el metadata (SEO) dinámico para buscadores (título y descripción).
- * 3. Construir la estructura de datos para Schema.org (JSON-LD) permitiendo "Rich Snippets" en Google.
- * 4. Delegar la UI y las traducciones a un componente de cliente (`ProductPageClient`) pasando
- *    los datos limpios y procesados.
+ * F5.2: usa la API real (GET /products/:id?lang=) en lugar de datos mock.
+ * Obtiene el producto y sus relacionados (misma categoría) vía API.
  */
 export default async function ProductPage({ params }: ProductPageProps) {
     const { id } = await params;
-    const product = getProduct(id);
 
-    if (!product) {
+    try {
+        const { data: product } = await getProduct(id);
+
+        if (!product) {
+            notFound();
+        }
+
+        const mappedProduct = mapApiProductToProduct(product);
+
+        // Obtener productos relacionados de la misma categoría (máx 8)
+        const { data: relatedRaw } = await getProducts({ category: mappedProduct.categoria, limit: 50 });
+        const relatedProducts = mapApiProductsToProducts(relatedRaw)
+            .filter((item) => item.id !== mappedProduct.id)
+            .slice(0, 8);
+
+        // Generar JSON-LD para SEO estructurado del producto
+        const jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: mappedProduct.name,
+            description: product.description ?? `Compra ${mappedProduct.name} en Hipermercado Superior.`,
+            image: mappedProduct.imagen.startsWith('http') 
+                ? mappedProduct.imagen 
+                : `https://www.hipermercadosuperior.com${mappedProduct.imagen}`,
+            sku: mappedProduct.id,
+            brand: {
+                '@type': 'Brand',
+                name: 'Hipermercado Superior',
+            },
+            offers: {
+                '@type': 'Offer',
+                url: `https://www.hipermercadosuperior.com/product/${mappedProduct.id}`,
+                priceCurrency: 'DOP',
+                price: mappedProduct.precio,
+                itemCondition: 'https://schema.org/NewCondition',
+                availability: 'https://schema.org/InStock',
+            },
+        };
+
+        return (
+            <>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+                <ProductPageClient product={mappedProduct} relatedProducts={relatedProducts} />
+            </>
+        );
+    } catch {
         notFound();
     }
-
-    const relatedProducts = products
-        .filter((item) => item.categoria === product.categoria && item.id !== product.id)
-        .slice(0, 8);
-
-    // Generar JSON-LD para SEO estructurado del producto
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: product.name,
-        description: productPageData[product.id]?.description ?? `Compra ${product.name} en Hipermercado Superior.`,
-        image: `https://www.hipermercadosuperior.com${product.imagen}`,
-        sku: product.id,
-        brand: {
-            '@type': 'Brand',
-            name: 'Hipermercado Superior',
-        },
-        offers: {
-            '@type': 'Offer',
-            url: `https://www.hipermercadosuperior.com/product/${product.id}`,
-            priceCurrency: 'DOP',
-            price: product.precio,
-            itemCondition: 'https://schema.org/NewCondition',
-            availability: 'https://schema.org/InStock',
-        },
-    };
-
-    return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <ProductPageClient product={product} relatedProducts={relatedProducts} />
-        </>
-    );
 }

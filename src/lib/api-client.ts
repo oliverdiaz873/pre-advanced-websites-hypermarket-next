@@ -2,23 +2,25 @@
 // Tipos del contrato de la API (backend real, ver docs/F5-CONTRACT.md)
 // ─────────────────────────────────────────────────────────────────────────────
 
+import type { Product } from '@/types/product'
+
 export type ApiLang = 'es' | 'en'
 
 export interface ApiProduct {
   id: string
+  sku: string
   name: string
   description: string
   price: number
-  formattedPrice: string
-  category: string
-  categorySlug: string
-  brandId: string | null
   image: string | null
-  imageKey: string | null
-  images: string[]
-  imageKeys: string[]
-  unit: string | null
-  available: boolean
+  categoryId: string
+  category: { name: string; slug: string }
+  brandId?: string
+  brand?: { name: string; slug: string }
+  unit?: string
+  unitQuantity?: number
+  status: 'active' | 'inactive'
+  isAvailable: boolean
   createdAt: string
   updatedAt: string
   translations?: Record<'es' | 'en', { name?: string; description?: string }>
@@ -105,6 +107,46 @@ export function resolveApiImageUrl(image?: string | null): string | null {
   }
   const raw = image.startsWith('/') ? image.slice(1) : image
   return `${STORAGE_PUBLIC_URL}/uploads/${raw}`
+}
+
+/**
+ * Mapper F5.2: ApiProduct (backend Express+MongoDB) → modelo Product del storefront Next.
+ *
+ * Decisiones F5.0:
+ * - `price` → `precio`, `unit` → `unidad`, `unitQuantity` → `quantity`.
+ * - `category.slug` → `categoria` (la identidad navegable es el slug).
+ * - `url` y `precioTexto` se generan en el frontend (no vienen del backend).
+ * - `image` se resuelve con el resolver de imágenes (nunca se toca el backend).
+ * - `description` viene localizada del backend (`?lang=`).
+ */
+export function mapApiProductToProduct(api: ApiProduct): Product {
+  const imagen = resolveApiImageUrl(api.image) ?? ''
+  const unit = api.unit ?? ''
+  const quantity = api.unitQuantity
+
+  const hasUnitBlock = Boolean(unit || (quantity != null && quantity > 1))
+  const precioTexto = hasUnitBlock
+    ? `Precio: $${api.price.toLocaleString('en-US')} / ${quantity ?? 1} ${unit}`.trim()
+    : `Precio: $${api.price.toLocaleString('en-US')}`
+
+  return {
+    id: api.id,
+    name: api.name,
+    description: api.description,
+    url: `/product/${encodeURIComponent(api.id)}`,
+    categoria: api.category.slug,
+    precio: api.price,
+    precioTexto,
+    imagen,
+    unidad: unit || undefined,
+    quantity,
+  }
+}
+
+export function mapApiProductsToProducts(apiProducts: ApiProduct[]): Product[] {
+  return apiProducts
+    .filter((p) => p.status === 'active' && p.isAvailable)
+    .map(mapApiProductToProduct)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

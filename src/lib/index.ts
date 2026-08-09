@@ -38,6 +38,8 @@ export {
   search,
   getCategories,
   resolveApiImageUrl,
+  mapApiProductToProduct,
+  mapApiProductsToProducts,
 } from './api-client'
 export type {
   ApiProduct,

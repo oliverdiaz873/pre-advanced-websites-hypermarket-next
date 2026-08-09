@@ -225,8 +225,15 @@ export function getOffers(lang?: ApiLang): Promise<ApiEnvelope<ApiOffer[]>> {
   return apiRequest<ApiEnvelope<ApiOffer[]>>('/offers', { lang })
 }
 
-export function search(query: Pick<ApiPaginationParams, 'q' | 'category'>): Promise<ApiEnvelope<ApiProduct[]>> {
-  return apiRequest<ApiEnvelope<ApiProduct[]>>('/search', { q: query.q, category: query.category })
+export function search(
+  query: Pick<ApiPaginationParams, 'q' | 'category'>,
+  lang?: ApiLang
+): Promise<ApiEnvelope<ApiProduct[]>> {
+  return apiRequest<ApiEnvelope<ApiProduct[]>>('/search', {
+    q: query.q,
+    category: query.category,
+    lang,
+  })
 }
 
 export function getCategories(): Promise<ApiEnvelope<ApiCategory[]>> {

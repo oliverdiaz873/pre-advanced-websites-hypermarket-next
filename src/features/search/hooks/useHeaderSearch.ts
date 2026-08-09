@@ -1,15 +1,15 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
-import { products } from '@/services/catalog/products'
-import { hasSearchQuery, normalizarTexto } from '@/lib/searchUtils'
+import { useEffect, useRef, useState } from 'react'
+import { useLocale } from 'next-intl'
+import { search, mapApiProductsToProducts, type ApiLang } from '@/lib/api-client'
+import { hasSearchQuery } from '@/lib/searchUtils'
 
 /**
  * Interfaz que representa un producto en los resultados de búsqueda del header.
  * 
  * @interface HeaderSearchProduct
  * @property {string} id - Identificador único del producto (ej: 'manzana_verde')
- * @property {string} nombre - Nombre del producto en idioma base (español)
- * @property {string} imagen - Ruta a la imagen del producto
+ * @property {string} name - Nombre del producto (localizado por `?lang=`)
+ * @property {string} imagen - URL pública de la imagen del producto
  */
 export interface HeaderSearchProduct {
     id: string
@@ -23,16 +23,21 @@ export interface HeaderSearchProduct {
  * Comparte estado, filtrado y handlers para que los componentes DesktopSearch,
  * TabletSearch y MobileSearch reutilicen la misma lógica sin duplicar código.
  * 
+ * F5.3.2: los resultados vienen de la API real (GET /search a través de
+ * `api-client.search`) en lugar del catálogo mock. `?lang=` se deriva del
+ * locale activo (`useLocale`) para que el backend localice los nombres.
+ * 
  * CARACTERÍSTICAS:
- * - Búsqueda bilingüe: busca en español e inglés simultáneamente
- * - Filtrado en tiempo real: actualiza resultados mientras escribes
- * - Cierre automático: detecta clicks fuera del dropdown
- * - Normalización: ignora acentos y mayúsculas en búsquedas
+ * - Debounce de 300ms antes de llamar al API mientras se escribe
+ * - Token anti-carrera (AbortController): descarta respuestas fuera de orden
+ * - Query vacía: nunca se llama al backend (responde 400)
+ * - Re-evaluación al cambiar de idioma (efecto dependiente del locale)
  * - Límite de resultados: máximo 8 productos por búsqueda
+ * - Cierre automático: detecta clicks fuera del dropdown
  * 
  * FLUJO DE USO:
- * 1. Usuario escribe en input → onSearchChange actualiza searchTerm
- * 2. useEffect filtra productos en ES e EN
+ * 1. Usuario escribe en input → setSearchTerm actualiza searchTerm
+ * 2. useEffect (debounce) consulta la API con el término y el locale
  * 3. Click en resultado → handleResultClick navega a producto
  * 4. Enter o botón submit → handleSearchSubmit navega a página de resultados
  * 
@@ -45,42 +50,52 @@ export const useHeaderSearch = (
     onResultSelect: (id: string) => void,
     onSearchSubmit: (term: string) => void
 ) => {
-    const tProducts = useTranslations('products');
+    const locale = useLocale() as ApiLang;
     const [isSearchActive, setIsSearchActive] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
+    const [searchResults, setSearchResults] = useState<HeaderSearchProduct[]>([])
     const searchInputRef = useRef<HTMLInputElement>(null)
     const resultsRef = useRef<HTMLUListElement>(null)
 
-    const searchResults = useMemo(() => {
-        if (searchTerm.trim() === '') {
-            return []
-        }
+    // Debounce 300ms + AbortController como token anti-carrera: el cleanup del
+    // effect aborta la búsqueda anterior, por lo que solo la última escrita se
+    // aplica al estado. Query vacía limpia resultados sin tocar el backend.
+    // (El clear vive dentro del callback del timeout para no llamar setState
+    // síncronamente en el cuerpo del effect — react-hooks/set-state-in-effect.)
+    useEffect(() => {
+        const term = searchTerm.trim()
+        const controller = new AbortController()
 
-        const term = normalizarTexto(searchTerm)
-        
-        return products
-            .filter((product) => {
-                // 1. Obtener traducciones para comparar
-                const nombreEs = normalizarTexto(product.name)
-                
-                const translationKey = `${product.id}.name`;
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const translatedName = tProducts.has(translationKey as any) ? normalizarTexto(tProducts(translationKey as any)) : nombreEs;
-                
-                // 2. Filtrar
-                return nombreEs.includes(term) || translatedName.includes(term)
-            })
-            .map((product) => {
-                const translationKey = `${product.id}.name`;
-                return {
-                    id: product.id,
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    name: tProducts.has(translationKey as any) ? tProducts(translationKey as any) : product.name,
-                    imagen: product.imagen
-                };
-            })
-            .slice(0, 8)
-    }, [searchTerm, tProducts])
+        const timeout = setTimeout(async () => {
+            if (controller.signal.aborted) return
+
+            if (!hasSearchQuery(term)) {
+                setSearchResults([])
+                return
+            }
+
+            try {
+                const { data } = await search({ q: term }, locale)
+                if (controller.signal.aborted) return
+                const productResults = mapApiProductsToProducts(data)
+                    .slice(0, 8)
+                    .map((product) => ({
+                        id: product.id,
+                        name: product.name,
+                        imagen: product.imagen,
+                    }))
+                setSearchResults(productResults)
+            } catch {
+                if (controller.signal.aborted) return
+                setSearchResults([])
+            }
+        }, 300)
+
+        return () => {
+            controller.abort()
+            clearTimeout(timeout)
+        }
+    }, [searchTerm, locale])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

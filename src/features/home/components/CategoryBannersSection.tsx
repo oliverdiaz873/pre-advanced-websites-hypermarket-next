@@ -4,6 +4,11 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useInView } from "framer-motion";
 import CategoryBanner from "./CategoryBanner";
+import type { Category } from "@/types/category";
+
+interface CategoryBannersSectionProps {
+    categories: Category[];
+}
 
 /**
  * Interface representing metadata for each category banner structure.
@@ -143,11 +148,18 @@ const sectionTitleVariants = {
  * Features customizable layout parameters, next-intl translations integration,
  * scroll tracking hooks, alternating card layouts, and premium card wrappers.
  */
-const CategoryBannersSection = () => {
-  /** Utilizes standard translations namespace under home.category_banners */
+const CategoryBannersSection = ({ categories }: CategoryBannersSectionProps) => {
+  /** Utiliza traducciones estándar bajo el namespace home.category_banners */
   const t = useTranslations("home.category_banners");
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-40px" });
+
+  // F5.3: la autoría local (diseño, assets, textos) se conserva, pero los banners solo se
+  // muestran si su slug existe en las categorías reales del backend (nunca un link muerto).
+  const validSlugs = new Set(categories.map((category) => category.id));
+  const visibleBanners = categoryData.filter((banner) =>
+    validSlugs.has(banner.href.replace("/category/", ""))
+  );
 
   return (
     <section
@@ -172,7 +184,7 @@ const CategoryBannersSection = () => {
 
       {/* Banners Grid */}
       <div className="flex flex-col gap-6 md:gap-8">
-        {categoryData.map((category, index) => (
+        {visibleBanners.map((category, index) => (
           <CategoryBanner
             key={category.id}
             title={t(category.titleKey)}

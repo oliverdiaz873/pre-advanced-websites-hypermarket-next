@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { categories } from '@/services/catalog/categories'
+import type { Category } from '@/types/category'
 import { ChevronDownIcon, ChevronRightIcon } from '@/ui/Icons'
 import './DesktopNav.css'
 
@@ -21,7 +21,7 @@ const subLinkClass =
  * Muestra enlaces directos y un menú desplegable interactivo para las categorías.
  * Soporta interacción por hover y click para mejor accesibilidad.
  */
-const DesktopNav = () => {
+const DesktopNav = ({ categories }: { categories: Category[] }) => {
     const t = useTranslations('header');
     const tCategories = useTranslations('categories');
     const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)

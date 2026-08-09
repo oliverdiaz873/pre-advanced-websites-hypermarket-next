@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import OffersPageClient from '@/features/offers/components/OffersPageClient';
 import { getTranslations } from 'next-intl/server';
+import { fetchCategories } from '@/lib/api-client';
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('offers');
@@ -11,6 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function OffersPage() {
-    return <OffersPageClient />;
+export default async function OffersPage() {
+    // F5.3: categorías reales desde el backend para el filtro de ofertas
+    const categories = await fetchCategories();
+    return <OffersPageClient categories={categories} />;
 }

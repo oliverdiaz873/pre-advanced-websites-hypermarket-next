@@ -10,9 +10,10 @@ import { OfferBadge } from '@/features/offers/components';
 import OfferFilters from '@/features/offers/components/OfferFilters';
 import EmptyOffers from '@/features/offers/components/EmptyOffers';
 import { useOfferFilters } from '@/features/offers/hooks/useOfferFilters';
+import type { Category } from '@/types/category';
 import './OffersPageClient.css';
 
-export default function OffersPageClient() {
+export default function OffersPageClient({ categories }: { categories: Category[] }) {
     const t = useTranslations('offers');
     const tCategories = useTranslations('categories');
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function OffersPageClient() {
         sortedProducts,
         selectedCategory,
         onCategoryChange,
-    } = useOfferFilters();
+    } = useOfferFilters(categories);
 
     const filters = (
         <OfferFilters
@@ -30,6 +31,7 @@ export default function OffersPageClient() {
             onCategoryChange={onCategoryChange}
             totalProducts={offerProducts.length}
             filteredProducts={filteredProducts.length}
+            categories={categories}
         />
     );
 
@@ -96,6 +98,7 @@ export default function OffersPageClient() {
                         totalProducts={offerProducts.length}
                         filteredProducts={filteredProducts.length}
                         isDrawer
+                        categories={categories}
                     />
                 </Drawer>
             </section>

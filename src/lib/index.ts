@@ -37,9 +37,13 @@ export {
   getOffers,
   search,
   getCategories,
+  fetchCategories,
+  getAllCategoryProducts,
   resolveApiImageUrl,
   mapApiProductToProduct,
   mapApiProductsToProducts,
+  mapApiCategoryToCategory,
+  mapApiCategoriesToCategories,
 } from './api-client'
 export type {
   ApiProduct,

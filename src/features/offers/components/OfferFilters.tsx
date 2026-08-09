@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { categories } from '@/services/catalog/categories'
+import type { Category } from '@/types/category'
 import './OfferFilters.css'
 
 interface OfferFiltersProps {
@@ -8,6 +8,7 @@ interface OfferFiltersProps {
     totalProducts: number
     filteredProducts: number
     isDrawer?: boolean
+    categories: Category[]
 }
 
 /**
@@ -24,6 +25,7 @@ const OfferFilters = ({
     totalProducts,
     filteredProducts,
     isDrawer = false,
+    categories,
 }: OfferFiltersProps) => {
     const t = useTranslations('offers');
     const tCategories = useTranslations('categories');

@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import Breadcrumb, { BreadcrumbItem } from '@/ui/Breadcrumb/Breadcrumb'
 import { Product } from '@/types/product'
-import { categories } from '@/services/catalog/categories'
+import type { Category } from '@/types/category'
 import ProductDetailSectionWithActions from './ProductDetailSectionWithActions'
 import ProductCarouselSectionWithActions from './ProductCarouselSectionWithActions'
 import { useProductTranslation } from '@/features/products/hooks/useProductTranslation'
@@ -13,6 +13,7 @@ import { productPageData } from '@/services/catalog/productPageData'
 interface ProductPageClientProps {
     product: Product
     relatedProducts: Product[]
+    categories: Category[]
 }
 
 /**
@@ -30,7 +31,7 @@ interface ProductPageClientProps {
  * Este patrón (Client Boundary) nos permite tener lo mejor de ambos mundos: 
  * Excelente SEO en el servidor (`page.tsx`) y traducciones/interactividad en el cliente (`ProductPageClient`).
  */
-export default function ProductPageClient({ product, relatedProducts }: ProductPageClientProps) {
+export default function ProductPageClient({ product, relatedProducts, categories }: ProductPageClientProps) {
     const tCommon = useTranslations('common');
     const tCategories = useTranslations('categories');
     
@@ -65,7 +66,7 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
 
         items.push({ label: name })
         return items
-    }, [product.categoria, name, tCommon, tCategories])
+    }, [product.categoria, name, tCommon, tCategories, categories])
 
     return (
         <>

@@ -2,27 +2,28 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
-import { categories } from '@/services/catalog/categories';
-import { getProducts, mapApiProductsToProducts } from '@/lib/api-client';
+import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts } from '@/lib/api-client';
+import type { Category } from '@/types/category';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 import { getCategoryName, getSubcategoryName } from '@/lib';
 
 /**
  * Hypermarket category page.
- * F5.2: products dentro de subcategorías se obtienen de la API real (GET /products?category=slug).
- * Categorías siguen en data layer mock hasta F5.3.
+ * F5.3: categorías desde la API real (GET /categories) identificadas por slug;
+ * los productos por subcategoría se obtienen respetando la paginación del backend.
  */
 type CategoryPageProps = {
     params: Promise<{ id: string }>;
 };
 
-function getCategory(id: string) {
+async function getCategoryBySlug(id: string): Promise<Category | undefined> {
+    const categories = await fetchCategories();
     return categories.find((category) => category.id === id);
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
     const { id } = await params;
-    const category = getCategory(id);
+    const category = await getCategoryBySlug(id);
 
     if (!category) {
         const t = await getTranslations('categories');
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
     const { id } = await params;
-    const category = getCategory(id);
+    const category = await getCategoryBySlug(id);
 
     if (!category) {
         notFound();
@@ -74,17 +75,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const catName = getCategoryName(category, t);
     const description = t('seo.description', { name: catName, subcategories: category.subcategories.map((s) => getSubcategoryName(s, t)).join(', ') });
 
-    // F5.2: obtener productos por subcategoría desde la API
+    // F5.3: obtener todos los productos por subcategoría respetando la paginación del backend
     const sections = await Promise.all(
         category.subcategories.map(async (subcategory) => {
             const slug = subcategorySlugFromHref(subcategory.href);
             const productCategory = sectionSlugToProductCategoria(slug);
-            const { data: rawProducts } = await getProducts({ category: productCategory, limit: 50 });
+            const rawProducts = await getAllCategoryProducts(productCategory);
             const sectionProducts = mapApiProductsToProducts(rawProducts);
 
             return {
                 slug,
-                title: subcategory.name,
+                title: getSubcategoryName(subcategory, t),
                 products: sectionProducts,
             };
         })

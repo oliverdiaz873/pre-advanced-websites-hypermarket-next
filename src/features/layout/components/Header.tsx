@@ -11,6 +11,7 @@ import { DesktopSearch, TabletSearch, MobileSearch, useHeaderSearch } from '../.
 import { useCart } from '../../cart/hooks/useCart'
 import { useTranslations } from 'next-intl'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
+import type { Category } from '@/types/category'
 import './Header.css'
 import '../../navigation/components/Navigation.css'
 
@@ -29,7 +30,7 @@ const getViewportMode = (): ViewportMode => {
 // Component: orquesta el header principal y decide, segun el viewport,
 // que navegacion y que variante del buscador deben renderizarse para
 // mantener separada la experiencia de desktop, tablet y mobile.
-const Header = () => {
+const Header = ({ categories }: { categories: Category[] }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [viewportMode, setViewportMode] = useState<ViewportMode>('desktop')
     const { totalItems } = useCart()
@@ -113,7 +114,7 @@ const Header = () => {
                     </Link>
                 )}
 
-                {showNavigation && viewportMode === 'desktop' && <DesktopNav />}
+                {showNavigation && viewportMode === 'desktop' && <DesktopNav categories={categories} />}
                 {viewportMode === 'desktop' && (
                     <DesktopSearch
                         isActive={isSearchActive}
@@ -169,6 +170,7 @@ const Header = () => {
                     isOpen={isMobileMenuOpen}
                     onClose={() => setIsMobileMenuOpen(false)}
                     showLanguage={true}
+                    categories={categories}
                 />
             )}
         </header>

@@ -66,6 +66,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import Footer from "@/features/layout/components/Footer";
 import CartLayout from "./_components/CartLayout";
+import { fetchCategories } from '@/lib/api-client';
 
 export default async function RootLayout({
   children,
@@ -84,12 +85,15 @@ export default async function RootLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  // F5.3: categorías reales desde el backend (GET /categories), mapeadas al storefront.
+  // Se fetchean en el servidor y se pasan como props al header (client components).
+  const categories = await fetchCategories();
 
   return (
     <html lang={locale} className="h-full">
       <body className={`${domine.variable} min-h-screen flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
-          <CartLayout>
+          <CartLayout categories={categories}>
             {children}
           </CartLayout>
           <Footer />

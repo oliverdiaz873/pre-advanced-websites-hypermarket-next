@@ -7,6 +7,7 @@ import { products } from '@/services/catalog/products';
 import { offersData } from '@/features/offers/data/offers'
 import { calculateDiscountPercentage } from '@/features/offers/utils/offer'
 import { getTranslations } from 'next-intl/server';
+import { fetchCategories } from '@/lib/api-client';
 import { Product } from '@/types/product';
 
 type OfferProduct = Product & {
@@ -44,6 +45,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
     const t = await getTranslations('home');
+    // F5.3: slugs válidos desde el backend para validar los banners de autoría local
+    const categories = await fetchCategories();
     const featuredProducts = products.filter((p) => featuredIds.includes(p.id))
 
     const offerProducts: OfferProduct[] = offersData
@@ -116,7 +119,7 @@ export default async function Home() {
                 className="mt-6 md:mt-8"
             />
 
-            <CategoryBannersSection />
+            <CategoryBannersSection categories={categories} />
 
             <AboutUs />
         </>

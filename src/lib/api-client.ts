@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Product } from '@/types/product'
+import type { Category } from '@/types/category'
 
 export type ApiLang = 'es' | 'en'
 
@@ -150,6 +151,35 @@ export function mapApiProductsToProducts(apiProducts: ApiProduct[]): Product[] {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Mapper F5.3: ApiCategory (backend Express+MongoDB) → modelo Category del storefront
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Mapper F5.3: ApiCategory → Category del storefront.
+ *
+ * Decisiones F5.3 (docs/F5-CONTRACT-AUDIT.md §10):
+ * - `slug` es la única identidad navegable; el `id` del backend jamás se propaga.
+ * - `href` se genera en el frontend: `/category/<slug>` (+ `#<slug>` por subcategoría).
+ * - Los nombres traducibles se resuelven vía i18n en los componentes con fallback al `name` del API.
+ *   (getCategoryName/getSubcategoryName usan la subkey `categories.<id>` / `categories.sub.<slug>`).
+ */
+export function mapApiCategoryToCategory(api: ApiCategory): Category {
+  return {
+    id: api.slug,
+    name: api.name,
+    href: `/category/${api.slug}`,
+    subcategories: api.subcategories.map((sub) => ({
+      name: sub.name,
+      href: `/category/${api.slug}#${sub.slug}`,
+    })),
+  }
+}
+
+export function mapApiCategoriesToCategories(apiCategories: ApiCategory[]): Category[] {
+  return apiCategories.map(mapApiCategoryToCategory)
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Client HTTP (fetch nativo; sirve tanto en Server Components como en el cliente)
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -201,4 +231,37 @@ export function search(query: Pick<ApiPaginationParams, 'q' | 'category'>): Prom
 
 export function getCategories(): Promise<ApiEnvelope<ApiCategory[]>> {
   return apiRequest<ApiEnvelope<ApiCategory[]>>('/categories')
+}
+
+/**
+ * F5.3: obtiene categorías de la API y las mapea al modelo del storefront.
+ * Nunca lanza: si el backend no responde devuelve una lista vacía para que la
+ * UI degrade a "sin navegación de categorías" en vez de romper el SSR.
+ */
+export async function fetchCategories(): Promise<Category[]> {
+  try {
+    const { data } = await getCategories()
+    return mapApiCategoriesToCategories(data)
+  } catch {
+    return []
+  }
+}
+
+/**
+ * F5.3: obtiene todos los productos de una categoría respetando la paginación
+ * del backend (GET /products?category=<slug>&page=N&limit=N). Usa el `total`
+ * real del primer page para calcular los pages restantes.
+ */
+export async function getAllCategoryProducts(category: string, limit = 100): Promise<ApiProduct[]> {
+  const first = await getProducts({ category, page: 1, limit })
+  const total = first.pagination?.total ?? first.data.length
+  const pages = Math.max(1, Math.ceil(total / limit))
+  if (pages <= 1) return first.data
+
+  const remaining = await Promise.all(
+    Array.from({ length: pages - 1 }, (_, i) =>
+      getProducts({ category, page: i + 2, limit }).then((page) => page.data)
+    )
+  )
+  return [...first.data, ...remaining.flat()]
 }

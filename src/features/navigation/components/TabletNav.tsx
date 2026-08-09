@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { categories } from '@/services/catalog/categories'
+import type { Category } from '@/types/category'
 import { useTabletMenu } from '../hooks/useTabletMenu'
 import { ChevronDownIcon, ChevronRightIcon } from '@/ui/Icons'
 import './TabletNav.css'
@@ -19,7 +19,7 @@ const subLinkClass =
  * Función: Renderiza la navegación dedicada a tablets.
  * Delega la apertura y cierre de submenús al hook de interacción por clic del usuario.
  */
-const TabletNav = () => {
+const TabletNav = ({ categories }: { categories: Category[] }) => {
     const t = useTranslations('header');
     const tCategories = useTranslations('categories');
     const navRef = useTabletMenu()

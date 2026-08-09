@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { Product } from '@/types/product'
+import type { Category } from '@/types/category'
 import { products } from '@/services/catalog/products'
 import { calculateDiscountPercentage, offersData } from '@/features/offers'
-import { categories } from '@/services/catalog/categories'
 
 interface OfferProduct extends Product {
     oldPrice: string
@@ -26,7 +26,7 @@ interface UseOfferFiltersReturn {
  *
  * @returns Objeto con productos filtrados, estado de categoría seleccionada y callbacks
  */
-export const useOfferFilters = (): UseOfferFiltersReturn => {
+export const useOfferFilters = (categories: Category[]): UseOfferFiltersReturn => {
     const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
     // Mapeo estable de categorías a subcategorías para evitar re-cálculos innecesarios
@@ -40,7 +40,7 @@ export const useOfferFilters = (): UseOfferFiltersReturn => {
             map.set(cat.id, subIds)
         })
         return map
-    }, [])
+    }, [categories])
 
     // Obtener productos en oferta con información de descuento (Base)
     const offerProducts: OfferProduct[] = useMemo(() => {

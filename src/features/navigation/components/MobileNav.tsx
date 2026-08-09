@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { categories } from '@/services/catalog/categories'
+import type { Category } from '@/types/category'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
 import { ChevronDownIcon, ChevronRightIcon, WorldIcon } from '@/ui/Icons'
 import './MobileNav.css'
@@ -10,6 +10,7 @@ interface MobileNavProps {
     isOpen: boolean
     onClose?: () => void
     showLanguage?: boolean
+    categories: Category[]
 }
 
 /**
@@ -17,7 +18,7 @@ interface MobileNavProps {
  * Función: Construye y renderiza el menú hamburguesa optimizado para dispositivos móviles.
  * Soporta un diseño de menú tipo acordeón con submenús emergentes y selector de idioma integrado.
  */
-const MobileNav = ({ isOpen, onClose, showLanguage }: MobileNavProps) => {
+const MobileNav = ({ isOpen, onClose, showLanguage, categories }: MobileNavProps) => {
     const t = useTranslations('header');
     const tCategories = useTranslations('categories');
     const [openCategory, setOpenCategory] = useState<string | null>(null)

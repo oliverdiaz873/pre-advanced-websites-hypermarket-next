@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import ProductPageClient from '../../_components/ProductPageClient';
-import { getProduct, getProducts, mapApiProductToProduct, mapApiProductsToProducts, fetchCategories } from '@/lib/api-client';
+import { getProduct, getProducts, mapApiProductToProduct, mapApiProductsToProducts, getOffers, mapApiOfferToOfferProduct, fetchCategories, type ApiLang, type OfferProduct } from '@/lib/api-client';
 import type { Product } from '@/types/product';
 import type { Category } from '@/types/category';
 
@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductPage({ params }: ProductPageProps) {
     const { id } = await params;
 
-    let mappedProduct: Product;
+    let mappedProduct: OfferProduct;
     let relatedProducts: Product[];
     let categories: Category[];
     let jsonLd: Record<string, unknown>;
@@ -94,6 +94,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         mappedProduct = mapApiProductToProduct(product);
 
+        // F5.4: ofertas reales (GET /offers) para enriquecer el badge de precio del producto y sus relacionados.
+        const locale = (await getLocale()) as ApiLang;
+        const { data: offersRaw } = await getOffers(locale);
+        const offerMap = new Map(offersRaw.map(mapApiOfferToOfferProduct).map((offer) => [offer.id, offer]));
+
+        const productOffer = offerMap.get(mappedProduct.id);
+        if (productOffer) {
+            mappedProduct = { ...mappedProduct, oldPrice: productOffer.oldPrice, discountPercentage: productOffer.discountPercentage };
+        }
+
         // F5.3: categorías reales para el breadcrumb (buscar la subcategoría que corresponde al producto)
         categories = await fetchCategories();
 
@@ -101,7 +111,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
         const { data: relatedRaw } = await getProducts({ category: mappedProduct.categoria, limit: 50 });
         relatedProducts = mapApiProductsToProducts(relatedRaw)
             .filter((item) => item.id !== mappedProduct.id)
-            .slice(0, 8);
+            .slice(0, 8)
+            .map((item) => {
+                const offer = offerMap.get(item.id);
+                return offer
+                    ? { ...item, oldPrice: offer.oldPrice, discountPercentage: offer.discountPercentage }
+                    : item;
+            });
 
         // Generar JSON-LD para SEO estructurado del producto
         jsonLd = {

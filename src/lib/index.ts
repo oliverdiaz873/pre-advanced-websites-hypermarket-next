@@ -39,9 +39,11 @@ export {
   getCategories,
   fetchCategories,
   getAllCategoryProducts,
+  fetchOffers,
   resolveApiImageUrl,
   mapApiProductToProduct,
   mapApiProductsToProducts,
+  mapApiOfferToOfferProduct,
   mapApiCategoryToCategory,
   mapApiCategoriesToCategories,
 } from './api-client'
@@ -53,4 +55,5 @@ export type {
   ApiEnvelope,
   ApiPagination,
   ApiPaginationParams,
+  OfferProduct,
 } from './api-client'

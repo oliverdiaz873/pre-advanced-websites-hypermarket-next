@@ -1,6 +1,5 @@
 import './CartItemsList.css'
 import CartItem from './CartItem'
-import { offersData } from '@/features/offers'
 import type { CartItem as CartItemType } from '../CartContext'
 
 /**
@@ -9,6 +8,9 @@ import type { CartItem as CartItemType } from '../CartContext'
  * Renderiza la lista de productos usando el componente CartItem.
  * Actúa como un contenedor que mapea los datos del carrito
  * a componentes individuales reutilizables.
+ * 
+ * F5.4: los datos de oferta (isOffer/oldPrice/discountPercentage) se leen
+ * directamente del item del carrito, sin mock.
  */
 interface CartItemsListProps {
     cart: CartItemType[]
@@ -19,37 +21,23 @@ interface CartItemsListProps {
 const CartItemsList = ({ cart, updateQuantity, removeFromCart }: CartItemsListProps) => {
     return (
         <div className="cart-items-list">
-            {cart.map((item) => {
-                const offer = offersData.find((o) => o.id === item.id)
-                
-                // Calcular discountPercentage si es una oferta
-                let discountPercentage: number | undefined
-                if (offer?.oldPrice) {
-                    const numericOldPrice = parseFloat(offer.oldPrice.replace(/[^\d.-]/g, ''))
-                    if (!isNaN(numericOldPrice) && numericOldPrice > 0) {
-                        const discount = ((numericOldPrice - item.precio) / numericOldPrice) * 100
-                        discountPercentage = Math.round(discount)
-                    }
-                }
-                
-                return (
-                    <CartItem
-                        key={item.id}
-                        id={item.id}
-                        name={item.name}
-                        precio={item.precio}
-                        cantidad={item.cantidad}
-                        img={item.img}
-                        unitLabel={item.unitLabel}
-                        unitQuantity={item.unitQuantity}
-                        isOffer={!!offer}
-                        oldPrice={offer?.oldPrice}
-                        discountPercentage={discountPercentage}
-                        updateQuantity={updateQuantity}
-                        removeFromCart={removeFromCart}
-                    />
-                )
-            })}
+            {cart.map((item) => (
+                <CartItem
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    precio={item.precio}
+                    cantidad={item.cantidad}
+                    img={item.img}
+                    unitLabel={item.unitLabel}
+                    unitQuantity={item.unitQuantity}
+                    isOffer={item.isOffer}
+                    oldPrice={item.oldPrice}
+                    discountPercentage={item.discountPercentage}
+                    updateQuantity={updateQuantity}
+                    removeFromCart={removeFromCart}
+                />
+            ))}
         </div>
     )
 }

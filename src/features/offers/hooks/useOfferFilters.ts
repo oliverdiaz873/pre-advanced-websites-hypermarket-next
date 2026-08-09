@@ -1,13 +1,6 @@
 import { useState, useMemo } from 'react'
-import { Product } from '@/types/product'
 import type { Category } from '@/types/category'
-import { products } from '@/services/catalog/products'
-import { calculateDiscountPercentage, offersData } from '@/features/offers'
-
-interface OfferProduct extends Product {
-    oldPrice: string
-    discountPercentage: number
-}
+import type { OfferProduct } from '@/lib/api-client'
 
 interface UseOfferFiltersReturn {
     offerProducts: OfferProduct[]
@@ -18,15 +11,15 @@ interface UseOfferFiltersReturn {
 }
 
 /**
- * Hook para gestionar la lógica de filtrado y ordenamiento de ofertas
- * Encapsula:
- * - Mapeo de offersData a productos con información de descuento
+ * Hook para gestionar la lógica de filtrado y ordenamiento de ofertas.
+ * F5.4: la fuente es la oferta real del backend (`OfferProduct[]` desde
+ * /offers), nunca un catálogo mock. Encapsula:
  * - Filtrado por categoría (manejando la conversión de subcategorías)
  * - Ordenamiento por descuento (mayor a menor)
  *
  * @returns Objeto con productos filtrados, estado de categoría seleccionada y callbacks
  */
-export const useOfferFilters = (categories: Category[]): UseOfferFiltersReturn => {
+export const useOfferFilters = (offers: OfferProduct[], categories: Category[]): UseOfferFiltersReturn => {
     const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
     // Mapeo estable de categorías a subcategorías para evitar re-cálculos innecesarios
@@ -42,36 +35,22 @@ export const useOfferFilters = (categories: Category[]): UseOfferFiltersReturn =
         return map
     }, [categories])
 
-    // Obtener productos en oferta con información de descuento (Base)
-    const offerProducts: OfferProduct[] = useMemo(() => {
-        return offersData
-            .map((off) => {
-                const product = products.find((p) => p.id === off.id)
-                if (!product) return null
-                
-                return {
-                    ...product,
-                    oldPrice: off.oldPrice,
-                    discountPercentage: calculateDiscountPercentage(product.precio, off.oldPrice),
-                }
-            })
-            .filter((p): p is OfferProduct => p !== null)
-    }, [])
+    const offerProducts = offers
 
     // Lógica de filtrado reactiva
     const filteredProducts: OfferProduct[] = useMemo(() => {
         if (selectedCategory === 'all') return offerProducts
 
         const allowedSubcategories = categoryMap.get(selectedCategory) || []
-        
-        return offerProducts.filter((p) => 
+
+        return offerProducts.filter((p) =>
             allowedSubcategories.includes(p.categoria)
         )
     }, [offerProducts, selectedCategory, categoryMap])
 
     // Ordenamiento final por porcentaje de descuento
     const sortedProducts: OfferProduct[] = useMemo(() => {
-        return [...filteredProducts].sort((a, b) => b.discountPercentage - a.discountPercentage)
+        return [...filteredProducts].sort((a, b) => (b.discountPercentage ?? 0) - (a.discountPercentage ?? 0))
     }, [filteredProducts])
 
     return {

@@ -1,6 +1,3 @@
 export { OfferFilters, EmptyOffers, OfferBadge } from './components'
 export { useOfferFilters } from './hooks'
-export { offersData } from './data/offers'
-export type { OfferData } from './data/offers'
-export { calculateDiscountPercentage, enrichWithOffer } from './utils/offer'
-export type { ProductWithOffer } from './utils/offer'
+export type { OfferProduct } from '@/lib/api-client'

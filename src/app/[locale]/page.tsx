@@ -4,16 +4,8 @@ import ProductCarouselSectionWithActions from './(shop)/_components/ProductCarou
 import AboutUs from '@/features/home/components/AboutUs';
 import CategoryBannersSection from '@/features/home/components/CategoryBannersSection';
 import { products } from '@/services/catalog/products';
-import { offersData } from '@/features/offers/data/offers'
-import { calculateDiscountPercentage } from '@/features/offers/utils/offer'
-import { getTranslations } from 'next-intl/server';
-import { fetchCategories } from '@/lib/api-client';
-import { Product } from '@/types/product';
-
-type OfferProduct = Product & {
-    oldPrice: string
-    discountPercentage: number
-}
+import { getTranslations, getLocale } from 'next-intl/server';
+import { fetchCategories, fetchOffers, type ApiLang } from '@/lib/api-client';
 
 const featuredIds = [
     'televisor_samsung_75_pulgadas',
@@ -47,20 +39,10 @@ export default async function Home() {
     const t = await getTranslations('home');
     // F5.3: slugs válidos desde el backend para validar los banners de autoría local
     const categories = await fetchCategories();
+    // F5.4: ofertas reales para el carrusel "Ofertas" (featured sigue con contenido mock → deuda F5-post).
+    const locale = (await getLocale()) as ApiLang;
+    const offerProducts = await fetchOffers(locale);
     const featuredProducts = products.filter((p) => featuredIds.includes(p.id))
-
-    const offerProducts: OfferProduct[] = offersData
-        .map((off) => {
-            const product = products.find((p) => p.id === off.id)
-            return product
-                ? {
-                    ...product,
-                    oldPrice: off.oldPrice,
-                    discountPercentage: calculateDiscountPercentage(product.precio, off.oldPrice) ?? 0,
-                }
-                : null
-        })
-        .filter((product): product is OfferProduct => product !== null)
 
     const jsonLd = {
         '@context': 'https://schema.org',

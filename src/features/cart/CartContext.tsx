@@ -11,7 +11,6 @@
 import { createContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 import { unitLabel } from '@/lib/priceUtils'
 import type { Product } from '@/types/product'
-import { calculateDiscountPercentage } from '@/features/offers'
 
 export interface CartItem {
     id: string
@@ -41,6 +40,17 @@ interface CartContextType {
 export const CartContext = createContext<CartContextType | undefined>(undefined)
 
 const STORAGE_KEY = 'carrito'
+
+/**
+ * F5.4: cálculo local y puro del porcentaje de descuento como fallback del
+ * `discountPercentage` real del backend. Nunca se deriva de un mock.
+ */
+function discountFromPrices(price: number, oldPrice?: string): number | undefined {
+    if (oldPrice == null) return undefined
+    const numericOld = parseFloat(oldPrice.replace(/[^\d.-]/g, ''))
+    if (isNaN(numericOld) || numericOld <= 0) return undefined
+    return Math.round(((numericOld - price) / numericOld) * 100)
+}
 
 /**
  * CartProvider - Componente proveedor que envuelve la aplicación
@@ -101,10 +111,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
             
             const finalUnidad = product.unidad || (product.precioTexto ? product.precioTexto.split('/').pop()?.trim() : undefined);
             const finalUnitLabel = unitLabel({ unidad: product.unidad, precioTexto: product.precioTexto } as Product);
-            
-            const discountPercentage = product.oldPrice !== undefined
-                ? calculateDiscountPercentage(product.precio, product.oldPrice)
-                : undefined;
+
+            // F5.4: se prefiere el discountPercentage real del backend; el fallback local
+            // (discountFromPrices) solo aplica cuando el producto llegó sin dato de oferta.
+            const discountPercentage = product.discountPercentage ?? discountFromPrices(product.precio, product.oldPrice);
             return [...prevCart, { ...product, unidad: finalUnidad, unitLabel: finalUnitLabel, cantidad: 1, discountPercentage, unitQuantity: product.unitQuantity }];
         });
     }, []);

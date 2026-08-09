@@ -1,26 +1,20 @@
 "use client";
 
-import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import AddToCartButton from '@/features/cart/components/AddToCartButton';
 import ProductGrid from '@/features/products/components/ProductGrid';
 import EmptySearchResults from '@/features/search/components/EmptySearchResults';
-import { enrichWithOffer, OfferBadge } from '@/features/offers';
-import type { ProductWithOffer } from '@/features/offers';
-import type { Product } from '@/types/product';
+import { OfferBadge } from '@/features/offers';
+import type { OfferProduct } from '@/lib/api-client';
 
 interface SearchPageClientProps {
     query: string;
-    results: Product[];
+    results: OfferProduct[];
     error: boolean;
 }
 
 export default function SearchPageClient({ query, results, error }: SearchPageClientProps) {
     const t = useTranslations('search');
-
-    const enrichedResults: ProductWithOffer[] = useMemo(() => {
-        return results.map(enrichWithOffer);
-    }, [results]);
 
     return (
         <section className="mx-auto w-full max-w-7xl px-4 pt-4 pb-8 md:px-6 md:pt-6 min-h-[60vh] flex flex-col">
@@ -32,18 +26,18 @@ export default function SearchPageClient({ query, results, error }: SearchPageCl
                 </h1>
                 <p className="mt-1.5 text-sm md:text-base text-neutral-600">
                     {query
-                        ? t('hero.summary_query', { count: enrichedResults.length })
+                        ? t('hero.summary_query', { count: results.length })
                         : t('hero.summary_empty')}
                 </p>
             </div>
 
             {error ? (
                 <EmptySearchResults query={query} error />
-            ) : enrichedResults.length > 0 ? (
+            ) : results.length > 0 ? (
                 <ProductGrid
-                    products={enrichedResults}
+                    products={results}
                     renderBadge={(product) => {
-                        const enriched = product as ProductWithOffer
+                        const enriched = product as OfferProduct
                         return enriched.discountPercentage ? (
                             <OfferBadge discountPercentage={enriched.discountPercentage} />
                         ) : null

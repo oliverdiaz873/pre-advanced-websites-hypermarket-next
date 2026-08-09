@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
-import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts } from '@/lib/api-client';
+import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts, getOffers, mapApiOfferToOfferProduct, type ApiLang } from '@/lib/api-client';
 import type { Category } from '@/types/category';
 import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 import { getCategoryName, getSubcategoryName } from '@/lib';
@@ -75,13 +75,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const catName = getCategoryName(category, t);
     const description = t('seo.description', { name: catName, subcategories: category.subcategories.map((s) => getSubcategoryName(s, t)).join(', ') });
 
+    // F5.4: ofertas reales (GET /offers) para enriquecer los badges de los grids.
+    const locale = (await getLocale()) as ApiLang;
+    const offers = await getOffers(locale);
+    const offerMap = new Map(offers.data.map(mapApiOfferToOfferProduct).map((offer) => [offer.id, offer]));
+    const withOffer = <T extends { id: string }>(product: T) => {
+        const offer = offerMap.get(product.id);
+        return offer
+            ? { ...product, oldPrice: offer.oldPrice, discountPercentage: offer.discountPercentage }
+            : product;
+    };
+
     // F5.3: obtener todos los productos por subcategoría respetando la paginación del backend
     const sections = await Promise.all(
         category.subcategories.map(async (subcategory) => {
             const slug = subcategorySlugFromHref(subcategory.href);
             const productCategory = sectionSlugToProductCategoria(slug);
             const rawProducts = await getAllCategoryProducts(productCategory);
-            const sectionProducts = mapApiProductsToProducts(rawProducts);
+            const sectionProducts = mapApiProductsToProducts(rawProducts).map(withOffer);
 
             return {
                 slug,

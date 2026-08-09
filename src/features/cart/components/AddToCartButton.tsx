@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { useCart } from '../hooks/useCart';
 import { Product } from '@/types/product';
+import { OfferProduct } from '@/lib/api-client';
 import './AddToCartButton.css';
 
 interface AddToCartButtonProps {
@@ -16,6 +17,9 @@ interface AddToCartButtonProps {
  * depending on whether the product is already in the cart.
  * Shows "Add" button when quantity is 0,
  * and increment/decrement controls when quantity > 0.
+ *
+ * F5.4: los datos de oferta (isOffer/oldPrice/discountPercentage) se toman del
+ * producto enriquecido con la oferta real del backend, no de un mock.
  */
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
     const t = useTranslations('common');
@@ -28,6 +32,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
     const handleInitialAdd = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
+        const offer = product as OfferProduct;
         addToCart({
             id: product.id,
             name: product.name,
@@ -36,6 +41,9 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
             img: product.imagen,
             unidad: product.unidad,
             unitQuantity: product.quantity,
+            isOffer: offer.discountPercentage != null || offer.oldPrice != null,
+            oldPrice: offer.oldPrice,
+            discountPercentage: offer.discountPercentage,
         });
     };
 

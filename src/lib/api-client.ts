@@ -40,16 +40,15 @@ export interface ApiCategory {
 
 export interface ApiOffer {
   id: string
-  productId: string
-  title: string
-  description: string | null
+  name: string
+  price: number
   originalPrice: number
   discountPrice: number
-  discountPercent: number
-  currency: string
-  startDate: string
-  endDate: string
-  active: boolean
+  discountPercentage: number
+  image: string | null
+  categoryId: string
+  unit?: string
+  unitQuantity?: number
 }
 
 export interface ApiPagination {
@@ -151,6 +150,55 @@ export function mapApiProductsToProducts(apiProducts: ApiProduct[]): Product[] {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Mapper F5.4: ApiOffer (backend Express+MongoDB) → Product con badge de oferta
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Producto en oferta con la información comercial real del backend (F5.4).
+ * `oldPrice` y `discountPercentage` provienen de la API; nunca se calculan aquí.
+ */
+export interface OfferProduct extends Product {
+  oldPrice?: string
+  discountPercentage?: number
+}
+
+/**
+ * Mapper F5.4: ApiOffer → OfferProduct (modelo UI del storefront).
+ *
+ * Decisiones F5.0/F5.4:
+ * - `discountPrice` → `precio` y `precioTexto` (única fuente: backend).
+ * - `originalPrice` → `oldPrice` (string de display) y `discountPercentage` del
+ *   backend tal cual, sin cálculos locales ni valores mock.
+ * - `categoryId` → `categoria` (los mismos slugs que filtran las ofertas).
+ * - `url` e `imagen` se resuelven en el frontend (igual que F5.2).
+ */
+export function mapApiOfferToOfferProduct(api: ApiOffer): OfferProduct {
+  const imagen = resolveApiImageUrl(api.image) ?? ''
+  const unit = api.unit ?? ''
+  const quantity = api.unitQuantity
+
+  const hasUnitBlock = Boolean(unit || (quantity != null && quantity > 1))
+  const precioTexto = hasUnitBlock
+    ? `Precio: $${api.discountPrice.toLocaleString('en-US')} / ${quantity ?? 1} ${unit}`.trim()
+    : `Precio: $${api.discountPrice.toLocaleString('en-US')}`
+
+  return {
+    id: api.id,
+    name: api.name,
+    description: '',
+    url: `/product/${encodeURIComponent(api.id)}`,
+    categoria: api.categoryId,
+    precio: api.discountPrice,
+    precioTexto,
+    imagen,
+    unidad: unit || undefined,
+    quantity,
+    oldPrice: `RD$ ${api.originalPrice.toLocaleString('en-US')}`,
+    discountPercentage: api.discountPercentage,
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Mapper F5.3: ApiCategory (backend Express+MongoDB) → modelo Category del storefront
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -223,6 +271,20 @@ export function getProduct(id: string): Promise<ApiEnvelope<ApiProduct>> {
 
 export function getOffers(lang?: ApiLang): Promise<ApiEnvelope<ApiOffer[]>> {
   return apiRequest<ApiEnvelope<ApiOffer[]>>('/offers', { lang })
+}
+
+/**
+ * F5.4: obtiene las ofertas de la API y las mapea al modelo UI. Nunca lanza:
+ * si el backend no responde devuelve una lista vacía para que la UI degrade a
+ * "sin ofertas" en vez de romper el SSR.
+ */
+export async function fetchOffers(lang?: ApiLang): Promise<OfferProduct[]> {
+  try {
+    const { data } = await getOffers(lang)
+    return data.map(mapApiOfferToOfferProduct)
+  } catch {
+    return []
+  }
 }
 
 export function search(

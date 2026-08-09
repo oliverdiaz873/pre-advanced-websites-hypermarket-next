@@ -28,7 +28,7 @@ export default function ProductCarouselSectionWithActions({
             {...props}
             isOffer={isOffer}
             renderBadge={(product) =>
-                isOffer ? <OfferBadge discountPercentage={product.discountPercentage} /> : null
+                (isOffer || product.discountPercentage != null) ? <OfferBadge discountPercentage={product.discountPercentage} /> : null
             }
             renderAction={(product) => <AddToCartButton product={product} />}
         />

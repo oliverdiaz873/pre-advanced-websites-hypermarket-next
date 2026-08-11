@@ -1,4 +1,56 @@
 {
+  "auth": {
+    "seo": {
+      "login": { "title": "Sign in", "description": "Access your account at Hipermercado Superior to manage your purchases and data." },
+      "register": { "title": "Create account", "description": "Create your account at Hipermercado Superior and start shopping with the best offers." },
+      "account": { "title": "My account", "description": "View your account information at Hipermercado Superior." }
+    },
+    "menu": {
+      "sign_in": "Sign in",
+      "sign_up": "Register",
+      "my_account": "My account",
+      "logout": "Sign out"
+    },
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Access your account to continue.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "no_account": "Don't have an account?",
+      "go_register": "Register"
+    },
+    "register": {
+      "title": "Create account",
+      "subtitle": "Register to start shopping.",
+      "name": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "have_account": "Already have an account?",
+      "go_login": "Sign in"
+    },
+    "account": {
+      "title": "My account",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "logout": "Sign out",
+      "logging_out": "Signing out..."
+    },
+    "errors": {
+      "invalid_credentials": "Invalid email or password.",
+      "invalid_fields": "Check the fields and try again.",
+      "email_in_use": "This email is already registered.",
+      "rate_limited": "Too many attempts. Try again later.",
+      "not_found": "We couldn't find your account.",
+      "internal": "Something went wrong. Try again.",
+      "passwords_mismatch": "Passwords do not match."
+    }
+  },
   "categories": {
     "_documentation": {
       "namespace": "categories",

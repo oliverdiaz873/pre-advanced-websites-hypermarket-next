@@ -1,4 +1,56 @@
 {
+  "auth": {
+    "seo": {
+      "login": { "title": "Iniciar sesión", "description": "Accede a tu cuenta en Hipermercado Superior para gestionar tus compras y datos." },
+      "register": { "title": "Crear cuenta", "description": "Crea tu cuenta en Hipermercado Superior y empieza a comprar con las mejores ofertas." },
+      "account": { "title": "Mi cuenta", "description": "Consulta la información de tu cuenta en Hipermercado Superior." }
+    },
+    "menu": {
+      "sign_in": "Iniciar sesión",
+      "sign_up": "Registrarse",
+      "my_account": "Mi cuenta",
+      "logout": "Cerrar sesión"
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Accede a tu cuenta para continuar.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "submitting": "Iniciando sesión...",
+      "no_account": "¿No tienes cuenta?",
+      "go_register": "Regístrate"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Regístrate para empezar a comprar.",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirm": "Confirmar contraseña",
+      "submit": "Crear cuenta",
+      "submitting": "Creando cuenta...",
+      "have_account": "¿Ya tienes cuenta?",
+      "go_login": "Inicia sesión"
+    },
+    "account": {
+      "title": "Mi cuenta",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "logout": "Cerrar sesión",
+      "logging_out": "Cerrando sesión..."
+    },
+    "errors": {
+      "invalid_credentials": "Correo o contraseña incorrectos.",
+      "invalid_fields": "Revisa los campos e inténtalo de nuevo.",
+      "email_in_use": "Este correo ya está registrado.",
+      "rate_limited": "Demasiados intentos. Inténtalo de nuevo más tarde.",
+      "not_found": "No encontramos tu cuenta.",
+      "internal": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+      "passwords_mismatch": "Las contraseñas no coinciden."
+    }
+  },
   "categories": {
     "_documentation": {
       "namespace": "categories",

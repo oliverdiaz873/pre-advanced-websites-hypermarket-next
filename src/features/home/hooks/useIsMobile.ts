@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 /**
  * Tracks whether the viewport width is below a given breakpoint.
@@ -10,15 +10,15 @@ import { useState, useEffect } from "react";
  * @returns `true` when the viewport matches the mobile media query.
  */
 export const useIsMobile = (breakpoint = 768): boolean => {
-  const [isMobile, setIsMobile] = useState(false);
+  const getSnapshot = () => window.matchMedia(`(max-width: ${breakpoint}px)`).matches;
 
-  useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, [breakpoint]);
-
-  return isMobile;
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      const mql = window.matchMedia(`(max-width: ${breakpoint}px)`);
+      mql.addEventListener("change", onStoreChange);
+      return () => mql.removeEventListener("change", onStoreChange);
+    },
+    getSnapshot,
+    () => false,
+  );
 };

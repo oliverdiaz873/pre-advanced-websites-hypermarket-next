@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import type { Category } from '@/types/category'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
+import AccountMenu from '../../auth/AccountMenu'
 import { ChevronDownIcon, ChevronRightIcon, WorldIcon } from '@/ui/Icons'
 import './MobileNav.css'
 
@@ -148,6 +149,12 @@ const MobileNav = ({ isOpen, onClose, showLanguage, categories }: MobileNavProps
                             {t('nav.contact')}
                         </Link>
                     </li>
+
+                    {showLanguage !== false && (
+                    <li className="px-5 py-2.5 border-b border-white/10">
+                        <AccountMenu variant="mobile" onNavigate={handleLinkClick} />
+                    </li>
+                    )}
 
                     {showLanguage !== false && (
                     <li className="px-5 py-2.5 border-b border-white/10">

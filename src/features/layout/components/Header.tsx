@@ -11,6 +11,7 @@ import { DesktopSearch, TabletSearch, MobileSearch, useHeaderSearch } from '../.
 import { useCart } from '../../cart/hooks/useCart'
 import { useTranslations } from 'next-intl'
 import LanguageSelector from '@/ui/LanguageSelector/LanguageSelector'
+import AccountMenu from '../../auth/AccountMenu'
 import type { Category } from '@/types/category'
 import './Header.css'
 import '../../navigation/components/Navigation.css'
@@ -158,6 +159,10 @@ const Header = ({ categories }: { categories: Category[] }) => {
                         onSearchSubmit={handleSearchSubmit}
                         onSearchToggle={handleSearchToggle}
                     />
+                )}
+
+                {viewportMode === 'desktop' && (
+                    <AccountMenu />
                 )}
 
                 {viewportMode === 'desktop' && (

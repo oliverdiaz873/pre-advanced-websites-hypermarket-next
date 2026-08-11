@@ -7,6 +7,7 @@
  * precio/oferta del lado local.
  */
 import { unitLabel } from '@/lib/priceUtils'
+import { resolveApiImageUrl } from '@/lib/api-client'
 import type { Product } from '@/types/product'
 import type { CartItem, MergePayloadItem, ServerCart, ServerCartItem } from './cart-types'
 
@@ -18,7 +19,7 @@ export const toUiCartItem = (item: ServerCartItem): CartItem => ({
     id: item.productId,
     name: item.name,
     precio: item.unitPrice,
-    img: item.image,
+    img: resolveApiImageUrl(item.image) ?? '',
     unidad: item.unit,
     unitLabel: item.unit?.trim() || 'unidad',
     cantidad: item.quantity,

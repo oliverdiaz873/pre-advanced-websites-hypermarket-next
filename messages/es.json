@@ -39,7 +39,8 @@
       "email": "Correo electrónico",
       "role": "Rol",
       "logout": "Cerrar sesión",
-      "logging_out": "Cerrando sesión..."
+      "logging_out": "Cerrando sesión...",
+      "my_orders": "Mis pedidos"
     },
     "errors": {
       "invalid_credentials": "Correo o contraseña incorrectos.",
@@ -2590,6 +2591,117 @@
         "title": "Algo salió mal",
         "desc": "No se pudieron cargar los resultados. Inténtalo de nuevo."
       }
+    }
+  },
+  "checkout": {
+    "seo": {
+      "checkout": {
+        "title": "Finalizar compra",
+        "description": "Completa tu pedido en Hipermercado Superior con tu dirección de envío."
+      },
+      "addresses": {
+        "title": "Mis direcciones",
+        "description": "Gestiona tus direcciones de envío en Hipermercado Superior."
+      }
+    },
+    "title": "Finalizar compra",
+    "loading": "Cargando...",
+    "empty": "Tu carrito está vacío.",
+    "submitting": "Confirmando pedido...",
+    "submit": "Confirmar pedido",
+    "back_to_cart": "Volver al carrito",
+    "default_badge": "Predeterminada",
+    "shipping": {
+      "title": "Dirección de envío",
+      "no_addresses": "No tienes direcciones guardadas.",
+      "go_addresses": "Agrega una dirección",
+      "manage": "Gestionar direcciones"
+    },
+    "summary": {
+      "title": "Resumen del pedido",
+      "total": "Total"
+    },
+    "addresses": {
+      "title": "Mis direcciones"
+    },
+    "empty_message": "Aún no tienes direcciones guardadas.",
+    "actions": {
+      "add": "Agregar dirección",
+      "delete": "Eliminar",
+      "set_default": "Predeterminar"
+    },
+    "form": {
+      "new_title": "Nueva dirección",
+      "edit_title": "Editar dirección",
+      "label": "Etiqueta",
+      "street": "Calle",
+      "city": "Ciudad",
+      "state": "Provincia / Estado",
+      "zip": "Código postal",
+      "country": "País",
+      "reference": "Referencia",
+      "default": "Usar como dirección predeterminada",
+      "create": "Guardar dirección",
+      "update": "Actualizar dirección",
+      "submitting": "Guardando...",
+      "cancel": "Cancelar"
+    },
+    "errors": {
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "validation": "Revisa los campos del formulario.",
+      "unauthenticated": "Tu sesión expiró. Inicia sesión de nuevo.",
+      "no_address": "Selecciona una dirección de envío.",
+      "insufficient_stock": "No hay stock suficiente para uno o más productos.",
+      "cart_empty": "Tu carrito está vacío."
+    }
+  },
+  "orders": {
+    "seo": {
+      "list": {
+        "title": "Mis pedidos",
+        "description": "Consulta el historial de tus pedidos en Hipermercado Superior."
+      },
+      "detail": {
+        "title": "Detalle del pedido",
+        "description": "Consulta el estado de tu pedido en Hipermercado Superior."
+      }
+    },
+    "list": {
+      "title": "Mis pedidos"
+    },
+    "empty": "Aún no has realizado pedidos.",
+    "total": "Total: ${total}",
+    "items_count": "{count, plural, one {# artículo} other {# artículos}}",
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "processing": "Procesando",
+      "shipped": "Enviado",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "payment": {
+      "pending": "Pago pendiente",
+      "paid": "Pagado",
+      "failed": "Pago fallido",
+      "refunded": "Reembolsado"
+    },
+    "detail": {
+      "title": "Detalle del pedido",
+      "shipping": "Dirección de envío",
+      "items": "Artículos",
+      "total": "Total"
+    },
+    "actions": {
+      "pay": "Pagar ahora",
+      "cancel": "Cancelar pedido",
+      "processing": "Procesando..."
+    },
+    "errors": {
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "cannot_pay": "Este pedido ya fue pagado o no se puede pagar en este estado.",
+      "cannot_cancel": "Este pedido ya no se puede cancelar.",
+      "unauthenticated": "Tu sesión expiró. Inicia sesión de nuevo."
     }
   },
   "notFound": {

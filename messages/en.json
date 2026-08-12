@@ -39,7 +39,8 @@
       "email": "Email",
       "role": "Role",
       "logout": "Sign out",
-      "logging_out": "Signing out..."
+      "logging_out": "Signing out...",
+      "my_orders": "My orders"
     },
     "errors": {
       "invalid_credentials": "Invalid email or password.",
@@ -2590,6 +2591,117 @@
         "title": "Something went wrong",
         "desc": "We couldn't load the results. Please try again."
       }
+    }
+  },
+  "checkout": {
+    "seo": {
+      "checkout": {
+        "title": "Checkout",
+        "description": "Complete your order at Hipermercado Superior with your shipping address."
+      },
+      "addresses": {
+        "title": "My addresses",
+        "description": "Manage your shipping addresses at Hipermercado Superior."
+      }
+    },
+    "title": "Checkout",
+    "loading": "Loading...",
+    "empty": "Your cart is empty.",
+    "submitting": "Placing order...",
+    "submit": "Place order",
+    "back_to_cart": "Back to cart",
+    "default_badge": "Default",
+    "shipping": {
+      "title": "Shipping address",
+      "no_addresses": "You have no saved addresses.",
+      "go_addresses": "Add an address",
+      "manage": "Manage addresses"
+    },
+    "summary": {
+      "title": "Order summary",
+      "total": "Total"
+    },
+    "addresses": {
+      "title": "My addresses"
+    },
+    "empty_message": "You have no saved addresses yet.",
+    "actions": {
+      "add": "Add address",
+      "delete": "Delete",
+      "set_default": "Set default"
+    },
+    "form": {
+      "new_title": "New address",
+      "edit_title": "Edit address",
+      "label": "Label",
+      "street": "Street",
+      "city": "City",
+      "state": "State / Province",
+      "zip": "ZIP code",
+      "country": "Country",
+      "reference": "Reference",
+      "default": "Use as default address",
+      "create": "Save address",
+      "update": "Update address",
+      "submitting": "Saving...",
+      "cancel": "Cancel"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "validation": "Check the form fields.",
+      "unauthenticated": "Your session expired. Sign in again.",
+      "no_address": "Select a shipping address.",
+      "insufficient_stock": "There is not enough stock for one or more products.",
+      "cart_empty": "Your cart is empty."
+    }
+  },
+  "orders": {
+    "seo": {
+      "list": {
+        "title": "My orders",
+        "description": "View your order history at Hipermercado Superior."
+      },
+      "detail": {
+        "title": "Order detail",
+        "description": "Check the status of your order at Hipermercado Superior."
+      }
+    },
+    "list": {
+      "title": "My orders"
+    },
+    "empty": "You have not placed any orders yet.",
+    "total": "Total: ${total}",
+    "items_count": "{count, plural, one {# item} other {# items}}",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "payment": {
+      "pending": "Payment pending",
+      "paid": "Paid",
+      "failed": "Payment failed",
+      "refunded": "Refunded"
+    },
+    "detail": {
+      "title": "Order detail",
+      "shipping": "Shipping address",
+      "items": "Items",
+      "total": "Total"
+    },
+    "actions": {
+      "pay": "Pay now",
+      "cancel": "Cancel order",
+      "processing": "Processing..."
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "cannot_pay": "This order was already paid or cannot be paid in its current state.",
+      "cannot_cancel": "This order can no longer be cancelled.",
+      "unauthenticated": "Your session expired. Sign in again."
     }
   },
   "notFound": {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
-import { useRouter } from '@/i18n/routing'
+import { useRouter, Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import type { AuthUser } from '@/features/auth/types'
 import { logoutAction } from '@/features/auth/actions'
@@ -43,11 +43,18 @@ export default function AccountPageClient({ user }: { user: AuthUser }) {
         </div>
       </div>
 
+      <Link
+        href="/orders"
+        className="mt-6 block w-full rounded-lg bg-orange-500 text-white font-semibold py-3 text-sm text-center transition-colors duration-200 hover:bg-orange-600"
+      >
+        {t('account.my_orders')}
+      </Link>
+
       <button
         type="button"
         onClick={handleLogout}
         disabled={pending}
-        className="mt-8 w-full rounded-lg bg-red-600 text-white font-semibold py-3 text-sm transition-colors duration-200 hover:bg-red-700 disabled:opacity-60"
+        className="mt-4 w-full rounded-lg bg-red-600 text-white font-semibold py-3 text-sm transition-colors duration-200 hover:bg-red-700 disabled:opacity-60"
       >
         {pending ? t('account.logging_out') : t('account.logout')}
       </button>

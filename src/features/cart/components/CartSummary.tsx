@@ -1,4 +1,7 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/routing'
 import { useCart } from '../hooks/useCart'
 import './CartSummary.css'
 
@@ -8,7 +11,7 @@ import './CartSummary.css'
  * Muestra un panel lateral con el resumen de la compra incluyendo:
  * - Total de productos en el carrito
  * - Monto total a pagar
- * - Botón para iniciar el proceso de pago
+ * - Enlace para iniciar el proceso de pago (checkout E3)
  * 
  * Se integra en la página del carrito como un aside informativo
  * que ayuda al usuario a ver rápidamente el estado de su compra.
@@ -40,13 +43,12 @@ const CartSummary = ({ className = '' }: CartSummaryProps) => {
                 </div>
             </div>
 
-            <button
+            <Link
+                href="/checkout"
                 className="cart-summary__pay-button"
-                disabled
-                title="Checkout will be available in the next phase"
             >
                 {t('cart.summary.pay_button')}
-            </button>
+            </Link>
         </aside>
     )
 }

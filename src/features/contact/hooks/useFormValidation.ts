@@ -18,6 +18,7 @@ interface FormErrors {
 interface UseFormValidationReturn {
     formData: FormData
     errors: FormErrors
+    submitError: string | null
     isSubmitting: boolean
     handleInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     handleSubmit: (e: FormEvent) => Promise<void>
@@ -76,6 +77,7 @@ export const useFormValidation = (
     })
     
     const [errors, setErrors] = useState<FormErrors>({})
+    const [submitError, setSubmitError] = useState<string | null>(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const resetForm = () => {
@@ -86,6 +88,7 @@ export const useFormValidation = (
             mensaje: ''
         })
         setErrors({})
+        setSubmitError(null)
         setIsSubmitting(false)
     }
 
@@ -93,7 +96,10 @@ export const useFormValidation = (
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
         setFormData(prev => ({ ...prev, [name]: value }))
-        
+        if (submitError) {
+            setSubmitError(null)
+        }
+
         // Validar en tiempo real con la traducción
         const error = validateField(name, value, t)
         setErrors(prev => ({ ...prev, [name]: error }))
@@ -115,19 +121,24 @@ export const useFormValidation = (
         
         if (Object.keys(newErrors).length === 0) {
             setIsSubmitting(true)
-            
+            setSubmitError(null)
+
             try {
-                // Ejecutar callback personalizado o simulación por defecto
                 if (onSubmit) {
                     await onSubmit(formData)
-                } else {
-                    // Simular envío del formulario
-                    await new Promise(resolve => setTimeout(resolve, 1500))
                 }
 
                 if (options.resetOnSuccess) {
                     resetForm()
                 }
+            } catch (err) {
+                // El error del servidor se muestra a nivel de formulario; la
+                // simulación por defecto no existe: el envío real lo provee el caller.
+                setSubmitError(
+                    err instanceof Error && err.message
+                        ? err.message
+                        : t('form.error.submit_failed')
+                )
             } finally {
                 setIsSubmitting(false)
             }
@@ -142,6 +153,7 @@ export const useFormValidation = (
     return {
         formData,
         errors,
+        submitError,
         isSubmitting,
         handleInputChange,
         handleSubmit,

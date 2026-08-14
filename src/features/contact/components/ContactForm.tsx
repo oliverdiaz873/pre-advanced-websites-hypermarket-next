@@ -1,24 +1,33 @@
 import { useTranslations } from 'next-intl'
+import { ApiRequestError, sendContactMessage } from '@/lib/api-client'
 import { useFormValidation } from '../hooks/useFormValidation'
 import './ContactForm.css'
 
 interface ContactFormProps {
-    onSubmit?: () => Promise<void>
     onSuccess?: () => void
 }
 
-const ContactForm = ({ onSubmit, onSuccess }: ContactFormProps) => {
+const ContactForm = ({ onSuccess }: ContactFormProps) => {
     const t = useTranslations('contact');
-    const { formData, errors, isSubmitting, handleInputChange, handleSubmit } = useFormValidation(async () => {
-        // Simular envío del formulario
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        
-        // Ejecutar callback personalizado
-        if (onSubmit) {
-            await onSubmit()
+    const { formData, errors, submitError, isSubmitting, handleInputChange, handleSubmit } = useFormValidation(async (data) => {
+        try {
+            // E4.5: envío real al backend (POST /api/contact), sin simulación.
+            await sendContactMessage({
+                name: data.nombre.trim(),
+                email: data.email.trim(),
+                phone: data.telefono.trim() || undefined,
+                message: data.mensaje.trim()
+            })
+        } catch (err) {
+            if (err instanceof ApiRequestError && err.status === 429) {
+                throw new Error(t('form.error.rate_limited'))
+            }
+            if (err instanceof ApiRequestError && err.message) {
+                throw new Error(err.message)
+            }
+            throw new Error(t('form.error.submit_failed'))
         }
-        
-        // Ejecutar callback de éxito
+
         if (onSuccess) {
             onSuccess()
         }
@@ -118,6 +127,12 @@ const ContactForm = ({ onSubmit, onSuccess }: ContactFormProps) => {
                     </div>
                 )}
             </div>
+
+            {submitError && (
+                <div className="error-message text-red-400 text-sm mt-1 mb-4">
+                    {submitError}
+                </div>
+            )}
 
             <button
                 type="submit"

@@ -79,6 +79,38 @@ export interface ApiPaginationParams {
   sortOrder?: 'asc' | 'desc'
 }
 
+export interface ApiContactMessage {
+  id: string
+  name: string
+  email: string
+  phone?: string
+  message: string
+  status: 'pending' | 'read' | 'answered'
+  createdAt: string
+  updatedAt: string
+}
+
+export interface ApiContactPayload {
+  name: string
+  email: string
+  phone?: string
+  message: string
+}
+
+/**
+ * Error de API con el código HTTP y el mensaje del backend (si existe).
+ * Permite a la UI distinguir el 429 (rate limit) de otros fallos.
+ */
+export class ApiRequestError extends Error {
+  readonly status: number
+
+  constructor(status: number, message: string) {
+    super(message)
+    this.name = 'ApiRequestError'
+    this.status = status
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Configuración
 // ─────────────────────────────────────────────────────────────────────────────
@@ -300,6 +332,36 @@ export function search(
 
 export function getCategories(): Promise<ApiEnvelope<ApiCategory[]>> {
   return apiRequest<ApiEnvelope<ApiCategory[]>>('/categories')
+}
+
+/**
+ * E4.5: envía un mensaje de contacto (POST /api/contact). Lanza `ApiRequestError`
+ * con el mensaje del backend en 400 y el código 429 en rate limit para que la UI
+ * muestre la traducción adecuada. Nunca simula ni cachea: persiste en MongoDB.
+ */
+export async function sendContactMessage(payload: ApiContactPayload): Promise<ApiContactMessage> {
+  const res = await fetch(`${API_BASE_URL}/contact`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+
+  if (!res.ok) {
+    let message = ''
+    try {
+      const body = (await res.json()) as { message?: string } | null
+      message = body?.message ?? ''
+    } catch {
+      /* cuerpo no-JSON: se usa el mensaje por defecto */
+    }
+    throw new ApiRequestError(res.status, message)
+  }
+
+  const envelope = (await res.json()) as ApiEnvelope<ApiContactMessage>
+  return envelope.data
 }
 
 /**

@@ -315,7 +315,8 @@
     },
     "sections": {
       "offers": "Ofertas de la Semana",
-      "featured": "Productos Destacados"
+      "featured": "Productos Destacados",
+      "featured_empty": "No hay productos destacados disponibles en este momento."
     },
     "about_us": {
       "title": "Sobre Nosotros",

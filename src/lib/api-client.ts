@@ -22,6 +22,7 @@ export interface ApiProduct {
   unitQuantity?: number
   status: 'active' | 'inactive'
   isAvailable: boolean
+  featured?: boolean
   createdAt: string
   updatedAt: string
   translations?: Record<'es' | 'en', { name?: string; description?: string }>
@@ -75,6 +76,8 @@ export interface ApiPaginationParams {
   q?: string
   category?: string
   brand?: string
+  featured?: boolean
+  lang?: ApiLang
   sortBy?: string
   sortOrder?: 'asc' | 'desc'
 }
@@ -291,6 +294,8 @@ export function getProducts(query: ApiPaginationParams = {}): Promise<ApiCollect
     q: query.q,
     category: query.category,
     brand: query.brand,
+    featured: query.featured,
+    lang: query.lang,
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   }
@@ -314,6 +319,21 @@ export async function fetchOffers(lang?: ApiLang): Promise<OfferProduct[]> {
   try {
     const { data } = await getOffers(lang)
     return data.map(mapApiOfferToOfferProduct)
+  } catch {
+    return []
+  }
+}
+
+/**
+ * E4.6: obtiene los productos destacados desde la API real
+ * (GET /products?featured=true). Nunca lanza: si el backend no responde
+ * devuelve una lista vacía para que la Home degrade a "sin destacados" en
+ * vez de romper el SSR. Sin IDs hardcodeados en el frontend.
+ */
+export async function fetchFeaturedProducts(lang?: ApiLang): Promise<Product[]> {
+  try {
+    const { data } = await getProducts({ featured: true, limit: 100, lang })
+    return mapApiProductsToProducts(data)
   } catch {
     return []
   }

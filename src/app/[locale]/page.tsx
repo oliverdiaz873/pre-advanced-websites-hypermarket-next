@@ -3,19 +3,8 @@ import HeroCarousel from '@/features/home/components/HeroCarousel';
 import ProductCarouselSectionWithActions from './(shop)/_components/ProductCarouselSectionWithActions';
 import AboutUs from '@/features/home/components/AboutUs';
 import CategoryBannersSection from '@/features/home/components/CategoryBannersSection';
-import { products } from '@/services/catalog/products';
 import { getTranslations, getLocale } from 'next-intl/server';
-import { fetchCategories, fetchOffers, type ApiLang } from '@/lib/api-client';
-
-const featuredIds = [
-    'televisor_samsung_75_pulgadas',
-    'nevera_lg',
-    'ventilador_daiwa',
-    'sofa_cama_blanco',
-    'carne_de_res_para_hamburguesas',
-    'pollo_entero_don_pollo',
-    'atun_dimar',
-]
+import { fetchCategories, fetchOffers, fetchFeaturedProducts, type ApiLang } from '@/lib/api-client';
 
 // Server-side Metadata generation using next-intl
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,10 +28,11 @@ export default async function Home() {
     const t = await getTranslations('home');
     // F5.3: slugs válidos desde el backend para validar los banners de autoría local
     const categories = await fetchCategories();
-    // F5.4: ofertas reales para el carrusel "Ofertas" (featured sigue con contenido mock → deuda F5-post).
+    // F5.4: ofertas reales para el carrusel "Ofertas".
     const locale = (await getLocale()) as ApiLang;
     const offerProducts = await fetchOffers(locale);
-    const featuredProducts = products.filter((p) => featuredIds.includes(p.id))
+    // E4.6: destacados reales desde GET /products?featured=true (sin IDs hardcodeados).
+    const featuredProducts = await fetchFeaturedProducts(locale);
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -93,13 +83,20 @@ export default async function Home() {
                 isOffer={true}
             />
 
-            <ProductCarouselSectionWithActions 
-                title={t('sections.featured')}
-                products={featuredProducts}
-                id="productos-destacados"
-                idPrefix="featured"
-                className="mt-6 md:mt-8"
-            />
+            {featuredProducts.length > 0 ? (
+                <ProductCarouselSectionWithActions
+                    title={t('sections.featured')}
+                    products={featuredProducts}
+                    id="productos-destacados"
+                    idPrefix="featured"
+                    className="mt-6 md:mt-8"
+                />
+            ) : (
+                <section id="productos-destacados" className="mt-6 md:mt-8 px-2 md:px-8 py-2 md:py-6 w-full border-t border-gray-200">
+                    <h2 className="mb-4 md:mb-6">{t('sections.featured')}</h2>
+                    <p className="text-gray-600">{t('sections.featured_empty')}</p>
+                </section>
+            )}
 
             <CategoryBannersSection categories={categories} />
 

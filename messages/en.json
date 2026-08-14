@@ -315,7 +315,8 @@
     },
     "sections": {
       "offers": "Weekly Offers",
-      "featured": "Featured Products"
+      "featured": "Featured Products",
+      "featured_empty": "There are no featured products available right now."
     },
     "about_us": {
       "title": "About Us",

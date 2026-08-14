@@ -1,5 +1,134 @@
 import { describe, expect, it, beforeEach, afterEach, jest } from '@jest/globals'
-import { sendContactMessage, ApiRequestError } from './api-client'
+import {
+  getProducts,
+  fetchFeaturedProducts,
+  mapApiProductsToProducts,
+  sendContactMessage,
+  ApiRequestError,
+} from './api-client'
+import type { ApiProduct } from './api-client'
+
+const makeApiProduct = (overrides: Partial<ApiProduct> = {}): ApiProduct => ({
+  id: 'prod_destacado',
+  sku: 'SKU-1',
+  name: 'Destacado',
+  description: '',
+  price: 100,
+  image: null,
+  categoryId: 'cat_granos',
+  category: { name: 'Granos', slug: 'granos' },
+  status: 'active',
+  isAvailable: true,
+  featured: true,
+  createdAt: '2026-01-01T00:00:00.000Z',
+  updatedAt: '2026-01-01T00:00:00.000Z',
+  ...overrides,
+})
+
+describe('api-client · featured (E4.6)', () => {
+  const originalFetch = global.fetch
+
+  beforeEach(() => {
+    global.fetch = jest.fn() as unknown as typeof fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('getProducts envía ?featured=true a /products', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(JSON.stringify({ success: true, data: [], pagination: { page: 1, limit: 100, total: 0, pages: 1 } }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    )
+
+    await getProducts({ featured: true, limit: 100 })
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products')
+    expect(url.searchParams.get('featured')).toBe('true')
+    expect(url.searchParams.get('limit')).toBe('100')
+  })
+
+  it('getProducts propaga ?lang= cuando se indica', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(JSON.stringify({ success: true, data: [], pagination: { page: 1, limit: 100, total: 0, pages: 1 } }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    )
+
+    await getProducts({ featured: true, limit: 100, lang: 'en' })
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.searchParams.get('lang')).toBe('en')
+  })
+
+  it('fetchFeaturedProducts propaga ?lang= hacia /products', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          success: true,
+          data: [makeApiProduct()],
+          pagination: { page: 1, limit: 100, total: 1, pages: 1 },
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      )
+    )
+
+    await fetchFeaturedProducts('en')
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products')
+    expect(url.searchParams.get('featured')).toBe('true')
+    expect(url.searchParams.get('lang')).toBe('en')
+  })
+
+  it('fetchFeaturedProducts devuelve solo productos activos y disponibles mapeados', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          success: true,
+          data: [
+            makeApiProduct(),
+            makeApiProduct({ id: 'oculto', featured: true, status: 'inactive', isAvailable: false }),
+          ],
+          pagination: { page: 1, limit: 100, total: 1, pages: 1 },
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      )
+    )
+
+    const featured = await fetchFeaturedProducts()
+
+    expect(featured).toHaveLength(1)
+    expect(featured[0].id).toBe('prod_destacado')
+    expect(featured[0].categoria).toBe('granos')
+  })
+
+  it('fetchFeaturedProducts degrada a [] cuando la API falla (nunca lanza)', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockRejectedValue(new Error('network down'))
+
+    await expect(fetchFeaturedProducts()).resolves.toEqual([])
+  })
+
+  it('mapApiProductsToProducts respeta el gate activo/disponible', () => {
+    const mapped = mapApiProductsToProducts([
+      makeApiProduct(),
+      makeApiProduct({ id: 'a', isAvailable: false }),
+      makeApiProduct({ id: 'b', status: 'inactive' }),
+    ])
+    expect(mapped.map((p) => p.id)).toEqual(['prod_destacado'])
+  })
+})
 
 describe('api-client · contact (E4.5)', () => {
   const originalFetch = global.fetch

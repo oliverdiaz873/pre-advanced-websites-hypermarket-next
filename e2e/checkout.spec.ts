@@ -130,7 +130,7 @@ test('checkout → pay → cancel → historial → detalle (E3-N) + E3-Integrat
     status: 'pending',
     paymentStatus: 'pending',
   })
-  const item = created.items.find((i: any) => i.productId === PRODUCT_ID)
+  const item = created.items.find((i) => i.productId === PRODUCT_ID)
   if (!item) throw new Error('order items missing product')
   if (item.quantity !== 1) throw new Error(`item quantity expected 1, got ${item.quantity}`)
   if (typeof created.subtotal !== 'number' || created.subtotal <= 0) {

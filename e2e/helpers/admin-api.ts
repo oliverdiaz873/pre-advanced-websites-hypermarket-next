@@ -1,4 +1,5 @@
 import type { APIRequestContext } from '@playwright/test'
+import type { Order } from '../../src/types/order'
 
 /**
  * E3-Integration helpers (Next consumer).
@@ -30,6 +31,12 @@ export interface InventoryRecord {
   minStock: number
 }
 
+type AdminOrder = Order & {
+  customer?: {
+    email?: string
+  }
+}
+
 export async function adminLogin(request: APIRequestContext): Promise<string> {
   const res = await request.post(`${API}/auth/login`, {
     data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD },
@@ -49,7 +56,7 @@ export async function getAdminOrder(
   request: APIRequestContext,
   token: string,
   orderId: string,
-): Promise<any> {
+): Promise<AdminOrder> {
   const res = await request.get(`${API}/admin/orders/${orderId}`, {
     headers: { Authorization: `Bearer ${token}` },
   })
@@ -111,7 +118,7 @@ export async function assertAdminOrderState(
   token: string,
   ev: OrderEvidence,
   expected: { status: string; paymentStatus: string },
-): Promise<any> {
+): Promise<AdminOrder> {
   const order = await getAdminOrder(request, token, ev.orderId)
   if (order.status !== expected.status) {
     throw new Error(`admin order status expected ${expected.status}, got ${order.status}`)

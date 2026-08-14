@@ -302,8 +302,8 @@ export function getProducts(query: ApiPaginationParams = {}): Promise<ApiCollect
   return apiRequest<ApiCollection<ApiProduct>>('/products', params)
 }
 
-export function getProduct(id: string): Promise<ApiEnvelope<ApiProduct>> {
-  return apiRequest<ApiEnvelope<ApiProduct>>(`/products/${encodeURIComponent(id)}`)
+export function getProduct(id: string, lang?: ApiLang): Promise<ApiEnvelope<ApiProduct>> {
+  return apiRequest<ApiEnvelope<ApiProduct>>(`/products/${encodeURIComponent(id)}`, { lang })
 }
 
 export function getOffers(lang?: ApiLang): Promise<ApiEnvelope<ApiOffer[]>> {
@@ -403,15 +403,15 @@ export async function fetchCategories(): Promise<Category[]> {
  * del backend (GET /products?category=<slug>&page=N&limit=N). Usa el `total`
  * real del primer page para calcular los pages restantes.
  */
-export async function getAllCategoryProducts(category: string, limit = 100): Promise<ApiProduct[]> {
-  const first = await getProducts({ category, page: 1, limit })
+export async function getAllCategoryProducts(category: string, limit = 100, lang?: ApiLang): Promise<ApiProduct[]> {
+  const first = await getProducts({ category, page: 1, limit, lang })
   const total = first.pagination?.total ?? first.data.length
   const pages = Math.max(1, Math.ceil(total / limit))
   if (pages <= 1) return first.data
 
   const remaining = await Promise.all(
     Array.from({ length: pages - 1 }, (_, i) =>
-      getProducts({ category, page: i + 2, limit }).then((page) => page.data)
+      getProducts({ category, page: i + 2, limit, lang }).then((page) => page.data)
     )
   )
   return [...first.data, ...remaining.flat()]

@@ -14,7 +14,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     const { id } = await params;
     
     try {
-        const { data: product } = await getProduct(id);
+        const locale = (await getLocale()) as ApiLang;
+        const { data: product } = await getProduct(id, locale);
 
         if (!product) {
             const t = await getTranslations('common.product');
@@ -86,7 +87,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     let jsonLd: Record<string, unknown>;
 
     try {
-        const { data: product } = await getProduct(id);
+        const locale = (await getLocale()) as ApiLang;
+        const { data: product } = await getProduct(id, locale);
 
         if (!product) {
             notFound();
@@ -96,7 +98,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         // F5.4: ofertas reales (GET /offers) para enriquecer el badge de precio del producto y sus relacionados.
         // H1: fetchOffers nunca lanza — un fallo de /offers no convierte la página en 404/500.
-        const locale = (await getLocale()) as ApiLang;
         const offers = await fetchOffers(locale);
         const offerMap = new Map(offers.map((offer) => [offer.id, offer]));
 
@@ -109,7 +110,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         categories = await fetchCategories();
 
         // Obtener productos relacionados de la misma categoría (máx 8)
-        const { data: relatedRaw } = await getProducts({ category: mappedProduct.categoria, limit: 50 });
+        const { data: relatedRaw } = await getProducts({ category: mappedProduct.categoria, limit: 50, lang: locale });
         relatedProducts = mapApiProductsToProducts(relatedRaw)
             .filter((item) => item.id !== mappedProduct.id)
             .slice(0, 8)

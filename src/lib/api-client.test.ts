@@ -1,6 +1,8 @@
 import { describe, expect, it, beforeEach, afterEach, jest } from '@jest/globals'
 import {
   getProducts,
+  getProduct,
+  getAllCategoryProducts,
   fetchFeaturedProducts,
   mapApiProductsToProducts,
   sendContactMessage,
@@ -127,6 +129,93 @@ describe('api-client · featured (E4.6)', () => {
       makeApiProduct({ id: 'b', status: 'inactive' }),
     ])
     expect(mapped.map((p) => p.id)).toEqual(['prod_destacado'])
+  })
+})
+
+describe('api-client · product detail & category (E6.2.1 lang)', () => {
+  const originalFetch = global.fetch
+
+  beforeEach(() => {
+    global.fetch = jest.fn() as unknown as typeof fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('getProduct envía ?lang=en a /products/:id cuando se indica', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(JSON.stringify({ success: true, data: makeApiProduct() }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    )
+
+    await getProduct('prod_destacado', 'en')
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products/prod_destacado')
+    expect(url.searchParams.get('lang')).toBe('en')
+  })
+
+  it('getProduct no añade ?lang cuando no se proporciona', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(JSON.stringify({ success: true, data: makeApiProduct() }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    )
+
+    await getProduct('prod_destacado')
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products/prod_destacado')
+    expect(url.searchParams.has('lang')).toBe(false)
+  })
+
+  it('getAllCategoryProducts propaga ?lang=en a /products', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          success: true,
+          data: [makeApiProduct()],
+          pagination: { page: 1, limit: 100, total: 1, pages: 1 },
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      )
+    )
+
+    const result = await getAllCategoryProducts('granos', 100, 'en')
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products')
+    expect(url.searchParams.get('category')).toBe('granos')
+    expect(url.searchParams.get('lang')).toBe('en')
+    expect(result).toHaveLength(1)
+  })
+
+  it('getAllCategoryProducts no añade ?lang cuando no se proporciona', async () => {
+    const mockFetch = global.fetch as jest.Mock
+    mockFetch.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          success: true,
+          data: [makeApiProduct()],
+          pagination: { page: 1, limit: 100, total: 1, pages: 1 },
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      )
+    )
+
+    await getAllCategoryProducts('granos')
+
+    const [url] = mockFetch.mock.calls[0] as [URL]
+    expect(url.href).toContain('/api/products')
+    expect(url.searchParams.has('lang')).toBe(false)
   })
 })
 

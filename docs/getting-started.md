@@ -17,9 +17,16 @@ npm install
 
 ## Environment Variables
 
-No environment variables are currently required by the application.
+The application reads backend configuration from environment variables (see
+`.env.example`). Copy it to `.env.local` for local development; the defaults
+target the local backend (`http://localhost:3000`).
 
-The codebase does not read from `process.env`, and there are no tracked `.env` files in the project. If future integrations require secrets or deployment-specific configuration, add them through standard Next.js environment files such as `.env.local` and document them here.
+- `NEXT_PUBLIC_API_URL` — base URL of the REST API for **client-side** calls (public catalog).
+- `API_URL` — base URL of the REST API for **server-side** calls (RSC, Server Actions, Route Handlers, auth flows). Must not start with `NEXT_PUBLIC_` (not exposed to the client).
+- `NEXT_PUBLIC_STORAGE_PUBLIC_URL` — public base URL for resolving image/storage keys.
+
+For production, set these to the deployed backend URL. Do not commit real
+secrets or real production URLs in tracked files.
 
 ## Available Commands
 

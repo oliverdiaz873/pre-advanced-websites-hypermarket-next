@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useFormatter, useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import type { Order } from '@/types/order'
 
@@ -16,6 +16,7 @@ interface OrderHistoryClientProps {
  */
 export default function OrderHistoryClient({ orders }: OrderHistoryClientProps) {
   const t = useTranslations('orders')
+  const format = useFormatter()
 
   if (orders.length === 0) {
     return <p className="opacity-70">{t('empty')}</p>
@@ -42,8 +43,8 @@ export default function OrderHistoryClient({ orders }: OrderHistoryClientProps) 
             </span>
           </div>
           <div className="flex justify-between opacity-70">
-            <span>{new Date(order.createdAt).toLocaleDateString()}</span>
-            <span>{t('total', { total: order.subtotal.toLocaleString() })}</span>
+            <span>{format.dateTime(new Date(order.createdAt), { dateStyle: 'medium', timeZone: 'America/Santo_Domingo' })}</span>
+            <span>{t('total', { total: format.number(order.subtotal) })}</span>
           </div>
           <div className="text-xs opacity-60">
             {t('items_count', { count: order.totalItems })}

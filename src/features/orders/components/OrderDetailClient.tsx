@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useFormatter, useTranslations } from 'next-intl'
 import { cancelOrderAction, payOrderAction } from '@/features/orders/actions'
 import type { Order } from '@/types/order'
 
@@ -24,6 +24,7 @@ interface OrderDetailClientProps {
  */
 export default function OrderDetailClient({ order: initialOrder }: OrderDetailClientProps) {
   const t = useTranslations('orders')
+  const format = useFormatter()
   const [order, setOrder] = useState(initialOrder)
   const [loadedId, setLoadedId] = useState(initialOrder.id)
   const [pending, setPending] = useState(false)
@@ -77,7 +78,13 @@ export default function OrderDetailClient({ order: initialOrder }: OrderDetailCl
         <span className="rounded-full bg-orange-500/15 text-orange-600 dark:text-orange-300 px-3 py-1">
           {t(`payment.${order.paymentStatus}`)}
         </span>
-        <span className="opacity-70 self-center">{new Date(order.createdAt).toLocaleString()}</span>
+        <span className="opacity-70 self-center">
+          {format.dateTime(new Date(order.createdAt), {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+            timeZone: 'America/Santo_Domingo',
+          })}
+        </span>
       </div>
 
       <section className="mb-6">
@@ -96,13 +103,13 @@ export default function OrderDetailClient({ order: initialOrder }: OrderDetailCl
               <span className="opacity-80">
                 {item.name} <span className="opacity-60">× {item.quantity}</span>
               </span>
-              <span className="font-medium">${(item.price * item.quantity).toLocaleString()}</span>
+              <span className="font-medium">${format.number(item.price * item.quantity)}</span>
             </li>
           ))}
         </ul>
         <div className="flex justify-between items-center mt-4 font-semibold">
           <span>{t('detail.total')}</span>
-          <span>${order.subtotal.toLocaleString()}</span>
+          <span>${format.number(order.subtotal)}</span>
         </div>
       </section>
 

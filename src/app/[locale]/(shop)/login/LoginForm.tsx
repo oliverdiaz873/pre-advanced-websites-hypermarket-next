@@ -1,10 +1,20 @@
 'use client'
 
-import { useTransition, useState, type FormEvent } from 'react'
+import { useSyncExternalStore, useTransition, useState, type FormEvent } from 'react'
 import { Link, useRouter } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { loginAction } from '@/features/auth/actions'
 import { useSession } from '@/features/auth/SessionContext'
+
+// Hidratación de React: false durante SSR/pre-hidratación, true tras el mount.
+// Evita el submit nativo (preventDefault no está adjunto aún) que perdería el
+// login en silencio. Mismo patrón que useIsMobile (useSyncExternalStore).
+const useIsHydrated = (): boolean =>
+  useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
 export default function LoginForm({ returnUrl }: { returnUrl: string }) {
   const t = useTranslations('auth')
@@ -14,6 +24,7 @@ export default function LoginForm({ returnUrl }: { returnUrl: string }) {
   const [errorKey, setErrorKey] = useState<string | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const hydrated = useIsHydrated()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -71,7 +82,7 @@ export default function LoginForm({ returnUrl }: { returnUrl: string }) {
 
         <button
           type="submit"
-          disabled={pending}
+          disabled={!hydrated || pending}
           className="mt-2 rounded-lg bg-orange-500 text-white font-semibold py-3 text-sm transition-colors duration-200 hover:bg-orange-600 disabled:opacity-60"
         >
           {pending ? t('login.submitting') : t('login.submit')}

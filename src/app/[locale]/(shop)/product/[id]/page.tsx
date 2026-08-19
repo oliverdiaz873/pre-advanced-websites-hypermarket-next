@@ -60,7 +60,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
                     : `https://www.hipermercadosuperior.com${mappedProduct.imagen}`],
             },
         };
-    } catch {
+    } catch (error) {
+        console.error('[ProductDetail] metadata pipeline failed', { id, error });
         const t = await getTranslations('common.product');
         return {
             title: t('not_found'),
@@ -86,13 +87,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
     let categories: Category[];
     let jsonLd: Record<string, unknown>;
 
+    const locale = (await getLocale()) as ApiLang;
+    let product;
     try {
-        const locale = (await getLocale()) as ApiLang;
-        const { data: product } = await getProduct(id, locale);
+        const response = await getProduct(id, locale);
+        product = response.data;
+    } catch (error) {
+        console.error('[ProductDetail] getProduct failed', { id, locale, error });
+        notFound();
+    }
 
-        if (!product) {
-            notFound();
-        }
+    if (!product) {
+        notFound();
+    }
+
+    try {
 
         mappedProduct = mapApiProductToProduct(product);
 
@@ -144,8 +153,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 availability: 'https://schema.org/InStock',
             },
         };
-    } catch {
-        notFound();
+    } catch (error) {
+        console.error('[ProductDetail] post-product pipeline failed', { id, locale, error });
+        throw error;
     }
 
     return (

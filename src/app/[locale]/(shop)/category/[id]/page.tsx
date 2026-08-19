@@ -13,7 +13,7 @@ import { getCategoryName, getSubcategoryName } from '@/lib';
  * los productos por subcategoría se obtienen respetando la paginación del backend.
  */
 type CategoryPageProps = {
-    params: Promise<{ id: string }>;
+    params: Promise<{ id: string; subcategory?: string }>;
 };
 
 async function getCategoryBySlug(id: string): Promise<Category | undefined> {
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-    const { id } = await params;
+    const { id, subcategory } = await params;
     const category = await getCategoryBySlug(id);
 
     if (!category) {
@@ -88,11 +88,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     };
 
     // F5.3: obtener todos los productos por subcategoría respetando la paginación del backend
+    const visibleSubcategories = subcategory
+        ? category.subcategories.filter((item) => subcategorySlugFromHref(item.href) === subcategory)
+        : category.subcategories;
+    if (subcategory && visibleSubcategories.length === 0) notFound();
+
     const sections = await Promise.all(
-        category.subcategories.map(async (subcategory) => {
+        visibleSubcategories.map(async (subcategory) => {
             const slug = subcategorySlugFromHref(subcategory.href);
             const productCategory = sectionSlugToProductCategoria(slug);
-            const rawProducts = await getAllCategoryProducts(productCategory, 100, locale);
+            const rawProducts = await getAllCategoryProducts(productCategory, 100, locale, slug);
             const sectionProducts = mapApiProductsToProducts(rawProducts).map(withOffer);
 
             return {
@@ -120,7 +125,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 '@type': 'ListItem',
                 position: index + 1,
                 name: getSubcategoryName(subcategory, t),
-                url: `https://www.hipermercadosuperior.com/category/${category.id}#${subcategorySlugFromHref(subcategory.href)}`,
+                url: `https://www.hipermercadosuperior.com/category/${category.id}/${subcategorySlugFromHref(subcategory.href)}`,
             })),
         },
         provider: {

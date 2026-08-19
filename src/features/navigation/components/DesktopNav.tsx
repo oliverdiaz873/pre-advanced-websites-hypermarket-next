@@ -66,7 +66,7 @@ const DesktopNav = ({ categories }: { categories: Category[] }) => {
 
                                 <ul className="absolute top-0 left-full bg-black/90 rounded-lg min-w-[220px] hidden group-hover/sub:flex flex-col z-1000 list-none p-0 m-0 shadow-xl">
                                     {category.subcategories.map((sub) => {
-                                        const subKey = sub.href.split('#')[1]
+                                        const subKey = sub.href.split('#')[1] ?? sub.href.split('/').filter(Boolean).pop()
                                         return (
                                             <li key={sub.name}>
                                                 <Link href={sub.href} className={subLinkClass}>

@@ -51,7 +51,7 @@ describe('createAddressAction', () => {
 
   it('con token → reenvía al backend y NO serializa el JWT', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.createAddressRequest as jest.Mock).mockResolvedValue({ ok: true, status: 201, address })
+    ;(backend.createAddressRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 201, address })
     const res = await createAddressAction({ label: 'Casa', street: 'Calle 1', city: 'SD', state: 'DN', zipCode: '10101', country: 'DO' })
     expect(backend.createAddressRequest).toHaveBeenCalledWith(TOKEN, expect.objectContaining({ label: 'Casa' }))
     expect(JSON.stringify(res)).not.toContain(TOKEN)
@@ -68,7 +68,7 @@ describe('updateAddressAction', () => {
 
   it('con token e id → PATCH parcial al backend', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.updateAddressRequest as jest.Mock).mockResolvedValue({ ok: true, status: 200, address })
+    ;(backend.updateAddressRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 200, address })
     const res = await updateAddressAction('addr_1', { isDefault: false })
     expect(backend.updateAddressRequest).toHaveBeenCalledWith(TOKEN, 'addr_1', { isDefault: false })
     expect(res.ok).toBe(true)
@@ -78,7 +78,7 @@ describe('updateAddressAction', () => {
 describe('deleteAddressAction', () => {
   it('con token e id → DELETE al backend', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.deleteAddressRequest as jest.Mock).mockResolvedValue({ ok: true, status: 204 })
+    ;(backend.deleteAddressRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 204 })
     const res = await deleteAddressAction('addr_1')
     expect(backend.deleteAddressRequest).toHaveBeenCalledWith(TOKEN, 'addr_1')
     expect(res).toEqual({ ok: true, status: 204 })

@@ -15,7 +15,9 @@ export interface ApiProduct {
   price: number
   image: string | null
   categoryId: string
+  subcategoryId?: string | null
   category: { name: string; slug: string }
+  subcategory?: { name: string; slug: string } | null
   brandId?: string
   brand?: { name: string; slug: string }
   unit?: string
@@ -75,6 +77,8 @@ export interface ApiPaginationParams {
   limit?: number
   q?: string
   category?: string
+  categoryId?: string
+  subcategoryId?: string
   brand?: string
   featured?: boolean
   lang?: ApiLang
@@ -140,6 +144,7 @@ export function resolveApiImageUrl(image?: string | null): string | null {
   if (/^(https?:)?\/\//.test(image) || image.startsWith('data:')) {
     return image
   }
+  if (image.startsWith('/uploads/')) return `${STORAGE_PUBLIC_URL}${image}`
   const raw = image.startsWith('/') ? image.slice(1) : image
   return `${STORAGE_PUBLIC_URL}/uploads/${raw}`
 }
@@ -170,6 +175,7 @@ export function mapApiProductToProduct(api: ApiProduct): Product {
     description: api.description,
     url: `/product/${encodeURIComponent(api.id)}`,
     categoria: api.category.slug,
+    subcategoryId: api.subcategoryId ?? null,
     precio: api.price,
     precioTexto,
     imagen,
@@ -253,7 +259,7 @@ export function mapApiCategoryToCategory(api: ApiCategory): Category {
     href: `/category/${api.slug}`,
     subcategories: api.subcategories.map((sub) => ({
       name: sub.name,
-      href: `/category/${api.slug}#${sub.slug}`,
+      href: `/category/${api.slug}/${sub.slug}`,
     })),
   }
 }
@@ -280,6 +286,7 @@ async function apiRequest<T>(path: string, params?: object): Promise<T> {
     headers: { Accept: 'application/json' },
   })
 
+
   if (!res.ok) {
     throw new Error(`API ${res.status}: ${res.url}`)
   }
@@ -293,6 +300,8 @@ export function getProducts(query: ApiPaginationParams = {}): Promise<ApiCollect
     limit: query.limit,
     q: query.q,
     category: query.category,
+    categoryId: query.categoryId,
+    subcategoryId: query.subcategoryId,
     brand: query.brand,
     featured: query.featured,
     lang: query.lang,
@@ -403,15 +412,15 @@ export async function fetchCategories(): Promise<Category[]> {
  * del backend (GET /products?category=<slug>&page=N&limit=N). Usa el `total`
  * real del primer page para calcular los pages restantes.
  */
-export async function getAllCategoryProducts(category: string, limit = 100, lang?: ApiLang): Promise<ApiProduct[]> {
-  const first = await getProducts({ category, page: 1, limit, lang })
+export async function getAllCategoryProducts(category: string, limit = 100, lang?: ApiLang, subcategoryId?: string): Promise<ApiProduct[]> {
+  const first = await getProducts({ category, subcategoryId, page: 1, limit, lang })
   const total = first.pagination?.total ?? first.data.length
   const pages = Math.max(1, Math.ceil(total / limit))
   if (pages <= 1) return first.data
 
   const remaining = await Promise.all(
     Array.from({ length: pages - 1 }, (_, i) =>
-      getProducts({ category, page: i + 2, limit, lang }).then((page) => page.data)
+      getProducts({ category, subcategoryId, page: i + 2, limit, lang }).then((page) => page.data)
     )
   )
   return [...first.data, ...remaining.flat()]

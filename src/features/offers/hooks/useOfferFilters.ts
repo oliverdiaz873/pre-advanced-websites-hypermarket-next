@@ -27,8 +27,7 @@ export const useOfferFilters = (offers: OfferProduct[], categories: Category[]):
         const map = new Map<string, string[]>()
         categories.forEach(cat => {
             const subIds = cat.subcategories.map(sub => {
-                const parts = sub.href.split('#')
-                return parts[1] || ''
+                return sub.href.split('#')[1] || sub.href.split('/').filter(Boolean).pop() || ''
             })
             map.set(cat.id, subIds)
         })

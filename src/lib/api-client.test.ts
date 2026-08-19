@@ -40,7 +40,7 @@ describe('api-client · featured (E4.6)', () => {
   })
 
   it('getProducts envía ?featured=true a /products', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(JSON.stringify({ success: true, data: [], pagination: { page: 1, limit: 100, total: 0, pages: 1 } }), {
         status: 200,
@@ -57,7 +57,7 @@ describe('api-client · featured (E4.6)', () => {
   })
 
   it('getProducts propaga ?lang= cuando se indica', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(JSON.stringify({ success: true, data: [], pagination: { page: 1, limit: 100, total: 0, pages: 1 } }), {
         status: 200,
@@ -72,7 +72,7 @@ describe('api-client · featured (E4.6)', () => {
   })
 
   it('fetchFeaturedProducts propaga ?lang= hacia /products', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -93,7 +93,7 @@ describe('api-client · featured (E4.6)', () => {
   })
 
   it('fetchFeaturedProducts devuelve solo productos activos y disponibles mapeados', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -116,7 +116,7 @@ describe('api-client · featured (E4.6)', () => {
   })
 
   it('fetchFeaturedProducts degrada a [] cuando la API falla (nunca lanza)', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockRejectedValue(new Error('network down'))
 
     await expect(fetchFeaturedProducts()).resolves.toEqual([])
@@ -145,7 +145,7 @@ describe('api-client · product detail & category (E6.2.1 lang)', () => {
   })
 
   it('getProduct envía ?lang=en a /products/:id cuando se indica', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(JSON.stringify({ success: true, data: makeApiProduct() }), {
         status: 200,
@@ -161,7 +161,7 @@ describe('api-client · product detail & category (E6.2.1 lang)', () => {
   })
 
   it('getProduct no añade ?lang cuando no se proporciona', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(JSON.stringify({ success: true, data: makeApiProduct() }), {
         status: 200,
@@ -177,7 +177,7 @@ describe('api-client · product detail & category (E6.2.1 lang)', () => {
   })
 
   it('getAllCategoryProducts propaga ?lang=en a /products', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -199,7 +199,7 @@ describe('api-client · product detail & category (E6.2.1 lang)', () => {
   })
 
   it('getAllCategoryProducts no añade ?lang cuando no se proporciona', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -232,7 +232,7 @@ describe('api-client · contact (E4.5)', () => {
   })
 
   it('sendContactMessage hace POST /api/contact con el payload mapeado y devuelve el mensaje persistido', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -268,7 +268,7 @@ describe('api-client · contact (E4.5)', () => {
   })
 
   it('sendContactMessage lanza ApiRequestError con el mensaje del backend en 400', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({ success: false, message: 'Message must be between 10 and 500 characters', statusCode: 400 }),
@@ -286,7 +286,7 @@ describe('api-client · contact (E4.5)', () => {
   })
 
   it('sendContactMessage expone status 429 para rate limit', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({ success: false, message: 'Too many messages, please try again later', statusCode: 429, code: 'RATE_LIMITED' }),
@@ -305,7 +305,7 @@ describe('api-client · contact (E4.5)', () => {
   })
 
   it('sendContactMessage no lanza mensaje del backend si el cuerpo no es JSON', async () => {
-    const mockFetch = global.fetch as jest.Mock
+    const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>
     mockFetch.mockResolvedValue(
       new Response('internal error', { status: 500 })
     )

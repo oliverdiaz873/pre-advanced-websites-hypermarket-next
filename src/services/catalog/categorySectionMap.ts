@@ -1,14 +1,11 @@
-/**
- * Convierte un slug de subcategoría (hash de href) al valor de `producto.categoria`.
- * Desde la corrección de categorías (guiones bajos → guiones), ambos formatos coinciden,
- * por lo que la función es una identidad. Se mantiene por compatibilidad de API pública.
- */
+/** Convierte una referencia de subcategoría antigua o explícita a su slug. */
 export function sectionSlugToProductCategoria(slug: string): string {
     return slug
 }
 
-/** Extrae el fragmento #seccion de un href como "/category/foo#bar" -> "bar" */
+/** Extrae el slug final de "/category/foo/bar" y conserva compatibilidad con "/category/foo#bar". */
 export function subcategorySlugFromHref(href: string): string {
     const hash = href.split('#')[1]
-    return hash ?? ''
+    if (hash) return hash
+    return href.split('/').filter(Boolean).pop() ?? ''
 }

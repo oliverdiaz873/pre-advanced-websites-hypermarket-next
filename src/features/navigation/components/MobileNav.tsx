@@ -117,7 +117,7 @@ const MobileNav = ({ isOpen, onClose, showLanguage, categories }: MobileNavProps
                                         >
                                             <ul className="pl-4 text-[13px] list-none p-0">
                                                 {category.subcategories.map((sub) => {
-                                                    const subKey = sub.href.split('#')[1]
+                                                    const subKey = sub.href.split('#')[1] ?? sub.href.split('/').filter(Boolean).pop()
                                                     return (
                                                         <li key={sub.name}>
                                                             <Link

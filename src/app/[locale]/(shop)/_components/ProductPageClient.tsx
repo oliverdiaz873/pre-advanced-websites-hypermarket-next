@@ -39,12 +39,11 @@ export default function ProductPageClient({ product, relatedProducts, categories
     const { name, labels } = useProductTranslation(product, pageData)
 
     const breadcrumbItems = useMemo(() => {
-        const parentCategory = categories.find((cat) =>
-            cat.subcategories.some((sub) => sub.href.includes(`#${product.categoria}`))
-        )
-        const subcategory = parentCategory?.subcategories.find((sub) =>
-            sub.href.includes(`#${product.categoria}`)
-        )
+        const parentCategory = categories.find((cat) => cat.id === product.categoria)
+        const subcategory = parentCategory?.subcategories.find((sub) => {
+            const slug = sub.href.split('#')[1] ?? sub.href.split('/').filter(Boolean).pop()
+            return slug === product.subcategoryId
+        })
 
         const items: BreadcrumbItem[] = [
             { label: tCommon('breadcrumb.home'), to: '/' },
@@ -59,14 +58,14 @@ export default function ProductPageClient({ product, relatedProducts, categories
 
         if (subcategory) {
             items.push({
-                label: tCategories(`sub.${product.categoria}`),
+                label: subcategory.name,
                 to: subcategory.href
             })
         }
 
         items.push({ label: name })
         return items
-    }, [product.categoria, name, tCommon, tCategories, categories])
+    }, [product.categoria, product.subcategoryId, name, tCommon, tCategories, categories])
 
     return (
         <>

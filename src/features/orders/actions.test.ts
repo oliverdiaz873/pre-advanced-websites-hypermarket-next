@@ -59,7 +59,7 @@ describe('createOrderAction (idempotencia E3)', () => {
 
   it('reutiliza la key recibida (nunca la regenera) y no serializa el JWT', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.createOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 201, order })
+    ;(backend.createOrderRequest as jest.MockedFunction<typeof backend.createOrderRequest>).mockResolvedValue({ ok: true, status: 201, order })
     const res = await createOrderAction({ addressId: 'addr_1', idempotencyKey: 'key-abc' })
     expect(backend.createOrderRequest).toHaveBeenCalledWith(TOKEN, { addressId: 'addr_1', idempotencyKey: 'key-abc' })
     expect(JSON.stringify(res)).not.toContain(TOKEN)
@@ -68,7 +68,7 @@ describe('createOrderAction (idempotencia E3)', () => {
 
   it('409 stock → ok false CONFLICT y SIN revalidate (no hubo orden)', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.createOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: false, status: 409, code: 'CONFLICT', message: 'Insufficient stock' })
+    ;(backend.createOrderRequest as jest.MockedFunction<typeof backend.createOrderRequest>).mockResolvedValue({ ok: false, status: 409, code: 'CONFLICT', message: 'Insufficient stock' })
     const res = await createOrderAction({ addressId: 'a', idempotencyKey: 'k' })
     expect(res).toEqual({ ok: false, status: 409, code: 'CONFLICT', message: 'Insufficient stock' })
     expect(mockRevalidate).not.toHaveBeenCalled()
@@ -76,7 +76,7 @@ describe('createOrderAction (idempotencia E3)', () => {
 
   it('éxito → revalida /cart, /orders y /checkout (carrito se vacía server-side)', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.createOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 201, order })
+    ;(backend.createOrderRequest as jest.MockedFunction<typeof backend.createOrderRequest>).mockResolvedValue({ ok: true, status: 201, order })
     await createOrderAction({ addressId: 'a', idempotencyKey: 'k' })
     expect(mockRevalidate).toHaveBeenCalledWith('/cart')
     expect(mockRevalidate).toHaveBeenCalledWith('/orders')
@@ -87,7 +87,7 @@ describe('createOrderAction (idempotencia E3)', () => {
 describe('payOrderAction / cancelOrderAction', () => {
   it('pay → revalida /orders/:id y /orders', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.payOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 200, order: { ...order, paymentStatus: 'paid' } })
+    ;(backend.payOrderRequest as jest.MockedFunction<typeof backend.payOrderRequest>).mockResolvedValue({ ok: true, status: 200, order: { ...order, paymentStatus: 'paid' } })
     await payOrderAction('order_1')
     expect(backend.payOrderRequest).toHaveBeenCalledWith(TOKEN, 'order_1')
     expect(mockRevalidate).toHaveBeenCalledWith('/orders/order_1')
@@ -96,7 +96,7 @@ describe('payOrderAction / cancelOrderAction', () => {
 
   it('pay ya pagada (400) → error y sin revalidate', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.payOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: false, status: 400, message: 'Cannot pay order from payment status paid' })
+    ;(backend.payOrderRequest as jest.MockedFunction<typeof backend.payOrderRequest>).mockResolvedValue({ ok: false, status: 400, message: 'Cannot pay order from payment status paid' })
     const res = await payOrderAction('order_1')
     expect(res).toEqual({ ok: false, status: 400, message: 'Cannot pay order from payment status paid' })
     expect(mockRevalidate).not.toHaveBeenCalled()
@@ -104,7 +104,7 @@ describe('payOrderAction / cancelOrderAction', () => {
 
   it('cancel → revalida /orders/:id y /orders', async () => {
     mockedCookies.mockReturnValue(mockCookie(TOKEN) as never)
-    ;(backend.cancelOrderRequest as jest.MockedFunction<any>).mockResolvedValue({ ok: true, status: 200, order: { ...order, status: 'cancelled', paymentStatus: 'refunded' } })
+    ;(backend.cancelOrderRequest as jest.MockedFunction<typeof backend.cancelOrderRequest>).mockResolvedValue({ ok: true, status: 200, order: { ...order, status: 'cancelled', paymentStatus: 'refunded' } })
     await cancelOrderAction('order_1')
     expect(backend.cancelOrderRequest).toHaveBeenCalledWith(TOKEN, 'order_1')
     expect(mockRevalidate).toHaveBeenCalledWith('/orders/order_1')

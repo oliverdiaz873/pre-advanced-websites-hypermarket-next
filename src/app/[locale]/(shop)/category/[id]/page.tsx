@@ -4,8 +4,9 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import CategoryPageClient from '../../_components/CategoryPageClient';
 import { fetchCategories, getAllCategoryProducts, mapApiProductsToProducts, fetchOffers, type ApiLang } from '@/lib/api-client';
 import type { Category } from '@/types/category';
-import { sectionSlugToProductCategoria, subcategorySlugFromHref } from '@/services/catalog/categorySectionMap';
 import { getCategoryName, getSubcategoryName } from '@/lib';
+
+const subcategorySlugFromHref = (href: string): string => href.split('/').filter(Boolean).pop() ?? '';
 
 /**
  * Hypermarket category page.
@@ -96,8 +97,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const sections = await Promise.all(
         visibleSubcategories.map(async (subcategory) => {
             const slug = subcategorySlugFromHref(subcategory.href);
-            const productCategory = sectionSlugToProductCategoria(slug);
-            const rawProducts = await getAllCategoryProducts(productCategory, 100, locale, slug);
+            const rawProducts = await getAllCategoryProducts(category.id, 100, locale, slug);
             const sectionProducts = mapApiProductsToProducts(rawProducts).map(withOffer);
 
             return {

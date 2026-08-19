@@ -5,6 +5,9 @@ import { IMAGE_REMOTE_PATTERNS } from './src/lib/image-remote-patterns.ts'
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [{ source: '/uploads/:path*', destination: 'http://localhost:3000/uploads/:path*' }]
+  },
   images: {
     remotePatterns: IMAGE_REMOTE_PATTERNS,
     // Next 16 bloquea por SSRF upstreams que resuelven a IP privada.
